@@ -1,6 +1,6 @@
 <?php
 
-require_once(cCorePath . 'application.system.php');
+require_once(cCorePath . '.include/application.system.php');
 cLoader::library('page.application');
 
 cLoader::library('header/cHeader');

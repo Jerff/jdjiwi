@@ -1,11 +1,12 @@
 <?php
 
 require(cCorePath . '_.core/loader/cLoader.php');
-cLoader::library('system/function');
-cLoader::library('session/cSession');
-cLoader::library('settings/cSettings');
-cLoader::library('seo/cSeo');
+cModul::load('core:core');
+cModul::load('core:seo');
 
+
+
+cLoader::library('system/function');
 cLoader::library('register/cRegister');
 
 cLoader::library('file/cDir');
