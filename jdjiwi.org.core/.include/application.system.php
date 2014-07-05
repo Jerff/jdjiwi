@@ -23,6 +23,6 @@ cLoader::library('cache/cmfCacheUser');
 
 cLoader::library('admin/cAdmin');
 
-cLoader::library('compile/cCompile');
+cModul::load('compile/cCompile');
 cLoader::library('application/cApplication');
 ?>

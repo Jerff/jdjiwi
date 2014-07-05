@@ -1,5 +1,5 @@
 <?php
 
 require('.include.application.php');
-cLoader::library('compile/cCallCompileJsCss');
+cLoader::library('application/cCallCompileJsCss');
 ?>
