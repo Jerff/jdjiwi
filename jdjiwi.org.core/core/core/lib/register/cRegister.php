@@ -5,7 +5,7 @@ cLoader::library('patterns/cPatternsStaticRegistry');
 
 class cRegister extends cPatternsStaticRegistry {
 
-    // получить экземпляр cmfPDO
+    // получить экземпляр cPDO
     public static function sql() {
         return self::register('cMySql');
     }
