@@ -1,6 +1,6 @@
 <?php
 
-require(cCorePath . '_.core/loader/cLoader.php');
+require(cCorePath . 'core/loader/cLoader.php');
 cModul::load('core:core');
 cModul::load('core:seo');
 
