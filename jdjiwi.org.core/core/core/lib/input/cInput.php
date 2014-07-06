@@ -1,5 +1,7 @@
 <?php
 
+cLoader::library('input/cSession');
+cLoader::library('input/cCookie');
 cLoader::library('input/cInputGet');
 cLoader::library('input/cInputPost');
 cLoader::library('input/cInputFiles');

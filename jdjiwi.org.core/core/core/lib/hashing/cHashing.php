@@ -2,9 +2,6 @@
 
 class cHashing {
 
-    //cmfCrc32
-    //cMatch::crc32
-    //cHashing::crc32
     static public function crc32($n) {
         return crc32($n) & 0xffffffff;
     }
@@ -16,6 +13,10 @@ class cHashing {
     static public function hash() {
         $n = serialize(func_get_args());
         return self::sha1(cSalt . $n) . self::crc32(cSalt . $n);
+    }
+
+    static public function password($password) {
+        return crypt($password, cSalt);
     }
 
 }

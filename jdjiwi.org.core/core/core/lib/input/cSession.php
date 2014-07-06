@@ -1,8 +1,6 @@
 <?php
 
 cLoader::library('session/cCookie');
-cLoader::library('session/cGlobal');
-cLoader::library('session/cCommand');
 
 class cSession {
 

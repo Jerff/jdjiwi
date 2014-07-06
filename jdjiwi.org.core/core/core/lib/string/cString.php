@@ -1,9 +1,6 @@
 <?php
 
-if (extension_loaded('mbstring')) {
-    ini_set('mbstring.language', 'Russian');
-    ini_set('mbstring.internal_encoding', 'UTF-8');
-}
+cLoader::library('system/cConvert');
 
 class cString {
 

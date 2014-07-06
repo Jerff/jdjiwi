@@ -11,7 +11,7 @@ class cLog {
 
     // инициализация работы
     static public function init() {
-        self::$startTime = cSystem::microtime();
+        self::$startTime = cTime::microtime();
     }
 
     static public function destroy() {
@@ -88,9 +88,9 @@ class cLog {
     // показ лога
     static public function message() {
         $message = '<pre id="coreDebugLog">'
-                . PHP_EOL . '<b>RUN/INIT</b> = ' . self::round(cSystem::microtime() - self::$startTime)
-                . '/' . self::round(self::$startTime - cSystem::microtime(cTimeInit))
-                . PHP_EOL . '<b>TIME</b> = ' . self::round(cSystem::microtime() - cSystem::microtime(cTimeInit));
+                . PHP_EOL . '<b>RUN/INIT</b> = ' . self::round(cTime::microtime() - self::$startTime)
+                . '/' . self::round(self::$startTime - cTime::microtime(cTimeInit))
+                . PHP_EOL . '<b>TIME</b> = ' . self::round(cTime::microtime() - cTime::microtime(cTimeInit));
         if (cDebug::isSql()) {
             $message .= PHP_EOL . '<b>SQL_TIME(' . self::$sqlCount . ')</b> = ' . self::round(self::$sqlTime);
         }

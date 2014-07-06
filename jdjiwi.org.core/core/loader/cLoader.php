@@ -21,6 +21,12 @@ class cLoader {
         }
     }
 
+    static public function isExtension($name) {
+        if (!extension_loaded($name)) {
+            throw new cException('расширение не загружено', $name);
+        }
+    }
+
 }
 
 ?>

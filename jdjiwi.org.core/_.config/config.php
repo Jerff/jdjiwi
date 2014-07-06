@@ -51,7 +51,7 @@ define('cWWWPath', cRootPath . 'jdjiwi.org/');
 /*
  * Соль
  */
-define('cSalt', '6z3WBO4GN8');
+define('cSalt', '$2a$UvDRuVNIM0nzLkU8GRgBpJ');
 
 /*
  * права на файлы
@@ -64,11 +64,6 @@ define('cDirMode', 0777);
  */
 define('isImageMagick', 1);
 define('cImageMagickPath', '/usr/local/bin/');
-
-/*
- * настройки локали
- */
-setlocale(LC_ALL, array('ru_RU.utf-8', 'rus_RUS.utf-8'));
 
 /*
  * настройки часового поиска
