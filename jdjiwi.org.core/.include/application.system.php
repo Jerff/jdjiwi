@@ -6,8 +6,7 @@ cModul::load('core:seo');
 
 
 
-cLoader::library('system/function');
-cLoader::library('register/cRegister');
+
 
 cLoader::library('file/cDir');
 cLoader::library('file/cFile');

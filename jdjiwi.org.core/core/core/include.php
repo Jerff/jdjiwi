@@ -10,4 +10,5 @@ cLoader::library('jscript/cJScript');
 cLoader::library('hashing/cHashing');
 cLoader::library('time/cTime');
 cLoader::library('header/cHeader');
+cLoader::library('register/cRegister');
 ?>
