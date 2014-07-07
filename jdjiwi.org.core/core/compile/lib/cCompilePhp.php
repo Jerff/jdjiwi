@@ -19,7 +19,7 @@ class cCompilePhp {
                     return $compile;
             }
         }
-        file_put_contents($compile, $this->compile(cAppPathController . $p58 . '.php', true));
+        file_put_contents($compile, $this->compile($file, true));
         return $compile;
     }
 
