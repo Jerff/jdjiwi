@@ -1,10 +1,10 @@
 <?php
 
-cLoader::library('patterns/cPatternsStaticRegistry');
-cLoader::library('compile/cCompileConfig');
-cLoader::library('compile/cCompilePhp');
-cLoader::library('compile/cCompileJsCss');
-cLoader::library('compile/cCompileUpdate');
+cLoader::library('core:patterns/cPatternsStaticRegistry');
+cLoader::library('compile:cCompileConfig');
+cLoader::library('compile:cCompilePhp');
+cLoader::library('compile:cCompileJsCss');
+cLoader::library('compile:cCompileUpdate');
 
 class cCompile extends cPatternsStaticRegistry {
 

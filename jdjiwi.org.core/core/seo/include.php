@@ -1,5 +1,5 @@
-<?php 
+<?php
 
-self::lib('function');
-self::lib('cSeo');
+cLoader::library('seo:function');
+cLoader::library('seo:cSeo');
 ?>

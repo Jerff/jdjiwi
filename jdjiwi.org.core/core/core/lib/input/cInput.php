@@ -1,16 +1,16 @@
 <?php
 
-cLoader::library('input/cSession');
-cLoader::library('input/cCookie');
-cLoader::library('input/cInputGet');
-cLoader::library('input/cInputPost');
-cLoader::library('input/cInputFiles');
-cLoader::library('input/cInputIp');
-cLoader::library('input/cInputHeader');
-cLoader::library('input/cInputUrl');
-cLoader::library('input/cInputParam');
-cLoader::library('input/function');
-cLoader::library('patterns/cPatternsStaticRegistry');
+cLoader::library('core:input/cSession');
+cLoader::library('core:input/cCookie');
+cLoader::library('core:input/cInputGet');
+cLoader::library('core:input/cInputPost');
+cLoader::library('core:input/cInputFiles');
+cLoader::library('core:input/cInputIp');
+cLoader::library('core:input/cInputHeader');
+cLoader::library('core:input/cInputUrl');
+cLoader::library('core:input/cInputParam');
+cLoader::library('core:input/function');
+cLoader::library('core:patterns/cPatternsStaticRegistry');
 
 class cInput extends cPatternsStaticRegistry {
 

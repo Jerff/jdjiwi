@@ -20,10 +20,10 @@ class cModul {
         if (!is_file($modul . '/include.php')) {
             throw new cModulException("Модуль не найден");
         }
-        set_include_path(get_include_path() .
-                PATH_SEPARATOR . $modul . '/' .
-                PATH_SEPARATOR . $modul . '/lib/'
-        );
+//        set_include_path(get_include_path() .
+//                PATH_SEPARATOR . $modul . '/' .
+//                PATH_SEPARATOR . $modul . '/lib/'
+//        );
         require_once($modul . '/include.php');
         return self::$mLoad[$modul] = true;
     }

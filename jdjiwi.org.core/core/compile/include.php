@@ -1,4 +1,4 @@
 <?php
 
-cLoader::library('compile/cCompile');
+cLoader::library('compile:cCompile');
 ?>

@@ -1,4 +1,4 @@
 <?php
 
-cLoader::library('mail/cMail');
+cLoader::library('mail:cMail');
 ?>

@@ -1,4 +1,4 @@
 <?php
 
-cLoader::library('ajax/cAjax');
+cLoader::library('ajax:cAjax');
 ?>

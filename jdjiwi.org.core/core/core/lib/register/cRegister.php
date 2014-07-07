@@ -1,7 +1,7 @@
 <?php
 
-cLoader::library('sql/cmfMySql');
-cLoader::library('patterns/cPatternsStaticRegistry');
+cLoader::library('core:sql/cmfMySql');
+cLoader::library('core:patterns/cPatternsStaticRegistry');
 
 class cRegister extends cPatternsStaticRegistry {
 

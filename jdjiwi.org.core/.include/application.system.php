@@ -22,6 +22,6 @@ cLoader::library('cache/cmfCacheUser');
 
 cLoader::library('admin/cAdmin');
 
-cModul::load('compile/cCompile');
+cModul::load('compile');
 cLoader::library('application/cApplication');
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('system/cConvert');
+cLoader::library('core:string/cConvert');
 
 class cString {
 

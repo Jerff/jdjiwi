@@ -1,14 +1,14 @@
 <?php
 
-cLoader::library('input/cInput');
+cLoader::library('core:input/cInput');
 cModul::load('ajax');
-cLoader::library('debug/cConfig');
-cLoader::library('session/cSession');
-cLoader::library('settings/cSettings');
-cLoader::library('string/cString');
-cLoader::library('jscript/cJScript');
-cLoader::library('hashing/cHashing');
-cLoader::library('time/cTime');
-cLoader::library('header/cHeader');
-cLoader::library('register/cRegister');
+cLoader::library('core:debug/cConfig');
+cLoader::library('core:session/cSession');
+cLoader::library('core:settings/cSettings');
+cLoader::library('core:string/cString');
+cLoader::library('core:jscript/cJScript');
+cLoader::library('core:hashing/cHashing');
+cLoader::library('core:time/cTime');
+cLoader::library('core:header/cHeader');
+cLoader::library('core:register/cRegister');
 ?>
