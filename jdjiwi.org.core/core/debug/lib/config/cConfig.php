@@ -1,5 +1,6 @@
 <?php
 
+cModul::load('ajax');
 cConfig::init();
 
 class cConfig {

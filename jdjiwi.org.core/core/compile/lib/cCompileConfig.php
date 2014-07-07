@@ -15,18 +15,6 @@ class cCompileConfig {
         );
     }
 
-//    public static function includePath() {
-//        return array(
-//            cSoursePath,
-//            cSoursePath . '_.config/',
-//            cSoursePath . '_.core/',
-//            cSoursePath . '_.extension/',
-//            cSoursePath . '_.plugin/',
-//            cSoursePath . '_library/'
-//        );
-//    }
-
-
     //cmfCompileFile
     public static function pathJsCss() {
         return 'core-compile';

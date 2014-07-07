@@ -1,5 +1,8 @@
 <?php
 
+cLoader::library('core:hashing/cHashing');
+cLoader::library('core:string/cString');
+
 class cCompilePhp {
     /*
      *  compile sourse path
@@ -19,6 +22,7 @@ class cCompilePhp {
                     return $compile;
             }
         }
+        cDir::create(dirname($compile));
         file_put_contents($compile, $this->compile($file, true));
         return $compile;
     }
@@ -47,14 +51,14 @@ class cCompilePhp {
         $content = '';
         foreach ((array) $files as $file)
             $content .= $this->file($file);
-        $content = preg_replace('#\?>\s?<\?php#', ' ', $content);
+        $content = preg_replace('#\?>\s+<\?php#S', ' ', $content);
 
         $content = str_replace("\r", '', $content);
         return $content;
     }
 
     public function compile_only($content) {
-        return preg_replace('#\?>\s?<\?php#', ' ', $content);
+        return preg_replace('#\?>\s+<\?php#S', ' ', $content);
     }
 
     private function file($file) {
@@ -62,31 +66,10 @@ class cCompilePhp {
             return '';
         $this->file[$file] = true;
 
-        foreach (cCompile::config()->includePath() as $path) {
-            if (is_file($path . $file)) {
-                $content = cString::convertEncoding(php_strip_whitespace($path . $file));
-                break;
-            }
-        }
-
-        static $old = false;
-        if (!isset($content)) {
-            pre("не найден файл: $file in ({$old})");
-            return '';
-        }
-        $old = $file;
-
-
-//        $content = preg_replace_callback("#(\".*?\")|('.*?')|('.*?')|(//-->)|(//.*?\n)#S", array(&$this, 'comment1'), $content);
-//        $content = preg_replace_callback("#(\".*?\")|('.*?')|(/\*.*?\*/)#sS", array(&$this, 'comment2'), $content);
-//        //$content = preg_replace_callback("#(\".*?\")|('.*?')|(\s{3,})#sS",			array(&$this, 'comment3'), $content);
-//        //$content = preg_replace_callback("#(\".*?\")|('.*?')|((\n|\{)\t)#sS",		array(&$this, 'comment4'), $content);
-
-
-        $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((require|include)\('(.*?)'\);)#sS", array(&$this, 'includeFile'), $content);
-        $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|(cmf(LoadResponse|LoadAjax|LoadForm|LoadRequest)\(\);)#sS", array(&$this, 'loadLibrary'), $content);
-        $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|(cmf(Load|LoadConfig|LoadMain|LoadLibrary)\('(.*?)'\);)#sS", array(&$this, 'loadClass'), $content);
-        $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|(cmf(Model)\('(.*?)'\);)#sS", array(&$this, 'loadAdmin'), $content);
+        pre('$file', $file);
+//        $content = cString::convertEncoding(php_strip_whitespace($file));
+        $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((require|require_once|include|include_once)\('(.*?)'\);)#sS", array(&$this, 'includeFile'), $content);
+        $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((cLoader::library|cModul::load)\('(.*?)'\);)#sS", array(&$this, 'loadFile'), $content);
 
         $content = "<?php\n#include $file\n?>" . $content . "<?php\n#end $file\n?>";
 
@@ -99,16 +82,27 @@ class cCompilePhp {
         return ' ?>' . $this->file($m[6]) . '<?php ';
     }
 
-    private function loadClass($m) {
+    private function loadFile($m) {
         if (!isset($m[6]))
             return $m[0];
 
-        if ($this->class) {
-            $n = preg_replace('#(.*?)\/([^/]+).php#', '$2', $m[6]);
-            if (class_exists($n))
-                return $m[0];
+        switch ($m[5]) {
+            case 'cLoader::library':
+                $m[6] = str_replace(':', '/lib/', $m[6]);
+                if (class_exists(basename($m[6]), false)) {
+                    return $m[0];
+                }
+                break;
+
+            case 'cModul::load':
+                $m[6] = $m[6] . '/include';
+                break;
+
+            default:
+                break;
         }
-        $n = preg_replace('#(.*?)\/([^/]+)#', '$2', $m[6]);
+
+//        $n = preg_replace('#(.*?)\/([^/]+)#', '$2', $m[6]);
         $file = $this->file($m[6] . '.php');
 
         return ' ?>' . $file . '<?php ';

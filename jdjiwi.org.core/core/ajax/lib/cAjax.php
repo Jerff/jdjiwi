@@ -1,5 +1,6 @@
 <?php
 
+cLoader::library('core:input/cInput');
 cLoader::library('ajax:cAjaxResponse');
 
 class cAjax {

@@ -94,6 +94,8 @@ class cLog {
                 . PHP_EOL . '<b>RUN/INIT</b> = ' . self::round(cTime::microtime() - self::$startTime)
                 . '/' . self::round(self::$startTime - cTime::microtime(cTimeInit))
                 . PHP_EOL . '<b>TIME</b> = ' . self::round(cTime::microtime() - cTime::microtime(cTimeInit));
+        
+        pre(self::round(cTime::microtime() - self::$startTime), self::round(cTime::microtime() - cTime::microtime(cTimeInit)));
         if (cDebug::isSql()) {
             $message .= PHP_EOL . '<b>SQL_TIME(' . self::$sqlCount . ')</b> = ' . self::round(self::$sqlTime);
         }

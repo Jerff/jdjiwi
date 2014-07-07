@@ -26,7 +26,6 @@ class cModul {
                 include_once($modul . '/include.php');
             }
         } catch (Exception $e) {
-            var_dump('Exception', $e);
             throw new cModulException('Модуль "' . $modul . '"не найден');
             return self::$mLoad[$modul] = false;
         }

@@ -19,7 +19,7 @@ class cLoader {
     static public function library($file) {
         $file = str_replace(':', '/lib/', $file);
         if (!class_exists(basename($file), false)) {
-            var_dump($file . '.php');
+//            var_dump($file . '.php');
             require_once($file . '.php');
         }
     }

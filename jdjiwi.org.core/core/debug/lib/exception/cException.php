@@ -1,6 +1,7 @@
 <?php
 
 cLoader::library('debug:exception/cErrorException');
+cLoader::library('core:string/cString');
 
 class cException extends \Exception {
     /*
