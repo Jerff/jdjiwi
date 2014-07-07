@@ -1,5 +1,8 @@
 <?php
 
+cLoader::library('core:time/cTime');
+cModul::load('file');
+
 class cLog {
 
     private static $sqlTime = 0;

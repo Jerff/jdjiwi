@@ -5,7 +5,7 @@ if (!defined('cApplication')) {
 }
 
 define('cRootPath', realpath(__DIR__ . '/../') . '/');
-define('cCorePath', __DIR__);
+define('cCorePath', __DIR__ . '/');
 define('cTimeInit', microtime());
 
 chdir(__DIR__);
@@ -18,7 +18,7 @@ require('_.config/setting.project.php');
 if (isComplile) {
     require(cCompilePath . '.compile.' . cApplication . '.php');
 } else {
-    require('.include/.' . cApplication . '.php');
+    require('.include/' . cApplication . '.php');
 }
 cLog::log('.include.' . cApplication . '.php');
 

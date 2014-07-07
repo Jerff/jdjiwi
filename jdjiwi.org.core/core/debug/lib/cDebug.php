@@ -2,7 +2,7 @@
 
 class cDebug {
 
-    private static $isError = false;
+    private static $isError = true;
     private static $isAjax = false;
     private static $isSql = false;
     private static $isExplain = false;

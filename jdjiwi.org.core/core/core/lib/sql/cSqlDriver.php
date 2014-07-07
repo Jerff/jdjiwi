@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('sql/cPDO');
+cLoader::library('core:sql/cPDO');
 
 abstract class cSqlDriver {
 

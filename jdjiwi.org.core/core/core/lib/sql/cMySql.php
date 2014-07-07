@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('sql/cSqlDriver');
+cLoader::library('core:sql/cSqlDriver');
 
 class cMySql extends cSqlDriver {
 

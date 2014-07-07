@@ -3,7 +3,7 @@
 require(cCorePath . 'core/loader/cLoader.php');
 cModul::load('core:core');
 cModul::load('core:seo');
-
+exit;
 
 
 

@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('sql/cPDOStatement');
+cLoader::library('core:sql/cPDOStatement');
 
 class cPDO extends PDO {
 

@@ -1,10 +1,5 @@
 <?php
 
-cLoader::library('core:debug/exception/cException');
-cLoader::library('core:debug/cDebug');
-cLoader::library('core:debug/cLog');
-cLoader::library('core:debug/function');
-
 cConfig::init();
 
 class cConfig {

@@ -1,8 +1,8 @@
 <?php
 
-cLoader::library('core:debug/exception/cErrorException');
+cLoader::library('debug:exception/cErrorException');
 
-class cException extends Exception {
+class cException extends \Exception {
     /*
       final function getMessage(); // сообщение исключения
       final function getCode(); // код исключения
@@ -47,7 +47,11 @@ class cException extends Exception {
     }
 
     static public function parseTrace($trace) {
-        return cString::specialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)));
+        if (class_exists('cString', false)) {
+            return cString::specialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)));
+        } else {
+            return htmlspecialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)), ENT_QUOTES, cCharset);
+        }
     }
 
     public function __toString() {
