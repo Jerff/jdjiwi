@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('cache:driver/cCacheDriverTag');
+cLoader::library('cache:ext/driver/cCacheDriverTag');
 
 class cCacheMemcache extends cCacheDriverTag {
 

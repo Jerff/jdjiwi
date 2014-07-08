@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('cache:driver/cmfCacheDriverTag');
+cLoader::library('cache:ext/driver/cmfCacheDriverTag');
 
 class cCacheEaccelerator extends cCacheDriverTag {
 

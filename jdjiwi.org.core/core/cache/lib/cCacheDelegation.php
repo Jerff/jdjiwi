@@ -4,7 +4,7 @@
 class cCacheDelegation {
 
     // кеширование данных
-    static public function set($n, $v, $tags = null, $time = cCacheConfig::time) {
+    static public function set($n, $v, $tags = null, $time = cCacheConfig::TIME) {
         if (cCache::isNoData())
             return false;
         cLog::log('cache.set ' . $n);
@@ -33,7 +33,7 @@ class cCacheDelegation {
         return $url;
     }
 
-    static public function setRequest($n, $v, $tags = null, $time = cCacheConfig::time) {
+    static public function setRequest($n, $v, $tags = null, $time = cCacheConfig::TIME) {
         self::set($n . self::getPath(), $v, $tags, $time);
     }
 
@@ -46,7 +46,7 @@ class cCacheDelegation {
     }
 
     // кеш данные по имени и параметрам
-    static public function setParam($n, $p, $v, $tags = null, $time = cCacheConfig::time) {
+    static public function setParam($n, $p, $v, $tags = null, $time = cCacheConfig::TIME) {
         self::set($n . serialize($p), $v, $tags, $time);
     }
 

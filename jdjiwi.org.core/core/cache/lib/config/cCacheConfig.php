@@ -3,16 +3,11 @@
 // конфигураци драйверов кеша
 class cCacheConfig {
 
-    const driver= 'SQLite|Memcache|Xcache|eaccelerator|sql';
-	const time = 60;
-
-
-    // конфигурируем  мемкеш
-    static public function Memcache(&$res) {
-        $res->connect(cMemcacheHost, cMemcachePort);
-    }
+    const DRIVER_LIST = 'SQLite|Memcache|Xcache|eaccelerator|sql';
+    const TIME = 60;
 
     public function __call($name, $arg) {
+        
     }
 
 }

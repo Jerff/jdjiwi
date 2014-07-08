@@ -1,5 +1,5 @@
 <?php
 
 cLoader::library('cache:config/cCacheConfig');
-cLoader::library('cache:cmfCache');
+cLoader::library('cache:cCache');
 ?>

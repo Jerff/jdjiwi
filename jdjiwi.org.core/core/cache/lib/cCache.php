@@ -1,7 +1,6 @@
 <?php
 
 cLoader::library('cache:cCacheDelegation');
-cLoader::library('cache:cCacheConfig');
 cLoader::library('cache:ext/cCacheSql');
 cLoader::library('cache:ext/cCacheSQLite');
 cLoader::library('cache:ext/cCacheMemcache');
@@ -19,7 +18,7 @@ class cCache extends cCacheDelegation {
 
         $cache = self::getDriver(cCacheTypeDriver);
         if (!$cache->isRun()) {
-            foreach (explode('|', cCacheConfig::driver) as $d) {
+            foreach (explode('|', cCacheConfig::DRIVER_LIST) as $d) {
                 if ($d !== $driver) {
                     $cache = self::getDriver($d);
                     if ($cache->isRun())

@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('cache:driver/cCacheDriver');
+cLoader::library('cache:ext/driver/cCacheDriver');
 
 abstract class cCacheDriverTag extends cCacheDriver {
 

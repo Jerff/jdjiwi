@@ -8,22 +8,32 @@ class cCompilePhp {
      *  compile sourse path
      */
 
-    public function path($type, $file) {
+    public function load($type, $file, $mFile) {
         if (isComplile < 2) {
-            return $file;
+            return false;
         }
-        $hash = cHashing::hash(cLoader::getIndex(), $file);
+        $hash = cHashing::hash(cLoader::getIndex(), $file, $include);
         $compile = cCompilePath . $type . '/' . substr($hash, 0, 1) . '/' . substr($hash, 1, 2) . '/' . $hash . '.php';
         if (file_exists($compile)) {
             if (isComplile == 3)
                 return $compile;
             else {
-                if (filemtime($file) < filemtime($compile))
+                $isChange = false;
+                if (filemtime($file) > ($compileTime = filemtime($compile))) {
+                    $isChange = true;
+                }
+                foreach ($include as $file) {
+                    if (filemtime($file) > $compileTime) {
+                        $isChange = true;
+                    }
+                }
+                if (!$isChange) {
                     return $compile;
+                }
             }
         }
         cFileSystem::mkdir(dirname($compile));
-        file_put_contents($compile, $this->compile($file, true));
+        file_put_contents($compile, $this->compile(array_merge($file, $include), true));
         return $compile;
     }
 
@@ -86,8 +96,8 @@ class cCompilePhp {
             switch ($m[5]) {
                 case 'cLoader::library':
                 case 'cLoader::config':
-                    if($m[5]==='cLoader::library') {
-                        $m[6] = str_replace(':', '/lib/', $m[6]);                        
+                    if ($m[5] === 'cLoader::library') {
+                        $m[6] = str_replace(':', '/lib/', $m[6]);
                     } else {
                         $m[6] = '_.config/' . $m[6];
                     }

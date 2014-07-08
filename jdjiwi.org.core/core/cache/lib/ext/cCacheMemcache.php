@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('cache:driver/cmfCacheDriverTag');
+cLoader::library('cache:ext/driver/cmfCacheDriverTag');
 
 class cCacheMemcache extends cCacheDriverTag {
 
@@ -14,7 +14,7 @@ class cCacheMemcache extends cCacheDriverTag {
         }
 
         $res = new Memcache();
-        cCacheConfig::Memcache($res);
+        $res->connect(cMemcacheHost, cMemcachePort);
         $this->setResurse($res);
         $this->setFlag(cSettings::get('memcache.compressed') ? MEMCACHE_COMPRESSED : false);
 
