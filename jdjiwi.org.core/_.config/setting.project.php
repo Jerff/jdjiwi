@@ -11,6 +11,11 @@ if (extension_loaded('mbstring')) {
 }
 
 /*
+ * Настройки
+ */
+define('cConfigPath', cSoursePath . '_.config/');
+
+/*
  * Системная папка
  */
 define('cDataPath', cSoursePath . '.data/');

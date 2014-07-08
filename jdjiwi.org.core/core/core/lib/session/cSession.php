@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('core:input/cCookie');
+cLoader::library('core:session/cCookie');
 
 class cSession {
 

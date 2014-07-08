@@ -9,4 +9,12 @@ cLoader::library('core:hashing/cHashing');
 cLoader::library('core:time/cTime');
 cLoader::library('core:header/cHeader');
 cLoader::library('core:register/cRegister');
+
+/* загрузка модулей */
+cModul::load('seo');
+cModul::load('pages');
+
+/* загрузка конфигурации */
+cLoader::config('setting.pages');
+cLoader::config('setting.application');
 ?>

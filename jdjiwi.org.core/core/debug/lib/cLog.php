@@ -66,7 +66,7 @@ class cLog {
         if (!cDebug::isSql())
             return;
         $message = ( ++self::$sqlCount) . ' ' . self::round($time) . " " . cString::specialchars($message);
-        if (class_exists('cPages')) {
+        if (class_exists('cPages', false)) {
             $page = cPages::getItem();
             if (cPages::isMain($page)) {
                 $message .=" [{$page}]";

@@ -1,5 +1,7 @@
 <?php
 
+cModul::load('compile');
+
 class cHeader {
 
     private static $mData = array();

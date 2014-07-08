@@ -42,12 +42,12 @@ class cCompilePhp {
         cDir::clear(cCompilePath);
     }
 
-    private $file = null;
-    private $class = null;
+    private $mFile = null;
+    private $isLoadClass = null;
 
     public function compile($files, $class = false) {
-        $this->file = array();
-        $this->class = $class;
+        $this->mFile = array();
+        $this->isLoadClass = $class;
         $content = '';
         foreach ((array) $files as $file)
             $content .= $this->file($file);
@@ -62,14 +62,13 @@ class cCompilePhp {
     }
 
     private function file($file) {
-        if (isset($this->file[$file]))
+        if (isset($this->mFile[$file]) or ! is_file($file))
             return '';
-        $this->file[$file] = true;
+        $this->mFile[$file] = true;
 
-        pre('$file', $file);
         $content = cString::convertEncoding(php_strip_whitespace($file));
         $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((require|require_once|include|include_once)\('(.*?)'\);)#sS", array(&$this, 'includeFile'), $content);
-        $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((cLoader::library|cModul::load)\('(.*?)'\);)#sS", array(&$this, 'loadFile'), $content);
+        $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((cLoader::library|cLoader::config|cModul::load)\('(.*?)'\);)#sS", array(&$this, 'loadFile'), $content);
 
         $content = "<?php\n#include $file\n?>" . $content . "<?php\n#end $file\n?>";
 
@@ -83,36 +82,36 @@ class cCompilePhp {
     }
 
     private function loadFile($m) {
-        if (!isset($m[6]))
-            return $m[0];
+        if (isset($m[6])) {
+            switch ($m[5]) {
+                case 'cLoader::library':
+                    $m[6] = str_replace(':', '/lib/', $m[6]);
+                    if (!($this->isLoadClass and class_exists(basename($m[6]), false))) {
+                        return ' ?>' . $this->file($m[6] . '.php') . '<?php ';
+                    }
+                    break;
 
-        switch ($m[5]) {
-            case 'cLoader::library':
-                $m[6] = str_replace(':', '/lib/', $m[6]);
-                if (class_exists(basename($m[6]), false)) {
-                    return $m[0];
-                }
-                break;
+                case 'cLoader::config':
+                    return ' ?>' . $this->file(cConfigPath . $m[6] . '.php') . '<?php ';
+                    break;
 
-            case 'cModul::load':
-                $m[6] = $m[6] . '/include';
-                break;
+                case 'cModul::load':
+                    return ' ?>' . $this->file($m[6] . '/include.php') . '<?php ' .
+                            ' ?>' . $this->file($m[6] . '/config/sql.table.php') . '<?php ';
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+            }
         }
-
-//        $n = preg_replace('#(.*?)\/([^/]+)#', '$2', $m[6]);
-        $file = $this->file($m[6] . '.php');
-
-        return ' ?>' . $file . '<?php ';
+        return $m[0];
     }
 
     private function loadAdmin($m) {
         if (!isset($m[6]))
             return $m[0];
 
-        if ($this->class) {
+        if ($this->isLoadClass) {
             $n = preg_replace('#(.*?)\/([^/]+).php#', '$2', $m[6]);
             if (class_exists($n))
                 return $m[0];

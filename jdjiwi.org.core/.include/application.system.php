@@ -1,15 +1,9 @@
 <?php
 
 require(cCorePath . 'core/loader/cLoader.php');
-cModul::load('core:core');
-cModul::load('core:seo');
 exit;
 
 
-
-
-cLoader::library('file/cDir');
-cLoader::library('file/cFile');
 
 cLoader::library('pages/cPages');
 cLoader::library('setting.pages');

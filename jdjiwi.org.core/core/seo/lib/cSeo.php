@@ -1,8 +1,6 @@
 <?php
 
-cLoader::library('seo/cHeader');
-cLoader::library('seo/function');
-cLoader::library('compile/cCallCompileJsCss');
+cLoader::library('core:header/cHeader');
 
 class cSeo {
 

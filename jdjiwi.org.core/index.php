@@ -15,7 +15,7 @@ require('_.config/config.php');
 require('_.config/setting.project.php');
 
 // системный кеш
-if (isComplile and 0) {
+if (isComplile) {
     require(cCompilePath . '.compile.' . cApplication . '.php');
 } else {
     require('.include/' . cApplication . '.php');

@@ -30,13 +30,16 @@ class cModul {
         }
         try {
             if (self::$isCompile) {
-                include_once(cCompile::php()->path('modul', $modul . '/include.php'));
+                require_once(cCompile::php()->path('modul', $modul . '/include.php'));
             } else {
-                include_once($modul . '/include.php');
+                require_once($modul . '/include.php');
             }
         } catch (Exception $e) {
             throw new cModulException('Модуль "' . $modul . '"не найден');
             return self::$mLoad[$modul] = false;
+        }
+        if(is_file($modul . '/config/sql.table.php')) {
+            require_once($modul . '/config/sql.table.php');            
         }
         return self::$mLoad[$modul] = true;
     }

@@ -1,4 +1,4 @@
 <?php
 
-
+cModul::load('pages');
 ?>
