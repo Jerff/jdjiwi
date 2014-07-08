@@ -22,7 +22,7 @@ class cCompilePhp {
                     return $compile;
             }
         }
-        cDir::create(dirname($compile));
+        cFileSystem::mkdir(dirname($compile));
         file_put_contents($compile, $this->compile($file, true));
         return $compile;
     }

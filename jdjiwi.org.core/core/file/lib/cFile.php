@@ -5,8 +5,8 @@ class cFile {
 
     static function copy($file, $newFile) {
         try {
-            $folder = cDir::name($newFile);
-            cDir::create($folder);
+            $folder = dirname($newFile);
+            cFileSystem::mkdir($folder);
             cFile::isWritable($file);
             $name = $newFile;
             while (file_exists($name)) {
@@ -19,42 +19,12 @@ class cFile {
             if (copy($file, $name)) {
                 throw new cFileException('файл не скопирован', array($file, $name));
             }
-            self::chmod($name);
+            cFileSystem::chmod($name);
             return $name;
         } catch (cFileException $e) {
             $e->errorLog('Невозможно скопировать файл');
         }
         return false;
-    }
-
-    /* === /копирование файлов === */
-
-
-
-    /* === файловые фанкции === */
-
-    // проверка файла
-    static public function is($file) {
-        return is_file($file);
-    }
-
-    // переименовать файл
-    static function rename($file, $newFile) {
-        return rename($file, $newFile);
-    }
-
-    // сменить права
-    static public function chmod($file, $mode = cFileMode) {
-        if (!chmod($file, $mode)) {
-            throw new cFileException('права файла не изменены', array($file, $mode));
-        }
-    }
-
-    // удалить файл
-    static public function unlink($file) {
-        if (is_file($file)) {
-            unlink($file);
-        }
     }
 
     // проверка на достпуность записи

@@ -5,15 +5,14 @@ class cFileUpload {
     // upload file
     static function upload($folder, $upload) {
         try {
-            $file = cConvert::toFileName($upload['name']);
-            $name = $file = preg_replace('~[^a-z0-9\-\_\.]~', '', $file);
+            $name = $file = cFileSystem::toFileName($upload['name']);
             $prefix = rand(0, 50) . '/' . rand(0, 50) . '/';
             $folder .= $prefix;
-            cDir::create($folder);
+            cFileSystem::mkdir($folder);
             cFile::isWritable($file);
             while (file_exists($folder . $name)) {
                 if (strpos($file, '.')) {
-                    $name = preg_replace('`(.*)\.([^.]*)$`', '$1.' . rand(0, 9999) . '.$2', $file);
+                    $name = preg_replace('~(.*)\.([^.]*)$~S', '$1.' . rand(0, 9999) . '.$2', $file);
                 } else {
                     $name = $file . rand(0, 9999);
                 }
@@ -21,7 +20,7 @@ class cFileUpload {
             if (!move_uploaded_file($upload['tmp_name'], $folder . $name)) {
                 throw new cFileException('файл не перемещен', array($file, $name));
             }
-            self::chmod($folder . $name);
+            cFileSystem::chmod($folder . $name);
             return $prefix . $name;
         } catch (cFileException $e) {
             $e->errorLog('Невозможно сохранить загруженый файл');

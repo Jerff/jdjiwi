@@ -71,7 +71,7 @@ class cCompileJsCss {
 
         $content = '';
         foreach ($mList as $file) {
-            if (cFile::is(cWWWPath . $file)) {
+            if (is_file(cWWWPath . $file)) {
                 $sourse = cString::convertEncoding(file_get_contents(cWWWPath . $file));
                 self::set(dirname($file) . '/');
                 switch ($type) {

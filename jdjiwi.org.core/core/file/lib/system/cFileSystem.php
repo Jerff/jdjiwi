@@ -1,15 +1,17 @@
 <?php
 
+cLoader::library('file:exception/cFileException');
+cLoader::library('file:system/cExec');
+cLoader::library('core:string/cConvert');
+
 class cFileSystem {
 
-    // проверка папки
-    static public function is($folder) {
-        return is_dir($folder);
-    }
-
-    // имя каталога
-    static public function name($folder) {
-        return dirname($folder);
+    static private function isExec() {
+        static $is = null;
+        if ($is !== null) {
+            return $is;
+        }
+        return $is = !in_array('exec', explode(',', ini_get('disable_functions')));
     }
 
     // сменить права
@@ -19,15 +21,15 @@ class cFileSystem {
         }
     }
 
-    // создание папки
-    static public function create($path, $mode = cDirMode) {
-        if (self::is($path)) {
-            return true;
+    static public function unlink($file) {
+        if (is_file($file)) {
+            unlink($file);
         }
-        if (!$is = mkdir($path, $mode, true)) {
-            throw new cFileException('Невозможно создать папку', $path);
-        }
-        self::chmod($path, $mode);
+    }
+
+    static public function toFileName($str) {
+        $str = preg_replace('~([^a-z0-9\_\-\=\+\.])~S', '_', cConvert::translate($str));
+        return preg_replace('~(_{2,})~S', '_', $str);
     }
 
 }

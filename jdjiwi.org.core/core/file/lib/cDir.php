@@ -2,32 +2,30 @@
 
 class cDir {
 
-    // проверка папки
-    static public function is($folder) {
-        return is_dir($folder);
+    static public function getFiles($folder) {
+        $result = array();
+        if (!is_dir($folder)) {
+            return $result;
+        }
+        foreach (scandir($folder) as $file) {
+            if (is_file($folder . $file) and $file{0} !== '.') {
+                $result[] = $folder . $file;
+            }
+        }
+        return $result;
     }
 
-    // имя каталога
-    static public function name($folder) {
-        return dirname($folder);
-    }
-
-    // сменить права
-    static public function chmod($folder, $mode = cDirMode) {
-        if (!chmod($folder, $mode)) {
-            throw new cFileException('права файла не изменены', array($folder, $mode));
+    static public function getFolders($folder) {
+        $result = array();
+        if (!is_dir($folder)) {
+            return $result;
         }
-    }
-
-    // создание папки
-    static public function create($path, $mode = cDirMode) {
-        if (self::is($path)) {
-            return true;
+        foreach (scandir($folder) as $file) {
+            if (is_dir($folder . $file) and $file{0} !== '.') {
+                $result[] = $folder . $file . '/';
+            }
         }
-        if (!$is = mkdir($path, $mode, true)) {
-            throw new cFileException('Невозможно создать папку', $path);
-        }
-        self::chmod($path, $mode);
+        return $result;
     }
 
 }
