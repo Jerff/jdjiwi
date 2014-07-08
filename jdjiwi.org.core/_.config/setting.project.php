@@ -13,7 +13,7 @@ if (extension_loaded('mbstring')) {
 /*
  * Настройки
  */
-define('cConfigPath', cSoursePath . '_.config/');
+define('cConfigPath', '_.config/');
 
 /*
  * Системная папка

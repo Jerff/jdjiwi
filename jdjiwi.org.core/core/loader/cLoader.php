@@ -4,7 +4,7 @@
 set_include_path(get_include_path() .
 //        PATH_SEPARATOR . cRootPath .
 //        PATH_SEPARATOR . cWWWPath .
-//        PATH_SEPARATOR . cSoursePath . '_.config/' .
+        PATH_SEPARATOR . cSoursePath .
         PATH_SEPARATOR . cSoursePath . '_library' .
         PATH_SEPARATOR . cSoursePath . '_library/PEAR' .
         PATH_SEPARATOR . cSoursePath . 'core' .
@@ -19,17 +19,35 @@ cModul::load('pages');
 
 class cLoader {
 
-    static public function library($file) {
-        $file = str_replace(':', '/lib/', $file);
-        if (!class_exists(basename($file), false)) {
-            require_once($file . '.php');
+    static private $mHistory = array();
+
+    static public function setHistory($file) {
+        self::$mHistory[$file] = true;
+    }
+
+    static public function getIndex() {
+        return cHashing::hash(serialize(self::$mHistory));
+    }
+    
+    static public function isLoad($file) {
+        return isset(self::$mHistory[$file]);
+    }
+
+    static public function file($file) {
+        if (isset(self::$mHistory[$file])) {
+            return false;
         }
+        self::$mHistory[$file] = true;
+        require_once($file . '.php');
+        return true;
+    }
+
+    static public function library($file) {
+        self::file(str_replace(':', '/lib/', $file));
     }
 
     static public function config($file) {
-        if (is_file(cConfigPath . $file . '.php')) {
-            require_once(cConfigPath . $file . '.php');
-        }
+        self::file('_.config/' . $file);
     }
 
     static public function isExtension($name) {

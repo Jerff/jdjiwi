@@ -17,6 +17,11 @@ class cModul {
         self::$isCompile = true;
     }
 
+    static public function setHistory($file) {
+        self::$mLoad[$file] = true;
+        cLoader::setHistory(__CLASS__ . $file);
+    }
+
     static public function load($modul) {
         if (empty($modul) or ! is_string($modul)) {
             throw new cModulException('Не указано имя модуля');
@@ -38,8 +43,8 @@ class cModul {
             throw new cModulException('Модуль "' . $modul . '"не найден');
             return self::$mLoad[$modul] = false;
         }
-        if(is_file($modul . '/config/sql.table.php')) {
-            require_once($modul . '/config/sql.table.php');            
+        if (is_file($modul . '/config/sql.table.php')) {
+            require_once($modul . '/config/sql.table.php');
         }
         return self::$mLoad[$modul] = true;
     }
