@@ -9,14 +9,14 @@ class cSettings {
         if ($is)
             return;
         $is = true;
-        if (false === ($value = cmfCache::get('config'))) {
+        if (false === ($value = cCache::get('config'))) {
             $res = cRegister::sql()->placeholder("SELECT id, data FROM ?t WHERE cache='yes' AND data!=''", db_sys_settings)
                     ->fetchAssocAll();
             $value = array();
             foreach ($res as $row) {
                 $value[$row['id']] = unserialize($row['data']);
             }
-            cmfCache::set('config', $value, 'config');
+            cCache::set('config', $value, 'config');
         }
         self::$value = $value;
     }

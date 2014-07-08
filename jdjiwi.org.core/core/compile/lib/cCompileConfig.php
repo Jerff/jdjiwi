@@ -4,7 +4,7 @@ class cCompileConfig {
 
     //cmfCompilePhp
     public static function fileList() {
-        return cFileSystem::getFileList(cSoursePath . '.include/');
+        return cDir::getFiles(cSoursePath . '.include/');
     }
 
     //cmfCompileFile

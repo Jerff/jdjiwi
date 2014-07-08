@@ -1,7 +1,7 @@
 <?php
 
-cLoader::library('pages/cUrlAdmin');
-cLoader::library('patterns/cPatternsStaticRegistry');
+cLoader::library('pages:cUrlAdmin');
+cLoader::library('core:patterns/cPatternsStaticRegistry');
 
 class cUrl extends cPatternsStaticRegistry {
 

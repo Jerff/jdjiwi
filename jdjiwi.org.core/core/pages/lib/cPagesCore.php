@@ -1,10 +1,10 @@
 <?php
 
-cLoader::library('pages/cPagesBase');
-cLoader::library('pages/cPagesConfig');
-cLoader::library('pages/cPagesParam');
-cLoader::library('pages/cPagesTemplate');
-cLoader::library('patterns/cPatternsStaticRegistry');
+cLoader::library('pages:cPagesBase');
+cLoader::library('pages:cPagesConfig');
+cLoader::library('pages:cPagesParam');
+cLoader::library('pages:cPagesTemplate');
+cLoader::library('core:patterns/cPatternsStaticRegistry');
 
 class cPagesCore extends cPatternsStaticRegistry {
 

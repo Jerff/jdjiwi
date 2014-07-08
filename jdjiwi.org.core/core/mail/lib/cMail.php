@@ -32,12 +32,12 @@ class cMail {
 
     // почтовые переменные
     static public function getMailVar($name = null) {
-        if (!$_var = cmfCache::get('cmfMail::getMailVar')) {
+        if (!$_var = cCache::get('cmfMail::getMailVar')) {
 
             $_var = cRegister::sql()->placeholder("SELECT var, value FROM ?t", db_mail_var)
                     ->fetchRowAll(0, 1);
 
-            cmfCache::set('cmfMail::getMailVar', $_var, 'mail');
+            cCache::set('cmfMail::getMailVar', $_var, 'mail');
         }
         return $name ? get($_var, $name) : $_var;
     }
@@ -146,12 +146,12 @@ class cMail {
 
     // отправка шаблона письма по адресам указанным в админке
     public function sendType($type, $name, $data) {
-        if (!$_email = cmfCache::get('cmfMail::sendType' . $type)) {
+        if (!$_email = cCache::get('cmfMail::sendType' . $type)) {
 
             $_email = cRegister::sql()->placeholder("SELECT email FROM ?t WHERE `?s`='yes'", db_mail_list, $type)
                     ->fetchRowAll(0);
 
-            cmfCache::set('cmfMail::sendType' . $type, $_email, 'mail');
+            cCache::set('cmfMail::sendType' . $type, $_email, 'mail');
         }
 
         foreach ($_email as $email) {

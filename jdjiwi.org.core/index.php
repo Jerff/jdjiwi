@@ -26,8 +26,8 @@ cModul::initCompile();
 cDebug::setAjax();
 cDebug::setError();
 cDebug::setSql();
-cmfCache::setPages();
-cmfCache::setData();
+cCache::setPages();
+cCache::setData();
 
 return cInit::start();
 ?>

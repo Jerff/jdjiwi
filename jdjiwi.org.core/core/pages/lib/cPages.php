@@ -1,7 +1,7 @@
 <?php
 
-cLoader::library('pages/cPagesCore');
-cLoader::library('pages/cUrl');
+cLoader::library('pages:cPagesCore');
+cLoader::library('pages:cUrl');
 
 class cPages extends cPagesCore {
     /* Application */

@@ -1,4 +1,5 @@
 <?php
 
-cModul::load('pages');
+cLoader::library('pages:cPages');
+cLoader::config('setting.pages');
 ?>

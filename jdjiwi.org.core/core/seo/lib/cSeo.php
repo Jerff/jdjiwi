@@ -11,7 +11,7 @@ class cSeo {
     }
 
     static private function getData() {
-        if ($r = cmfCache::getRequest('cSeo::getTitleMeta')) {
+        if ($r = cCache::getRequest('cSeo::getTitleMeta')) {
             return $r;
         }
         unset($r);
@@ -61,7 +61,7 @@ class cSeo {
             $d = $dd;
 
         $r = array($t, $k, $d);
-        cmfCache::setRequest('cSeo::getTitleMeta', $r, 'seoTitle');
+        cCache::setRequest('cSeo::getTitleMeta', $r, 'seoTitle');
         return $r;
     }
 

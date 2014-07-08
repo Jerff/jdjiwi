@@ -13,8 +13,5 @@ cLoader::library('core:register/cRegister');
 /* загрузка модулей */
 cModul::load('seo');
 cModul::load('pages');
-
-/* загрузка конфигурации */
-cLoader::config('setting.pages');
-cLoader::config('setting.application');
+cModul::load('cache');
 ?>
