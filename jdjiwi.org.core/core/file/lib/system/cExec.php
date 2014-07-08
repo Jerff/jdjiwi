@@ -2,7 +2,7 @@
 
 class cExec {
 
-    static private function is() {
+    static public function is() {
         static $is = null;
         if ($is !== null) {
             return $is;
@@ -10,7 +10,9 @@ class cExec {
         return $is = !in_array('exec', explode(',', ini_get('disable_functions')));
     }
 
-
+    static public function run($command) {
+        return exec($command);
+    }
 
 }
 

@@ -39,7 +39,7 @@ class cCompilePhp {
                 );
             }
         }
-        cDir::clear(cCompilePath);
+        cFileSystem::clear(cCompilePath);
     }
 
     private $mFile = null;

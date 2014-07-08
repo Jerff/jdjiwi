@@ -6,14 +6,6 @@ cLoader::library('core:string/cConvert');
 
 class cFileSystem {
 
-    static private function isExec() {
-        static $is = null;
-        if ($is !== null) {
-            return $is;
-        }
-        return $is = !in_array('exec', explode(',', ini_get('disable_functions')));
-    }
-
     // сменить права
     static public function chmod($folder, $mode = cDirMode) {
         if (!chmod($folder, $mode)) {
@@ -24,6 +16,44 @@ class cFileSystem {
     static public function unlink($file) {
         if (is_file($file)) {
             unlink($file);
+        }
+    }
+
+    // создание папки
+    static public function mkdir($path, $mode = cDirMode) {
+        if (is_dir($path)) {
+            return true;
+        }
+        if (!$is = mkdir($path, $mode, true)) {
+            throw new cFileException('Невозможно создать папку', $path);
+        }
+        self::chmod($path, $mode);
+    }
+
+    static public function clear($folder, $del = false) {
+        if (!is_dir($folder)) {
+            return;
+        }
+        if (cExec::is()) {
+            cExec::run('rm -rf ' . $folder);
+            if (!$del) {
+                self::mkdir($folder);
+            }
+        } else {
+            foreach (scandir($folder) as $file) {
+                if (is_dir($folder . $file) and $file{0} !== '.') {
+                    self::clear($folder . $file . '/');
+                    rmdir($folder . $file . '/');
+                } else {
+                    if (is_file($folder . $file) and $file{0} !== '.') {
+                        unlink($folder . $file);
+                    }
+                }
+            }
+            sleep(1);
+            if ($del) {
+                rmdir($folder);
+            }
         }
     }
 
