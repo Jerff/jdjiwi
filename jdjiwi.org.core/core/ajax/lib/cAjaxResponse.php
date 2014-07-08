@@ -1,5 +1,7 @@
 <?php
 
+cLoader::library('core:jscript/cJScript');
+
 class cAjaxResponse {
 
     private $mScript = null;

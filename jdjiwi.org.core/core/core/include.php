@@ -9,5 +9,4 @@ cLoader::library('core:hashing/cHashing');
 cLoader::library('core:time/cTime');
 cLoader::library('core:header/cHeader');
 cLoader::library('core:register/cRegister');
-exit;
 ?>

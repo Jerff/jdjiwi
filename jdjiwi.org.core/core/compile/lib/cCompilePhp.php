@@ -58,7 +58,7 @@ class cCompilePhp {
     }
 
     public function compile_only($content) {
-        return preg_replace('#\?>\s+<\?php#S', ' ', $content);
+        return preg_replace('#\?>\s<\?php#S', ' ', $content);
     }
 
     private function file($file) {
@@ -67,7 +67,7 @@ class cCompilePhp {
         $this->file[$file] = true;
 
         pre('$file', $file);
-//        $content = cString::convertEncoding(php_strip_whitespace($file));
+        $content = cString::convertEncoding(php_strip_whitespace($file));
         $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((require|require_once|include|include_once)\('(.*?)'\);)#sS", array(&$this, 'includeFile'), $content);
         $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((cLoader::library|cModul::load)\('(.*?)'\);)#sS", array(&$this, 'loadFile'), $content);
 

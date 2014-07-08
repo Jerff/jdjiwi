@@ -15,13 +15,14 @@ require('_.config/config.php');
 require('_.config/setting.project.php');
 
 // системный кеш
-if (isComplile) {
+if (isComplile and 0) {
     require(cCompilePath . '.compile.' . cApplication . '.php');
 } else {
     require('.include/' . cApplication . '.php');
 }
 cLog::log('.include.' . cApplication . '.php');
 
+cModul::initCompile();
 cDebug::setAjax();
 cDebug::setError();
 cDebug::setSql();

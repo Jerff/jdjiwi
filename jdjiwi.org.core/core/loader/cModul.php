@@ -4,9 +4,18 @@ cLoader::library('loader/cModulException');
 cModul::load('debug');
 cModul::load('compile');
 
+/*
+ * загрузка модулей
+ */
+
 class cModul {
 
+    static private $isCompile = false;
     static private $mLoad = array();
+
+    static public function initCompile() {
+        self::$isCompile = true;
+    }
 
     static public function load($modul) {
         if (empty($modul) or ! is_string($modul)) {
@@ -20,7 +29,7 @@ class cModul {
             return self::$mLoad[$modul];
         }
         try {
-            if (class_exists('cCompile', false)) {
+            if (self::$isCompile) {
                 include_once(cCompile::php()->path('modul', $modul . '/include.php'));
             } else {
                 include_once($modul . '/include.php');

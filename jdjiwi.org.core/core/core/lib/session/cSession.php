@@ -1,5 +1,7 @@
 <?php
 
+cLoader::library('core:input/cCookie');
+
 class cSession {
 
     private static function start() {
