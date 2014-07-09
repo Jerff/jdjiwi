@@ -15,15 +15,15 @@ class cCacheApc extends cCacheDriverTag {
     }
 
     protected function getId($n) {
-        return apc_fetch($n)
+        return apc_fetch($n);
     }
 
     protected function deleteId($n) {
-        apc_delete($n)
+        apc_delete($n);
     }
 
     public function clear() {
-        apc_clear_cache('user')
+        apc_clear_cache('user');
     }
 
 }

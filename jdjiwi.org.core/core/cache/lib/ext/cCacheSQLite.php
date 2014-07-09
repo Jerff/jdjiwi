@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('cache:ext/driver/cmfCacheDriverSql');
+cLoader::library('cache:ext/driver/cCacheDriverSql');
 class cCacheSQLite extends cCacheDriverSql {
 
 	function __construct() {

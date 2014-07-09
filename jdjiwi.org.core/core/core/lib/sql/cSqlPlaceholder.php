@@ -1,139 +1,18 @@
 <?php
 
-cLoader::library('core:sql/cPDO');
-cLoader::library('core:sql/cSqlPlaceholder');
+class cSqlPlaceholder {
 
-abstract class cSqlDriver {
+    function __construct($res) {
+        $this->res = $res;
+    }
 
     // управление ресурсом
     private $res = null;
-    private $placeholder = null;
-
-    protected function set(&$res) {
-        $this->res = $res;
-        $this->placeholder = new cSqlPlaceholder($this);
-    }
 
     protected function get() {
         return $this->res;
     }
 
-    public function query($query) {
-        try {
-            if (cDebug::isSql()) {
-                $t = cSystem::microtime();
-            }
-            if ($res = $this->get()->query($query)) {
-                if (cDebug::isSql()) {
-                    cLog::sql(trim($query), cSystem::microtime() - $t);
-                    if (cDebug::isExplain() and ( stripos($query, 'SELECT') !== false)) {
-                        $exp = $this->get()->query('EXPLAIN ' . $query)->fetchAssocAll();
-                        $query = '<b>EXPLAIN</b> ' . $query;
-                        foreach ($exp as $r) {
-                            $query .= "\n" . print_r($r, true);
-                        }
-                        cLog::explain($query);
-                    }
-                }
-            } else {
-                throw new cSqlException($query, $this->get()->errorInfo());
-            }
-        } catch (cSqlException $e) {
-            $e->errorLog();
-        }
-        return $res;
-    }
-
-    public function getAttribute($attr) {
-        return $this->get()->getAttribute($attr);
-    }
-
-    public function lastInsertId() {
-        return $this->get()->lastInsertId();
-    }
-
-    public function getClientVersion() {
-        return $this->getAttribute(PDO::ATTR_CLIENT_VERSION);
-    }
-
-    # управление записями
-    // добавлние
-
-    function add($table, $data, $id = 0) {
-        if (is_array($id)) {
-            if (sizeof($id) > 1)
-                return $this->add2($table, $data, $id);
-            $key = key($id);
-            $id = current($id);
-        } else
-            $key = 'id';
-        if ($id) {
-            $this->placeholder("UPDATE ?t SET ?% WHERE ?w", $table, $data, array($key => $id));
-            return $id;
-        } else {
-            $this->placeholder("INSERT INTO ?t SET ?%", $table, $data);
-            return $this->lastInsertId();
-        }
-    }
-
-    // добавлние для составных ключей
-    function add2($table, &$data, $where) {
-        if ($this->placeholder("SELECT 1 FROM ?t WHERE ?w", $table, $where)->numRows()) {
-            $this->placeholder("UPDATE ?t SET ?% WHERE ?w", $table, $data, $where);
-            return null;
-        } else {
-            while (list($k, $v) = each($where)) {
-                if (is_string($k)) {
-                    $data[$k] = $v;
-                }
-            }
-            $this->placeholder("INSERT INTO ?t SET ?%", $table, $data);
-            return $this->lastInsertId();
-        }
-    }
-
-    // обвновление записи
-    function update($table, $data, $where) {
-        if (!is_array($where))
-            $where = array('id' => $where);
-        return $this->placeholder("UPDATE ?t SET ?% WHERE ?w", $table, $data, $where);
-    }
-
-    // запись в базу
-    function replace($table, $where) {
-        return $this->placeholder("REPLACE INTO ?t SET ?%", $table, $where);
-    }
-
-    // удаление записи
-    function del($table, $where) {
-        if (!is_array($where))
-            $where = array('id' => $where);
-        return $this->placeholder("DELETE FROM ?t WHERE ?w", $table, $where);
-    }
-
-    # плацехолдеры
-    // типы экранирования
-
-    public function quote($str) {
-        return $this->get()->quote($str);
-    }
-
-    public function quoteString($str) {
-        return $str === null ? 'NULL' : $this->quote($str);
-    }
-
-    public function quoteParam($str) {
-        return '`' . $str . '`';
-    }
-
-    // вызовы плацехолдера
-    public function placeholder() {
-        return $this->query($this->_placeholder(func_get_args()));
-    }
-
-    public function getQuery() {
-        return $this->_placeholder(func_get_args());
-    }
 
     private $args = null;
     private $arg = null;
