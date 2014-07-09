@@ -49,7 +49,7 @@ class cCompilePhp {
                 );
             }
         }
-        cFileSystem::clear(cCompilePath);
+        cFileSystem::rmdir(cCompilePath);
     }
 
     private $mFile = null;

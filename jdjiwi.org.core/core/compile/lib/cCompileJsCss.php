@@ -20,7 +20,7 @@ class cCompileJsCss {
      */
 
     public function update() {
-        cFileSystem::clear(cWWWPath . cCompile::config()->pathJsCss());
+        cFileSystem::rmdir(cWWWPath . cCompile::config()->pathJsCss());
     }
 
     /*

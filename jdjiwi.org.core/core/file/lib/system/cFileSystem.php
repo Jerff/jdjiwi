@@ -30,7 +30,7 @@ class cFileSystem {
         self::chmod($path, $mode);
     }
 
-    static public function clear($folder, $del = false) {
+    static public function rmdir($folder, $del = false) {
         if (!is_dir($folder)) {
             return;
         }
@@ -42,7 +42,7 @@ class cFileSystem {
         } else {
             foreach (scandir($folder) as $file) {
                 if (is_dir($folder . $file) and $file{0} !== '.') {
-                    self::clear($folder . $file . '/');
+                    self::rmdir($folder . $file . '/');
                     rmdir($folder . $file . '/');
                 } else {
                     if (is_file($folder . $file) and $file{0} !== '.') {
