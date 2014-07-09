@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('core:sql/cMySql');
+cLoader::library('core:sql/mysql/cMySql');
 cLoader::library('core:patterns/cPatternsStaticRegistry');
 
 class cRegister extends cPatternsStaticRegistry {

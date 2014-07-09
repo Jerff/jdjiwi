@@ -1,14 +1,13 @@
 <?php
 
-cLoader::library('core:sql/cPDOStatement');
+cLoader::library('core:sql/pdo/cPDOStatement');
 
 class cPDO extends PDO {
 
-    function __construct($dsn, $user = null, $password = null) {
+    function __construct($db, $host, $user, $password) {
         try {
-            parent::__construct($dsn, $user, $password);
+            parent::__construct("mysql:dbname={$db};host={$host}", $user, $password);
             $this->setAttribute(PDO::ATTR_STATEMENT_CLASS, array('cPDOStatement'));
-            $this->query("SET NAMES utf8 COLLATE utf8_unicode_ci");
         } catch (PDOException $e) {
             print "Error!: база данных недоступна";
             cLog::errorLog($e);

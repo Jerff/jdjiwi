@@ -2,44 +2,24 @@
 
 class cSqlPlaceholder {
 
-    function __construct($res) {
-        $this->res = $res;
-    }
-
-    // управление ресурсом
-    private $res = null;
-
-    protected function get() {
-        return $this->res;
-    }
-
-
     private $args = null;
     private $arg = null;
-
-    private function setArgs(&$a) {
-        $this->arg = 0;
-        $this->args = $a;
-    }
 
     private function &getArgs() {
         return $this->args[$this->arg++];
     }
 
-    private function delArgs() {
-        $this->args = null;
-    }
-
-    private function _placeholder($args) {
+    private function query($args) {
         $query = (string) array_shift($args);
 
-        $this->setArgs($args);
-        $query = preg_replace_callback('~\?([^\:\s]*)\:([^\s\,\'\"]*)|\?(fields|field|function|t\%|[^\s\,\'\"\)]?)~S', array(&$this, '_placeholder_run'), $query);
-        $this->delArgs();
+        $this->arg = 0;
+        $this->args = $a;
+        $query = preg_replace_callback('~\?([^\:\s]*)\:([^\s\,\'\"]*)|\?(fields|field|function|t\%|[^\s\,\'\"\)]?)~S', array(&$this, 'run'), $query);
+        $this->args = null;
         return $query;
     }
 
-    private function _placeholder_run($m) {
+    private function run($m) {
         if (isset($m[3])) {
             $c = $m[3];
             $t = '';
@@ -69,15 +49,15 @@ class cSqlPlaceholder {
                 $sep = '';
                 while (list($k, $v) = each($a)) {
                     if (is_string($k))
-                        $str .= $sep . $t . $this->quoteParam($k) . ' AS ' . $v;
+                        $str .= $sep . $t . $this->parent()->quoteParam($k) . ' AS ' . $v;
                     else
-                        $str .= $sep . $t . $this->quoteParam($v);
+                        $str .= $sep . $t . $this->parent()->quoteParam($v);
                     $sep = ', ';
                 }
                 return $str;
 
             case 'field':
-                return $this->quoteParam($a);
+                return $this->parent()->quoteParam($a);
 
             case 's':
                 return addslashes($a);
@@ -89,13 +69,13 @@ class cSqlPlaceholder {
                 return (int) $a;
 
             case 't':
-                return $this->quoteParam($a);
+                return $this->parent()->quoteParam($a);
 
             case 't%':
                 $str = '';
                 $sep = '';
                 while (list($k, $v) = each($a)) {
-                    $str .= $sep . $this->quoteParam($v);
+                    $str .= $sep . $this->parent()->quoteParam($v);
                     $sep = ', ';
                 }
                 return $str;
@@ -107,7 +87,7 @@ class cSqlPlaceholder {
                 $str = '';
                 $sep = '';
                 while (list($k, $v) = each($a)) {
-                    $str .= $sep . $this->quoteString($v);
+                    $str .= $sep . $this->parent()->quoteString($v);
                     $sep = ', ';
                 }
                 return 'IN(' . $str . ')';
@@ -126,14 +106,14 @@ class cSqlPlaceholder {
                     if (is_array($v)) {
                         if (count($v)) {
                             while (list($k2, $v2) = each($v))
-                                $v[$k2] = $this->quoteString($v2);
+                                $v[$k2] = $this->parent()->quoteString($v2);
                             $v = 'IN(' . implode(', ', $v) . ')';
                         } else
                             $v = 'IN(-1)';
 
-                        $a[$k] = $t . $this->quoteParam($k) . ' ' . $v;
+                        $a[$k] = $t . $this->parent()->quoteParam($k) . ' ' . $v;
                     } elseif (is_string($k))
-                        $a[$k] = $t . $this->quoteParam($k) . '=' . $this->quoteString($v);
+                        $a[$k] = $t . $this->parent()->quoteParam($k) . '=' . $this->parent()->quoteString($v);
                     else
                         $a[$k] = (string) $v;
 
@@ -147,56 +127,14 @@ class cSqlPlaceholder {
                     if (is_string($k))
                         $a[$k] = $t . $k . ' ' . $v;
                     else
-                        $a[$k] = $t . $this->quoteParam($v);
+                        $a[$k] = $t . $this->parent()->quoteParam($v);
                 }
                 return implode(', ', $a);
 
 
             default:
-                return $this->quoteString($a);
+                return $this->parent()->quoteString($a);
         }
-    }
-
-    # создание и выполнение заранее известных команд
-    // количество рядов
-
-    public function getFoundRows() {
-        $row = $this->query('SELECT FOUND_ROWS()')->fetchRow(0);
-        return (int) $row;
-    }
-
-    // список все таблиц базы
-    public function getTableList() {
-        $res = $this->query("SHOW TABLES")->fetchRowAll();
-        $_table = array();
-        while (list(, list($row)) = each($res)) {
-            $_table[$row] = $row;
-        }
-        return $_table;
-    }
-
-    // очищение таблиц базы
-    public function truncate() {
-        foreach (func_get_args() as $t) {
-            $this->placeholder("TRUNCATE TABLE ?t", $t);
-        }
-    }
-
-    // оптимизация таблиц базы
-    public function optimize() {
-        if (func_num_args()) {
-            $table = array();
-            foreach (func_get_args() as $value) {
-                if (is_string($value)) {
-                    $table[] = $value;
-                } else {
-                    $table = array_merge($table, (array) $value);
-                }
-            }
-        } else {
-            $table = $this->getTableList();
-        }
-        $this->placeholder("OPTIMIZE TABLE ?t%", $table);
     }
 
 }

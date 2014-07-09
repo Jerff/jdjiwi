@@ -1,9 +1,8 @@
 <?php
 
-cLoader::library('core:sql/cPDO');
-cLoader::library('core:sql/cSqlPlaceholder');
+/* */
 
-abstract class cSqlDriver {
+abstract class cMysql {
 
     // управление ресурсом
     private $res = null;
