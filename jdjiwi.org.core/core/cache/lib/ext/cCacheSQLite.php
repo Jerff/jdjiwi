@@ -1,22 +1,23 @@
 <?php
 
 cLoader::library('cache:ext/driver/cCacheDriverSql');
+
 class cCacheSQLite extends cCacheDriverSql {
 
-	function __construct() {
+    function __construct() {
 
-        $dns = 'sqlite:'. cCacheSQLitePath;
-		//$dns = 'sqlite::memory:';
+        $dns = 'sqlite:' . cCacheSQLitePath;
+        //$dns = 'sqlite::memory:';
         try {
-        	$sql = new cmfPDO($dns);
+            $sql = new cmfPDO($dns);
         } catch (PDOException $e) {
             $this->setError();
-    		return;
-		}
-		$sql->setAttribute(PDO::ATTR_STATEMENT_CLASS, array('cmfPDOStatement'));
+            return;
+        }
+        $sql->setAttribute(PDO::ATTR_STATEMENT_CLASS, array('cPDOStatement'));
 
-		$sql->query('
-		CREATE TABLE IF NOT EXISTS `'. db_cache_data .'` (
+        $sql->query('
+		CREATE TABLE IF NOT EXISTS `' . db_cache_data . '` (
 		`id` int(11) NOT NULL,
 		`name` varchar(40) NOT NULL,
 		`time` int(10) unsigned NOT NULL,
@@ -26,8 +27,8 @@ class cCacheSQLite extends cCacheDriverSql {
 		KEY `id_time` (`id`,`time`),
 		KEY `tag` (`tag`)
 		) DEFAULT CHARSET=utf8;');
-		$this->setResurse($sql);
-	}
+        $this->setResurse($sql);
+    }
 
 }
 
