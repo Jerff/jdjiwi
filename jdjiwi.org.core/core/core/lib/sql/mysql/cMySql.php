@@ -1,6 +1,7 @@
 <?php
 
 cLoader::library('core:sql/mysql/cMysqlConfig');
+cLoader::library('core:sql/mysql/cMysqlQuery');
 cLoader::library('core:sql/cSql');
 cLoader::library('core:sql/pdo/cPDO');
 
@@ -17,6 +18,14 @@ class cMySql extends cSql {
             $this->config()->init($driver);
         }
         return $driver;
+    }
+
+    public function query($query = null) {
+        if (empty($query)) {
+            return $this->register('cMysqlQuery');
+        } else {
+            return parent::query($query);
+        }
     }
 
 }
