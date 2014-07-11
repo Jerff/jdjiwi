@@ -2,7 +2,7 @@
 
 /* конфигурация */
 cLoader::config('application');
-cLoader::config('path');
+cLoader::library('core:sql/cDB');
 self::config('sql.table');
 
 /* заагрузка библиотек */
@@ -14,7 +14,6 @@ cLoader::library('core:jscript/cJScript');
 cLoader::library('core:crypt/cCrypt');
 cLoader::library('core:time/cTime');
 cLoader::library('core:header/cHeader');
-cLoader::library('core:register/cRegister');
 
 /* загрузка модулей */
 cModul::load('seo');

@@ -2,7 +2,6 @@
 
 cLoader::library('core:patterns/cPatternsRegistry');
 cLoader::library('core:sql/cSqlPlaceholder');
-cLoader::library('core:sql/exception/cSqlException');
 
 abstract class cSql extends cPatternsRegistry {
 

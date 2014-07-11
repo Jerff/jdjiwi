@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('core:hashing/cHashing');
+cLoader::library('core:crypt/cCrypt');
 cLoader::library('core:string/cString');
 
 class cCompilePhp {

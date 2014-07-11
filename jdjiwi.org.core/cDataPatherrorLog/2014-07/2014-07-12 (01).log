@@ -1,0 +1,8 @@
+2014-07-12 01:03:08 (MSK):  Ошибка: E_WARNING: require_once(/var/www/server-www/www-develop/core.jdjiwi.ru/html/jdjiwi.org.core/core/core/lib/hashing/cHashing.php): failed to open stream: Нет такого файла или каталога in /var/www/server-www/www-develop/core.jdjiwi.ru/html/jdjiwi.org.core/core/loader/cLoader.php:40
+#0 /var/www/server-www/www-develop/core.jdjiwi.ru/html/jdjiwi.org.core/core/loader/cLoader.php(40): cInit::{closure}(2, &#039;require_once(/v...&#039;, &#039;/var/www/server...&#039;, 40, Array)
+#1 /var/www/server-www/www-develop/core.jdjiwi.ru/html/jdjiwi.org.core/core/loader/cLoader.php(40): cLoader::file()
+#2 /var/www/server-www/www-develop/core.jdjiwi.ru/html/jdjiwi.org.core/core/loader/cLoader.php(45): cLoader::file(&#039;core/lib/hashin...&#039;)
+#3 /var/www/server-www/www-develop/core.jdjiwi.ru/html/jdjiwi.org.core/core/compile/lib/cCompilePhp.php(3): cLoader::library(&#039;core:hashing/cH...&#039;)
+#4 /var/www/server-www/www-develop/core.jdjiwi.ru/html/jdjiwi.org.core/core/loader/cLoader.php(40): require_once(&#039;/var/www/server...&#039;)
+
+

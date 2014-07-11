@@ -1,9 +1,9 @@
 <?php
 
 cModul::load('ajax');
-cConfig::init();
+cInit::init();
 
-class cConfig {
+class cInit {
     /*
      * инициализация работы 
      */

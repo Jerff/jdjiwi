@@ -1,23 +1,26 @@
 <?php
 
 cLoader::config('database');
+cLoader::library('core:sql/exception/cSqlException');
 cLoader::library('core:sql/mysql/cMySql');
 
 class cDB extends cPatternsStaticRegistry {
 
+    static private $instance;
+
     public static function sql() {
-        static $sql = null;
-        if (empty($sql)) {
+        if (empty(self::$instance)) {
             switch (cSqlDriver) {
                 case 'mysql':
-                    $sql = new cMySql();
+                    self::$instance = new cMySql();
                     break;
 
                 default:
-                    break;
+                    throw new cSqlException('нет установлен драйвер базы');
+                    exit;
             }
         }
-        return $sql;
+        return self::$instance;
     }
 
 }
