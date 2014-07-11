@@ -65,11 +65,11 @@ class cForm extends cFormCore implements Iterator {
     }
 
     public function hash($salt = '') {
-        return 'f' . cHashing::hash($salt . $this->settings()->name . session_id());
+        return 'f' . cCrypt::hash($salt . $this->settings()->name . session_id());
     }
 
     public function name($salt = '') {
-        return 'f' . cHashing::hash($salt . $this->settings()->name);
+        return 'f' . cCrypt::hash($salt . $this->settings()->name);
     }
 
     /* === /компаненты формы === */

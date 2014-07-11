@@ -20,7 +20,7 @@ class cMail {
     // читает из базы, но можно передавать через массив
     public function loadConfig($config = null) {
         if (!$config) {
-            $config = cRegister::sql()->placeholder("SELECT login, secure, password, host, port FROM ?t WHERE id='1'", db_mail_config)
+            $config = cDB::sql()->placeholder("SELECT login, secure, password, host, port FROM ?t WHERE id='1'", db_mail_config)
                     ->fetchAssoc();
         }
         foreach (array('login', 'password', 'secure', 'host', 'port') as $k) {
@@ -34,7 +34,7 @@ class cMail {
     static public function getMailVar($name = null) {
         if (!$_var = cCache::get('cmfMail::getMailVar')) {
 
-            $_var = cRegister::sql()->placeholder("SELECT var, value FROM ?t", db_mail_var)
+            $_var = cDB::sql()->placeholder("SELECT var, value FROM ?t", db_mail_var)
                     ->fetchRowAll(0, 1);
 
             cCache::set('cmfMail::getMailVar', $_var, 'mail');
@@ -129,7 +129,7 @@ class cMail {
 
     // отправка шаблона письма по адресу
     public function sendTemplates($name, $data, $email) {
-        list($header, $content, $html) = cRegister::sql()->placeholder("SELECT header, content, html FROM ?t WHERE name=?", db_mail_templates, $name)
+        list($header, $content, $html) = cDB::sql()->placeholder("SELECT header, content, html FROM ?t WHERE name=?", db_mail_templates, $name)
                 ->fetchRow();
         if (!$header)
             $header = $name;
@@ -148,7 +148,7 @@ class cMail {
     public function sendType($type, $name, $data) {
         if (!$_email = cCache::get('cmfMail::sendType' . $type)) {
 
-            $_email = cRegister::sql()->placeholder("SELECT email FROM ?t WHERE `?s`='yes'", db_mail_list, $type)
+            $_email = cDB::sql()->placeholder("SELECT email FROM ?t WHERE `?s`='yes'", db_mail_list, $type)
                     ->fetchRowAll(0);
 
             cCache::set('cmfMail::sendType' . $type, $_email, 'mail');

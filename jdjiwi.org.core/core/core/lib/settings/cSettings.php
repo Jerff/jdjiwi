@@ -10,7 +10,7 @@ class cSettings {
             return;
         $is = true;
         if (false === ($value = cCache::get('config'))) {
-            $res = cRegister::sql()->placeholder("SELECT id, data FROM ?t WHERE cache='yes' AND data!=''", db_sys_settings)
+            $res = cDB::sql()->placeholder("SELECT id, data FROM ?t WHERE cache='yes' AND data!=''", db_sys_settings)
                     ->fetchAssocAll();
             $value = array();
             foreach ($res as $row) {
@@ -27,7 +27,7 @@ class cSettings {
     }
 
     public static function read($part, $id = null) {
-        $data = cRegister::sql()->placeholder("SELECT data FROM ?t WHERE id=?", db_sys_settings, $part)
+        $data = cDB::sql()->placeholder("SELECT data FROM ?t WHERE id=?", db_sys_settings, $part)
                 ->fetchRow(0);
         if (!$data)
             return $data;
@@ -38,7 +38,7 @@ class cSettings {
     }
 
     public static function save($part, $send) {
-        $data = cRegister::sql()->placeholder("SELECT data FROM ?t WHERE id=?", db_sys_settings, $part)
+        $data = cDB::sql()->placeholder("SELECT data FROM ?t WHERE id=?", db_sys_settings, $part)
                 ->fetchRow(0);
         if ($data) {
             $data = unserialize($data);
@@ -46,7 +46,7 @@ class cSettings {
                 $data[$k] = $v;
             $send = $data;
         }
-        cRegister::sql()->add(db_sys_settings, array('data' => serialize($send)), $part);
+        cDB::sql()->add(db_sys_settings, array('data' => serialize($send)), $part);
     }
 
 }

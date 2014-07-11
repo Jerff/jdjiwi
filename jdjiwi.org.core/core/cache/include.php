@@ -1,6 +1,7 @@
 <?php
 
 /* конфигурация */
+cLoader::config('cache');
 self::config('sql.table');
 
 /* заагрузка библиотек */

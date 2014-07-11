@@ -1,9 +1,6 @@
 <?php
 
 /* конфигурация */
+cLoader::config('search');
 self::config('sql.table');
-
-/* заагрузка библиотек */
-cLoader::library('pages:cPages');
-cLoader::config('setting.pages');
 ?>

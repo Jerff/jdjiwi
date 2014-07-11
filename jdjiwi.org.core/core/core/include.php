@@ -1,7 +1,8 @@
 <?php
 
 /* конфигурация */
-cLoader::config('config');
+cLoader::config('application');
+cLoader::config('path');
 self::config('sql.table');
 
 /* заагрузка библиотек */
@@ -10,7 +11,7 @@ cLoader::library('core:session/cSession');
 cLoader::library('core:settings/cSettings');
 cLoader::library('core:string/cString');
 cLoader::library('core:jscript/cJScript');
-cLoader::library('core:hashing/cHashing');
+cLoader::library('core:crypt/cCrypt');
 cLoader::library('core:time/cTime');
 cLoader::library('core:header/cHeader');
 cLoader::library('core:register/cRegister');

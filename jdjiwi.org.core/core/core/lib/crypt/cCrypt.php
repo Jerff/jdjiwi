@@ -1,6 +1,8 @@
 <?php
 
-class cHashing {
+cLoader::config('crypt');
+
+class cCrypt {
 
     static public function crc32($n) {
         return crc32($n) & 0xffffffff;

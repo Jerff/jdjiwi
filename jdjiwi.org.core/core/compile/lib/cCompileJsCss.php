@@ -8,11 +8,11 @@ class cCompileJsCss {
      */
 
     public function pathWWW($type, $file) {
-        return '/' . cCompile::config()->pathJsCss() . '/v/' . time() . '/' . $type . '/' . cHashing::hash($file);
+        return '/' . cCompile::config()->pathJsCss() . '/v/' . time() . '/' . $type . '/' . cCrypt::hash($file);
     }
 
     public function pathCompile($type, $file) {
-        return cWWWPath . cCompile::config()->pathJsCss() . '/' . cHashing::hash($file) . '.' . $type;
+        return cWWWPath . cCompile::config()->pathJsCss() . '/' . cCrypt::hash($file) . '.' . $type;
     }
 
     /*

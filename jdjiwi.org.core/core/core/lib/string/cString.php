@@ -1,5 +1,6 @@
 <?php
 
+cLoader::config('charset');
 cLoader::library('core:string/cConvert');
 
 class cString {

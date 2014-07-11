@@ -9,6 +9,7 @@ set_include_path(get_include_path() .
         PATH_SEPARATOR . cSoursePath . 'extension'
 );
 
+cLoader::library('loader/cConfig');
 cLoader::library('loader/cAutoload');
 cLoader::library('loader/cModul');
 cModul::load('core:core');
@@ -24,7 +25,7 @@ class cLoader {
     }
 
     static public function getIndex() {
-        return cHashing::hash(serialize(self::$mHistory));
+        return cCrypt::hash(serialize(self::$mHistory));
     }
     
     static public function isLoad($file) {

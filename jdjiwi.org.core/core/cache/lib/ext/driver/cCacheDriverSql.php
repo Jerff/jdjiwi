@@ -18,7 +18,7 @@ class cCacheDriverSql extends cCacheDriver {
 
     //функция хеширования
     protected function hash($n) {
-        return cHashing::crc32($n);
+        return cCrypt::crc32($n);
     }
 
     protected function hash2($n) {

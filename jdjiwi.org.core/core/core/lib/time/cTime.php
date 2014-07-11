@@ -1,5 +1,7 @@
 <?php
 
+cLoader::config('time');
+
 class cTime {
 
     static public function microtime($t = null) {

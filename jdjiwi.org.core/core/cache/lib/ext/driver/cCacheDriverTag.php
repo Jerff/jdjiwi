@@ -14,7 +14,7 @@ abstract class cCacheDriverTag extends cCacheDriver {
 
     //функция хеширования
     protected function hash($n) {
-        return cHashing::crc32($n) . sha1($n);
+        return cCrypt::crc32($n) . sha1($n);
     }
 
     // хранение тегов

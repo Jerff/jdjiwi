@@ -12,7 +12,7 @@ class cCompilePhp {
         if (isComplile < 2) {
             return false;
         }
-        $hash = cHashing::hash(cLoader::getIndex(), $file, $include);
+        $hash = cCrypt::hash(cLoader::getIndex(), $file, $include);
         $compile = cCompilePath . $type . '/' . substr($hash, 0, 1) . '/' . substr($hash, 1, 2) . '/' . $hash . '.php';
         if (file_exists($compile)) {
             if (isComplile == 3)

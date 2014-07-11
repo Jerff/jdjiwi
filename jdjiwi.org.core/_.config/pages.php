@@ -3,8 +3,8 @@
 /*
  * префиксы разделов сайта
  */
-define('cAppHostUrl', cHostUrl . '');
-define('cAdminHostUrl', cHostUrl . '/admin');
+define('cAppHostUrl', cDomenUri . '');
+define('cAdminHostUrl', cDomenUri . '/admin');
 
 /*
  * адреса разделов сайта
