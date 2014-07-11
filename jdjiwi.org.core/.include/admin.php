@@ -1,6 +1,6 @@
 <?php
 
-require(cCorePath . '_.core/loader/cLoader.php');
+require(cSoursePath . '_.core/loader/cLoader.php');
 cLoader::library('setting.template');
 cLoader::library('loader/cAutoload');
 cLoader::library('system/function');

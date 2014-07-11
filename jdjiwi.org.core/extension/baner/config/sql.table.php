@@ -1,5 +1,5 @@
 <?php
 
-define('db_baner', cDbPefix . 'baner');
+define('db_baner', cSqlDBPefix . 'baner');
 define('path_baner', cFilePath . 'baner/');
 ?>

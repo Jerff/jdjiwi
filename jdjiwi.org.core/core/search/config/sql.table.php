@@ -1,4 +1,4 @@
 <?php
 
-define('db_search', cDbPefix . 'search');
+define('db_search', cSqlDBPefix . 'search');
 ?>

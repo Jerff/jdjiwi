@@ -2,8 +2,6 @@
 
 // загрузчик
 set_include_path(get_include_path() .
-//        PATH_SEPARATOR . cRootPath .
-//        PATH_SEPARATOR . cWWWPath .
         PATH_SEPARATOR . cSoursePath .
         PATH_SEPARATOR . cSoursePath . '_library' .
         PATH_SEPARATOR . cSoursePath . '_library/PEAR' .

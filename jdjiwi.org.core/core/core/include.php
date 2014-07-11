@@ -1,5 +1,10 @@
 <?php
 
+/* конфигурация */
+cLoader::config('config');
+self::config('sql.table');
+
+/* заагрузка библиотек */
 cLoader::library('core:input/cInput');
 cLoader::library('core:session/cSession');
 cLoader::library('core:settings/cSettings');

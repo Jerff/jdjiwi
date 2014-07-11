@@ -1,6 +1,6 @@
 <?php
 
-require(cCorePath . 'core/loader/cLoader.php');
+require(cSoursePath . 'core/loader/cLoader.php');
 exit;
 
 

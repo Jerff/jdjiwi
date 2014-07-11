@@ -1,14 +1,14 @@
 <?php
 
-define('db_main', cDbPefix . 'main');
-define('db_main_image', cDbPefix . 'main_image');
+define('db_main', cSqlDBPefix . 'main');
+define('db_main_image', cSqlDBPefix . 'main_image');
 define('path_image', cFilePath . 'image/');
 
-define('db_menu', cDbPefix . 'menu');
+define('db_menu', cSqlDBPefix . 'menu');
 
-define('db_content', cDbPefix . 'content');
-define('db_content_pages', cDbPefix . 'content_pages');
-define('db_content_info', cDbPefix . 'content_info');
-define('db_content_static', cDbPefix . 'content_static');
-define('db_content_url', cDbPefix . 'content_url');
+define('db_content', cSqlDBPefix . 'content');
+define('db_content_pages', cSqlDBPefix . 'content_pages');
+define('db_content_info', cSqlDBPefix . 'content_info');
+define('db_content_static', cSqlDBPefix . 'content_static');
+define('db_content_url', cSqlDBPefix . 'content_url');
 ?>

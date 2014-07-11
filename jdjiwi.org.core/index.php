@@ -5,14 +5,15 @@ if (!defined('cApplication')) {
 }
 
 define('cRootPath', realpath(__DIR__ . '/../') . '/');
-define('cCorePath', __DIR__ . '/');
+define('cSoursePath', __DIR__ . '/');
 define('cTimeInit', microtime());
 
 chdir(__DIR__);
 
 // конфигурация
-require('_.config/config.php');
-require('_.config/setting.project.php');
+require('_.config/compile.php');
+//require('_.config/config.php');
+//require('_.config/setting.project.php');
 
 // системный кеш
 if (isComplile) {

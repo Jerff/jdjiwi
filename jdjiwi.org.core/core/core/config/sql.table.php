@@ -1,9 +1,9 @@
 <?php
 
 // система
-define('db_sys_limit', cDbPefix . 'sys_limit');
-define('db_backup_site', cDbPefix . 'sys_backup');
-define('db_sys_settings', cDbPefix . 'sys_settings');
+define('db_sys_limit', cSqlDBPefix . 'sys_limit');
+define('db_backup_site', cSqlDBPefix . 'sys_backup');
+define('db_sys_settings', cSqlDBPefix . 'sys_settings');
 define('path_config', cFilePath . 'config/');
-define('db_sys_cron', cDbPefix . 'sys_cron');
+define('db_sys_cron', cSqlDBPefix . 'sys_cron');
 ?>

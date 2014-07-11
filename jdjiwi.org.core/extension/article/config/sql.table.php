@@ -1,5 +1,5 @@
 <?php
 
-define('db_article', cDbPefix . 'article');
+define('db_article', cSqlDBPefix . 'article');
 define('path_article', cFilePath . 'article/');
 ?>

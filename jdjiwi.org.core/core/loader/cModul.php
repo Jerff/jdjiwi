@@ -12,6 +12,7 @@ class cModul {
 
     static private $isCompile = false;
     static private $mLoad = array();
+    static private $item = null;
 
     static public function initCompile() {
         self::$isCompile = true;
@@ -29,7 +30,7 @@ class cModul {
         if (preg_match('#[^a-z0-9:._]#iS', $modul)) {
             throw new cModulException(sprintf('Название модуля "%s" не корректно', $modul));
         }
-        $modul = str_replace(':', '/', $modul);
+        self::$item = $modul = str_replace(':', '/', $modul);
         if (isset(self::$mLoad[$modul])) {
             return self::$mLoad[$modul];
         }
@@ -48,6 +49,10 @@ class cModul {
             return self::$mLoad[$modul] = false;
         }
         return self::$mLoad[$modul] = true;
+    }
+
+    static private function config($file) {
+        require_once(self::$item . '/config/' . $file . '.php');
     }
 
 }
