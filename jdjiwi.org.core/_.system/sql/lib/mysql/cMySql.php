@@ -1,9 +1,9 @@
 <?php
 
-cLoader::library('core:sql/mysql/cMysqlConfig');
-cLoader::library('core:sql/mysql/cMysqlQuery');
-cLoader::library('core:sql/cSql');
-cLoader::library('core:sql/pdo/cPDO');
+cLoader::library('sql:mysql/cMysqlConfig');
+cLoader::library('sql:mysql/cMysqlQuery');
+cLoader::library('sql:cSql');
+cLoader::library('sql:pdo/cPDO');
 
 class cMySql extends cSql {
 

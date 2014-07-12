@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('core:sql/cSqlConfig');
+cLoader::library('sql:cSqlConfig');
 
 class cMysqlConfig extends cSqlConfig {
 

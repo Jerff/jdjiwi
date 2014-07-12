@@ -17,7 +17,7 @@ class cSeo {
         unset($r);
 
         $dt = $dk = $dd = $t = $k = $k = '';
-        $res = cDB::sql()->query("SELECT `uri`, `title`, `keywords`, `description` FROM " . db_seo_title . " WHERE `uri` IN('default', " . cDB::sql()->quote(cPages::getMain()) . ")");
+        $res = cDB::sql()->query("SELECT `uri`, `title`, `keywords`, `description` FROM " . cDB::table('seo.title') . " WHERE `uri` IN('default', " . cDB::sql()->quote(cPages::getMain()) . ")");
         while ($row = $res->fetchAssoc()) {
             if ($row['uri'] === 'default') {
                 $dt = $row['title'];

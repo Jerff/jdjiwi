@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('core:sql/cSqlQuery');
+cLoader::library('sql:cSqlQuery');
 
 class cMysqlQuery extends cSqlQuery {
     

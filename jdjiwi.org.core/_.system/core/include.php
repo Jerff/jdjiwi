@@ -1,8 +1,6 @@
 <?php
 
 /* конфигурация */
-cLoader::library('core:sql/cDB');
-cModul::config('sql.table');
 
 /* заагрузка библиотек */
 cLoader::library('core:input/cInput');
@@ -15,6 +13,7 @@ cLoader::library('core:time/cTime');
 cLoader::library('core:header/cHeader');
 
 /* загрузка модулей */
+cModul::load('sql');
 cModul::load('seo');
 cModul::load('file');
 cModul::load('pages');

@@ -36,11 +36,11 @@ class cCacheDriverSql extends cCacheDriver {
 
     public function set($n, $v, $tags, $time) {
         //pre($n);
-        $this->getResurse()->query("REPLACE INTO " . db_cache_data . " SET `id`='" . $this->hash($n) . "', `name`='" . $this->hash2($n) . "', `time`='" . (time() + $time) . "', `tag`=" . $this->getResurse()->quote(self::reformTagSql($tags)) . ", `data`=" . $this->getResurse()->quote(serialize($v)));
+        $this->getResurse()->query("REPLACE INTO " . cDB::table('cache.data') . " SET `id`='" . $this->hash($n) . "', `name`='" . $this->hash2($n) . "', `time`='" . (time() + $time) . "', `tag`=" . $this->getResurse()->quote(self::reformTagSql($tags)) . ", `data`=" . $this->getResurse()->quote(serialize($v)));
     }
 
     public function get($n) {
-        $res = $this->getResurse()->query("SELECT name, data FROM " . db_cache_data . " WHERE `id`='" . $this->hash($n) . "' AND `time`>'" . time() . "'")
+        $res = $this->getResurse()->query("SELECT name, data FROM " . cDB::table('cache.data') . " WHERE `id`='" . $this->hash($n) . "' AND `time`>'" . time() . "'")
                 ->fetchRowAll();
         if ($res) {
             $hash = $this->hash2($n);
@@ -54,11 +54,11 @@ class cCacheDriverSql extends cCacheDriver {
     }
 
     public function delete($n) {
-        $this->getResurse()->query("DELETE FROM " . db_cache_data . " WHERE `id`='" . $this->hash($n) . "' AND `name`='" . $this->hash2($hash) . "'");
+        $this->getResurse()->query("DELETE FROM " . cDB::table('cache.data') . " WHERE `id`='" . $this->hash($n) . "' AND `name`='" . $this->hash2($hash) . "'");
     }
 
     public function deleteTime() {
-        $this->getResurse()->query("DELETE FROM " . db_cache_data . " WHERE `time`<'" . time() . "'");
+        $this->getResurse()->query("DELETE FROM " . cDB::table('cache.data') . " WHERE `time`<'" . time() . "'");
     }
 
     public function deleteTag($n) {
@@ -66,11 +66,11 @@ class cCacheDriverSql extends cCacheDriver {
         foreach (explode(',', $n) as $k) {
             $where .= ($where ? ' OR ' : '') . "`tag` LIKE " . $this->getResurse()->quote("%[{$k}]%") . "";
         }
-        $this->getResurse()->query("DELETE FROM " . db_cache_data . " WHERE " . $where);
+        $this->getResurse()->query("DELETE FROM " . cDB::table('cache.data') . " WHERE " . $where);
     }
 
     public function clear() {
-        $this->getResurse()->query("TRUNCATE TABLE " . db_cache_data);
+        $this->getResurse()->query("TRUNCATE TABLE " . cDB::table('cache.data'));
     }
 
 }

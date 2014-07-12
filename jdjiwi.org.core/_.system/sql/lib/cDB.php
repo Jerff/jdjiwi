@@ -1,8 +1,7 @@
 <?php
 
-cConfig::load('database');
-cLoader::library('core:sql/exception/cSqlException');
-cLoader::library('core:sql/mysql/cMySql');
+cLoader::library('sql:exception/cSqlException');
+cLoader::library('sql:mysql/cMySql');
 
 class cDB extends cPatternsStaticRegistry {
 

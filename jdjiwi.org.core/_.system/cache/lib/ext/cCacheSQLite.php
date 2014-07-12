@@ -17,7 +17,7 @@ class cCacheSQLite extends cCacheDriverSql {
         $sql->setAttribute(PDO::ATTR_STATEMENT_CLASS, array('cPDOStatement'));
 
         $sql->query('
-		CREATE TABLE IF NOT EXISTS `' . db_cache_data . '` (
+		CREATE TABLE IF NOT EXISTS `' . cDB::table('cache.data') . '` (
 		`id` int(11) NOT NULL,
 		`name` varchar(40) NOT NULL,
 		`time` int(10) unsigned NOT NULL,
