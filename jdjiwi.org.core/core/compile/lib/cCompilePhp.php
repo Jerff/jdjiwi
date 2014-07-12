@@ -8,28 +8,18 @@ class cCompilePhp {
      *  compile sourse path
      */
 
-    public function load($type, $file, $mFile) {
-        if (isComplile < 2) {
+    public function load($type, $file) {
+        if (cConfig::get('compile.is') < 2) {
             return false;
         }
-        $hash = cCrypt::hash(cLoader::getIndex(), $file, $include);
-        $compile = cCompilePath . $type . '/' . substr($hash, 0, 1) . '/' . substr($hash, 1, 2) . '/' . $hash . '.php';
+        $hash = cCrypt::hash(cLoader::getIndex(), $type, $file);
+        $compile = cConfig::get('compile.path') . $type . '/' . substr($hash, 0, 1) . '/' . substr($hash, 1, 2) . '/' . $hash . '.php';
         if (file_exists($compile)) {
-            if (isComplile == 3)
+            if (cConfig::get('compile.is') == 3)
                 return $compile;
             else {
-                $isChange = false;
-                if (filemtime($file) > ($compileTime = filemtime($compile))) {
-                    $isChange = true;
-                }
-                foreach ($include as $file) {
-                    if (filemtime($file) > $compileTime) {
-                        $isChange = true;
-                    }
-                }
-                if (!$isChange) {
+                if (filemtime($file) < filemtime($compile))
                     return $compile;
-                }
             }
         }
         cFileSystem::mkdir(dirname($compile));
@@ -45,11 +35,11 @@ class cCompilePhp {
         foreach (cCompile::config()->fileList() as $name) {
             if (is_file($name)) {
                 file_put_contents(
-                        cCompilePath . $name, cmfCompile::php()->compile($name)
+                        cConfig::get('compile.path') . $name, cmfCompile::php()->compile($name)
                 );
             }
         }
-        cFileSystem::rmdir(cCompilePath);
+        cFileSystem::rmdir(cConfig::get('compile.path'));
     }
 
     private $mFile = null;

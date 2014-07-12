@@ -1,6 +1,6 @@
 <?php
 
-cLoader::config('database');
+cConfig::load('database');
 cLoader::library('core:sql/exception/cSqlException');
 cLoader::library('core:sql/mysql/cMySql');
 

@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('loader/cModulException');
+cLoader::library('loader/modul/cModulException');
 cModul::load('debug');
 cModul::load('compile');
 
@@ -40,9 +40,6 @@ class cModul {
                         $modul . '/config/sql.table.php'
                     ))) {
                 require_once($modul . '/include.php');
-                if (is_file($modul . '/config/sql.table.php')) {
-                    require_once($modul . '/config/sql.table.php');
-                }
             }
         } catch (Exception $e) {
             throw new cModulException('Модуль "' . $modul . '"не найден');

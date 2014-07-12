@@ -1,6 +1,6 @@
 <?php
 
-cLoader::config('file');
+cConfig::load('file');
 cLoader::library('file:exception/cFileException');
 cLoader::library('file:system/cExec');
 cLoader::library('core:string/cConvert');

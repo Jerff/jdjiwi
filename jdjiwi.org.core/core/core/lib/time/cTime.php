@@ -1,6 +1,6 @@
 <?php
 
-cLoader::config('time');
+cConfig::load('time');
 
 class cTime {
 

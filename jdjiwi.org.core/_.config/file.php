@@ -1,5 +1,9 @@
 <?php
 
+// папка с upload файлами
+define('cFilePath', 'files/');
+cConfig::filePath('files/');
+
 /*
  * права на файлы
  */

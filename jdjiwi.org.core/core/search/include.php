@@ -1,6 +1,6 @@
 <?php
 
 /* конфигурация */
-cLoader::config('search');
+cConfig::load('search');
 self::config('sql.table');
 ?>

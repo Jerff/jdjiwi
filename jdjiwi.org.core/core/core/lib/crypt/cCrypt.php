@@ -1,6 +1,6 @@
 <?php
 
-cLoader::config('crypt');
+cConfig::load('crypt');
 
 class cCrypt {
 

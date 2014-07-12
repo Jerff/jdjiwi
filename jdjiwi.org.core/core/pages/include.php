@@ -1,6 +1,6 @@
 <?php
 
 /* конфигурация */
-cLoader::config('pages');
+cConfig::load('pages');
 self::config('sql.table');
 ?>

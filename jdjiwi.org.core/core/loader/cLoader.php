@@ -9,10 +9,10 @@ set_include_path(get_include_path() .
         PATH_SEPARATOR . cSoursePath . 'extension'
 );
 
-cLoader::library('loader/cConfig');
-cLoader::config('path');
-cLoader::library('loader/cAutoload');
-cLoader::library('loader/cModul');
+cLoader::library('loader/config/cConfig');
+cConfig::load('path');
+cLoader::library('loader/autoload/cAutoload');
+cLoader::library('loader/modul/cModul');
 cModul::load('core:core');
 cModul::load('file');
 cModul::load('pages');
@@ -44,10 +44,6 @@ class cLoader {
 
     static public function library($file) {
         self::file(str_replace(':', '/lib/', $file));
-    }
-
-    static public function config($file) {
-        self::file('_.config/' . $file);
     }
 
     static public function isExtension($name) {

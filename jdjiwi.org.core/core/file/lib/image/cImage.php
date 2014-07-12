@@ -1,6 +1,6 @@
 <?php
 
-cLoader::config('image');
+cConfig::load('image');
 
 class cImage {
 
