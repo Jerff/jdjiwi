@@ -17,11 +17,13 @@ class cConfig {
     }
 
     static public function load($name) {
-        self::set($name, require(self::path($name)));
+        foreach (require(self::path($name)) as $key => $value) {
+            self::$mData[$name . '.' . $key] = $value;
+        }
     }
 
     static public function set($name, $data) {
-        foreach ($data as $key => $value) {
+        foreach ($data() as $key => $value) {
             self::$mData[$name . '.' . $key] = $value;
         }
     }
