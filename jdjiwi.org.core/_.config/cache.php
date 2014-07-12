@@ -26,7 +26,7 @@ return array(
 //define('cMemcachePort', 11211);
 
 // места для кеша
-define('cCacheSitePath', cWWWPath . '.cache/cache/');
-define('cCachePagePath', cConfig::get('path.data') . 'cache/page/');
-define('cCacheSQLitePath', cConfig::get('path.data') . 'cache/SQLite/mydb.sq3');
+//define('cCacheSitePath', cWWWPath . '.cache/cache/');
+//define('cCachePagePath', cConfig::get('path.data') . 'cache/page/');
+//define('cCacheSQLitePath', cConfig::get('path.data') . 'cache/SQLite/mydb.sq3');
 ?>
