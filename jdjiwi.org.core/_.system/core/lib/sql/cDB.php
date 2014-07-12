@@ -24,7 +24,7 @@ class cDB extends cPatternsStaticRegistry {
     }
 
     public static function table($table) {
-        return cConfig::get('database.mysql') . $table;
+        return cConfig::get('database.mysql') . str_replace('.', '_', $table);
     }
 
 }
