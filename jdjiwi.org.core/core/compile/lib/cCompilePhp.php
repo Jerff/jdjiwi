@@ -68,7 +68,7 @@ class cCompilePhp {
 
         $content = cString::convertEncoding(php_strip_whitespace($file . '.php'));
         $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((require|require_once|include|include_once)\('(.*?)'\);)#sS", array(&$this, 'includeFile'), $content);
-        $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((cLoader::library|cLoader::config|cModul::load)\('(.*?)'\);)#sS", array(&$this, 'loadFile'), $content);
+        $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((cLoader::library|cConfig::load|cModul::load|cModul::config)\('(.*?)'\);)#sS", array(&$this, 'loadFile'), $content);
 
         $content = "<?php\n#include $file\n?>" . $content . "<?php\n#end $file\n?>";
 
@@ -85,21 +85,9 @@ class cCompilePhp {
         if (isset($m[6])) {
             switch ($m[5]) {
                 case 'cLoader::library':
-                case 'cLoader::config':
-                    if ($m[5] === 'cLoader::library') {
-                        $m[6] = str_replace(':', '/lib/', $m[6]);
-                    } else {
-                        $m[6] = '_.config/' . $m[6];
-                    }
-                    if (!($this->isLoad and class_exists(basename($m[6]), false))) {
-                        return 'cLoader::setHistory(\'' . $m[6] . '\');' .
+                    $m[6] = str_replace(':', '/lib/', $m[6]);
+                    return 'cLoader::setHistory(\'' . $m[6] . '\');' .
                                 ' ?>' . $this->file($m[6]) . '<?php ';
-                    }
-                    break;
-
-                case 'cLoader::config':
-                    return 'cLoader::setHistory(\'_.config/' . $m[6] . '\');' .
-                            ' ?>' . $this->file('_.config/' . $m[6]) . '<?php ';
                     break;
 
                 case 'cModul::load':
