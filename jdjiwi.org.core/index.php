@@ -21,7 +21,7 @@ if ($compile['is']) {
 }
 cLog::log('.include.' . cApplication . '.php');
 
-cModul::initCompile();
+cModul::compileInit();
 cDebug::setAjax();
 cDebug::setError();
 cDebug::setSql();

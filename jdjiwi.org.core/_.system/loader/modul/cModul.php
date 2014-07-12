@@ -14,7 +14,7 @@ class cModul {
     static private $mLoad = array();
     static private $item = null;
 
-    static public function initCompile() {
+    static public function compileInit() {
         self::$isCompile = true;
     }
 
@@ -35,7 +35,7 @@ class cModul {
             return self::$mLoad[$modul];
         }
         try {
-            if (self::$isCompile and class_exists('cCompile', false)) {
+            if (self::$isCompile) {
                 cCompile::php()->load('modul', $modul . '/include.php');
             } else {
                 require_once($modul . '/include.php');
