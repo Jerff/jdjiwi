@@ -1,7 +1,7 @@
 <?php
 
 cLoader::library('cache:ext/driver/cCacheDriver');
-cLoader::library('core:hashing/cHashing');
+cLoader::library('core:crypt/cCrypt');
 
 class cCacheDriverSql extends cCacheDriver {
 

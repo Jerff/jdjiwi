@@ -12,7 +12,7 @@ class cPages extends cPagesCore {
             return;
         }
 
-        $url = parse_url('http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], strlen(cConfig::get('url.router'))), PHP_URL_PATH);
+        $url = parse_url('http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], strlen(cConfig::get('url.itemUri'))), PHP_URL_PATH);
         $url = urldecode($url);
 
         $page = '/404/';

@@ -1,7 +1,7 @@
 <?php
 
 /* конфигурация */
-cConfig::load('application');
+cConfig::load('host');
 cLoader::library('core:sql/cDB');
 self::config('sql.table');
 
