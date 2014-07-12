@@ -2,25 +2,19 @@
 
 return array(
     /*
-     * Настройки
-     */
-    'config' => '_.config/',
-    /*
      * Системная папка
      */
     'data' => cSoursePath . '.data/',
     /*
      * app 
      */
-    'app.theme', cSoursePath . 'themes/core/',
-    'app.ajax', cSoursePath . 'themes/core/ajax/',
-    'app.controller', cSoursePath . 'themes/core/controller/',
-    'app.templates', cSoursePath . 'themes/core/templates/',
-    'app.page', cSoursePath . 'themes/core/templates/',
-        /*
+    'app.ajax' => cConfig::get('host.app.theme') . 'ajax/',
+    'app.controller' => cConfig::get('host.app.theme') . 'controller/',
+    'app.templates' => cConfig::get('host.app.theme') . 'templates/',
+    /*
      * components 
      */
-    'components', cSoursePath . 'components/',
+    'components' => cSoursePath . 'components/',
 );
 //define('cConfigPath', '_.config/');
 

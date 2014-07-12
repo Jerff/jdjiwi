@@ -10,6 +10,7 @@ set_include_path(get_include_path() .
 );
 
 cLoader::library('loader/config/cConfig');
+cConfig::load('host');
 cConfig::load('path');
 cLoader::library('loader/autoload/cAutoload');
 cLoader::library('loader/modul/cModul');
