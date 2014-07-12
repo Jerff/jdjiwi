@@ -6,10 +6,10 @@ cConfig::load('base');
 
 /* заагрузка библиотек */
 cLoader::library('pages:cPages');
-self::config('const');
+cModul::config('const');
 
 /* конфигурация */
 cPages::base()->set(cConfig::get('base.host'));
-self::config('sql.table');
+cModul::config('sql.table');
 cConfig::load('url');
 ?>

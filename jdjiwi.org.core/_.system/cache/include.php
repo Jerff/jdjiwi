@@ -2,7 +2,7 @@
 
 /* конфигурация */
 cConfig::load('cache');
-self::config('sql.table');
+cModul::config('sql.table');
 
 /* заагрузка библиотек */
 cLoader::library('cache:config/cCacheConfig');

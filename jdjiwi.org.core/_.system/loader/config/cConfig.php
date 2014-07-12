@@ -12,21 +12,22 @@ class cConfig {
         echo '</pre>';
     }
 
+    static public function path($name) {
+        return cSoursePath . self::path . $name . '.php';
+    }
+
     static public function load($name) {
-        $conf = require(cSoursePath . self::path . $name . '.php');
-        foreach ($conf as $key => $value) {
+        self::set($name, require(self::path($name)));
+    }
+
+    static public function set($name, $data) {
+        foreach ($data as $key => $value) {
             self::$mData[$name . '.' . $key] = $value;
         }
     }
 
     static public function get($name) {
         return isset(self::$mData[$name]) ? self::$mData[$name] : null;
-    }
-
-    static public function set($name, $data) {
-        foreach (unserialize($data) as $key => $value) {
-            self::$mData[$name . '.' . $key] = $value;
-        }
     }
 
 }

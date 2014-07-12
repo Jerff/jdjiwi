@@ -2,5 +2,5 @@
 
 /* конфигурация */
 cConfig::load('search');
-self::config('sql.table');
+cModul::config('sql.table');
 ?>

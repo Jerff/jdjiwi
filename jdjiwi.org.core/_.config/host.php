@@ -4,7 +4,7 @@ return array(
     /*
      *  определяем домен
      */
-    'url' => 'www.core.jdjiwi.ru',
+    'url' => "www.core.j\"dji'wi.ru",
     'uri' => ''
 );
 //define('cDomen', 'www.core.jdjiwi.ru');

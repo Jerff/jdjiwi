@@ -28,7 +28,7 @@ class cPagesCore extends cPatternsStaticRegistry {
     }
 
 //    static public function urlParam() {
-//        return self::config('cPagesParam');
+//        return cModul::config('cPagesParam');
 //    }
     // установка & возвращение имени главной страницы
     static public function setMain($p) {

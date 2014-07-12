@@ -3,7 +3,7 @@
 /* конфигурация */
 cConfig::load('host');
 cLoader::library('core:sql/cDB');
-self::config('sql.table');
+cModul::config('sql.table');
 
 /* заагрузка библиотек */
 cLoader::library('core:input/cInput');

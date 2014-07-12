@@ -24,7 +24,6 @@ class cModul {
     }
 
     static public function load($modul) {
-        var_dump($modul);
         if (empty($modul) or ! is_string($modul)) {
             throw new cModulException('Не указано имя модуля');
         }

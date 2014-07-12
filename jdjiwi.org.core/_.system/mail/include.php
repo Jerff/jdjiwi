@@ -1,7 +1,7 @@
 <?php
 
 /* конфигурация */
-self::config('sql.table');
+cModul::config('sql.table');
 
 /* заагрузка библиотек */
 cLoader::library('mail:cMail');

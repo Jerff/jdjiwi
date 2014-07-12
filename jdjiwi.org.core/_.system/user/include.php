@@ -1,5 +1,5 @@
 <?php
 
 /* конфигурация */
-self::config('sql.table');
+cModul::config('sql.table');
 ?>

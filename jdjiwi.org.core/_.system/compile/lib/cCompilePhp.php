@@ -9,12 +9,13 @@ class cCompilePhp {
      */
 
     public function load($type, $file) {
-        if (cConfig::get('compile.is') < 2) {
+        if (0 and cConfig::get('compile.is') < 2) {
             return false;
         }
         $hash = cCrypt::hash(cLoader::getIndex(), $type, $file);
         $compile = cConfig::get('compile.path') . $type . '/' . substr($hash, 0, 1) . '/' . substr($hash, 1, 2) . '/' . $hash . '.php';
-        if (file_exists($compile)) {
+        pre('cCompilePhp', $compile, $type, $file);
+        if (0 and file_exists($compile)) {
             if (cConfig::get('compile.is') == 3)
                 return $compile;
             else {
@@ -23,7 +24,10 @@ class cCompilePhp {
             }
         }
         cFileSystem::mkdir(dirname($compile));
-        file_put_contents($compile, $this->compile(array_merge($file, $include), true));
+        file_put_contents($compile, $this->compile($file, true));
+
+        echo $compile;
+        exit;
         return $compile;
     }
 
@@ -47,11 +51,12 @@ class cCompilePhp {
 
     public function compile($files, $isLoad = false) {
         $this->mFile = array();
-        $this->isLoad = $class;
+        $this->isLoad = $isLoad;
         $content = '';
         foreach ((array) $files as $file)
             $content .= $this->file($file);
-        $content = preg_replace('#\?>\s+<\?php#S', ' ', $content);
+        $content = preg_replace('#\?>\s*<\?php#S', ' ', $content);
+        $content = preg_replace('#\n\s*#Sm', "\n", $content);
 
         $content = str_replace("\r", '', $content);
         return $content;
@@ -62,11 +67,12 @@ class cCompilePhp {
     }
 
     private function file($file) {
-        if (isset($this->mFile[$file]) or ! is_file($file))
+        if (isset($this->mFile[$file]))
             return '';
         $this->mFile[$file] = true;
 
-        $content = cString::convertEncoding(php_strip_whitespace($file . '.php'));
+        $content = cString::convertEncoding(php_strip_whitespace($file));
+        pre(php_strip_whitespace($file));
         $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((require|require_once|include|include_once)\('(.*?)'\);)#sS", array(&$this, 'includeFile'), $content);
         $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((cLoader::library|cConfig::load|cModul::load|cModul::config)\('(.*?)'\);)#sS", array(&$this, 'loadFile'), $content);
 
@@ -87,14 +93,17 @@ class cCompilePhp {
                 case 'cLoader::library':
                     $m[6] = str_replace(':', '/lib/', $m[6]);
                     return 'cLoader::setHistory(\'' . $m[6] . '\');' .
-                                ' ?>' . $this->file($m[6]) . '<?php ';
-                    break;
+                            ' ?>' . $this->file($m[6] . '.php') . '<?php ';
+
+                case 'cConfig::load':
+                    return 'cConfig::set(\'' . $m[6] . '\', function(){ ?>' . file_get_contents(cConfig::path($m[6])) . '<?php });';
 
                 case 'cModul::load':
                     return 'cModul::setHistory(\'' . $m[6] . '\');' .
-                            ' ?>' . $this->file($m[6] . '/include') . '<?php ' .
-                            ' ?>' . $this->file($m[6] . '/config/sql.table') . '<?php ';
-                    break;
+                            ' ?>' . $this->file($m[6] . '/include.php') . '<?php ';
+
+                case 'cModul::config':
+                    return ' ?>' . $this->file($m[6] . '/config/' . $m[6] . '.php') . '<?php ';
 
                 default:
                     break;
