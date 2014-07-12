@@ -3,10 +3,10 @@
 // загрузчик
 set_include_path(get_include_path() .
         PATH_SEPARATOR . cSoursePath .
-        PATH_SEPARATOR . cSoursePath . '_library' .
-        PATH_SEPARATOR . cSoursePath . '_library/PEAR' .
-        PATH_SEPARATOR . cSoursePath . 'core' .
-        PATH_SEPARATOR . cSoursePath . 'extension'
+        PATH_SEPARATOR . cSoursePath . '_.library' .
+        PATH_SEPARATOR . cSoursePath . '_.library/PEAR' .
+        PATH_SEPARATOR . cSoursePath . '_.system' .
+        PATH_SEPARATOR . cSoursePath . 'application'
 );
 
 cLoader::library('loader/config/cConfig');
