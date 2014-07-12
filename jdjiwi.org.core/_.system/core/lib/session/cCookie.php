@@ -12,20 +12,20 @@ class cCookie {
 
     public static function set($n, $v = '', $d = 12) {
         if ($v)
-            setcookie($n, $v, time() + $d * 60 * 60 * 24, '/', cDomen);
+            setcookie($n, $v, time() + $d * 60 * 60 * 24, '/', cConfig::get('application.domen'));
         else
             self::del($n);
     }
 
     public static function set2($n, $v = '', $d = 12) {
         if ($v)
-            setrawcookie($n, $v, time() + $d * 60 * 60 * 24, '/', cDomen);
+            setrawcookie($n, $v, time() + $d * 60 * 60 * 24, '/', cConfig::get('application.domen'));
         else
             self::del($n);
     }
 
     public static function del($n) {
-        setcookie($n, 0, time() - 60 * 60 * 24, '/', cDomen);
+        setcookie($n, 0, time() - 60 * 60 * 24, '/', cConfig::get('application.domen'));
         unset($_COOKIE[$n]);
     }
 

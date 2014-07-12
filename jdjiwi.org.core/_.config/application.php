@@ -1,11 +1,12 @@
 <?php
 
-/*
- *  определяем домен
- */
-define('cDomen', 'www.core.jdjiwi.ru');
-define('cDomenUri', '');
-
-cConfig::domen()->url('www.core.jdjiwi.ru');
-cConfig::domen()->uri('');
+return array(
+    /*
+     *  определяем домен
+     */
+    'domen' => 'www.core.jdjiwi.ru',
+    'domenUri' => ''
+);
+//define('cDomen', 'www.core.jdjiwi.ru');
+//define('cDomenUri', '');
 ?>

@@ -17,6 +17,7 @@ cLoader::library('core:header/cHeader');
 
 /* загрузка модулей */
 cModul::load('seo');
+cModul::load('file');
 cModul::load('pages');
 cModul::load('cache');
 ?>

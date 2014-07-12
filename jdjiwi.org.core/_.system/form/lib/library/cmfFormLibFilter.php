@@ -82,7 +82,7 @@ function cmfFilterTextLengt($v, $o) {
 }
 
 function cmfFilterLenMin($v, $m) {
-    $len = mb_strlen((string) $v, cCharset);
+    $len = mb_strlen((string) $v, cConfig::get('i18n.charset'));
     $r = (!$len or $len >= $m);
     if (!$r) {
         cmfFormError::set("поле не должно быть меньше ($m) и не больше ()символов");
@@ -91,7 +91,7 @@ function cmfFilterLenMin($v, $m) {
 }
 
 function cmfFilterLenMax($v, $m) {
-    $len = mb_strlen((string) $v, cCharset);
+    $len = mb_strlen((string) $v, cConfig::get('i18n.charset'));
     $r = (!$len or $len <= $m);
     if (!$r) {
         cmfFormError::set("поле не должно быть больше ($m) символов");

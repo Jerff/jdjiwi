@@ -8,7 +8,10 @@ cLoader::library('core:string/cConvert');
 class cFileSystem {
 
     // сменить права
-    static public function chmod($folder, $mode = cDirMode) {
+    static public function chmod($folder, $mode = null) {
+        if (is_null($mode)) {
+            $mode = cConfig::get('file.mode.file');
+        }
         if (!chmod($folder, $mode)) {
             throw new cFileException('права файла не изменены', array($folder, $mode));
         }
@@ -21,9 +24,12 @@ class cFileSystem {
     }
 
     // создание папки
-    static public function mkdir($path, $mode = cDirMode) {
+    static public function mkdir($path, $mode = null) {
         if (is_dir($path)) {
             return true;
+        }
+        if (is_null($mode)) {
+            $mode = cConfig::get('file.mode.dir');
         }
         if (!$is = mkdir($path, $mode, true)) {
             throw new cFileException('Невозможно создать папку', $path);

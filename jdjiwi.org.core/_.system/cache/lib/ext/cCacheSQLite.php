@@ -6,7 +6,7 @@ class cCacheSQLite extends cCacheDriverSql {
 
     function __construct() {
 
-        $dns = 'sqlite:' . cCacheSQLitePath;
+        $dns = 'sqlite:' . cConfig::get('cache.sqlite.path');
         //$dns = 'sqlite::memory:';
         try {
             $sql = new cmfPDO($dns);

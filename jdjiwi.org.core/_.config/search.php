@@ -1,8 +1,10 @@
 <?php
 
-/*
- *  Sphinx - настройки поиска
- */
-define('cSphinxHost', 'localhost');
-define('cSphinxPort', 3312);
+return array(
+    /*
+     *  Sphinx - настройки поиска
+     */
+    'sphinx.host' => 'localhost',
+    'sphinx.port' => '3312',
+);
 ?>

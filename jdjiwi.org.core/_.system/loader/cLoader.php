@@ -14,8 +14,6 @@ cConfig::load('path');
 cLoader::library('loader/autoload/cAutoload');
 cLoader::library('loader/modul/cModul');
 cModul::load('core:core');
-cModul::load('file');
-cModul::load('pages');
 
 class cLoader {
 
@@ -28,7 +26,7 @@ class cLoader {
     static public function getIndex() {
         return cCrypt::hash(serialize(self::$mHistory));
     }
-    
+
     static public function isLoad($file) {
         return isset(self::$mHistory[$file]);
     }

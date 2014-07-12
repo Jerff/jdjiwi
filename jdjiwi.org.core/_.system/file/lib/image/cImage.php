@@ -7,12 +7,12 @@ class cImage {
     const logo = 'logo.png';
 
     static public function isImageMagic() {
-        return isImageMagick;
+        return cConfig::get('image.ImageMagick.is');
     }
 
     static public function command($command) {
         if (cImageMagickPath) {
-            return cImageMagickProg . cImageMagickPath . $command . cImageMagickProg;
+            return cConfig::get('image.ImageMagick.path') . $command;
         } else {
             return $command;
         }

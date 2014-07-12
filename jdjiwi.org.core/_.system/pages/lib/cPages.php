@@ -70,7 +70,7 @@ class cPages extends cPagesCore {
         }
 
         if (!empty($_SERVER['HTTP_REFERER'])) {
-            if (parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) !== cDomen) {
+            if (parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) !== cConfig::get('application.domen')) {
                 self::setMain('/admin/index/');
                 return;
             }

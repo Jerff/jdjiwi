@@ -51,7 +51,7 @@ class cException extends \Exception {
         if (class_exists('cString', false)) {
             return cString::specialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)));
         } else {
-            return htmlspecialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)), ENT_QUOTES, cCharset);
+            return htmlspecialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)), ENT_QUOTES, cConfig::get('i18n.charset'));
         }
     }
 

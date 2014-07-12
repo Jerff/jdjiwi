@@ -16,7 +16,7 @@ class cCache extends cCacheDelegation {
             return self::$driver;
         }
 
-        $cache = self::getDriver(cCacheTypeDriver);
+        $cache = self::getDriver(cConfig::get('cache.driver'));
         if (!$cache->isRun()) {
             foreach (explode('|', cCacheConfig::DRIVER_LIST) as $d) {
                 if ($d !== $driver) {

@@ -3,15 +3,15 @@
 /*
  * префиксы разделов сайта
  */
-define('cAppHostUrl', cDomenUri . '');
-define('cAdminHostUrl', cDomenUri . '/admin');
+define('cAppHostUrl', cConfig::get('application.domen.uri') . '');
+define('cAdminHostUrl', cConfig::get('application.domen.uri') . '/admin');
 
 /*
  * адреса разделов сайта
  */
 cPages::base()->set(array(
-    'application' => 'http://' . cDomen . cAppHostUrl,
-    'admin' => 'http://' . cDomen . cAdminHostUrl
+    'application' => 'http://' . cConfig::get('application.domen') . cAppHostUrl,
+    'admin' => 'http://' . cConfig::get('application.domen') . cAdminHostUrl
 ));
 define('cItemHostUrl', cPages::base()->router());
 
@@ -20,7 +20,7 @@ define('cItemHostUrl', cPages::base()->router());
  */
 define('cAppUrl', cPages::base()->application);
 define('cAdminUrl', cPages::base()->admin);
-define('cItemUrl', cDomen . cItemHostUrl);
+define('cItemUrl', cConfig::get('application.domen') . cItemHostUrl);
 
 /*
  * устанавливаем адреса для быстрого доступа к каталогам проекта

@@ -107,7 +107,7 @@ class cLog {
         self::error($message);
         try {
             $message = PHP_EOL . date("Y-m-d H:i:s (T): ") . ' ' . $message;
-            $dir = cDataPath . 'errorLog/' . date('Y-m') . '/';
+            $dir = cConfig::get('path.data') . 'errorLog/' . date('Y-m') . '/';
             cFileSystem::mkdir($dir);
             $file = $dir . date('Y-m-d (H)') . '.log';
             cFile::isWritable($file);

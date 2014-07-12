@@ -1,5 +1,5 @@
 <?php
 
-define('db_news', cSqlDBPefix . 'news');
-define('path_news', cFilePath . 'news/');
+define('db_news', cConfig::get('database.db.pefix') . 'news');
+define('path_news', cConfig::get('file.path') . 'news/');
 ?>

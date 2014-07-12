@@ -5,7 +5,7 @@ cLoader::library('core:sql/cSqlConfig');
 class cMysqlConfig extends cSqlConfig {
 
     public function init($driver) {
-        switch (cCharset) {
+        switch (cConfig::get('i18n.charset')) {
             case 'UTF-8':
                 $driver->query("SET NAMES utf8 COLLATE utf8_unicode_ci");
                 break;

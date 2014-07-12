@@ -14,7 +14,7 @@ class cMySql extends cSql {
     protected function driver() {
         static $driver = null;
         if (empty($driver)) {
-            $driver = new cPDO(cMysqDb, cMysqlHost, cMysqUser, cMysqPassword);
+            $driver = new cPDO(cConfig::get('database.mysql.db'), cConfig::get('database.mysql.host'), cConfig::get('database.mysql.user'), cConfig::get('database.mysql.password'));
             $this->config()->init($driver);
         }
         return $driver;

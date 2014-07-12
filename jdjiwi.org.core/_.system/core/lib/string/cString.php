@@ -1,32 +1,37 @@
 <?php
 
-cConfig::load('charset');
+cConfig::load('i18n');
+setlocale(LC_ALL, cConfig::get('i18n.locale'));
+if (extension_loaded('mbstring')) {
+    ini_set('mbstring.language', cConfig::get('i18n.mbstring.language'));
+    ini_set('mbstring.internal_encoding', cConfig::get('i18n.charset'));
+}
 cLoader::library('core:string/cConvert');
 
 class cString {
 
     static public function convertEncoding($str) {
         $char = mb_detect_encoding($str);
-        if ($char !== cCharset) {
-            $str = mb_convert_encoding($str, cCharset);
+        if ($char !== cConfig::get('i18n.charset')) {
+            $str = mb_convert_encoding($str, cConfig::get('i18n.charset'));
         }
         return $str;
     }
 
     static public function strlen($str) {
-        return mb_strlen($str, cCharset);
+        return mb_strlen($str, cConfig::get('i18n.charset'));
     }
 
     static public function strpos($haystack, $needle, $offset = 0) {
-        return mb_strpos($haystack, $needle, $offset, cCharset);
+        return mb_strpos($haystack, $needle, $offset, cConfig::get('i18n.charset'));
     }
 
     static public function strrpos($haystack, $needle, $offset = 0) {
-        return mb_strrpos($haystack, $needle, $offset, cCharset);
+        return mb_strrpos($haystack, $needle, $offset, cConfig::get('i18n.charset'));
     }
 
     static public function substr($str, $start, $len = 0) {
-        return mb_substr($str, $start, $len, cCharset);
+        return mb_substr($str, $start, $len, cConfig::get('i18n.charset'));
     }
 
     static public function replace($search, $replace, $subject) {
@@ -34,28 +39,28 @@ class cString {
     }
 
     static public function strtolower($str) {
-        return mb_strtolower($str, cCharset);
+        return mb_strtolower($str, cConfig::get('i18n.charset'));
     }
 
     static public function strtoupper($str) {
-        return mb_strtoupper($str, cCharset);
+        return mb_strtoupper($str, cConfig::get('i18n.charset'));
     }
 
     static public function firstToUpper($str) {
         return ucfirst($str);
-//        return mb_strtoupper(self::substr($str, 0, 1), cCharset) . self::substr($str, 1, self::strlen($str) - 1);
+//        return mb_strtoupper(self::substr($str, 0, 1), cConfig::get('i18n.charset')) . self::substr($str, 1, self::strlen($str) - 1);
     }
 
     //cConvert::specialchars(
     //cString::specialchars(
     static public function specialchars($str) {
-        return htmlspecialchars(trim($str), ENT_QUOTES, cCharset);
+        return htmlspecialchars(trim($str), ENT_QUOTES, cConfig::get('i18n.charset'));
     }
 
     //cConvert::specialchars(
     //cString::specialchars(
     function entityDecode($str) {
-        return html_entity_decode($str, ENT_QUOTES, cCharset);
+        return html_entity_decode($str, ENT_QUOTES, cConfig::get('i18n.charset'));
     }
 
     //cConvert::trim(

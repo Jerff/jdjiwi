@@ -1,6 +1,6 @@
 <?php
 
-define('db_photo', cSqlDBPefix . 'photo');
-define('db_photo_image', cSqlDBPefix . 'photo_image');
-define('path_photo', cFilePath . 'photo/');
+define('db_photo', cConfig::get('database.db.pefix') . 'photo');
+define('db_photo_image', cConfig::get('database.db.pefix') . 'photo_image');
+define('path_photo', cConfig::get('file.path') . 'photo/');
 ?>

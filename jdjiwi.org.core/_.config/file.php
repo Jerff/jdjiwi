@@ -1,12 +1,22 @@
 <?php
 
+return array(
+    /*
+     * папка с upload файлами
+     */
+    'path' => 'files/',
+    /*
+     * права на файлы
+     */
+    'mode.file' => 0666,
+    'mode.dir' => 0777,
+);
 // папка с upload файлами
-define('cFilePath', 'files/');
-cConfig::filePath('files/');
+//define('cFilePath', 'files/');
 
 /*
  * права на файлы
  */
-define('cFileMode', 0666);
-define('cDirMode', 0777);
+//define('cFileMode', 0666);
+//define('cDirMode', 0777);
 ?>

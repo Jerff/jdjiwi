@@ -14,11 +14,11 @@ class cCrypt {
 
     static public function hash() {
         $n = serialize(func_get_args());
-        return self::sha1(cSalt . $n) . self::crc32(cSalt . $n);
+        return self::sha1(cConfig::get('crypt.salt') . $n) . self::crc32(cConfig::get('crypt.salt') . $n);
     }
 
     static public function password($password) {
-        return crypt($password, cSalt);
+        return crypt($password, cConfig::get('crypt.salt'));
     }
 
 }

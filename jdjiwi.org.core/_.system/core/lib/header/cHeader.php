@@ -51,7 +51,7 @@ class cHeader {
         <base href="' . cAppUrl . '/"/>';
         }
         $head .= '
-        <meta content="text/html; charset=' . cCharset . '" http-equiv="Content-Type"/>';
+        <meta content="text/html; charset=' . cConfig::get('i18n.charset') . '" http-equiv="Content-Type"/>';
 
         cCompile::fileJsCss()->initHeader(self::$mData);
         foreach (self::$mData as $key => list($type, $value)) {

@@ -1,7 +1,9 @@
 <?php
 
-/*
- * настройки часового поиска
- */
-date_default_timezone_set('Europe/Moscow');
+return array(
+    /*
+     * настройки часового поиска
+     */
+    'zone' => 'Europe/Moscow'
+);
 ?>
