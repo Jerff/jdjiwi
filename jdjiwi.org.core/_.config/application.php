@@ -2,11 +2,9 @@
 
 return array(
     /*
-     *  определяем домен
+     * префиксы разделов сайта
      */
-    'domen' => 'www.core.jdjiwi.ru',
-    'domenUri' => ''
+    'uri' => cConfig::get('host.uri') . '',
+    'admin.uri' => cConfig::get('host.uri') . '/admin',
 );
-//define('cDomen', 'www.core.jdjiwi.ru');
-//define('cDomenUri', '');
 ?>

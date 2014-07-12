@@ -48,7 +48,7 @@ class cHeader {
         $head = '';
         if ($isBase) {
             $head .= '
-        <base href="' . cAppUrl . '/"/>';
+        <base href="' . cConfig::get('url.app') . '/"/>';
         }
         $head .= '
         <meta content="text/html; charset=' . cConfig::get('i18n.charset') . '" http-equiv="Content-Type"/>';

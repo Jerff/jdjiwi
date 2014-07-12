@@ -24,6 +24,7 @@ class cModul {
     }
 
     static public function load($modul) {
+        var_dump($modul);
         if (empty($modul) or ! is_string($modul)) {
             throw new cModulException('Не указано имя модуля');
         }
@@ -35,10 +36,9 @@ class cModul {
             return self::$mLoad[$modul];
         }
         try {
-            if (empty(self::$isCompile)
-                    or ! cCompile::php()->load('modul', $modul . '/include.php', array(
-                        $modul . '/config/sql.table.php'
-                    ))) {
+            if (self::$isCompile and class_exists('cCompile', false)) {
+                cCompile::php()->load('modul', $modul . '/include.php');
+            } else {
                 require_once($modul . '/include.php');
             }
         } catch (Exception $e) {

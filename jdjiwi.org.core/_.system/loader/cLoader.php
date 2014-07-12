@@ -13,7 +13,7 @@ cLoader::library('loader/config/cConfig');
 cConfig::load('path');
 cLoader::library('loader/autoload/cAutoload');
 cLoader::library('loader/modul/cModul');
-cModul::load('core:core');
+cModul::load('core');
 
 class cLoader {
 

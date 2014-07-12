@@ -19,11 +19,11 @@ class cPagesBase {
             case 'cron':
             case 'ajax':
             case 'compileJsCss':
-                return cAppHostUrl;
+                return cCOnfig::get('application.uri');
                 break;
 
             case 'admin':
-                return cAdminHostUrl;
+                return cCOnfig::get('application.admin.uri');
                 break;
 
             default:

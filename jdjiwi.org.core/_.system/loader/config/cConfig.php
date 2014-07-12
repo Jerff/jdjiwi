@@ -20,7 +20,7 @@ class cConfig {
     }
 
     static public function get($name) {
-        return isset(self::$mData[$name]) ? : null;
+        return isset(self::$mData[$name]) ? self::$mData[$name] : null;
     }
 
     static public function set($name, $data) {
