@@ -4,7 +4,7 @@ cConfig::load('i18n');
 setlocale(LC_ALL, cConfig::get('i18n.locale'));
 if (extension_loaded('mbstring')) {
     ini_set('mbstring.language', cConfig::get('i18n.mbstring.language'));
-    ini_set('mbstring.internal_encoding', cConfig::get('i18n.charset'));
+//    ini_set('mbstring.internal_encoding', cConfig::get('i18n.charset'));
 }
 cLoader::library('core:string/cConvert');
 

@@ -5,8 +5,6 @@ cLoader::library('sql:cSqlPlaceholder');
 
 abstract class cSql extends cPatternsRegistry {
 
-    abstract protected function config();
-
     abstract protected function driver();
 
     /*

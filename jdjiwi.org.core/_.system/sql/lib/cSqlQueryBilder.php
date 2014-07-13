@@ -2,7 +2,7 @@
 
 cLoader::library('core:patterns/cPatternsRegistry');
 
-abstract class cSqlQuery extends cPatternsRegistry {
+abstract class cSqlQueryBilder extends cPatternsRegistry {
 
     private $mQuery = array();
 

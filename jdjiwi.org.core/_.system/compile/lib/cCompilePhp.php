@@ -14,7 +14,6 @@ class cCompilePhp {
         }
         $hash = cCrypt::hash(cLoader::getIndex(), $type, $file);
         $compile = cConfig::get('compile.path') . $type . '/' . substr($hash, 0, 1) . '/' . substr($hash, 1, 2) . '/' . $hash . '.php';
-        pre('cCompilePhp', $compile, $type, $file);
         if (file_exists($compile)) {
             if (cConfig::get('compile.is') == 3)
                 return $compile;
@@ -90,7 +89,7 @@ class cCompilePhp {
                 case 'cConfig::load':
                     $code = '';
                     foreach (cConfig::getFiles($m[6]) as $file) {
-                        $code. = 'cConfig::set(\'' . $m[6] . '\', \'' . $file . '\', function(){ ?>' . file_get_contents(cConfig::path($file)) . '<?php });';
+                        $code .= 'cConfig::set(\'' . $m[6] . '\', \'' . $file . '\', function(){ ?>' . file_get_contents(cConfig::path($file)) . '<?php });';
                     }
                     return $code;
 

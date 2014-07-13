@@ -4,6 +4,6 @@ return array(
     /*
      * настройки часового поиска
      */
-    'zone' => 'Europe/Moscow'
+    'zone' => 'europe/moscow'
 );
 ?>
