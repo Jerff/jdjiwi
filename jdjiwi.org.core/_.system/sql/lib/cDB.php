@@ -7,9 +7,7 @@ class cDB extends cPatternsStaticRegistry {
 
     static private $instance;
 
-    const queryBilder = 'select|insert|update|delete|truncate';
-
-    public static function sql() {
+    private static function driver() {
         if (empty(self::$instance)) {
             switch (cConfig::get('database.mysql')) {
                 case 'mysql':
@@ -29,13 +27,18 @@ class cDB extends cPatternsStaticRegistry {
     }
 
     public static function __callStatic($name, $arguments) {
-        static $queryBilder = null;
-        if (empty($queryBilder)) {
-            $queryBilder = explode('|', self::queryBilder);
-            $queryBilder = array_combine($queryBilder, $queryBilder);
-        }
-        if (isset($queryBilder[$name])) {
-            return self::sql()->query()->$name(...$arguments);
+        switch ($name) {
+            case 'select':
+            case 'insert':
+            case 'update':
+            case 'delete':
+            case 'truncate':
+                return self::driver()->query()->$name(...$arguments);
+                break;
+
+            default:
+                return self::driver()->$name(...$arguments);
+                break;
         }
     }
 
