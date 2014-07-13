@@ -10,6 +10,9 @@ return array(
     'mysql.user' => 'root',
     'mysql.password' => 'prog12345',
     'mysql.db' => 'core_jdjiwi_ru',
+    'mysql.query' => array(
+        'SET NAMES utf8 COLLATE utf8_unicode_ci'
+    ),
 );
 //define('cSqlDriver', 'mysql');
 //define('cMysqlHost', 'localhost');

@@ -9,7 +9,8 @@ class cSqlPlaceholder {
         return $this->args[$this->arg++];
     }
 
-    private function query($args) {
+    private function query() {
+        $args = func_get_args();
         $query = (string) array_shift($args);
 
         $this->arg = 0;
