@@ -13,12 +13,18 @@ class cConfig {
         echo '</pre>';
     }
 
-    static public function path($name) {
+    static public function getFiles($name) {
+        $mFile = array(
+            $name . '.php'
+        );
         if (is_file(cSoursePath . self::path . self::$host . '/' . $name . '.php')) {
-            return cSoursePath . self::path . self::$host . '/' . $name . '.php';
-        } else {
-            return cSoursePath . self::path . $name . '.php';
+            $mFile[] = self::$host . '/' . $name . '.php';
         }
+        return $mFile;
+    }
+
+    static public function path($file) {
+        return cSoursePath . self::path . $file;
     }
 
     static private function init($name, $data) {
@@ -33,13 +39,21 @@ class cConfig {
         return $data;
     }
 
+    static public function setHistory($file) {
+        cLoader::setHistory(__CLASS__ . $file);
+    }
+
     static public function load($name) {
-        foreach (self::init($name, require(self::path($name))) as $key => $value) {
-            self::$mData[$name . '.' . $key] = $value;
+        foreach (self::getFiles($name) as $file) {
+            self::setHistory($file);
+            foreach (self::init($name, require(self::path($file))) as $key => $value) {
+                self::$mData[$name . '.' . $key] = $value;
+            }
         }
     }
 
-    static public function set($name, $data) {
+    static public function set($name, $file, $data) {
+        self::setHistory($file);
         foreach (self::init($name, $data()) as $key => $value) {
             self::$mData[$name . '.' . $key] = $value;
         }

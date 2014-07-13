@@ -88,7 +88,11 @@ class cCompilePhp {
                             ' ?>' . $this->file($m[6] . '.php') . '<?php ';
 
                 case 'cConfig::load':
-                    return 'cConfig::set(\'' . $m[6] . '\', function(){ ?>' . file_get_contents(cConfig::path($m[6])) . '<?php });';
+                    $code = '';
+                    foreach (cConfig::getFiles($m[6]) as $file) {
+                        $code. = 'cConfig::set(\'' . $m[6] . '\', \'' . $file . '\', function(){ ?>' . file_get_contents(cConfig::path($file)) . '<?php });';
+                    }
+                    return $code;
 
                 case 'cModul::load':
                     return 'cModul::setHistory(\'' . $m[6] . '\');' .
