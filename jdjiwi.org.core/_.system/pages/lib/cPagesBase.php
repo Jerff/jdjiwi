@@ -17,6 +17,7 @@ class cPagesBase {
         if (isset($list[cApplication])) {
             return $list[cApplication];
         }
+        throw new cException('неправильный раздел сайта', cApplication);
         exit;
     }
 

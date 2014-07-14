@@ -41,7 +41,7 @@ class cModul {
                 require_once($modul . '/include.php');
             }
         } catch (Exception $e) {
-            throw new cModulException('Модуль "' . $modul . '"не найден');
+            throw new cModulException('Модуль "' . $modul . '" не найден', 0, $e);
             return self::$mLoad[$modul] = false;
         }
         return self::$mLoad[$modul] = true;
