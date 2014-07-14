@@ -1,7 +1,8 @@
 <?php
 
 /* конфигурация */
-cConfig::load('pages');
+cConfig::load('sections');
+cConfig::load('router');
 cConfig::load('base');
 
 /* заагрузка библиотек */
