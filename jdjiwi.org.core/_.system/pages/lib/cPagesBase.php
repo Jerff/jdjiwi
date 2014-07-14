@@ -13,22 +13,11 @@ class cPagesBase {
     }
 
     public function router() {
-        // выбираем раздел сайта
-        switch (cApplication) {
-            case 'application':
-            case 'cron':
-            case 'ajax':
-            case 'compileJsCss':
-                return cCOnfig::get('pages.application.uri');
-                break;
-
-            case 'admin':
-                return cCOnfig::get('pages.admin.uri');
-                break;
-
-            default:
-                exit;
+        $list = cCOnfig::get('router.list');
+        if (isset($list[cApplication])) {
+            return $list[cApplication];
         }
+        exit;
     }
 
 }
