@@ -30,7 +30,7 @@ class cConfig {
     static private function init($name, $data) {
         if ($name === 'host') {
             foreach ($data as $host => $data) {
-                if ($_SERVER['HTTP_HOST'] === $data['url']) {
+                if (strpos($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], $data['url'])===0) {
                     self::$host = $host;
                     break;
                 }

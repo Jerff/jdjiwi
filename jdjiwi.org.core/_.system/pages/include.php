@@ -1,7 +1,7 @@
 <?php
 
 /* конфигурация */
-cConfig::load('sections');
+//cConfig::load('sections');
 cConfig::load('router');
 cConfig::load('base');
 
