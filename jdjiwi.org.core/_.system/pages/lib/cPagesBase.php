@@ -4,7 +4,7 @@ class cPagesBase {
 
     private $mBase = null;
 
-    public function set($mBase) {
+    private function set($mBase) {
         $this->mBase = $mBase;
     }
 

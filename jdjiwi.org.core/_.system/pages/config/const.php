@@ -4,9 +4,9 @@
  * константы быстрого доступа
  */
 // устанавливаем адреса разделов
-define('cAppUrl', cPages::base()->application . '/');
-define('cAdminUrl', cPages::base()->admin . '/');
-define('cCompileUrl', cPages::base()->compileJsCss . '/');
-define('cItemUrl', cPages::base()->router() . '/');
-define('cImgUrl', cBaseAppUrl);
+define('cAppUrl', cConfig::get('url.app'));
+define('cAdminUrl', cConfig::get('url.admin'));
+define('cCompileUrl', cConfig::get('url.compileJsCss'));
+define('cItemUrl', cConfig::get('url.item'));
+define('cImgUrl', cAppUrl);
 ?>

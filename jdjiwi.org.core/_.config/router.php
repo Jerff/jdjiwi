@@ -5,13 +5,13 @@ return array(
      * разделов сайта
      */
     'list' => array(
-        'application' => 'htt[://' . cConfig::get('host.url'),
-        'cron' => 'htt[://' . cConfig::get('host.url') . '/.cron',
-        'compileJsCss' => 'htt[://' . cConfig::get('host.url') . '/core-compile',
+        'application' => 'http://' . cConfig::get('host.url'),
+        'cron' => 'http://' . cConfig::get('host.url') . '/.cron',
+        'compileJsCss' => 'http://' . cConfig::get('host.url') . '/core-compile',
         /*
          * система администрирования
          */
-        'admin' => 'htt[://' . cConfig::get('host.url') . '/admin',
+        'admin' => 'http://' . cConfig::get('host.url') . '/admin',
     )
 );
 ?>
