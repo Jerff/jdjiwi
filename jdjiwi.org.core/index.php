@@ -17,12 +17,11 @@ $compile = require('_.config/compile.php');
 if ($compile['is']) {
     require($compile['path'] . 'loader.php');
 } else {
-    require('.include/loader.php');
+    require('loader.php');
 }
 cLog::log('.include.' . cApplication . '.php');
-cModul::load(cApplication);
+cModul::call(cApplication);
 
-cModul::compileInit();
 cDebug::setAjax();
 cDebug::setError();
 cDebug::setSql();

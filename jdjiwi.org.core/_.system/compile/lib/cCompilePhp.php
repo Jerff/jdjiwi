@@ -94,8 +94,12 @@ class cCompilePhp {
                     return $code;
 
                 case 'cModul::load':
-                    return 'cModul::setHistory(\'' . $m[6] . '\');' .
+                    return 'cModul::setHistory(\'' . $m[6] . '\', \'include\');' .
                             ' ?>' . $this->file($m[6] . '/include.php') . '<?php ';
+                    
+                case 'cModul::call':
+                    return 'cModul::setHistory(\'' . $m[6] . '\', \'call\');' .
+                            ' ?>' . $this->file($m[6] . '/call.php') . '<?php ';
 
                 case 'cModul::config':
                     return ' ?>' . $this->file($m[6] . '/config/' . $m[6] . '.php') . '<?php ';

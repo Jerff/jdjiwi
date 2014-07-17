@@ -23,6 +23,10 @@ class cLoader {
     static public function setHistory($file) {
         self::$mHistory[$file] = true;
     }
+    
+    static public function pre() {
+        pre(self::$mHistory);
+    }
 
     static public function getIndex() {
         return cCrypt::hash(serialize(self::$mHistory));

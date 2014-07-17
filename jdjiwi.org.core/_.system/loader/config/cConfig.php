@@ -17,7 +17,7 @@ class cConfig {
         $mFile = array(
             $name . '.php'
         );
-        if (is_file(cSoursePath . self::path . self::$host . '/' . $name . '.php')) {
+        if (self::$host and is_file(cSoursePath . self::path . self::$host . '/' . $name . '.php')) {
             $mFile[] = self::$host . '/' . $name . '.php';
         }
         return $mFile;
@@ -30,7 +30,7 @@ class cConfig {
     static private function init($name, $data) {
         if ($name === 'host') {
             foreach ($data as $host => $data) {
-                if (strpos($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], $data['url'])===0) {
+                if (strpos($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], $data['url']) === 0) {
                     self::$host = $host;
                     break;
                 }
@@ -40,7 +40,7 @@ class cConfig {
     }
 
     static public function setHistory($file) {
-        cLoader::setHistory(__CLASS__ . $file);
+        cLoader::setHistory(__CLASS__ . '::' . $file);
     }
 
     static public function load($name) {

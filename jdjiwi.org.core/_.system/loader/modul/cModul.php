@@ -14,16 +14,12 @@ class cModul {
     static private $mLoad = array();
     static private $item = null;
 
-    static public function compileInit() {
-        self::$isCompile = true;
+    static public function setHistory($file, $type) {
+        self::$mLoad[$file .= '/' . $type] = true;
+        cLoader::setHistory(__CLASS__ . '::' . $file);
     }
 
-    static public function setHistory($file) {
-        self::$mLoad[$file] = true;
-        cLoader::setHistory(__CLASS__ . $file);
-    }
-
-    static public function load($modul) {
+    static private function loadFile($modul, $file) {
         if (empty($modul) or ! is_string($modul)) {
             throw new cModulException('Не указано имя модуля');
         }
@@ -35,16 +31,26 @@ class cModul {
             return self::$mLoad[$modul];
         }
         try {
+            self::setHistory($modul, $file);
             if (self::$isCompile) {
-                cCompile::php()->load('modul', $modul . '/include.php');
+                cCompile::php()->load('modul', $modul . '/' . $file . '.php');
             } else {
-                require_once($modul . '/include.php');
+                require_once($modul . '/' . $file . '.php');
             }
         } catch (Exception $e) {
             throw new cModulException('Модуль "' . $modul . '" не найден', 0, $e);
             return self::$mLoad[$modul] = false;
         }
         return self::$mLoad[$modul] = true;
+    }
+
+    static public function load($modul) {
+        return self::loadFile($modul, 'include');
+    }
+
+    static public function call($modul) {
+        self::$isCompile = true;
+        return self::loadFile($modul, 'call');
     }
 
     static private function config($file) {
