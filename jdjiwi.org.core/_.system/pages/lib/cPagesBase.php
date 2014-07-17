@@ -10,7 +10,6 @@ class cPagesBase {
 
     public function router() {
         $this->mBase = cCOnfig::get('router.list');
-        pre($this->mBase);
         if (defined('cApplication')) {
             if (isset($this->mBase[cApplication])) {
                 return $this->mBase[cApplication];
