@@ -10,11 +10,11 @@ RedirectMatch ^/admin$ /admin/
 RewriteCond %{REQUEST_URI} ^/test-application
 RewriteRule ^.*$ test-application/index.php [L]
 
-RewriteCond %{REQUEST_URI} ^/\.cron
-RewriteRule ^.*$ .cron.php [L]
+#RewriteCond %{REQUEST_URI} ^/\.cron
+#RewriteRule ^.*$ .cron.php [L]
 
-RewriteCond %{REQUEST_URI} ^/admin
-RewriteRule ^.*$ admin.php [L]
+#RewriteCond %{REQUEST_URI} ^/admin
+#RewriteRule ^.*$ admin.php [L]
 
 #RewriteCond %{REQUEST_URI} ^/callAjax
 #RewriteRule ^.*$ callAjax.php [L]

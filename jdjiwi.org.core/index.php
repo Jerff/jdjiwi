@@ -1,8 +1,8 @@
 <?php
 
-if (!defined('cApplication')) {
-    define('cApplication', 'application');
-}
+//if (!defined('cApplication')) {
+//    define('cApplication', 'application');
+//}
 
 define('cSoursePath', __DIR__ . '/');
 define('cTimeInit', microtime());
@@ -15,11 +15,12 @@ $compile = require('_.config/compile.php');
 //require('_.config/setting.project.php');
 // системный кеш
 if ($compile['is']) {
-    require($compile['path'] . cApplication . '.php');
+    require($compile['path'] . 'loader.php');
 } else {
-    require('.include/' . cApplication . '.php');
+    require('.include/loader.php');
 }
 cLog::log('.include.' . cApplication . '.php');
+cModul::load(cApplication);
 
 cModul::compileInit();
 cDebug::setAjax();

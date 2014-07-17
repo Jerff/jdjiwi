@@ -5,14 +5,13 @@ return array(
      * разделов сайта
      */
     'list' => array(
-        'application' => cCOnfig::get('sections.application.uri'),
-        'cron' => cCOnfig::get('sections.application.uri'),
-//        'ajax' => cCOnfig::get('sections.application.uri'),
-        'compileJsCss' => cCOnfig::get('sections.application.uri'),
+        'application' => 'htt[://' . cConfig::get('host.url'),
+        'cron' => 'htt[://' . cConfig::get('host.url') . '/.cron',
+        'compileJsCss' => 'htt[://' . cConfig::get('host.url') . '/core-compile',
         /*
          * система администрирования
          */
-        'admin' => cCOnfig::get('sections.admin.uri'),
+        'admin' => 'htt[://' . cConfig::get('host.url') . '/admin',
     )
 );
 ?>

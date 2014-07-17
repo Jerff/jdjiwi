@@ -6,7 +6,8 @@
 // устанавливаем адреса разделов
 define('cAppUrl', cPages::base()->application);
 define('cAdminUrl', cPages::base()->admin);
-define('cItemUrl', cConfig::get('host.url') . cConfig::get('url.itemUri'));
+define('cCompileUrl', cPages::base()->compileJsCss);
+define('cItemUrl', cPages::base()->router());
 
 // устанавливаем адреса для быстрого доступа к каталогам проекта
 define('cBaseAppUrl', cAppUrl . '/');
