@@ -4,6 +4,7 @@ class cConfig {
 
     const path = '_.config/';
 
+    static private $mHistory = array();
     static private $mData = array();
     static private $host = null;
 
@@ -40,10 +41,14 @@ class cConfig {
     }
 
     static public function setHistory($file) {
+        self::$mHistory[$file] = true;
         cLoader::setHistory(__CLASS__ . '::' . $file);
     }
 
     static public function load($name) {
+        if (isset(self::$mHistory[$name])) {
+            return false;
+        }
         foreach (self::getFiles($name) as $file) {
             self::setHistory($file);
             foreach (self::init($name, require(self::path($file))) as $key => $value) {

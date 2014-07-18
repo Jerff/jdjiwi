@@ -20,7 +20,8 @@ if ($compile['is']) {
     require(cSoursePath . 'loader.php');
 }
 cLog::log('.include.' . cApplication . '.php');
-cModul::call(cApplication);
+cLog::memory();
+cLog::init();
 
 cDebug::setAjax();
 cDebug::setError();
@@ -28,5 +29,5 @@ cDebug::setSql();
 cCache::setPages();
 cCache::setData();
 
-return cInit::start();
+return cModul::call(cApplication);
 ?>

@@ -23,8 +23,10 @@ class cLoader {
     static public function setHistory($file) {
         self::$mHistory[$file] = true;
     }
-    
+
     static public function pre() {
+        pre(get_defined_constants(true)['user']);
+        cConfig::pre();
         pre(count(self::$mHistory), self::$mHistory);
     }
 
