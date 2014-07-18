@@ -15,9 +15,9 @@ $compile = require('_.config/compile.php');
 //require('_.config/setting.project.php');
 // системный кеш
 if ($compile['is']) {
-    require($compile['path'] . 'loader.php');
+    require(cSoursePath . $compile['path'] . 'loader.php');
 } else {
-    require('loader.php');
+    require(cSoursePath . 'loader.php');
 }
 cLog::log('.include.' . cApplication . '.php');
 cModul::call(cApplication);

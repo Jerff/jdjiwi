@@ -3,8 +3,8 @@
 class cCompileConfig {
 
     //cmfCompilePhp
-    public static function fileList() {
-        return cDir::getFiles(cSoursePath . '.include/');
+    public static function loaderPhp() {
+        return cSoursePath . 'loader.php';
     }
 
     //cmfCompileFile

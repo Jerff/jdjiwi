@@ -31,15 +31,13 @@ class cCompilePhp {
      * update
      */
 
-    public function update() {
-        foreach (cCompile::config()->fileList() as $name) {
-            if (is_file($name)) {
-                file_put_contents(
-                        cConfig::get('compile.path') . $name, cmfCompile::php()->compile($name)
-                );
-            }
+    public function updateLoader() {
+        file_put_contents(
+                cSoursePath . cConfig::get('compile.path') . cCompile::config()->loaderPhp(), cmfCompile::php()->compile(cSoursePath . cCompile::config()->loaderPhp())
+        );
+        foreach (cDir::getFolders(cConfig::get('compile.path')) as $path) {
+            cFileSystem::rmdir($path, true);
         }
-        cFileSystem::rmdir(cConfig::get('compile.path'));
     }
 
     private $mFile = null;
@@ -96,7 +94,7 @@ class cCompilePhp {
                 case 'cModul::load':
                     return 'cModul::setHistory(\'' . $m[6] . '\', \'include\');' .
                             ' ?>' . $this->file($m[6] . '/include.php') . '<?php ';
-                    
+
                 case 'cModul::call':
                     return 'cModul::setHistory(\'' . $m[6] . '\', \'call\');' .
                             ' ?>' . $this->file($m[6] . '/call.php') . '<?php ';
