@@ -31,7 +31,7 @@ class cConfig {
         if ($name === 'host') {
             foreach ($data as $host => $data) {
                 if (strpos($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], $data['url']) === 0) {
-                    self::$host = $host;
+                    self::$mData[$name] = self::$host = $host;
                     break;
                 }
             }
