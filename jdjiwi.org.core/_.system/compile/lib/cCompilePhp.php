@@ -49,12 +49,24 @@ class cCompilePhp {
         exit;
         foreach ($mFiles as $file) {
             $content .= "<?php\n#include $file\n?>"
-                    . cString::convertEncoding(php_strip_whitespace($file))
+                    . $this->file($file)
                     . "<?php\n#end $file\n?>";
         }
         $content = preg_replace('#\?>\s*<\?php#S', ' ', $content);
         $content = str_replace("\r", '', $content);
         return $content;
+    }
+
+    private function file($file) {
+        $content = cString::convertEncoding(php_strip_whitespace($file));
+        $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((require|require_once|include|include_once)\('(.*?)'\);)#sS", array(&$this, 'includeFile'), $content);
+        return $content;
+}
+
+    private function includeFile($m) {
+        if (!isset($m[6]))
+            return $m[0];
+        return ' ?>' . $this->file($m[6]) . '<?php ';
     }
 
 }
