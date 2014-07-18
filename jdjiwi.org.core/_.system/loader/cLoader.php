@@ -19,8 +19,12 @@ cModul::load('core');
 class cLoader {
 
     static private $mHistory = array();
+    static private $mLoad = array();
 
     static public function setHistory($file) {
+        if (empty(self::$mHistory[$file])) {
+            self::$mLoad[] = $file;
+        }
         self::$mHistory[$file] = true;
     }
 
@@ -34,6 +38,14 @@ class cLoader {
         return cCrypt::hash(serialize(self::$mHistory));
     }
 
+    static public function initLoad() {
+        self::$mLoad = array();
+    }
+
+    static public function getLoadFile() {
+        return self::$mLoad;
+    }
+
     static public function isLoad($file) {
         return isset(self::$mHistory[$file]);
     }
@@ -42,8 +54,9 @@ class cLoader {
         if (isset(self::$mHistory[$file])) {
             return false;
         }
-        self::$mHistory[$file] = true;
         require_once($file . '.php');
+        self::$mLoad[] = $file;
+        self::$mHistory[$file] = true;
         return true;
     }
 

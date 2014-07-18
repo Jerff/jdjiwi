@@ -31,12 +31,12 @@ class cModul {
             return self::$mLoad[$modul];
         }
         try {
-            self::setHistory($modul, $file);
             if (self::$isCompile) {
                 cCompile::php()->load('modul', $modul . '/' . $file . '.php');
             } else {
                 require_once($modul . '/' . $file . '.php');
             }
+            self::setHistory($modul, $file);
         } catch (Exception $e) {
             throw new cModulException('Модуль "' . $modul . '" не найден', 0, $e);
             return self::$mLoad[$modul] = false;
@@ -59,6 +59,7 @@ class cModul {
     }
 
     static private function config($file) {
+        self::setHistory(self::$item, 'config/' . $file);
         require_once(self::$item . '/config/' . $file . '.php');
     }
 

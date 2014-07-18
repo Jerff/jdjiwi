@@ -15,7 +15,12 @@ $compile = require('_.config/compile.php');
 //require('_.config/setting.project.php');
 // системный кеш
 if ($compile['is']) {
-    require(cSoursePath . $compile['path'] . 'loader.php');
+    try {
+        require($compile['path'] . 'loader.php');
+    } catch (Exception $ex) {
+        require(cSoursePath . 'loader.php');
+        cCompile::php()->createrLoader();
+    }
 } else {
     require(cSoursePath . 'loader.php');
 }
@@ -28,8 +33,5 @@ cDebug::setSql();
 cCache::setPages();
 cCache::setData();
 
-
-cCompile::php()->updateLoader();
-exit;
 return cModul::call(cApplication);
 ?>
