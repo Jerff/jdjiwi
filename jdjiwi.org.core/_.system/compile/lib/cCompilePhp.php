@@ -45,11 +45,9 @@ class cCompilePhp {
 
     public function compile($mFiles) {
         $content = '';
-        pre($mFiles);
-        exit;
         foreach ($mFiles as $file) {
             $content .= "<?php\n#include $file\n?>"
-                    . $this->file($file)
+                    . $this->parse($file)
                     . "<?php\n#end $file\n?>";
         }
         $content = preg_replace('#\?>\s*<\?php#S', ' ', $content);
@@ -61,12 +59,38 @@ class cCompilePhp {
         $content = cString::convertEncoding(php_strip_whitespace($file));
         $content = preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((require|require_once|include|include_once)\('(.*?)'\);)#sS", array(&$this, 'includeFile'), $content);
         return $content;
-}
+    }
 
     private function includeFile($m) {
         if (!isset($m[6]))
             return $m[0];
         return ' ?>' . $this->file($m[6]) . '<?php ';
+    }
+
+    private function parse($file) {
+        $arg = explode('::', $file);
+        switch ($arg[0]) {
+            case 'cLoader':
+                $arg[1] = str_replace(':', '/lib/', $arg[1]);
+                return '<?php cLoader::setHistory(\'' . $arg[1] . '\'); ?>' .
+                        $this->file($arg[1] . '.php');
+
+            case 'cConfig':
+                $code = '';
+                foreach (cConfig::getFiles($arg[1]) as $file) {
+                    $code .= PHP_EOL . '<?php cConfig::set(\'' . $arg[1] . '\', \'' . $file . '\', function(){ ?>' . file_get_contents(cConfig::path($file)) . '<?php }); ?>';
+                }
+                return $code;
+                break;
+
+            case 'cModul':
+                return '<?php cModul::setItem(\'' . $arg[1] . '\', \'include\');' .
+                        PHP_EOL . 'cModul::setHistory(\'' . $arg[2] . '\', \'include\'); ?>' .
+                        $this->file($arg[2]);
+            default:
+                break;
+        }
+        return $this->file($file);
     }
 
 }

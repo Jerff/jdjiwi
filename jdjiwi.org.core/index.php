@@ -15,9 +15,9 @@ $compile = require('_.config/compile.php');
 //require('_.config/setting.project.php');
 // системный кеш
 if ($compile['is']) {
-    try {
+    if(is_file($compile['path'] . 'loader.php')) {
         require($compile['path'] . 'loader.php');
-    } catch (Exception $ex) {
+    } else {
         require(cSoursePath . 'loader.php');
         cCompile::php()->createrLoader();
     }

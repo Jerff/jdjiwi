@@ -50,12 +50,12 @@ class cLoader {
         return isset(self::$mHistory[$file]);
     }
 
-    static public function file($file) {
+    static private function file($file) {
         if (isset(self::$mHistory[$file])) {
             return false;
         }
         require_once($file . '.php');
-        self::$mLoad[] = $file;
+        self::$mLoad[] = __CLASS__ . '::' . $file;
         self::$mHistory[$file] = true;
         return true;
     }

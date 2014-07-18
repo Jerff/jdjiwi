@@ -14,9 +14,14 @@ class cModul {
     static private $mLoad = array();
     static private $item = null;
 
-    static public function setHistory($file, $type) {
-        self::$mLoad[$file .= '/' . $type] = true;
-        cLoader::setHistory(__CLASS__ . '::' . $file);
+    static public function setHistory($file) {
+        self::$mLoad[$file] = true;
+        cLoader::setHistory(__CLASS__ . '::' . self::$item . '::' . $file);
+    }
+
+    static public function setItem($modul) {
+        self::$item = $modul;
+        ;
     }
 
     static private function loadFile($modul, $file) {
@@ -26,17 +31,18 @@ class cModul {
         if (preg_match('#[^a-z0-9:._]#iS', $modul)) {
             throw new cModulException(sprintf('Название модуля "%s" не корректно', $modul));
         }
-        self::$item = $modul = str_replace(':', '/', $modul);
+        self::setItem($modul);
         if (isset(self::$mLoad[$modul])) {
             return self::$mLoad[$modul];
         }
         try {
+            $file = $modul . '/' . $file . '.php';
             if (self::$isCompile) {
-                cCompile::php()->load('modul', $modul . '/' . $file . '.php');
+                cCompile::php()->load('modul', $file);
             } else {
-                require_once($modul . '/' . $file . '.php');
+                require_once($file);
             }
-            self::setHistory($modul, $file);
+            self::setHistory($file);
         } catch (Exception $e) {
             throw new cModulException('Модуль "' . $modul . '" не найден', 0, $e);
             return self::$mLoad[$modul] = false;
@@ -55,11 +61,11 @@ class cModul {
     }
 
     static private function cron($file) {
-        require_once(str_replace(':', self::$item . '/cron/', $file));
+        require_once(str_replace(':', self::$item . '/cron/', $file . '.php'));
     }
 
     static private function config($file) {
-        self::setHistory(self::$item, 'config/' . $file);
+        self::setHistory(self::$item . '/config/' . $file . '.php');
         require_once(self::$item . '/config/' . $file . '.php');
     }
 

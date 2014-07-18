@@ -16,16 +16,16 @@ class cConfig {
 
     static public function getFiles($name) {
         $mFile = array(
-            $name . '.php'
+            $name
         );
         if (self::$host and is_file(cSoursePath . self::path . self::$host . '/' . $name . '.php')) {
-            $mFile[] = self::$host . '/' . $name . '.php';
+            $mFile[] = self::$host . '/' . $name;
         }
         return $mFile;
     }
 
     static public function path($file) {
-        return cSoursePath . self::path . $file;
+        return cSoursePath . self::path . $file . '.php';
     }
 
     static private function init($name, $data) {
