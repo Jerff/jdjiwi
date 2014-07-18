@@ -25,7 +25,7 @@ class cLoader {
     }
     
     static public function pre() {
-        pre(self::$mHistory);
+        pre(count(self::$mHistory), self::$mHistory);
     }
 
     static public function getIndex() {
