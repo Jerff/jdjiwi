@@ -50,7 +50,12 @@ class cModul {
 
     static public function call($modul) {
         self::$isCompile = true;
+        cLog::log('run: ' . cApplication);
         return self::loadFile($modul, 'call');
+    }
+
+    static private function cron($file) {
+        require_once(str_replace(':', self::$item . '/cron/', $file));
     }
 
     static private function config($file) {

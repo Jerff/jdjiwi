@@ -33,7 +33,7 @@ class cCompilePhp {
 
     public function updateLoader() {
         file_put_contents(
-                cSoursePath . cConfig::get('compile.path') . cCompile::config()->loaderPhp(), cmfCompile::php()->compile(cSoursePath . cCompile::config()->loaderPhp())
+                cConfig::get('compile.path') . cCompile::config()->loaderPhp(), cCompile::php()->compile(cSoursePath . cCompile::config()->loaderPhp())
         );
         foreach (cDir::getFolders(cConfig::get('compile.path')) as $path) {
             cFileSystem::rmdir($path, true);
@@ -41,6 +41,7 @@ class cCompilePhp {
     }
 
     private $mFile = null;
+    private $item = null;
     private $isLoad = null;
 
     public function compile($files, $isLoad = false) {
@@ -59,6 +60,7 @@ class cCompilePhp {
     private function file($file) {
         if (isset($this->mFile[$file]))
             return '';
+        $this->item = $file;
         $this->mFile[$file] = true;
 
         $content = cString::convertEncoding(php_strip_whitespace($file));

@@ -4,7 +4,7 @@ class cCompileConfig {
 
     //cmfCompilePhp
     public static function loaderPhp() {
-        return cSoursePath . 'loader.php';
+        return 'loader.php';
     }
 
     //cmfCompileFile

@@ -19,7 +19,6 @@ if ($compile['is']) {
 } else {
     require(cSoursePath . 'loader.php');
 }
-cLog::log('.include.' . cApplication . '.php');
 cLog::memory();
 cLog::init();
 
@@ -29,5 +28,8 @@ cDebug::setSql();
 cCache::setPages();
 cCache::setData();
 
+
+cCompile::php()->updateLoader();
+exit;
 return cModul::call(cApplication);
 ?>

@@ -46,7 +46,7 @@ class cInit {
         session_write_close();
     }
 
-    public static function timeLimit($l = 0) {
+    public static function timeLimit($l = 600) {
         set_time_limit($l);
     }
 
