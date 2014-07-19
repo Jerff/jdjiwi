@@ -39,12 +39,12 @@ class cModul {
             return self::$mLoad[$hash];
         }
         try {
+            self::setHistory($file);
             if (self::$isCompile) {
                 cCompile::php()->load('modul', $modul . '/' . $file . '.php');
             } else {
                 require_once($modul . '/' . $file . '.php');
             }
-            self::setHistory($file);
         } catch (Exception $e) {
             throw new cModulException('Модуль "' . $modul . '" не найден', 0, $e);
             return self::$mLoad[$hash] = false;
