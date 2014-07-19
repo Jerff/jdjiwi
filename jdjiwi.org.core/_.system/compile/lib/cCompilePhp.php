@@ -41,6 +41,7 @@ class cCompilePhp {
 
     public function update() {
         cFileSystem::rmdir(cConfig::get('compile.path'));
+        $this->createrLoader();
     }
 
     private $content = '';
