@@ -43,13 +43,19 @@ class cCompilePhp {
         cFileSystem::rmdir(cConfig::get('compile.path'));
     }
 
+    private $content = '';
+
     public function compile($mFiles) {
         $content = '';
         foreach ($mFiles as $file) {
-            $content .= "<?php\n#include $file\n?>"
-                    . $this->parse($file)
-                    . "<?php\n#end $file\n?>";
+            $content .= "<?php cLoader::setHistory('{$file}'); ?>";
         }
+        foreach ($mFiles as $file) {
+            $content .= "<?php\n#include {$file}\n?>"
+                    . $this->parse($file)
+                    . "<?php\n#end {$file}\n?>";
+        }
+        $content = $this->content . $content;
         $content = preg_replace('#\?>\s*<\?php#S', ' ', $content);
         $content = str_replace("\r", '', $content);
         return $content;
@@ -72,21 +78,32 @@ class cCompilePhp {
         switch ($arg[0]) {
             case 'cLoader':
                 $arg[1] = str_replace(':', '/lib/', $arg[1]);
-                return '<?php cLoader::setHistory(\'' . $arg[1] . '\'); ?>' .
-                        $this->file($arg[1] . '.php');
+                return $this->file($arg[1] . '.php');
 
             case 'cConfig':
-                $code = '';
                 foreach (cConfig::getFiles($arg[1]) as $file) {
-                    $code .= PHP_EOL . '<?php cConfig::set(\'' . $arg[1] . '\', \'' . $file . '\', function(){ ?>' . file_get_contents(cConfig::path($file)) . '<?php }); ?>';
+                    $this->content .= '<?php cConfig::set(\'' . $arg[1] . '\', \'' . $file . '\', function(){ ?>' . file_get_contents(cConfig::path($file)) . '<?php }); ?>';
                 }
-                return $code;
+                return '';
                 break;
 
             case 'cModul':
-                return '<?php cModul::setItem(\'' . $arg[1] . '\', \'include\');' .
-                        PHP_EOL . 'cModul::setHistory(\'' . $arg[2] . '\', \'include\'); ?>' .
-                        $this->file($arg[2]);
+                $code = "<?php cModul::setItem('{$arg[1]}'); ?>";
+                $this->content .= "<?php cModul::setLoad('{$arg[1]}', '{$arg[2]}'); ?>";
+                switch ($arg[2]) {
+                    case 'call':
+                        $code .= $this->file($arg[1] . '/include.php')
+                                . $this->file($arg[1] . '/' . $arg[2] . '.php');
+
+                    case 'include':
+                        $code .= $this->file($arg[1] . '/' . $arg[2] . '.php');
+                        break;
+
+                    default:
+                        $code .= $this->file($arg[1] . '/' . $arg[2] . '.php');
+                        break;
+                }
+                return $code;
             default:
                 break;
         }

@@ -1,7 +1,5 @@
 <?php
 
-cLoader::library('debug:exception/cException');
-
 class cErrorException extends cException {
 
     protected $name = 'Ошибка';

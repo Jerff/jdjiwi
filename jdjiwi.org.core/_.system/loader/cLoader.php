@@ -9,6 +9,7 @@ set_include_path(get_include_path() .
         PATH_SEPARATOR . cSoursePath . 'application'
 );
 
+cLoader::setHistory('cLoader::loader/cLoader');
 cLoader::library('loader/config/cConfig');
 cConfig::load('host');
 cConfig::load('path');
@@ -43,7 +44,7 @@ class cLoader {
     }
 
     static public function getLoadFile() {
-        return self::$mLoad;
+        return array_unique(self::$mLoad);
     }
 
     static public function isLoad($file) {
@@ -51,12 +52,13 @@ class cLoader {
     }
 
     static private function file($file) {
-        if (isset(self::$mHistory[$file])) {
+        $hash = __CLASS__ . '::' . $file;
+        if (isset(self::$mHistory[$hash])) {
             return false;
         }
+        self::$mLoad[] = $hash;
+        self::$mHistory[$hash] = true;
         require_once($file . '.php');
-        self::$mLoad[] = __CLASS__ . '::' . $file;
-        self::$mHistory[$file] = true;
         return true;
     }
 

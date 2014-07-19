@@ -15,13 +15,15 @@ class cModul {
     static private $item = null;
 
     static public function setHistory($file) {
-        self::$mLoad[$file] = true;
         cLoader::setHistory(__CLASS__ . '::' . self::$item . '::' . $file);
     }
 
     static public function setItem($modul) {
         self::$item = $modul;
-        ;
+    }
+
+    static public function setLoad($modul, $file) {
+        self::$mLoad[$modul . $file] = true;
     }
 
     static private function loadFile($modul, $file) {
@@ -32,22 +34,22 @@ class cModul {
             throw new cModulException(sprintf('Название модуля "%s" не корректно', $modul));
         }
         self::setItem($modul);
-        if (isset(self::$mLoad[$modul])) {
-            return self::$mLoad[$modul];
+        $hash = $modul . $file;
+        if (isset(self::$mLoad[$hash])) {
+            return self::$mLoad[$hash];
         }
         try {
-            $file = $modul . '/' . $file . '.php';
             if (self::$isCompile) {
-                cCompile::php()->load('modul', $file);
+                cCompile::php()->load('modul', $modul . '/' . $file . '.php');
             } else {
-                require_once($file);
+                require_once($modul . '/' . $file . '.php');
             }
             self::setHistory($file);
         } catch (Exception $e) {
             throw new cModulException('Модуль "' . $modul . '" не найден', 0, $e);
-            return self::$mLoad[$modul] = false;
+            return self::$mLoad[$hash] = false;
         }
-        return self::$mLoad[$modul] = true;
+        return self::$mLoad[$hash] = true;
     }
 
     static public function load($modul) {
@@ -57,6 +59,7 @@ class cModul {
     static public function call($modul) {
         self::$isCompile = true;
         cLog::log('run: ' . cApplication);
+        self::load($modul);
         return self::loadFile($modul, 'call');
     }
 
@@ -64,9 +67,8 @@ class cModul {
         require_once(str_replace(':', self::$item . '/cron/', $file . '.php'));
     }
 
-    static private function config($file) {
-        self::setHistory(self::$item . '/config/' . $file . '.php');
-        require_once(self::$item . '/config/' . $file . '.php');
+    static public function config($file) {
+        return self::loadFile(self::$item, 'config/' . $file);
     }
 
 }
