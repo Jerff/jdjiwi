@@ -9,7 +9,7 @@ return array(
         'sitemap:update' => 'Генерация siteMap',
         'user:activate' => 'Удаление неактивированных аккурантов пользователей',
         'sale:Yandex.Market' => 'Генерация Yandex.Market',
-        'subscribe::send' => 'Рассылка',
+        'subscribe:send' => 'Рассылка',
         'backup:update' => 'Резервное копирование',
     )
 );
