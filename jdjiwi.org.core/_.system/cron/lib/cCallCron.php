@@ -4,23 +4,21 @@ class cCallCron {
 
     static public function start() {
         ob_start();
-        cCommand::set('$isCron');
-        if (cmfCronRun::isRun()) {
-            //exit;
+        if (cCronRun::isRun()) {
+            exit;
         }
 
-        $sql = cRegister::sql();
-        $res = $sql->placeholder("SELECT id, name FROM ?t WHERE status='start' AND visible='yes' LIMIT 0, 1", db_sys_cron)
-                ->fetchAssoc('id');
+        $res = cBase::placeholder("SELECT id, name FROM ?t WHERE status='start' AND visible='yes' LIMIT 0, 1", cDb::table('sys.cron'))
+                ->fetchAssoc();
         if ($res) {
-            cmfCronRun::runModul($res['name'], $res['id']);
+            cCronRun::runModul($res['name'], $res['id']);
         }
-        $res = $sql->placeholder("SELECT id, name, changefreq, status, date FROM ?t WHERE visible='yes'", db_sys_cron)
+        $res = cBase::placeholder("SELECT id, name, changefreq, status, date FROM ?t WHERE visible='yes'", cDb::table('sys.cron'))
                 ->fetchAssocAll('id');
         foreach ($res as $id => $row) {
             $modul = $row['name'];
             if ($row['status'] === 'none') {
-                cmfCronRun::runModul($modul, $id);
+                cCronRun::runModul($modul, $id);
             }
             $time = strtotime($row['date']);
             $changefreq = explode(' ', $row['changefreq']);
@@ -61,13 +59,12 @@ class cCallCron {
                     break;
             }
             if ($isRun) {
-                cmfCronRun::runModul($modul, $id);
+                cCronRun::runModul($modul, $id);
             }
         }
-
-        cmfCronCacheLogUpdate::run();
         ob_end_clean();
     }
 
 }
+
 ?>

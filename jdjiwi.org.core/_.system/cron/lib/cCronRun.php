@@ -1,25 +1,17 @@
 <?php
 
-class cmfCronRun {
-
-    const file = '.data/cron/cron.run';
+class cCronRun {
 
     static private function getFile() {
-        return cSoursePath . self::file;
+        return cConfig::get('path.data') . '/cron/cron.run';
     }
 
     static public function run() {
-        if (cCommand::is('$isCron')) {
-            file_put_contents(self::getFile(), time());
-        }
+        file_put_contents(self::getFile(), time());
     }
 
     static public function free() {
-        if (cCommand::is('$isCron')) {
-            if (file_exists(self::getFile())) {
-                unlink(self::getFile());
-            }
-        }
+        cFileSystem::unlink(self::getFile());
     }
 
     static public function isRun() {
