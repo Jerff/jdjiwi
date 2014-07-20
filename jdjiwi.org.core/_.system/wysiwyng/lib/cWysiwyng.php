@@ -1,9 +1,28 @@
 <?php
 
-cLoader::library('wysiwyng:cWysiwyngKCKeditor');
+cLoader::library('wysiwyng:KCKeditor/cWysiwyngKCKeditor');
 
-class cWysiwyng extends cWysiwyngKCKeditor {
-    
+class cWysiwyng {
+
+    static private function driver() {
+        if (empty(self::$instance)) {
+            switch (cConfig::get('wysiwyng.driver')) {
+                case 'KCKeditor':
+                    self::$instance = new cWysiwyngKCKeditor();
+                    break;
+
+                default:
+                    throw new cException('нет установлен драйвер визуального редактора');
+                    exit;
+            }
+        }
+        return self::$instance;
+    }
+
+    public static function __callStatic($name, $arguments) {
+        return self::driver()->$name(...$arguments);
+    }
+
 }
 
 ?>

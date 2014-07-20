@@ -4,6 +4,7 @@ return array(
     /*
      * список задач
      */
+    'status' => cConfig::get('path.data') . '/cron/cron.run',
     'list' => array(
         'cache:update' => 'Обновление кеша',
         'sitemap:update' => 'Генерация siteMap',

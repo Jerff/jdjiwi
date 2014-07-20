@@ -3,7 +3,7 @@
 class cCronRun {
 
     static private function getFile() {
-        return cConfig::get('path.data') . '/cron/cron.run';
+        return cConfig::get('cron.stattus');
     }
 
     static public function run() {

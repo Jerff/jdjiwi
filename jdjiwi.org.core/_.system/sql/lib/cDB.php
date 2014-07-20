@@ -9,7 +9,7 @@ class cDB extends cPatternsStaticRegistry {
 
     private static function driver() {
         if (empty(self::$instance)) {
-            switch (cConfig::get('database.mysql')) {
+            switch (cConfig::get('database.driver')) {
                 case 'mysql':
                     self::$instance = new cMySql();
                     break;

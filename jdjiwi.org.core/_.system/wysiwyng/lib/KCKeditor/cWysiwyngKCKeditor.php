@@ -1,15 +1,15 @@
 <?php
 cLoader::library('wysiwyng:cWysiwyngDriver');
-set_include_path(get_include_path() . PATH_SEPARATOR . cWWWPath . 'library/kckeditor/');
+set_include_path(get_include_path() . PATH_SEPARATOR . cConfig::get('wysiwyng.KCKeditor.path'));
 include_once(cWWWPath . 'library/kckeditor/fckeditor.php');
 
 class cWysiwyngKCKeditor extends cWysiwyngDriver {
 
-    static protected function getJsPath() {
-        return cBaseAppUrl . 'library/kckeditor/';
+    protected function getJsPath() {
+        return cConfig::get('wysiwyng.KCKeditor.app.url');
     }
 
-    static public function html($path, $number, $id, $value, $height = null) {
+    public function html($path, $number, $id, $value, $height = null) {
         $oFCKeditor = new FCKeditor($id);
         $oFCKeditor->BasePath = self::getJsPath();
         $oFCKeditor->Value = $value;
@@ -19,7 +19,7 @@ class cWysiwyngKCKeditor extends cWysiwyngDriver {
         return $oFCKeditor->Create();
     }
 
-    static public function jsUpdate($id, $value) {
+    public function jsUpdate($id, $value) {
         $value = cJScript::quote($value);
         $js = <<<HTML
 FCKeditorAPI.Instances.{$id}.SetHTML('$value');
@@ -27,7 +27,7 @@ HTML;
         return $js;
     }
 
-    static public function typograf($id) {
+    public function typograf($id) {
         ?>
         <br>
         <div title="ТипограF" style="padding: 5px;">
