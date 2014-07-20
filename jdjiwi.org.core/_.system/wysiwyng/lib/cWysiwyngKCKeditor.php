@@ -1,5 +1,5 @@
 <?php
-cLoader::library('wysiwyng:cmfWysiwyngDriver');
+cLoader::library('wysiwyng:cWysiwyngDriver');
 set_include_path(get_include_path() . PATH_SEPARATOR . cWWWPath . 'library/kckeditor/');
 include_once(cWWWPath . 'library/kckeditor/fckeditor.php');
 
