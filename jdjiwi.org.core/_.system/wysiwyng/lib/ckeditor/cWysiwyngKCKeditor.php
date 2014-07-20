@@ -1,28 +1,32 @@
 <?php
 cLoader::library('wysiwyng:cWysiwyngDriver');
-set_include_path(get_include_path() . PATH_SEPARATOR . cConfig::get('wysiwyng.KCKeditor.path'));
-include_once(cWWWPath . 'library/kckeditor/fckeditor.php');
 
 class cWysiwyngKCKeditor extends cWysiwyngDriver {
 
-    protected function getJsPath() {
-        return cConfig::get('wysiwyng.KCKeditor.app.url');
-    }
+    public function html($model, $id, $inputId, $value, $height = null) {
+        cHeader::addJs(cConfig::get('kckeditor.app.url') . 'ckeditor.js');
+        cHeader::addJs(cConfig::get('kckeditor.app.url') . 'adapters/jquery.js');
 
-    public function html($path, $number, $id, $value, $height = null) {
-        $oFCKeditor = new FCKeditor($id);
-        $oFCKeditor->BasePath = self::getJsPath();
-        $oFCKeditor->Value = $value;
-        if ($height)
-            $oFCKeditor->Height = $height;
-        $oFCKeditor->ConfigURl = array('path' => $path, 'number' => $number);
-        return $oFCKeditor->Create();
+        $html = <<<HTML
+<script type="text/javascript">
+    jQuery(function() {
+        jQuery('#{$inputId}').ckeditor({
+            external_filemanager_path:"{$filemanager}",
+            filemanager_title:"Responsive Filemanager" ,
+            external_plugins: { "filemanager" : "{$filemanager}plugin.min.js"}
+            filemanager_access_key:"{$salt}",
+        });
+    });
+</script>
+<input type="hidden" name="{$saltId}" value="{$salt}">
+HTML;
+        return $html;
     }
 
     public function jsUpdate($id, $value) {
         $value = cJScript::quote($value);
         $js = <<<HTML
-FCKeditorAPI.Instances.{$id}.SetHTML('$value');
+CKEDITOR.Instances.{$id}.setData('$value');
 HTML;
         return $js;
     }

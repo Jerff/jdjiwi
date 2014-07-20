@@ -5,6 +5,7 @@ return array(
      * папка с upload файлами
      */
     'path' => 'files/',
+    'path.tmp' => 'files/tmp/',
     /*
      * права на файлы
      */

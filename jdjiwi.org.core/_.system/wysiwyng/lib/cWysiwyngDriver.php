@@ -2,42 +2,69 @@
 
 cLoader::library('wysiwyng:cWysiwyngDriver');
 
-class cWysiwyngDriver {
+abstract class cWysiwyngDriver {
 
-    //abstract static public function html($path, $number, $id, $value);
-    //abstract static public function getJsSetData($id, $value);
+    public function createSalt($model, $id) {
+        static $salt = null;
+        if (empty($salt)) {
+            if (empty($id)) {
+                $id = 't' . cCrypt::hash($model, time(), rand(0, 100));
+            }
+            $data = array(
+                'model' => $model,
+                'id' => $id,
+                'salt' => cConfig::get('wysiwyng.salt')
+            );
+            $salt = base64_encode(cConvert::serialize($data));
+        }
+        return $salt;
+    }
 
-    public function getPath($path, $number) {
-        if (!$path or ! $number)
-            exit;
+    public function parseParam() {
+        return cConvert::unserialize(base64_decode(cInput::post()->get(self::getSaltId())));
+    }
 
-        $_map = cWysiwyngConfig::getMap();
-        var_dump($_map);
-        if (!isset($_map[$path]))
-            exit;
-        $controller = $_map[$path];
-        if (is_array($controller)) {
-            $path = $controller[0];
-            $controller = $controller[1];
-        } else
-            $path = path_wysiwyng . $path . '/';
+    public function getTmpId($model, $id) {
+        $data = $this->parseParam();
+        if (isset($data['id'])) {
+            return $data['id'];
+        } else {
+            return false;
+        }
+    }
 
+    protected function getSaltId($model, $id) {
+        return cCrypt::hash(__CLASS__, $model, $id);
+    }
 
-        $controller = cLoader::initModul($controller);
-        cAccess::isWrite($controller);
+    abstract static public function html($model, $id, $inputId, $value, $height = null);
 
-        if (!$controller->wysiwyngIsRecord($number))
-            exit;
+    abstract static public function jsUpdate($id, $value);
 
-        if (!$path)
-            exit;
-        $path = $path . $number . '/';
+    public function getPath() {
+        $param = $this->parseParam();
+        if (empty($param['model']) or empty($param['id']) {
+            die('Access Denied!');
+        }
+
+        $model = cModel::init($param['model']);
+        cAccess::isWrite($param['model']);
+        if (!$model->wysiwyngIsRecord($param['id'])) {
+            die('Access Denied!');
+        }
+
+        $path = $model->getWysiwyngPath();
+        if ($param['id']{0} === 't') {
+            $path = cConfig::get('file.path.tmp') . $param['id'] . '/';
+        } else {
+            $path .= $param['id'] . '/';
+        }
         $filePath = cWWWPath . $path;
         $wwwPath = '/' . $path;
         return array($wwwPath, $filePath);
     }
 
-    public function addRecord($path, $number) {
+    public function addRecord($model, $id) {
         /* if(!$path or !$number) return;
           $path = cWWWPath . $path;
           if(!cmfDir::isDir($path)) {
@@ -49,26 +76,10 @@ class cWysiwyngDriver {
           } */
     }
 
-    public function delRecord($path, $number) {
-        if (!$path or ! $number)
+    public function delRecord($model, $id) {
+        if (empty($model) or empty($id))
             return;
-        $path = cWWWPath . $path . $number . '/';
-        cDir::clear($path, true);
-    }
-
-    public function recordPath($modul) {
-        $_map = cWysiwyngConfig::getMap();
-        while ((list($k, $v) = each($_map))) {
-            if (is_string($v)) {
-                if ($modul === $v)
-                    return path_wysiwyng . $k . '/';
-            } else {
-                if ($modul === $v[1]) {
-                    return $v[0];
-                }
-            }
-        }
-        return false;
+        cFileSystem::rmdir(cWWWPath . $path . $number . '/', true);
     }
 
 }

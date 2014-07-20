@@ -1,6 +1,7 @@
 <?php
 
-cLoader::library('wysiwyng:KCKeditor/cWysiwyngKCKeditor');
+cLoader::library('wysiwyng:tinymce/cWysiwyngTinymce');
+cLoader::library('wysiwyng:ckeditor/cWysiwyngKCKeditor');
 
 class cWysiwyng {
 
@@ -42,6 +43,10 @@ class cWysiwyng {
             switch (cConfig::get('wysiwyng.driver')) {
                 case 'KCKeditor':
                     self::$instance = new cWysiwyngKCKeditor();
+                    break;
+
+                case 'tinymce':
+                    self::$instance = new cWysiwyngTinymce();
                     break;
 
                 default:

@@ -4,10 +4,11 @@ return array(
     /*
      * Настройки базы
      */
-    'driver' => 'KCKeditor',
+    'driver' => 'tinymce',
     'path' => cConfig::get('file.path') . '/wysiwyng',
     'salt' => 'Qg7iQRwc0sH3hYbQleU7',
-    'KCKeditor.path' => cWWWPath . 'library/kckeditor/',
-    'KCKeditor.app.url' => cAppUrl . 'library/kckeditor/',
+    'filemanager.app.url' => cAppUrl . 'library/filemanager/',
+    'kckeditor.app.url' => cAppUrl . 'library/kckeditor/',
+    'tinymce.app.url' => cAppUrl . 'library/tinymce/',
 );
 ?>
