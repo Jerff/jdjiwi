@@ -20,12 +20,12 @@ mb_internal_encoding('UTF-8');
 //    |   |   |   |   |- plugin.min.js
 
 require('../../../accessWysiwyng.php');
+list($wwwPath, $filePath) = cWysiwyng::getPath();
 $base_url ="http://".$_SERVER['HTTP_HOST'];  // DON'T TOUCH (base url (only domain) of site (without final /)).
-$upload_dir = '/images/'; // path from base_url to base of upload folder (with start and final /)
-$current_path = ($path = cWysiwyng::getPath()) .'images/'; // relative path from filemanager folder to upload folder (with final /)
+$upload_dir = $wwwPath; // path from base_url to base of upload folder (with start and final /)
+$current_path = $filePath; // relative path from filemanager folder to upload folder (with final /)
 //thumbs folder can't put inside upload folder
-$thumbs_base_path = $path .'images/thumbs/'; // relative path from filemanager folder to thumbs folder (with final /)
-
+$thumbs_base_path = $filePath .'thumbs/'; // relative path from filemanager folder to thumbs folder (with final /)
 
 // OPTIONAL SECURITY
 // if set to true only those will access RF whose url contains the access key(akey) like: 
@@ -38,10 +38,7 @@ $thumbs_base_path = $path .'images/thumbs/'; // relative path from filemanager f
 // filemanager_title:"Filemanager" ,
 // filemanager_access_key:"myPrivateKey" ,
 // ...
-if(empty($_SESSION['admin_id'])) {
-	die('Access Denied!');
-} 
-define('USE_ACCESS_KEYS', FALSE); // TRUE or FALSE	
+define('USE_ACCESS_KEYS', FALSE); // TRUE or FALSE
 
 // add access keys eg: array('myPrivateKey', 'someoneElseKey');
 // keys should only containt (a-z A-Z 0-9 \ . _ -) characters
@@ -51,7 +48,7 @@ define('USE_ACCESS_KEYS', FALSE); // TRUE or FALSE
 // $akey = md5($username.$salt);
 // DO NOT use 'key' as access key!
 // Keys are CASE SENSITIVE!
-$access_keys = array('myPrivateKey', cWysiwyng::getSalt());
+$access_keys = array('myPrivateKey',cWysiwyng::getSalt());
 
 //--------------------------------------------------------------------------------------------------------
 // YOU CAN COPY AND CHANGE THESE VARIABLES INTO FOLDERS config.php FILES TO CUSTOMIZE EACH FOLDER OPTIONS
@@ -70,6 +67,7 @@ $show_folder_size 	= TRUE; //Show or not show folder size in list view feature i
 $show_sorting_bar 	= TRUE; //Show or not show sorting feature in filemanager
 $loading_bar 		= TRUE; //Show or not show loading bar
 $transliteration 	= FALSE; //active or deactive the transliteration (mean convert all strange characters in A..Za..z0..9 characters)
+$convert_spaces  = FALSE; //convert all spaces on files name and folders name with _
 
 //*******************************************
 //Images limit and resizing configuration
@@ -106,16 +104,29 @@ $ellipsis_title_after_first_row = TRUE;
 //*************************
 //Permissions configuration
 //******************
-$delete_files	 = TRUE;
-$create_folders	 = TRUE;
-$delete_folders	 = TRUE;
-$upload_files	 = TRUE;
-$rename_files	 = TRUE;
-$rename_folders	 = TRUE;
-$duplicate_files = TRUE;
-$copy_cut_files	 = TRUE; // for copy/cut files
-$copy_cut_dirs	 = TRUE; // for copy/cut directories
+$delete_files	 	  = TRUE;
+$create_folders	 	= TRUE;
+$delete_folders	 	= TRUE;
+$upload_files	 	  = TRUE;
+$rename_files	 	  = TRUE;
+$rename_folders	 	= TRUE;
+$duplicate_files 	= TRUE;
+$copy_cut_files	 	= TRUE; // for copy/cut files
+$copy_cut_dirs	 	= TRUE; // for copy/cut directories
+$chmod_files 	 	  = FALSE; // change file permissions
+$chmod_dirs		 	  = FALSE; // change folder permissions
+$preview_text_files = TRUE; // eg.: txt, log etc.
+$edit_text_files 	  = TRUE; // eg.: txt, log etc.
+$create_text_files 	= TRUE; // only create files with exts. defined in $editable_text_file_exts
 
+// you can preview these type of files if $preview_text_files is true
+$previewable_text_file_exts = array('txt', 'log', 'xml');
+
+// you can edit these type of files if $edit_text_files is true (only text based files)
+// you can create these type of files if $create_text_files is true (only text based files)
+// if you want you can add html,css etc. 
+// but for security reasons it's NOT RECOMMENDED!
+$editable_text_file_exts = array('txt', 'log', 'xml');
 
 // defines size limit for paste in MB / operation
 // set 'FALSE' for no limit
@@ -177,23 +188,41 @@ $JAVAMaxSizeUpload = 200; //Gb
 // Remember than the image creation respect the folder hierarchy so if you are inside source/test/test1/ the new image will create at
 // path_from_filemanager/test/test1/
 // PS if there isn't write permission in your destination folder you must set it
+// 
 $fixed_image_creation                   = FALSE; //activate or not the creation of one or more image resized with fixed path from filemanager folder
 $fixed_path_from_filemanager            = array('../test/','../test1/'); //fixed path of the image folder from the current position on upload folder
 $fixed_image_creation_name_to_prepend   = array('','test_'); //name to prepend on filename
 $fixed_image_creation_to_append         = array('_test',''); //name to appendon filename
 $fixed_image_creation_width             = array(300,400); //width of image (you can leave empty if you set height)
 $fixed_image_creation_height            = array(200,''); //height of image (you can leave empty if you set width)
+/*
+  #             $option:     0 / exact = defined size;
+  #                          1 / portrait = keep aspect set height;
+  #                          2 / landscape = keep aspect set width;
+  #                          3 / auto = auto;
+  #                          4 / crop= resize and crop;
+ */
+$fixed_image_creation_option            = array('crop','auto'); //set the type of the crop
 
 
 // New image resized creation with relative path inside to upload folder after uploading (thumbnails in relative mode)
 // With Responsive filemanager you can create automatically resized image inside the upload folder, also more than one at a time
 // just simply add a value in the array
 // The image creation path is always relative so if i'm inside source/test/test1 and I upload an image, the path start from here
+// 
 $relative_image_creation                = FALSE; //activate or not the creation of one or more image resized with relative path from upload folder
 $relative_path_from_current_pos         = array('thumb/','thumb/'); //relative path of the image folder from the current position on upload folder
 $relative_image_creation_name_to_prepend= array('','test_'); //name to prepend on filename
 $relative_image_creation_name_to_append = array('_test',''); //name to append on filename
 $relative_image_creation_width          = array(300,400); //width of image (you can leave empty if you set height)
 $relative_image_creation_height         = array(200,''); //height of image (you can leave empty if you set width)
+/*
+  #             $option:     0 / exact = defined size;
+  #                          1 / portrait = keep aspect set height;
+  #                          2 / landscape = keep aspect set width;
+  #                          3 / auto = auto;
+  #                          4 / crop= resize and crop;
+ */
+$relative_image_creation_option         = array('crop','crop'); //set the type of the crop
 
 ?>

@@ -71,7 +71,27 @@ define('lang_Copy_Cut_Count_Limit','Du valgte for mange filer/mapper for %s. Gre
 define('lang_Copy_Cut_Not_Allowed','Du har ikke lov til å %s filer.'); // %s(1) = cut or copy, %s(2) = files or folders
 define('lang_Aviary_No_Save', 'Kunne ikke lagre bildet');
 define('lang_Zip_No_Extract', 'Kunne ikke pakke ut. Filen er muligens ødelagt.');
-define('lang_Zip_Invalid', 'Dette filetternavnet er ikke støttet. Valide filer: zip, gz, tar.');
+define('lang_Zip_Invalid', 'Dette filetternavnet er ikke støttet. Gyldige filer: zip, gz, tar.');
 define('lang_Dir_No_Write', 'Mappen du valgte er ikke skrivbar.');
 define('lang_Function_Disabled', 'Funksjonen %s er blitt deaktivert av serveren.'); // %s = cut or copy
+define('lang_File_Permission', 'Filrettigheter');
+define('lang_File_Permission_Not_Allowed', 'Forandring av %s rettigheter er ikke tillatt.'); // %s = files or folders
+define('lang_File_Permission_Recursive', 'Utfør rekursivt?');
+define('lang_File_Permission_Wrong_Mode', "Filrettigheten er feil.");
+define('lang_User', 'Bruker');
+define('lang_Group', 'Gruppe');
+define('lang_Yes', 'Ja');
+define('lang_No', 'Nei');
+define('lang_Lang_Not_Found', 'Kunne ikke finne språk.');
+define('lang_Lang_Change', 'Forandre språk');
+define('lang_File_Not_Found', 'Fant ikke filen.');
+define('lang_File_Open_Edit_Not_Allowed', 'Du har ikke tillatelse til å %s denne filen.'); // %s = open or edit
+define('lang_Edit', 'Rediger');
+define('lang_Edit_File', "Rediger filens innhold");
+define('lang_File_Save_OK', "Filen ble lagret.");
+define('lang_File_Save_Error', "Det oppstod en feil når filen ble lagret.");
+define('lang_New_File','Ny fil');
+define('lang_No_Extension','Du må legge til et fil-etternavn.'); 
+define('lang_Valid_Extensions','Gyldige fil-etternavn: %s'); // %s = txt,log etc.
+
 ?>

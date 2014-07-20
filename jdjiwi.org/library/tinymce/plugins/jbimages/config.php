@@ -37,9 +37,10 @@
 | 
 | -------------------------------------------------------------------*/
 
-	
-	$config['img_path'] = '/images'; // Relative to domain name
-	$config['upload_path'] = $_SERVER['DOCUMENT_ROOT'] . $config['img_path']; // Physical path. [Usually works fine like this]
+	require('../../../../accessWysiwyng.php');
+    list($wwwPath, $filePath) = cWysiwyng::getPath();;
+	$config['img_path'] = $wwwPath; // Relative to domain name
+	$config['upload_path'] = $filePath; // Physical path. [Usually works fine like this]
 
 
 /*-------------------------------------------------------------------

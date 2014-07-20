@@ -33,8 +33,8 @@ class cWysiwyngDriver {
             exit;
         $path = $path . $number . '/';
         $filePath = cWWWPath . $path;
-        $path = '/' . $path;
-        return array($path, $filePath);
+        $wwwPath = '/' . $path;
+        return array($wwwPath, $filePath);
     }
 
     public function addRecord($path, $number) {

@@ -11,7 +11,7 @@
  *
  * Version: 2.3 released 23/06/2013
  */
- session_start();
+ 
  
 /*-------------------------------------------------------------------
 |
@@ -26,11 +26,7 @@
 
 function is_allowed()
 {
-	if(empty($_SESSION['admin_id'])) {
-		return false;
-	} else {
-		return TRUE;		
-	}
+	return TRUE;
 }
 
 ?>
