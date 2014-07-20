@@ -4,24 +4,24 @@ cLoader::library('wysiwyng:cWysiwyngDriver');
 
 abstract class cWysiwyngDriver {
 
+    static public function getSalt() {
+        return cConfig::get('wysiwyng.salt');
+    }
+
     public function createSalt($model, $id) {
-        static $salt = null;
-        if (empty($salt)) {
+        static $salt = array();
+        if (empty($salt[$model][$id])) {
             if (empty($id)) {
                 $id = 't' . cCrypt::hash($model, time(), rand(0, 100));
             }
             $data = array(
                 'model' => $model,
                 'id' => $id,
-                'salt' => cConfig::get('wysiwyng.salt')
+                'salt' => $this->getSalt()
             );
-            $salt = base64_encode(cConvert::serialize($data));
+            $salt[$model][$id] = base64_encode(cConvert::serialize($data));
         }
-        return $salt;
-    }
-
-    public function parseParam() {
-        return cConvert::unserialize(base64_decode(cInput::post()->get(self::getSaltId())));
+        return $salt[$model][$id];
     }
 
     public function getTmpId($model, $id) {
@@ -42,10 +42,14 @@ abstract class cWysiwyngDriver {
     abstract static public function jsUpdate($id, $value);
 
     public function getPath() {
-        $param = $this->parseParam();
-        if (empty($param['model']) or empty($param['id']) {
+        $param = cConvert::unserialize(base64_decode(cInput::post()->get(cConfig::get('filemanager.app.key'))));
+        if (empty($param['model']) or empty($param['id']) or empty($param['salt'])) {
             die('Access Denied!');
         }
+        if ($param['salt'] !== $this->getSalt()) {
+            die('Access Denied!');
+        };
+        cInput::post()->set(cConfig::get('filemanager.app.key'), $this->getSalt());
 
         $model = cModel::init($param['model']);
         cAccess::isWrite($param['model']);

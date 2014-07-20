@@ -38,7 +38,7 @@ $thumbs_base_path = $filePath .'thumbs/'; // relative path from filemanager fold
 // filemanager_title:"Filemanager" ,
 // filemanager_access_key:"myPrivateKey" ,
 // ...
-define('USE_ACCESS_KEYS', FALSE); // TRUE or FALSE
+define('USE_ACCESS_KEYS', true); // TRUE or FALSE
 
 // add access keys eg: array('myPrivateKey', 'someoneElseKey');
 // keys should only containt (a-z A-Z 0-9 \ . _ -) characters
