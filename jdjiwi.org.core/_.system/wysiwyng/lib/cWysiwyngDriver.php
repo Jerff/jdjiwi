@@ -25,12 +25,14 @@ abstract class cWysiwyngDriver {
     }
 
     public function getTmpId($model, $id) {
-        $data = $this->parseParam();
-        if (isset($data['id'])) {
-            return $data['id'];
-        } else {
+        $data = cConvert::unserialize(base64_decode(cInput::post()->get($this->getSaltId($model, $id))));
+        if (empty($param['model']) or empty($param['id']) or empty($param['salt'])) {
             return false;
         }
+        if ($param['salt'] !== $this->getSalt()) {
+            return false;
+        };
+        return $data['id'];
     }
 
     protected function getSaltId($model, $id) {
