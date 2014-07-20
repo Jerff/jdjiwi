@@ -9,7 +9,6 @@ class cWysiwyngTinymce extends cWysiwyngDriver {
         $saltId = $this->getSaltId();
         $salt = $this->createSalt();
 
-//        cHeader::addJs('http://code.jquery.com/jquery-2.1.0.min.js');
         cHeader::addJs(cConfig::get('tinymce.app.url') . 'tinymce.min.js');
         $html = <<<HTML
 <script type="text/javascript">

@@ -4,9 +4,12 @@ cLoader::library('wysiwyng:cWysiwyngDriver');
 class cWysiwyngKCKeditor extends cWysiwyngDriver {
 
     public function html($model, $id, $inputId, $value, $height = null) {
+        $filemanager = cConfig::get('filemanager.app.url');
+        $saltId = $this->getSaltId();
+        $salt = $this->createSalt();
+
         cHeader::addJs(cConfig::get('kckeditor.app.url') . 'ckeditor.js');
         cHeader::addJs(cConfig::get('kckeditor.app.url') . 'adapters/jquery.js');
-
         $html = <<<HTML
 <script type="text/javascript">
     jQuery(function() {
