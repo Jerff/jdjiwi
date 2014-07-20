@@ -21,6 +21,4 @@ return array(
         'app.theme' => cSoursePath . 'themes/core/',
     ),
 );
-//define('cDomen', 'www.core.jdjiwi.ru');
-//define('cDomenUri', '');
 ?>

@@ -15,6 +15,4 @@ return array(
      */
     'path' => __DIR__ . '/../.data/compile/'
 );
-//define('isComplile', 0);
-//define('cCompilePath', __DIR__ . '/../.data/compile/');
 ?>
