@@ -4,7 +4,7 @@ cLoader::library('wysiwyng:cWysiwyngDriver');
 
 class cWysiwyngTinymce extends cWysiwyngDriver {
 
-    public function html($model, $id, $inputId, $value, $height = null) {
+    public function html($model, $id, $inputId, $value, $height = 180) {
         $filemanager = cConfig::get('filemanager.app.url');
         $saltId = $this->getSaltId();
         $salt = $this->createSalt();
@@ -23,7 +23,7 @@ class cWysiwyngTinymce extends cWysiwyngDriver {
             autosave_ask_before_unload: false,
             max_height: 200,
             min_height: 160,
-            height: 180,
+            height: {$height},
             external_filemanager_path:"{$filemanager}",
             filemanager_title:"Responsive Filemanager" ,
             external_plugins: { "filemanager" : "{$filemanager}plugin.min.js"}
