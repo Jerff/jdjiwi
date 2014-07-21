@@ -13,12 +13,16 @@ class cConfig extends cLoaderCompile {
         echo '</pre>';
     }
 
+    static public function path($file) {
+        return self::path . $file;
+    }
+
     static public function getFiles($name) {
         $mFile = array(
             self::path . $name
         );
-        if (self::$host and is_file(cSoursePath . self::path . self::$host . '/' . $name . '.php')) {
-            $mFile[] = self::path . self::$host . '/' . $name;
+        if (self::$host and is_file(cSoursePath . self::path(self::$host . '/' . $name) . '.php')) {
+            $mFile[] = self::path(self::$host . '/' . $name);
         }
         return $mFile;
     }
@@ -40,6 +44,13 @@ class cConfig extends cLoaderCompile {
             foreach (self::init($name, self::file($file)) as $key => $value) {
                 self::$mData[$name . '.' . $key] = $value;
             }
+            self::setHistory($file);
+        }
+    }
+
+    static public function set($name, $file, $data) {
+        foreach (self::init($name, $data()) as $key => $value) {
+            self::$mData[$name . '.' . $key] = $value;
             self::setHistory($file);
         }
     }

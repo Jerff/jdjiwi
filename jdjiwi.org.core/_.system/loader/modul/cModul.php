@@ -13,7 +13,7 @@ class cModul extends cLoaderCompile {
     static private $isCompile = false;
     static private $item = null;
     static private $mItem = array();
-    static private $mLoad = array();
+    static private $mModul = array();
 
     static public function isCompile() {
         return empty(self::$mItem) and self::$isCompile;
@@ -46,23 +46,26 @@ class cModul extends cLoaderCompile {
             throw new cModulException(sprintf('Название модуля "%s" не корректно', $modul));
         }
         self::setItem($modul);
-        $hash = $modul . $file;
-        if (isset(self::$mLoad[$hash])) {
-            return self::$mLoad[$hash];
+        $hash = $modul . '/' . $file;
+        if (isset(self::$mModul[$hash])) {
+            return self::$mModul[$hash];
         }
         try {
             if (self::isCompile()) {
-                cCompile::php()->load('modul', $modul . '/' . $file . '.php');
+                $res = cCompile::php()->load('modul', $hash . '.php');
+                self::setHistory($hash);
             } else {
-                require_once($modul . '/' . $file . '.php');
+                $res = self::file($hash);
+            };
+            if (empty($res)) {
+                $res = true;
             }
-            self::setHistory($file);
         } catch (Exception $e) {
-            throw new cModulException('Модуль "' . $modul . '" не найден', 0, $e);
-            return self::$mLoad[$hash] = false;
+            throw new cModulException(sprintf('Модуль "%s" не найден', $modul), 0, $e);
+            return self::$mModul[$hash] = false;
         }
         self::setItem(null);
-        return self::$mLoad[$hash] = true;
+        return self::$mModul[$hash] = $res;
     }
 
     static public function load($modul) {
@@ -83,7 +86,7 @@ class cModul extends cLoaderCompile {
             self::loadFile($modul, 'cron/' . $file);
             return true;
         } catch (Exception $e) {
-            throw new cModulException('Команда крона "' . $command . '" не найдена', 0, $e);
+            throw new cModulException(sprintf('Команда крона "%s" не найдена', $command), 0, $e);
             return false;
         }
     }

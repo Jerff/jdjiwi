@@ -27,9 +27,6 @@ if ($compile['is']) {
 cLog::memory();
 cLog::init();
 
-pre(cLoader::pre());
-exit;
-
 cDebug::setAjax();
 cDebug::setError();
 cDebug::setSql();
