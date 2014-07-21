@@ -8,22 +8,34 @@ cModul::load('compile');
  * загрузка модулей
  */
 
-class cModul {
+class cModul extends cLoaderCompile {
 
     static private $isCompile = false;
-    static private $mLoad = array();
     static private $item = null;
+    static private $mItem = array();
+    static private $mLoad = array();
 
-    static public function setHistory($file) {
-        cLoader::setHistory(__CLASS__ . '::' . self::$item . '::' . $file);
+    static public function isCompile() {
+        return empty(self::$mItem) and self::$isCompile;
     }
 
     static public function setItem($modul) {
+        if (!empty(self::$item)) {
+            self::$mItem[] = self::$item;
+        }
         self::$item = $modul;
     }
 
-    static public function setLoad($modul, $file) {
-        self::$mLoad[$modul . $file] = true;
+    static public function getItem() {
+        return self::$item;
+    }
+
+    static public function freeItem() {
+        if (empty(self::$mItem)) {
+            self::$item = null;
+        } else {
+            self::$item = array_pop(self::$mItem);
+        }
     }
 
     static private function loadFile($modul, $file) {
@@ -39,16 +51,17 @@ class cModul {
             return self::$mLoad[$hash];
         }
         try {
-            self::setHistory($file);
-            if (self::$isCompile) {
+            if (self::isCompile()) {
                 cCompile::php()->load('modul', $modul . '/' . $file . '.php');
             } else {
                 require_once($modul . '/' . $file . '.php');
             }
+            self::setHistory($file);
         } catch (Exception $e) {
             throw new cModulException('Модуль "' . $modul . '" не найден', 0, $e);
             return self::$mLoad[$hash] = false;
         }
+        self::setItem(null);
         return self::$mLoad[$hash] = true;
     }
 
@@ -63,12 +76,24 @@ class cModul {
         return self::loadFile($modul, 'call');
     }
 
-    static private function cron($file) {
-        require_once(str_replace(':', self::$item . '/cron/', $file . '.php'));
+    static private function cron($command) {
+        try {
+            list($modul, $file) = exlode(':', $command);
+            self::load($modul);
+            self::loadFile($modul, 'cron/' . $file);
+            return true;
+        } catch (Exception $e) {
+            throw new cModulException('Команда крона "' . $command . '" не найдена', 0, $e);
+            return false;
+        }
     }
 
     static public function config($file) {
-        return self::loadFile(self::$item, 'config/' . $file);
+        if (empty(self::getItem())) {
+            throw new cModulException('попытка подключения конфигурации вне модуля', 0, $e);
+        } else {
+            return self::loadFile(self::getItem(), 'config/' . $file);
+        }
     }
 
 }

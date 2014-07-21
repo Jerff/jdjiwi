@@ -4,16 +4,16 @@ class cCallCron {
 
     static public function start() {
         ob_start();
-        if (cCronRun::isRun()) {
+        if (cCronRun::is()) {
             exit;
         }
 
-        $res = cBase::placeholder("SELECT id, name FROM ?t WHERE status='start' AND visible='yes' LIMIT 0, 1", cDb::table('sys.cron'))
+        $res = cDb::placeholder("SELECT id, name FROM ?t WHERE status='start' AND visible='yes' LIMIT 0, 1", cDb::table('sys.cron'))
                 ->fetchAssoc();
         if ($res) {
-            cCronRun::runModul($res['name'], $res['id']);
+            self::run($res['name'], $res['id']);
         }
-        $res = cBase::placeholder("SELECT id, name, changefreq, status, date FROM ?t WHERE visible='yes'", cDb::table('sys.cron'))
+        $res = cDb::placeholder("SELECT id, name, changefreq, status, date FROM ?t WHERE visible='yes'", cDb::table('sys.cron'))
                 ->fetchAssocAll('id');
         foreach ($res as $id => $row) {
             $modul = $row['name'];
@@ -59,10 +59,23 @@ class cCallCron {
                     break;
             }
             if ($isRun) {
-                cCronRun::runModul($modul, $id);
+                self::run($modul, $id);
             }
         }
         ob_end_clean();
+    }
+
+    static public function run($name, $id = 0) {
+        if ($id) {
+            cDb::update(cDb::table('sys.cron'), array('status' => 'start', 'date' => date('Y-m-d H:i:s')), $id);
+        }
+        cCronRun::start();
+        $isOk = cModul::cron($name);
+        cCronRun::stop();
+        if ($id and $isOk) {
+            cDb::update(cDb::table('sys.cron'), array('status' => 'end', 'date' => date('Y-m-d H:i:s')), $id);
+        }
+        exit;
     }
 
 }

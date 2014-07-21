@@ -2,38 +2,21 @@
 
 class cCronRun {
 
-    static private function getFile() {
-        return cConfig::get('cron.stattus');
+    static public function start() {
+        file_put_contents(cConfig::get('cron.status'), time());
     }
 
-    static public function run() {
-        file_put_contents(self::getFile(), time());
+    static public function stop() {
+        cFileSystem::unlink(cConfig::get('cron.status'));
     }
 
-    static public function free() {
-        cFileSystem::unlink(self::getFile());
-    }
-
-    static public function isRun() {
-        if (file_exists(self::getFile())) {
-            if ((file_get_contents(self::getFile()) + 60 * 5) > time()) {
+    static public function is() {
+        if (file_exists(cConfig::get('cron.status'))) {
+            if ((file_get_contents(cConfig::get('cron.status')) + 60 * 5) > time()) {
                 return true;
             }
         }
         return false;
-    }
-
-    static public function runModul($name, $id = 0) {
-        if ($id) {
-            cDb::update(cDb::table('sys.cron'), array('status' => 'start', 'date' => date('Y-m-d H:i:s')), $id);
-        }
-        self::run();
-        cModul::cron($name);
-        self::free();
-        if ($id) {
-            cDb::update(cDb::table('sys.cron'), array('status' => 'end', 'date' => date('Y-m-d H:i:s')), $id);
-        }
-        exit;
     }
 
 }

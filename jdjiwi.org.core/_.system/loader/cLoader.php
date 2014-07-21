@@ -9,58 +9,9 @@ set_include_path(get_include_path() .
         PATH_SEPARATOR . cSoursePath . 'application'
 );
 
-cLoader::setHistory('cLoader::loader/cLoader');
-cLoader::library('loader/config/cConfig');
-cConfig::load('host');
-cConfig::load('path');
-cLoader::library('loader/autoload/cAutoload');
-cLoader::library('loader/modul/cModul');
-cModul::load('core');
+require(__DIR__ . '/compile/cLoaderCompile.php');
 
-class cLoader {
-
-    static private $mHistory = array();
-    static private $mLoad = array();
-
-    static public function setHistory($file) {
-        if (empty(self::$mHistory[$file])) {
-            self::$mLoad[] = $file;
-        }
-        self::$mHistory[$file] = true;
-    }
-
-    static public function pre() {
-        pre(get_defined_constants(true)['user']);
-        cConfig::pre();
-        pre(count(self::$mHistory), self::$mHistory);
-    }
-
-    static public function getIndex() {
-        return cCrypt::hash(serialize(self::$mHistory));
-    }
-
-    static public function initLoad() {
-        self::$mLoad = array();
-    }
-
-    static public function getLoadFile() {
-        return array_unique(self::$mLoad);
-    }
-
-    static public function isLoad($file) {
-        return isset(self::$mHistory[$file]);
-    }
-
-    static private function file($file) {
-        $hash = __CLASS__ . '::' . $file;
-        if (isset(self::$mHistory[$hash])) {
-            return false;
-        }
-        self::$mLoad[] = $hash;
-        self::$mHistory[$hash] = true;
-        require_once($file . '.php');
-        return true;
-    }
+class cLoader extends cLoaderCompile {
 
     static public function library($file) {
         self::file(str_replace(':', '/lib/', $file));
@@ -74,4 +25,12 @@ class cLoader {
 
 }
 
+cLoader::library('loader/config/cConfig');
+cConfig::load('host');
+cConfig::load('path');
+cLoader::library('loader/autoload/cAutoload');
+cLoader::library('loader/modul/cModul');
+cModul::load('core');
+cLoader::setHistory('loader/cLoader');
+cLoader::setHistory('loader/compile/cLoaderCompile');
 ?>
