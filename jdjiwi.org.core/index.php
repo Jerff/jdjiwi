@@ -22,7 +22,7 @@ if ($compile['is']) {
         cCompile::php()->createrLoader();
     }
 } else {
-    require(cSoursePath . 'loader.php');
+    require(cSoursePath . '_.system/loader/cLoader.php');
 }
 cLog::memory();
 cLog::init();
