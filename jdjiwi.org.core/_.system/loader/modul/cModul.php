@@ -51,9 +51,9 @@ class cModul extends cLoaderCompile {
             return self::$mModul[$hash];
         }
         try {
+            self::setHistory($hash);
             if (self::isCompile()) {
                 $res = cCompile::php()->load('modul', $hash . '.php');
-                self::setHistory($hash);
             } else {
                 $res = self::file($hash);
             };

@@ -18,7 +18,7 @@ if ($compile['is']) {
     if(is_file($compile['path'] . 'loader.php')) {
         require($compile['path'] . 'loader.php');
     } else {
-        require(cSoursePath . 'loader.php');
+        require(cSoursePath . '_.system/loader/cLoader.php');
         cCompile::php()->createrLoader();
     }
 } else {

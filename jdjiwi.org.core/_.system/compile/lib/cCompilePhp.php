@@ -45,28 +45,32 @@ class cCompilePhp {
     }
 
     public function compile($mFiles) {
-        $content = $start = '';
-        $end = end($mFiles);
+        $content = $start = $end = '';
+        $key = end($mFiles);
         foreach ($mFiles as $file) {
             $code = "<?php\n#include {$file}\n?>"
                     . $this->parse($file)
                     . "<?php\n#end {$file}\n?>";
             switch ($file) {
-                case $end:
                 case 'cLoader::loader/compile/cLoaderCompile':
                 case 'cLoader::loader/config/cConfig':
-                case 'cLoader::loader/modul/cModul':
                     $start = $code . $start;
+
+                    break;
+                case $key:
+                case 'cLoader::loader/modul/cModul':
+                case 'cLoader::loader/cLoader':
+                    $end .= $code;
                     break;
 
                 default:
-                    $content .= "<?php cLoader::compile('{$file}', function() { ?>{$code}<?php }); ?>";
+                    $content .= "<?php cLoaderCompile::compile('{$file}', function() { ?>{$code}<?php }); ?>";
                     break;
             }
         }
-        $content = preg_replace('#\?>\s*<\?php#S', ' ', $content);
+        $content = preg_replace('#\?>\s*<\?php#S', ' ', $start . $content . $end);
         $content = str_replace("\r", '', $content);
-        return $content . $start;
+        return $content;
     }
 
     private $itemFile = false;
@@ -81,6 +85,7 @@ class cCompilePhp {
     private function includeFile($m) {
         if (!isset($m[6]))
             return $m[0];
+        //realpath
         return $this->file($m[6]);
     }
 

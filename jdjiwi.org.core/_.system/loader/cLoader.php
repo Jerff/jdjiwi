@@ -1,5 +1,4 @@
 <?php
-
 // загрузчик
 set_include_path(get_include_path() .
         PATH_SEPARATOR . cSoursePath .
@@ -9,7 +8,9 @@ set_include_path(get_include_path() .
         PATH_SEPARATOR . cSoursePath . 'application'
 );
 
-require(__DIR__ . '/compile/cLoaderCompile.php');
+if (!class_exists('cLoaderCompile', false)) {
+    require(__DIR__ . '/compile/cLoaderCompile.php');
+}
 
 class cLoader extends cLoaderCompile {
 
