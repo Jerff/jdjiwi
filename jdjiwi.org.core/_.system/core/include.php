@@ -7,6 +7,7 @@ cLoader::library('core:input/cInput');
 cLoader::library('core:session/cSession');
 cLoader::library('core:settings/cSettings');
 cLoader::library('core:string/cString');
+cString::init();
 cLoader::library('core:jscript/cJScript');
 cLoader::library('core:crypt/cCrypt');
 cLoader::library('core:time/cTime');

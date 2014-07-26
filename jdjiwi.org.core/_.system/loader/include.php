@@ -1,0 +1,4 @@
+<?php
+
+cModul::load('core');
+?>

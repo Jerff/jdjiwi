@@ -45,30 +45,37 @@ class cCompilePhp {
     }
 
     public function compile($mFiles) {
-        $content = $start = $end = '';
-        $key = end($mFiles);
+        $compile = $loader = $history = $content = '';
         foreach ($mFiles as $file) {
             $code = "<?php\n#include {$file}\n?>"
                     . $this->parse($file)
                     . "<?php\n#end {$file}\n?>";
-            switch ($file) {
-                case 'cLoader::loader/compile/cLoaderCompile':
-                case 'cLoader::loader/config/cConfig':
-                    $start = $code . $start;
-
+            $arg = explode('::', $file);
+            switch ($arg[0]) {
+                case 'cConfig':
+                case 'cModul':
+                    $compile .= "<?php cLoaderCompile::compile('{$file}', function() { ?>{$code}<?php }); ?>";
                     break;
-                case $key:
-                case 'cLoader::loader/modul/cModul':
-                case 'cLoader::loader/cLoader':
-                    $end .= $code;
+
+                case 'cLoader':
+                    switch ($file) {
+                        case 'cLoader::loader/compile/cLoaderCompile':
+                            $history .= "<?php cLoader::setHistory('{$arg[1]}'); ?>";
+                            $loader .= $code;
+                            break;
+
+                        default:
+                            $history .= "<?php cLoader::setHistory('{$arg[1]}'); ?>";
+                            $content .= $code;
+                            break;
+                    }
                     break;
 
                 default:
-                    $content .= "<?php cLoaderCompile::compile('{$file}', function() { ?>{$code}<?php }); ?>";
                     break;
             }
         }
-        $content = preg_replace('#\?>\s*<\?php#S', ' ', $start . $content . $end);
+        $content = preg_replace('#\?>\s*<\?php#S', ' ', $loader . $compile . $history . $content);
         $content = str_replace("\r", '', $content);
         return $content;
     }

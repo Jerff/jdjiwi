@@ -63,8 +63,8 @@ class cApplication {
 //            cDebug::setExplain();
             }
         }
-        cConfig::timeLimit();
-        cConfig::ignoreUserAbort();
+        cInit::timeLimit();
+        cInit::ignoreUserAbort();
 
         cLog::memory();
         cAdmin::template()->start();
@@ -86,9 +86,9 @@ class cApplication {
     // инициализация cron
     static protected function initCron() {
         self::authorization();
-        cConfig::sessionClose();
-        cConfig::timeLimit();
-        cConfig::ignoreUserAbort();
+        cInit::sessionClose();
+        cInit::timeLimit();
+        cInit::ignoreUserAbort();
 
         cCallCron::start();
     }
@@ -100,7 +100,7 @@ class cApplication {
         if (!cAdmin::user()->is()) {
             exit;
         }
-        cConfig::timeLimit();
+        cInit::timeLimit();
         return cCallWysiwyng::start();
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 // загрузчик
 set_include_path(get_include_path() .
         PATH_SEPARATOR . cSoursePath .
@@ -26,12 +27,12 @@ class cLoader extends cLoaderCompile {
 
 }
 
+cLoader::setHistory('loader/cLoader');
+cLoader::setHistory('loader/compile/cLoaderCompile');
 cLoader::library('loader/config/cConfig');
 cConfig::load('host');
 cConfig::load('path');
 cLoader::library('loader/autoload/cAutoload');
 cLoader::library('loader/modul/cModul');
-cModul::load('core');
-cLoader::setHistory('loader/cLoader');
-cLoader::setHistory('loader/compile/cLoaderCompile');
+cModul::load('loader');
 ?>
