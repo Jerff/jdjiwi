@@ -6,6 +6,7 @@ return array(
      */
     'list' => array(
         'application' => 'http://' . cConfig::get('host.url'),
+        'component' => 'http://' . cConfig::get('host.url') . '/call-ajax',
         'cron' => 'http://' . cConfig::get('host.url') . '/.cron',
         'compileJsCss' => 'http://' . cConfig::get('host.url') . '/core-compile',
         /*

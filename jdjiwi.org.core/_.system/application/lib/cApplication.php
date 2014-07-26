@@ -1,19 +1,9 @@
 <?php
 
 class cApplication {
-    /* инициализация работы */
-
-    // инициализация работы
-    public static function start() {
-        cLog::init();
-        $func = 'init' . cString::firstToUpper(cApplication);
-        return static::$func();
-    }
-
-    /* application */
 
     // авторизация приложения
-    static protected function authorization() {
+    static public function authorization() {
         if (cAdmin::user()->authorization()) {
             if (cAdmin::user()->debugError === 'yes')
                 cDebug::setError();
@@ -28,18 +18,6 @@ class cApplication {
 //            exit;
         }
     }
-
-    // инициализация приложения
-    static protected function initApplication() {
-        self::authorization();
-
-        cLog::memory();
-        $controler = new cmfApplicationTemplate();
-        echo $controler->main();
-        cLog::memory();
-    }
-
-    /* admin */
 
     // инициализация админ панели
     static protected function initAdmin() {
@@ -69,39 +47,6 @@ class cApplication {
         cLog::memory();
         cAdmin::template()->start();
         cLog::memory();
-    }
-
-    /* ajax */
-
-    // инициализация ajax
-    static protected function initAjax() {
-        self::authorization();
-        ini_set('html_errors', 'Off');
-
-        cCallAjax::start();
-    }
-
-    /* cron */
-
-    // инициализация cron
-    static protected function initCron() {
-        self::authorization();
-        cInit::sessionClose();
-        cInit::timeLimit();
-        cInit::ignoreUserAbort();
-
-        cCallCron::start();
-    }
-
-    /* wysiwyng */
-
-    // инициализация wysiwyng
-    static protected function initWysiwyng() {
-        if (!cAdmin::user()->is()) {
-            exit;
-        }
-        cInit::timeLimit();
-        return cCallWysiwyng::start();
     }
 
 }

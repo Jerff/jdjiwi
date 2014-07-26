@@ -1,1 +1,4 @@
-<?php ?>
+<?php
+
+cLoader::library('application:cApplication');
+?>
