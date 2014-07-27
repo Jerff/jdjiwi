@@ -13,6 +13,6 @@ return array(
     /*
      * компилированный код
      */
-    'path' => __DIR__ . '/../.data/compile/'
+    'path' => cSoursePath . '.data/compile/'
 );
 ?>

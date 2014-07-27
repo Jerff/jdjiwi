@@ -32,6 +32,5 @@ cDebug::setError();
 cDebug::setSql();
 cCache::setPages();
 cCache::setData();
-
 return cModul::call(cApplication);
 ?>

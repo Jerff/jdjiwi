@@ -45,14 +45,15 @@ class cModul extends cLoaderCompile {
         if (preg_match('#[^a-z0-9:._]#iS', $modul)) {
             throw new cModulException(sprintf('Название модуля "%s" не корректно', $modul));
         }
-        self::setItem($modul);
         $hash = $modul . '/' . $file;
         if (isset(self::$mModul[$hash])) {
             return self::$mModul[$hash];
         }
+        self::setItem($modul);
         try {
             if (self::isCompile()) {
                 self::setHistory($hash);
+                pre('modul', $hash . '.php');
                 $res = cCompile::php()->load('modul', $hash . '.php');
             } else {
                 $res = self::file($hash);
@@ -64,7 +65,7 @@ class cModul extends cLoaderCompile {
             throw new cModulException(sprintf('Модуль "%s" не найден', $modul), 0, $e);
             return self::$mModul[$hash] = false;
         }
-        self::setItem(null);
+        self::freeItem();
         return self::$mModul[$hash] = $res;
     }
 

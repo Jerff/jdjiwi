@@ -1,4 +1,1 @@
-<?php
-
-cModul::load('application');
-?>
+<?php ?>

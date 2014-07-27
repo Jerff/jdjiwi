@@ -1,4 +1,5 @@
 <?php
 
-cLoader::library('application:cApplication');
+cLoader::library('application:call/cApplicationCall');
+//cApplicationCall::start();
 ?>

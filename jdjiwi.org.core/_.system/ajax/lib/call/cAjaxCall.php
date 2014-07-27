@@ -1,6 +1,6 @@
 <?php
 
-class cComponentCall {
+class cAjaxCall {
 
     static protected function start() {
         cApplication::authorization();
@@ -13,7 +13,7 @@ class cComponentCall {
         if (!is_file($file)) {
             throw new cException('контроллер не существует', $file);
         }
-        return require(cCompile::path('ajax', $file));
+        return cCompile::php()->load('ajax', $file);
     }
 
 }

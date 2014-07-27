@@ -9,6 +9,7 @@ class cConfig extends cLoaderCompile {
 
     static public function pre() {
         echo '<pre>';
+        print_r(get_defined_constants(true)['user']);
         print_r(self::$mData);
         echo '</pre>';
     }
