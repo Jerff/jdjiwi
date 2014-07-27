@@ -15,12 +15,7 @@ class cCompilePhp {
         $hash = cCrypt::hash(cLoader::getIndex(), $type, $file);
         $compile = cConfig::get('compile.path') . $type . '/' . substr($hash, 0, 1) . '/' . substr($hash, 1, 2) . '/' . $hash . '.php';
         if (file_exists($compile)) {
-            if (cConfig::get('compile.is') == 3)
-                return $compile;
-            else {
-                if (filemtime($file) < filemtime($compile))
-                    return $compile;
-            }
+            return $compile;
         }
         cLoader::initLoad();
         cFileSystem::mkdir(dirname($compile));
