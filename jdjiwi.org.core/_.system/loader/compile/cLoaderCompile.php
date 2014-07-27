@@ -21,6 +21,7 @@ class cLoaderCompile {
     }
 
     static public function getIndex() {
+        ksort(self::$mHistory);
         return cCrypt::hash(serialize(self::$mHistory));
     }
 
