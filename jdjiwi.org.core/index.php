@@ -10,7 +10,7 @@ define('cTimeInit', microtime());
 chdir(__DIR__);
 
 // конфигурация
-$compile = require('_.config/compile.php');
+$compile = require(cSoursePath . '_.config/compile.php');
 //require('_.config/config.php');
 //require('_.config/setting.project.php');
 // системный кеш

@@ -1,19 +1,27 @@
 <?php
 
-// загрузчик
-set_include_path(get_include_path() .
-        PATH_SEPARATOR . cSoursePath .
-        PATH_SEPARATOR . cSoursePath . '_.library' .
-        PATH_SEPARATOR . cSoursePath . '_.library/PEAR' .
-        PATH_SEPARATOR . cSoursePath . '_.system' .
-        PATH_SEPARATOR . cSoursePath . 'application'
-);
-
 if (!class_exists('cLoaderCompile', false)) {
     require(__DIR__ . '/compile/cLoaderCompile.php');
 }
 
 class cLoader extends cLoaderCompile {
+
+    static private $path = array(
+            cSoursePath . '_.system', cSoursePath, cSoursePath . '_.library', PATH_SEPARATOR . cSoursePath . 'application'
+    );
+
+    static public function init() {
+        set_include_path(get_include_path() . PATH_SEPARATOR . implode(PATH_SEPARATOR, self::$path));
+    }
+
+    static public function path($file) {
+        foreach (self::$path as $path) {
+            if (is_file($path . '/' . $file)) {
+                return $path . '/' . $file;
+            }
+        }
+        return false;
+    }
 
     static public function library($file) {
         self::file(str_replace(':', '/lib/', $file));
@@ -27,6 +35,7 @@ class cLoader extends cLoaderCompile {
 
 }
 
+cLoader::init();
 cLoader::setHistory('loader/cLoader');
 cLoader::setHistory('loader/compile/cLoaderCompile');
 cLoader::library('loader/config/cConfig');
