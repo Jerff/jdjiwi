@@ -38,4 +38,3 @@ define('db_discount', cConfig::get('database.db.pefix') . 'basket_discount');
 define('db_param', cConfig::get('database.db.pefix') . 'param');
 define('db_param_select', cConfig::get('database.db.pefix') . 'param_select');
 define('db_param_checkbox', cConfig::get('database.db.pefix') . 'param_checkbox');
-?>

@@ -17,4 +17,3 @@ return array(
     'page.path' => cConfig::get('path.data') . 'cache/page/',
     'sqlite.path' => cConfig::get('path.data') . 'cache/sqlite/mydb.sq3',
 );
-?>

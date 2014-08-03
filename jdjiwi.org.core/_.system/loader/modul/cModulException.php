@@ -8,4 +8,3 @@ class cModulException extends \Exception {
 
 }
 
-?>

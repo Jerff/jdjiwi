@@ -16,4 +16,3 @@ return array(
      */
     'components' => cSoursePath . 'components/',
 );
-?>

@@ -11,4 +11,3 @@ class cFormRange extends cFormNumber {
 
 }
 
-?>

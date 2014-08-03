@@ -91,4 +91,3 @@ class cmfFormCheckbox extends cFormElement {
 
 }
 
-?>

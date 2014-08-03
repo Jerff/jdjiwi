@@ -6,4 +6,3 @@ class cFormFloatHtml extends cFormNumberHtml {
     
 }
 
-?>

@@ -62,4 +62,3 @@ class cConfig extends cLoaderCompile {
 
 }
 
-?>

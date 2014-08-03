@@ -954,4 +954,3 @@ cPages::template()->set(array(
     2 => 'admin.start.php',
     3 => 'admin.productList.php'
 ));
-?>

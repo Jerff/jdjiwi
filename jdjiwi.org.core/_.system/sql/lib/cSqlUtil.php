@@ -45,4 +45,3 @@ class cSqlUtil extends cPatternsRegistry {
 
 }
 
-?>

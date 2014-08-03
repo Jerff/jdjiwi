@@ -123,4 +123,4 @@ class cPages extends cPagesCore {
 
 }
 
-?>
+

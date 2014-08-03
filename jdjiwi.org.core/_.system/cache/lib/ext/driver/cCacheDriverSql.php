@@ -75,4 +75,3 @@ class cCacheDriverSql extends cCacheDriver {
 
 }
 
-?>

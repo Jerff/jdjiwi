@@ -7,4 +7,3 @@ return array(
     'sphinx.host' => 'localhost',
     'sphinx.port' => '3312',
 );
-?>

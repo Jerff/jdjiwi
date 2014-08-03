@@ -64,4 +64,3 @@ class cFormSecurity extends cFormCore {
     }
 
 }
-?>

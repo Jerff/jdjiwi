@@ -12,4 +12,3 @@ class cFormEmail extends cFormText {
 
 }
 
-?>

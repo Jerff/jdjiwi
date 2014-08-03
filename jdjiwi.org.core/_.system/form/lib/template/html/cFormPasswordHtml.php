@@ -16,4 +16,3 @@ class cFormPasswordHtml extends cFormTextHtml {
     }
 
 }
-?>

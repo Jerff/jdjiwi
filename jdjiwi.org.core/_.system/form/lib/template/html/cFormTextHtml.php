@@ -17,4 +17,3 @@ class cFormTextHtml extends cFormTemplateHtml {
     }
 
 }
-?>

@@ -43,7 +43,7 @@ class cCompilePhp {
         foreach ($mFiles as $file) {
             $code = "<?php\n#include {$file}\n?>"
                     . $this->parse($file)
-                    . "<?php\n#end {$file}\n?>";
+                    . "?><?php\n#end {$file}\n?>";
             $arg = explode('::', $file);
             switch ($arg[0]) {
                 case 'cConfig':
@@ -105,5 +105,3 @@ class cCompilePhp {
     }
 
 }
-
-?>

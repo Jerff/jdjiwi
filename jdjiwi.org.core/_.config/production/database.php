@@ -9,4 +9,3 @@ return array(
     'mysql.password' => 'prog12345',
     'mysql.db' => 'core_jdjiwi_ru',
 );
-?>

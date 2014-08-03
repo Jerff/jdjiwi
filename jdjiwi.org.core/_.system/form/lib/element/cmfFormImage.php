@@ -123,4 +123,3 @@ class cmfFormImage extends cmfFormFile {
 
 }
 
-?>

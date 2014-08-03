@@ -74,4 +74,3 @@ class cFormConfig extends cPatternsConfig {
 
 }
 
-?>

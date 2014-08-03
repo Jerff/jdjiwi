@@ -10,4 +10,3 @@ class cCacheSql extends cCacheDriverSql {
 
 }
 
-?>

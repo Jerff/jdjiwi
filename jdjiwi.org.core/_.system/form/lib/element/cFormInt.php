@@ -11,4 +11,3 @@ class cFormInt extends cFormNumber {
 
 }
 
-?>

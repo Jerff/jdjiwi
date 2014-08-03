@@ -44,4 +44,3 @@ class cDB extends cPatternsStaticRegistry {
 
 }
 
-?>

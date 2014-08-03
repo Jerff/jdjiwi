@@ -110,4 +110,4 @@ class cmfFormPasswordView extends cmfFormPassword {
 
 }
 
-?>
+

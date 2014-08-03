@@ -66,4 +66,3 @@ class cException extends \Exception {
 
 }
 
-?>

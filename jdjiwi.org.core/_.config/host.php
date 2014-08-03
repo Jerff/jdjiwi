@@ -21,4 +21,3 @@ return array(
         'app.theme' => cSoursePath . 'themes/core/',
     ),
 );
-?>

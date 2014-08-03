@@ -228,7 +228,7 @@ function cmfReformSpecialchars($value, $opt = 1, $opt2 = 1) {
             continue;
         if ($tag_rules[$value2]['type'] === 'paired') {
             $value = preg_replace("'<\s*{$value2}\s*>'si", "<{$value2} >", $value);
-            $value = preg_replace("'<\s*{$value2}( [^>]*)>(.*)(?<!<\/{$value2}>)<\s*/\s*{$value2}([^>]*)?>'siU", "[{$value2}\$1]\$2[/{$value2}\$3]", $value);
+            $value = preg_replace("'<\s*{$value2}( [^>]*)>(.*)(?<!<\/{$value2}>)<\s*/\s*{$value2}([^>]*)'siU", "[{$value2}\$1]\$2[/{$value2}\$3]", $value);
         } else
             $value = preg_replace("'<\s*{$value2}([^>]*)>'si", "[{$value2}\$1]", $value);
     }
@@ -297,5 +297,3 @@ function cmfReformTextFormat($value, $len = 80) {
     }
     return $new_value . substr($value, $pos);
 }
-
-?>

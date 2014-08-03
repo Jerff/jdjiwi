@@ -6,4 +6,3 @@ return array(
      */
     'test-application' => true,
 );
-?>

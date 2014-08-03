@@ -26,4 +26,3 @@ class cSqlException extends cException {
 
 }
 
-?>

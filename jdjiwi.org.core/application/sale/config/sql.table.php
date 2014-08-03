@@ -16,4 +16,3 @@ define('db_payment_log', cConfig::get('database.db.pefix') . 'payment_log');
 define('db_payment_transactions', cConfig::get('database.db.pefix') . 'payment_transactions');
 
 define('db_delivery', cConfig::get('database.db.pefix') . 'delivery');
-?>

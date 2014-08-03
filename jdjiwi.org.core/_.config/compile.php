@@ -14,4 +14,3 @@ return array(
      */
     'path' => cSoursePath . '.data/compile/'
 );
-?>

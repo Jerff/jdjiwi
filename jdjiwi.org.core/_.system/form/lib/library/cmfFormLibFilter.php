@@ -124,4 +124,3 @@ function cmfIsNotDefault(&$v, $d) {
     return $r;
 }
 
-?>

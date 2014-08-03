@@ -114,4 +114,4 @@ function cmfImageResize2($image, $width, $height) {
     return true;
 }
 
-?>
+

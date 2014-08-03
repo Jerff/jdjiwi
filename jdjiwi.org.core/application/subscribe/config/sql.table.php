@@ -8,4 +8,3 @@ define('db_subscribe_status', cConfig::get('database.db.pefix') . 'subscribe_sta
 
 define('db_subscribe_user', cConfig::get('database.db.pefix') . 'subscribe_user');
 define('db_subscribe_user_status', cConfig::get('database.db.pefix') . 'subscribe_user_status');
-?>

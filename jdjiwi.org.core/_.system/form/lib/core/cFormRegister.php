@@ -78,4 +78,3 @@ public function initRegister(&$parent, &$form, &$mCollective) {
 
 }
 
-?>

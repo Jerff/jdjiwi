@@ -144,4 +144,3 @@ class cConvert {
     /* === /file === */
 }
 
-?>

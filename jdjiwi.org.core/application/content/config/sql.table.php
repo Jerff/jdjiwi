@@ -11,4 +11,3 @@ define('db_content_pages', cConfig::get('database.db.pefix') . 'content_pages');
 define('db_content_info', cConfig::get('database.db.pefix') . 'content_info');
 define('db_content_static', cConfig::get('database.db.pefix') . 'content_static');
 define('db_content_url', cConfig::get('database.db.pefix') . 'content_url');
-?>

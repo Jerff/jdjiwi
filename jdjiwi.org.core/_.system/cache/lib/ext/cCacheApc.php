@@ -28,4 +28,3 @@ class cCacheApc extends cCacheDriverTag {
 
 }
 
-?>

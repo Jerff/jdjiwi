@@ -182,4 +182,3 @@ class cForm extends cFormCore implements Iterator {
     /* === 464 === */
 }
 
-?>

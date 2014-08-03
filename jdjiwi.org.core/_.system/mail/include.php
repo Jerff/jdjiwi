@@ -4,4 +4,3 @@
 
 /* заагрузка библиотек */
 cLoader::library('mail:cMail');
-?>

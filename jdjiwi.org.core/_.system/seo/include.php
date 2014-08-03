@@ -4,4 +4,3 @@
 
 /* заагрузка библиотек */
 cLoader::library('seo:function');
-?>

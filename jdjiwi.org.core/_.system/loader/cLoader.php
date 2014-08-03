@@ -44,4 +44,3 @@ cConfig::load('path');
 cLoader::library('loader/autoload/cAutoload');
 cLoader::library('loader/modul/cModul');
 cModul::load('loader');
-?>

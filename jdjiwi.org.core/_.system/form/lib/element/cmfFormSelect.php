@@ -452,4 +452,3 @@ class cmfFormSelectCheckboxParamInt extends cmfFormSelectCheckboxParam {
 
 }
 
-?>

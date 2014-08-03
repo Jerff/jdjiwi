@@ -87,4 +87,3 @@ abstract class cSql extends cPatternsRegistry {
 
 }
 
-?>

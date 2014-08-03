@@ -101,4 +101,3 @@ class cModul extends cLoaderCompile {
 
 }
 
-?>

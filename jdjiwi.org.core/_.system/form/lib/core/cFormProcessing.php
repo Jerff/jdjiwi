@@ -27,4 +27,3 @@ class cFormProcessing extends cFormCore {
 
 }
 
-?>

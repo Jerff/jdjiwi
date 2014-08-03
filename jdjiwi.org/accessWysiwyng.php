@@ -8,4 +8,3 @@ require('index.php');
 
 restore_error_handler();
 chdir($old);
-?>

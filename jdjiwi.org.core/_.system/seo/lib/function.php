@@ -10,4 +10,3 @@ function cRedirectSeo($u) {
     cRedirect($u);
 }
 
-?>

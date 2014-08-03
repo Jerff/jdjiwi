@@ -56,4 +56,3 @@ class cCacheMemcache extends cCacheDriverTag {
 
 }
 
-?>

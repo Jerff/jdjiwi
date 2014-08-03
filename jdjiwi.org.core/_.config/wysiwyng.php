@@ -12,4 +12,3 @@ return array(
     'kckeditor.app.url' => cAppUrl . 'library/kckeditor/',
     'tinymce.app.url' => cAppUrl . 'library/tinymce/',
 );
-?>

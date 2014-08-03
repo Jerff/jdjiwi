@@ -91,4 +91,3 @@ class cmfFormRadioAllInt extends cmfFormRadioAll {
 
 }
 
-?>

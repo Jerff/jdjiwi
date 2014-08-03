@@ -2,4 +2,3 @@
 
 /* конфигурация */
 cConfig::load('search');
-?>

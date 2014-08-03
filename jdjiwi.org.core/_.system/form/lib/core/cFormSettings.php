@@ -6,4 +6,3 @@ class cFormSettings extends cPatternsSettings {
     
 }
 
-?>

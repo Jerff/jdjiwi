@@ -66,4 +66,3 @@ class cFormElementFilter extends cFormCore {
 
 }
 
-?>

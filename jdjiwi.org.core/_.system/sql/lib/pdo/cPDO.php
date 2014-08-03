@@ -17,4 +17,3 @@ class cPDO extends PDO {
 
 }
 
-?>

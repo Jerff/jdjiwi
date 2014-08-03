@@ -11,4 +11,3 @@ class cFormFloat extends cFormNumber {
 
 }
 
-?>

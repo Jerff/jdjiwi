@@ -34,4 +34,3 @@ class cmfFormTextareaWysiwyng extends cFormText {
 
 }
 
-?>

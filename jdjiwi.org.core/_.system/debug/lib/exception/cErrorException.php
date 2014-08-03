@@ -49,4 +49,3 @@ class cErrorException extends cException {
 
 }
 
-?>

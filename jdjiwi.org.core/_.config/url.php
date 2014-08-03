@@ -10,4 +10,3 @@ return array(
     'compileJsCss' => cPages::base()->compileJsCss .'/',
     'admin' => cPages::base()->admin .'/',
 );
-?>

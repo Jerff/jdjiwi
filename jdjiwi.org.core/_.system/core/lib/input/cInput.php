@@ -62,4 +62,4 @@ class cInput extends cPatternsStaticRegistry {
 
 }
 
-?>
+

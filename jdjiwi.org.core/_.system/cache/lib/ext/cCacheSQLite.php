@@ -32,4 +32,3 @@ class cCacheSQLite extends cCacheDriverSql {
 
 }
 
-?>

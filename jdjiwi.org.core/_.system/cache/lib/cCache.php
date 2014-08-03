@@ -81,4 +81,3 @@ class cCache extends cCacheDelegation {
 
 }
 
-?>

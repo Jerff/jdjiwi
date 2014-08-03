@@ -15,4 +15,3 @@ return array(
         'admin' => 'http://' . cConfig::get('host.url') . '/admin',
     )
 );
-?>

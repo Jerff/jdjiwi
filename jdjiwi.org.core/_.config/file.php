@@ -12,4 +12,3 @@ return array(
     'mode.file' => 0666,
     'mode.dir' => 0777,
 );
-?>

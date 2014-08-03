@@ -172,4 +172,3 @@ class cmfFormFile extends cFormElement {
 
 }
 
-?>

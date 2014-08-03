@@ -6,4 +6,3 @@ return array(
      */
     'salt' => '$2a$UvDRuVNIM0nzLkU8GRgBpJ'
 );
-?>

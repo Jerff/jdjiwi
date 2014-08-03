@@ -17,4 +17,3 @@ abstract class cSqlQueryBilder extends cPatternsRegistry {
 
 }
 
-?>

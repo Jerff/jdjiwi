@@ -10,4 +10,3 @@ define('cAjaxUrl', cConfig::get('url.ajax'));
 define('cCompileUrl', cConfig::get('url.compileJsCss'));
 define('cItemUrl', cConfig::get('url.item'));
 define('cImgUrl', cAppUrl);
-?>

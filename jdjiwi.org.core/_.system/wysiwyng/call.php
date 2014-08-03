@@ -3,4 +3,3 @@
 if (!cAdmin::user()->is()) {
     exit;
 }
-?>

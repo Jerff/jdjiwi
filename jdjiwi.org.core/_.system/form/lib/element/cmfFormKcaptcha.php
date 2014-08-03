@@ -45,4 +45,3 @@ class cmfFormKcaptcha extends cFormText {
 
 }
 
-?>

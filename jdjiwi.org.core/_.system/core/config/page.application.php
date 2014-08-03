@@ -573,4 +573,3 @@ cPages::template()->set(array(
     6 => 'print.index.php',
     7 => 'main.product.php',
 ));
-?>

@@ -6,4 +6,3 @@ class cFormEmailHtml extends cFormTextHtml {
     
 }
 
-?>

@@ -13,4 +13,3 @@ class cFormHtml extends cFormRegister {
 
 }
 
-?>

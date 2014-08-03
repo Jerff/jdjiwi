@@ -39,4 +39,3 @@ function preTrace() {
     $e = new Exception();
     ?><pre><?= $e->getTraceAsString() ?></pre><?
 }
-?>

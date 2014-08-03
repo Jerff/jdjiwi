@@ -7,4 +7,4 @@ function cmfJsGetId($n, $o = null) {
         return '$("#' . $n . '").get(0)';
 }
 
-?>
+

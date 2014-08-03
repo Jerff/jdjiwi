@@ -37,4 +37,3 @@ class cCacheEaccelerator extends cCacheDriverTag {
 
 }
 
-?>

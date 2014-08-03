@@ -6,4 +6,3 @@ class cFormRangeHtml extends cFormNumberHtml {
     
 }
 
-?>
