@@ -55,13 +55,13 @@ class cLoaderCompile {
         if (self::isLoad($file)) {
             return false;
         }
-        self::setHistory($file);
         if (isset(self::$mCompile[$hash = self::hash($file)])) {
             $hash = self::$mCompile[$hash];
             $res = $hash();
         } else {
             $res = require($file . '.php');
         }
+        self::setHistory($file);
         return $res;
     }
 

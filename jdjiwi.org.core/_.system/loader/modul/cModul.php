@@ -68,7 +68,10 @@ class cModul extends cLoaderCompile {
         return self::$mModul[$hash] = $res;
     }
 
-    static public function load($modul) {
+    static public function load($modul, $noCompile = false) {
+        if ($noCompile && defined('isCompile')) {
+            return true;
+        }
         return self::loadFile($modul, 'include');
     }
 
@@ -100,4 +103,3 @@ class cModul extends cLoaderCompile {
     }
 
 }
-

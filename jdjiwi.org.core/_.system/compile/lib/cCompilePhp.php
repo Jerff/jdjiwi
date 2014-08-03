@@ -69,6 +69,7 @@ class cCompilePhp {
                     break;
             }
         }
+        $content .="<?php cModul::load('loader'); ?>";
         $content = preg_replace('#\?>\s*<\?php#S', ' ', $loader . $compile . $history . $content);
         $content = str_replace("\r", '', $content);
         return $content;

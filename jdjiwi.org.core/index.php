@@ -16,6 +16,7 @@ $compile = require(cSoursePath . '_.config/compile.php');
 // системный кеш
 if ($compile['is']) {
     if (is_file($compile['path'] . 'loader.php')) {
+        define('isCompile', true);
         require($compile['path'] . 'loader.php');
     } else {
         require(cSoursePath . '_.system/loader/cLoader.php');

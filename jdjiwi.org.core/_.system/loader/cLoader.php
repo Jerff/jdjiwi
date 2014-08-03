@@ -43,4 +43,4 @@ cConfig::load('host');
 cConfig::load('path');
 cLoader::library('loader/autoload/cAutoload');
 cLoader::library('loader/modul/cModul');
-cModul::load('loader');
+cModul::load('loader', true);
