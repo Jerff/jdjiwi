@@ -1,7 +1,5 @@
 <?php
 
-cLoader::library('form:template/{form}/cFormText{Form}');
-
 class cFormText extends cFormElement {
 
     private $type = 'text';
@@ -29,4 +27,3 @@ class cFormText extends cFormElement {
     }
 
 }
-

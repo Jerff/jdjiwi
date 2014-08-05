@@ -1,7 +1,5 @@
 <?php
 
-cLoader::library('form:template/{form}/cFormPassword{Form}');
-
 class cFormPassword extends cFormText {
 
     public function init() {
@@ -16,4 +14,3 @@ class cFormPassword extends cFormText {
     }
 
 }
-

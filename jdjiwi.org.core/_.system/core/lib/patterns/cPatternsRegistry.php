@@ -21,8 +21,8 @@ abstract class cPatternsRegistry {
     }
 
     protected function parent() {
-        return $this->parent;
+    return $this->parent;
+
     }
 
 }
-

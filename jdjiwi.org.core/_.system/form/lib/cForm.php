@@ -22,6 +22,7 @@
 //cLoader::library('form:element/cmfFormImage');
 
 
+cLoader::library('form:core/cFormLoader');
 cLoader::library('form:core/cFormCore');
 cLoader::library('form:core/cFormUpdate');
 cLoader::library('form:core/cFormError');
@@ -181,4 +182,3 @@ class cForm extends cFormCore implements Iterator {
     /* === 464 === */
     /* === 464 === */
 }
-

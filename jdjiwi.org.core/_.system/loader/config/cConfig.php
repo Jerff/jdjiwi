@@ -32,7 +32,7 @@ class cConfig extends cLoaderCompile {
         if ($name === 'host') {
             foreach ($data as $host => $data) {
                 if (strpos($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], $data['url']) === 0) {
-                    self::$mData[$name] = self::$host = $host;
+                    self::$host = $host;
                     break;
                 }
             }
@@ -49,11 +49,8 @@ class cConfig extends cLoaderCompile {
         }
     }
 
-    static public function set($name, $file, $data) {
-        foreach (self::init($name, $data()) as $key => $value) {
-            self::$mData[$name . '.' . $key] = $value;
-            self::setHistory($file);
-        }
+    static public function set($name, $value) {
+        self::$mData[$name] = $value;
     }
 
     static public function get($name) {
@@ -61,4 +58,3 @@ class cConfig extends cLoaderCompile {
     }
 
 }
-

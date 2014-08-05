@@ -1,7 +1,5 @@
 <?php
 
-cLoader::library('form:template/{form}/cFormInt{Form}');
-
 class cFormInt extends cFormNumber {
 
     public function init() {
@@ -10,4 +8,3 @@ class cFormInt extends cFormNumber {
     }
 
 }
-

@@ -129,9 +129,21 @@ abstract class cFormElement extends cFormCore {
     /* шаблоны */
 
     public function template() {
-        return $this->register(
-                        cLoader::template()->path(get_class($this) . '{Form}')
-        );
+        static $mTemplate = false;
+        if ($mTemplate === false) {
+            $mTemplate = array();
+            foreach (cDir::getFiles(cConfig::get('path.app.form') . cConfig::get('form.templates')) as $file) {
+                $name = cString::substr(basename($file), -4);
+                $mTemplate[$name] = str_replace(cSoursePath, '', $file);
+            }
+        }
+        $class = get_class($this) . 'Html';
+        if (isset($mTemplate[$class])) {
+            cLoader::library($mTemplate[$class]);
+        } else {
+            cLoader::library('form:template/' . cConfig::get('form.templates') . '/' . $class);
+        }
+        return $this->register($class);
     }
 
     public function error($attr = '') {
@@ -195,4 +207,3 @@ abstract class cFormElement extends cFormCore {
 
     /* === /обновление данных === */
 }
-

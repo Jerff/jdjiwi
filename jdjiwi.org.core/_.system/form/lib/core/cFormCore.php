@@ -22,4 +22,3 @@ class cFormCore extends cFormRegister {
     }
 
 }
-
