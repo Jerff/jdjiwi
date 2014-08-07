@@ -1,5 +1,8 @@
 <?php
 
+cConfig::load('file');
+cModul::config('const');
+
 cLoader::library('file:path/cPath');
 cLoader::library('file:system/cFileSystem');
 cLoader::library('file:cDir');

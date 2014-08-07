@@ -8,6 +8,10 @@ return array(
     /*
      * app 
      */
+    'compile' => cWWWPath . 'core-compile/',
+    /*
+     * compile 
+     */
     'app.ajax' => cConfig::get('host.app.theme') . 'ajax/',
     'app.controller' => cConfig::get('host.app.theme') . 'controller/',
     'app.form' => cConfig::get('host.app.theme') . 'form/',

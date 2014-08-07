@@ -5,7 +5,7 @@ return array(
      * Настройки базы
      */
     'driver' => 'mysql',
-    'db.pefix' => 'core_',
+    'pefix' => 'core_',
     'mysql.host' => 'localhost',
     'mysql.user' => 'root',
     'mysql.password' => 'prog12345',

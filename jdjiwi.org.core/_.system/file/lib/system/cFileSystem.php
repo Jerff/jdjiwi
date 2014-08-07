@@ -1,6 +1,5 @@
 <?php
 
-cConfig::load('file');
 cLoader::library('file:exception/cFileException');
 cLoader::library('file:system/cExec');
 cLoader::library('core:string/cConvert');
@@ -8,36 +7,40 @@ cLoader::library('core:string/cConvert');
 class cFileSystem {
 
     // сменить права
-    static public function chmod($folder, $mode = null) {
+    static public function chmod($path, $mode = null) {
+        cFileAccess::path($path);
         if (is_null($mode)) {
-            $mode = cConfig::get('file.mode.file');
+            $mode = cFileMode;
         }
-        if (!chmod($folder, $mode)) {
-            throw new cFileException('права файла не изменены', array($folder, $mode));
+        if (!chmod($path, $mode)) {
+            throw new cFileException('права файла не изменены', array($path, $mode));
         }
     }
 
     static public function unlink($file) {
+        cFileAccess::path($file);
         if (is_file($file)) {
             unlink($file);
         }
     }
 
     // создание папки
-    static public function mkdir($path, $mode = null) {
-        if (is_dir($path)) {
+    static public function mkdir($folder, $mode = null) {
+        cFileAccess::path($folder);
+        if (is_dir($folder)) {
             return true;
         }
         if (is_null($mode)) {
             $mode = cConfig::get('file.mode.dir');
         }
-        if (!$is = mkdir($path, $mode, true)) {
-            throw new cFileException('Невозможно создать папку', $path);
+        if (!$is = mkdir($folder, $mode, true)) {
+            throw new cFileException('Невозможно создать папку', $folder);
         }
-        self::chmod($path, $mode);
+        self::chmod($folder, $mode);
     }
 
     static public function rmdir($folder, $del = false) {
+        cFileAccess::path($folder);
         if (!is_dir($folder)) {
             return;
         }
@@ -70,4 +73,3 @@ class cFileSystem {
     }
 
 }
-
