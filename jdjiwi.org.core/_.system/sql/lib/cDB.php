@@ -23,7 +23,7 @@ class cDB extends cPatternsStaticRegistry {
     }
 
     public static function table($table) {
-        return cConfig::get('database.mysql') . str_replace('.', '_', $table);
+        return cConfig::get('database.pefix') . str_replace('.', '_', $table);
     }
 
     public static function __callStatic($name, $arguments) {
@@ -36,6 +36,7 @@ class cDB extends cPatternsStaticRegistry {
                 return self::driver()->query()->$name(...$arguments);
                 break;
 
+            case 'placeholder':
             default:
                 return self::driver()->$name(...$arguments);
                 break;
@@ -43,4 +44,3 @@ class cDB extends cPatternsStaticRegistry {
     }
 
 }
-

@@ -9,7 +9,7 @@ class cSqlPlaceholder {
         return $this->args[$this->arg++];
     }
 
-    private function query() {
+    public function query() {
         $args = func_get_args();
         $query = (string) array_shift($args);
 
@@ -17,7 +17,7 @@ class cSqlPlaceholder {
         $this->args = $a;
         $query = preg_replace_callback('~\?([^\:\s]*)\:([^\s\,\'\"]*)|\?(fields|field|function|t\%|[^\s\,\'\"\)]?)~S', array(&$this, 'run'), $query);
         $this->args = null;
-        return $query;
+        return $this->parent()->query()->query($query);
     }
 
     private function run($m) {
@@ -139,4 +139,3 @@ class cSqlPlaceholder {
     }
 
 }
-

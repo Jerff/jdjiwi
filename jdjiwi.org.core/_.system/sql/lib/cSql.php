@@ -54,10 +54,6 @@ abstract class cSql extends cPatternsRegistry {
      */
 
     public function placeholder() {
-        return $this->query($this->register('cSqlPlaceholder')->query(...func_get_args()));
-    }
-
-    public function placeholderQuery() {
         return $this->register('cSqlPlaceholder')->query(...func_get_args());
     }
 
@@ -86,4 +82,3 @@ abstract class cSql extends cPatternsRegistry {
     }
 
 }
-
