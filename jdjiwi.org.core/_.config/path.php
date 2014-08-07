@@ -6,11 +6,11 @@ return array(
      */
     'data' => cSoursePath . '.data/',
     /*
-     * app 
+     * compile
      */
     'compile' => cWWWPath . 'core-compile/',
     /*
-     * compile 
+     * app
      */
     'app.ajax' => cConfig::get('host.app.theme') . 'ajax/',
     'app.controller' => cConfig::get('host.app.theme') . 'controller/',
