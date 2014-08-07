@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('core:patterns/cPatternsStaticRegistry');
+cLoader::library('patterns:cPatternsStaticRegistry');
 cLoader::library('compile:cCompileConfig');
 cLoader::library('compile:cCompilePhp');
 cLoader::library('compile:cCompileJsCss');

@@ -8,7 +8,7 @@ cLoader::library('core:input/cInputHeader');
 cLoader::library('core:input/cInputUrl');
 cLoader::library('core:input/cInputParam');
 cLoader::library('core:input/function');
-cLoader::library('core:patterns/cPatternsStaticRegistry');
+cLoader::library('patterns:cPatternsStaticRegistry');
 
 class cInput extends cPatternsStaticRegistry {
 

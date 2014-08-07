@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('core:patterns/cPatternsRegistry');
+cLoader::library('patterns:cPatternsRegistry');
 cLoader::library('sql:cSqlPlaceholder');
 
 abstract class cSql extends cPatternsRegistry {

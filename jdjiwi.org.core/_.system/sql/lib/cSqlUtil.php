@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('core:patterns/cPatternsRegistry');
+cLoader::library('patterns:cPatternsRegistry');
 
 class cSqlUtil extends cPatternsRegistry {
 

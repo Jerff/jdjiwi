@@ -4,7 +4,7 @@ cLoader::library('pages:cPagesBase');
 cLoader::library('pages:cPagesConfig');
 cLoader::library('pages:cPagesParam');
 cLoader::library('pages:cPagesTemplate');
-cLoader::library('core:patterns/cPatternsStaticRegistry');
+cLoader::library('patterns:cPatternsStaticRegistry');
 
 class cPagesCore extends cPatternsStaticRegistry {
 
