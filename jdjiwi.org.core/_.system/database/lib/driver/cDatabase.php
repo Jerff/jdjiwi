@@ -1,15 +1,25 @@
 <?php
 
-cLoader::library('database:registry/cDatabaseRegistry');
 cLoader::library('database:quote/cDatabaseQuote');
 
-abstract class cDatabase extends cDatabaseRegistry {
+abstract class cDatabase {
+
+    private $mRegister = array();
+
+    protected function &register($class) {
+        if (empty($this->mRegister[$class])) {
+            $this->mRegister[$class] = new $class();
+        }
+        return $this->mRegister[$class];
+    }
 
     abstract protected function driver();
 
     abstract protected function placeholder();
 
     abstract protected function bilder();
+
+    abstract protected function utility();
 
     /*
      * работа с БД

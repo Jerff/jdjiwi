@@ -1,8 +1,6 @@
 <?php
 
-cLoader::library('database:registry/cDatabaseRegistry');
-
-class cDatabasePlaceholder extends cDatabaseRegistry {
+class cDatabasePlaceholder {
 
     private $args = null;
     private $arg = null;
@@ -19,7 +17,7 @@ class cDatabasePlaceholder extends cDatabaseRegistry {
         $this->args = $a;
         $query = preg_replace_callback('~\?([^\:\s]*)\:([^\s\,\'\"]*)|\?(fields|field|function|t\%|[^\s\,\'\"\)]?)~S', array(&$this, 'run'), $query);
         $this->args = null;
-        return $this->DB()->bilder()->query($query);
+        return cDB::bilder()->query($query);
     }
 
     private function run($m) {
@@ -52,15 +50,15 @@ class cDatabasePlaceholder extends cDatabaseRegistry {
                 $sep = '';
                 while (list($k, $v) = each($a)) {
                     if (is_string($k))
-                        $str .= $sep . $t . $this->DB()->quoteParam($k) . ' AS ' . $v;
+                        $str .= $sep . $t . cDB::quote()->param($k) . ' AS ' . $v;
                     else
-                        $str .= $sep . $t . $this->DB()->quoteParam($v);
+                        $str .= $sep . $t . cDB::quote()->param($v);
                     $sep = ', ';
                 }
                 return $str;
 
             case 'field':
-                return $this->DB()->quoteParam($a);
+                return cDB::quote()->param($a);
 
             case 's':
                 return addslashes($a);
@@ -72,13 +70,13 @@ class cDatabasePlaceholder extends cDatabaseRegistry {
                 return (int) $a;
 
             case 't':
-                return $this->DB()->quoteParam($a);
+                return cDB::quote()->param($a);
 
             case 't%':
                 $str = '';
                 $sep = '';
                 while (list($k, $v) = each($a)) {
-                    $str .= $sep . $this->DB()->quoteParam($v);
+                    $str .= $sep . cDB::quote()->param($v);
                     $sep = ', ';
                 }
                 return $str;
@@ -90,7 +88,7 @@ class cDatabasePlaceholder extends cDatabaseRegistry {
                 $str = '';
                 $sep = '';
                 while (list($k, $v) = each($a)) {
-                    $str .= $sep . $this->DB()->quoteString($v);
+                    $str .= $sep . cDB::quote()->string($v);
                     $sep = ', ';
                 }
                 return 'IN(' . $str . ')';
@@ -99,7 +97,7 @@ class cDatabasePlaceholder extends cDatabaseRegistry {
                 $str = '';
                 $sep = '';
                 while (list($k, $v) = each($a)) {
-                    $str .= $sep . $this->DB()->quoteParam($k) . '=' . $this->DB()->quoteString($v);
+                    $str .= $sep . cDB::quote()->param($k) . '=' . cDB::quote()->string($v);
                     $sep = ', ';
                 }
                 return $str;
@@ -109,14 +107,14 @@ class cDatabasePlaceholder extends cDatabaseRegistry {
                     if (is_array($v)) {
                         if (count($v)) {
                             while (list($k2, $v2) = each($v))
-                                $v[$k2] = $this->DB()->quoteString($v2);
+                                $v[$k2] = cDB::quote()->string($v2);
                             $v = 'IN(' . implode(', ', $v) . ')';
                         } else
                             $v = 'IN(-1)';
 
-                        $a[$k] = $t . $this->DB()->quoteParam($k) . ' ' . $v;
+                        $a[$k] = $t . cDB::quote()->param($k) . ' ' . $v;
                     } elseif (is_string($k))
-                        $a[$k] = $t . $this->DB()->quoteParam($k) . '=' . $this->DB()->quoteString($v);
+                        $a[$k] = $t . cDB::quote()->param($k) . '=' . cDB::quote()->string($v);
                     else
                         $a[$k] = (string) $v;
 
@@ -130,13 +128,13 @@ class cDatabasePlaceholder extends cDatabaseRegistry {
                     if (is_string($k))
                         $a[$k] = $t . $k . ' ' . $v;
                     else
-                        $a[$k] = $t . $this->DB()->quoteParam($v);
+                        $a[$k] = $t . cDB::quote()->param($v);
                 }
                 return implode(', ', $a);
 
 
             default:
-                return $this->DB()->quoteString($a);
+                return cDB::quote()->string($a);
         }
     }
 

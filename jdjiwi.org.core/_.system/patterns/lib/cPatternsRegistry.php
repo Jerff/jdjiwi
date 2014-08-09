@@ -6,7 +6,7 @@ abstract class cSqlRegistry {
     private $parent = false;
 
     protected function &register($class) {
-        if (!isset($this->mRegister[$class])) {
+        if (empty($this->mRegister[$class])) {
             $this->mRegister[$class] = new $class();
             if (is_subclass_of($this->mRegister[$class], __CLASS__)) {
                 $this->mRegister[$class]->initParent($this);

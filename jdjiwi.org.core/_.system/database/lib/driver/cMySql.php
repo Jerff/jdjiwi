@@ -34,4 +34,12 @@ class cMySql extends cDatabase {
         return $this->register('cMysqlbilder');
     }
 
+    /*
+     * utility
+     */
+
+    public function utility() {
+        return $this->register('cDatabaseUtility');
+    }
+
 }

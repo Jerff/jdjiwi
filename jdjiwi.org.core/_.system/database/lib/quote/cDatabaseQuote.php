@@ -1,29 +1,25 @@
 <?php
 
-cLoader::library('database:registry/cDatabaseRegistry');
-
-class cDatabaseQuote extends cDatabaseRegistry {
+class cDatabaseQuote {
 
     public function quote($str) {
-        return $this->DB()->quote($str);
+        return cDB::quote($str);
     }
 
-    public function quoteString($str) {
+    public function string($str) {
         return $str === null ? 'NULL' : $this->quote($str);
     }
 
-    public function quoteParam($str) {
+    public function param($str) {
         return '`' . $str . '`';
     }
 
-    public function quoteTable($mTable) {
-        $str = '';
-        $sep = '';
-        while (list($k, $v) = each($a)) {
-            $str .= $sep . $this->quoteParam($v);
-            $sep = ', ';
-        }
-        return $str;
+    public function table($table) {
+        return $this->param($a);
+    }
+
+    public function tableList($mTable) {
+        return implode(', ', array_map(array(&$this, 'table'), $mTable));
     }
 
 }
