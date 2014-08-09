@@ -31,7 +31,7 @@ class cMySql extends cDatabase {
      */
 
     public function bilder() {
-        return $this->register('cMysqlbilder');
+        return new cMysqlbilder();
     }
 
     /*
