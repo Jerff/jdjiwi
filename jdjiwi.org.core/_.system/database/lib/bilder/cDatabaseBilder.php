@@ -2,13 +2,13 @@
 
 abstract class cDatabaseBilder {
 
-    private $query = null;
+    private $mData = array();
     private $mQuery = array();
 
     // очищение таблиц базы
     public function truncate() {
         foreach (func_get_args() as $table) {
-            $this->mQuery[] = 'TRUNCATE TABLE ' . cDB::quote()->table($table);
+            $this->query('TRUNCATE TABLE ' . cDB::quote()->table($table))->compile();
         }
         return $this;
     }
@@ -31,19 +31,23 @@ abstract class cDatabaseBilder {
     }
 
     private function query($query) {
-        $this->query .= $query;
+        $this->mData[] = $query;
         return $this;
     }
 
-    public function exec() {
-        if (empty($this->mQuery)) {
-            return cDB::query($this->query);
-        } else {
-            foreach ($this->mQuery as $query) {
-                $res = cDB::query($query);
-            }
-            return $res;
+    private function compile() {
+        if (!empty($this->mData)) {
+            $this->mQuery[] = implode(' ', $this->mData);
         }
+        $this->mData = array();
+    }
+
+    public function exec() {
+        $this->compile();
+        foreach ($this->mQuery as $query) {
+            $res = cDB::query($query);
+        }
+        return $res;
     }
 
 }

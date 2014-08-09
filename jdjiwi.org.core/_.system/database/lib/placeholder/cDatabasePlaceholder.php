@@ -64,23 +64,16 @@ class cDatabasePlaceholder {
                 return addslashes($a);
 
             case 'like':
-                return '%' . addslashes(str_replace('%', '%%', $a)) . '%';
+                return cDB::quote()->like($a);
 
             case 'i':
-                return (int) $a;
+                return cDB::quote()->int($a);
 
             case 't':
-                return cDB::quote()->param($a);
+                return cDB::quote()->table($a);
 
             case 't%':
-                $str = '';
-                $sep = '';
-                while (list($k, $v) = each($a)) {
-                    $str .= $sep . cDB::quote()->param($v);
-                    $sep = ', ';
-                }
-                return $str;
-
+                return cDB::quote()->tableList($a);
 
             case '@':
                 if (!count($a))
