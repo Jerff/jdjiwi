@@ -5,7 +5,10 @@ abstract class cDatabaseBilder {
     private $mData = array();
     private $mQuery = array();
 
-    // очищение таблиц базы
+    /*
+     * TRUNCATE
+     */
+
     public function truncate() {
         foreach (func_get_args() as $table) {
             $this->query('TRUNCATE TABLE ' . cDB::quote()->table($table))->compile();
@@ -13,7 +16,10 @@ abstract class cDatabaseBilder {
         return $this;
     }
 
-    // оптимизация таблиц базы
+    /*
+     * OPTIMIZE
+     */
+
     public function optimize() {
         if (func_num_args()) {
             $mTable = array();
@@ -28,6 +34,38 @@ abstract class cDatabaseBilder {
             $mTable = cDB::utility()->tableList();
         }
         return $this->query('OPTIMIZE TABLE '. cDB::utility()->tableList(...func_get_args()));
+    }
+
+    /*
+     * SELECT
+     */
+
+    public function select($fields, $function = null, $options = array()) {
+        return $this->query('SELECT ' . implode(' ', $options) . cDB::quote()->fileds($fields) . ($function ? ', ' . cDB::quote()->func($fields) : '' ));
+    }
+
+    /*
+     * FROM
+     */
+
+    public function from($table, $alias = null) {
+        return $this->query($table . ($alias? : ''));
+    }
+    /*
+     * JOIN
+     */
+
+    public function join($type, ...$mTable) {
+
+    }
+
+    /*
+     * query
+     */
+
+    public function __toString() {
+        $this->compile();
+        return each($this->mQuery);
     }
 
     private function query($query) {
