@@ -11,7 +11,7 @@ class cSqlUtil extends cPatternsRegistry {
 
     // список все таблиц базы
     public function getTableList() {
-        $res = $this->parent()->query("SHOW TABLES")->fetchRowAll();
+        $res = $this->DB()->query("SHOW TABLES")->fetchRowAll();
         $mTable = array();
         while (list(, list($row)) = each($res)) {
             $mTable[$row] = $row;
@@ -22,7 +22,7 @@ class cSqlUtil extends cPatternsRegistry {
     // очищение таблиц базы
     public function truncate() {
         foreach (func_get_args() as $t) {
-            $this->parent()->placeholder("TRUNCATE TABLE ?t", $t);
+            $this->DB()->placeholder("TRUNCATE TABLE ?t", $t);
         }
     }
 

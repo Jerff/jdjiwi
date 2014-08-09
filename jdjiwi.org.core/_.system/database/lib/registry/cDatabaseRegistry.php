@@ -1,6 +1,6 @@
 <?php
 
-abstract class cSqlRegistry {
+abstract class cDatabaseRegistry {
 
     private $mRegister = array();
     private $parent = false;
@@ -9,18 +9,18 @@ abstract class cSqlRegistry {
         if (!isset($this->mRegister[$class])) {
             $this->mRegister[$class] = new $class();
             if (is_subclass_of($this->mRegister[$class], __CLASS__)) {
-                $this->mRegister[$class]->initParent($this);
+                $this->mRegister[$class]->initDb($this);
             }
         }
         return $this->mRegister[$class];
     }
 
     // инициализация регистра в подчиненных классах
-    public function initParent(&$parent) {
+    public function initDb(&$parent) {
         $this->parent = $parent;
     }
 
-    protected function parent() {
+    protected function DB() {
         return $this->parent;
     }
 

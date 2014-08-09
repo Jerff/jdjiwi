@@ -1,25 +1,25 @@
 <?php
 
-cLoader::library('sql:exception/cSqlException');
-cLoader::library('sql:mysql/cMySql');
+cLoader::library('database:exception/cDatabaseException');
+cLoader::library('database:driver/cMySql');
 
-class cDB extends cPatternsStaticRegistry {
+class cDB {
 
-    static private $instance;
+    static private $driver;
 
     private static function driver() {
-        if (empty(self::$instance)) {
+        if (empty(self::$driver)) {
             switch (cConfig::get('database.driver')) {
                 case 'mysql':
-                    self::$instance = new cMySql();
+                    self::$driver = new cMySql();
                     break;
 
                 default:
-                    throw new cSqlException('нет установлен драйвер базы');
+                    throw new cDatabaseException('нет установлен драйвер базы');
                     exit;
             }
         }
-        return self::$instance;
+        return self::$driver;
     }
 
     public static function table($table) {
@@ -33,10 +33,11 @@ class cDB extends cPatternsStaticRegistry {
             case 'update':
             case 'delete':
             case 'truncate':
-                return self::driver()->query()->$name(...$arguments);
+            case 'optimize':
+            case 'union':
+                return self::driver()->bilder()->$name(...$arguments);
                 break;
 
-            case 'placeholder':
             default:
                 return self::driver()->$name(...$arguments);
                 break;

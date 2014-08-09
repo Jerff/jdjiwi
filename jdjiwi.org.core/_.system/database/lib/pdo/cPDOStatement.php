@@ -90,4 +90,3 @@ class cPDOStatement extends PDOStatement {
     }
 
 }
-

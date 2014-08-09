@@ -1,11 +1,15 @@
 <?php
 
-cLoader::library('patterns:cPatternsRegistry');
-cLoader::library('sql:cSqlPlaceholder');
+cLoader::library('database:registry/cDatabaseRegistry');
+cLoader::library('database:quote/cDatabaseQuote');
 
-abstract class cSql extends cPatternsRegistry {
+abstract class cDatabase extends cDatabaseRegistry {
 
     abstract protected function driver();
+
+    abstract protected function placeholder();
+
+    abstract protected function bilder();
 
     /*
      * работа с БД
@@ -29,16 +33,12 @@ abstract class cSql extends cPatternsRegistry {
                     }
                 }
             } else {
-                throw new cSqlException($query, $this->driver()->errorInfo());
+                throw new cDatabaseException($query, $this->driver()->errorInfo());
             }
-        } catch (cSqlException $e) {
+        } catch (cDatabaseException $e) {
             $e->errorLog();
         }
         return $res;
-    }
-
-    public function getAttribute($attr) {
-        return $this->driver()->getAttribute($attr);
     }
 
     public function lastInsertId() {
@@ -46,39 +46,19 @@ abstract class cSql extends cPatternsRegistry {
     }
 
     public function getClientVersion() {
-        return $this->getAttribute(PDO::ATTR_CLIENT_VERSION);
-    }
-
-    /*
-     * placeholder
-     */
-
-    public function placeholder() {
-        return $this->register('cSqlPlaceholder')->query(...func_get_args());
+        return $this->driver()->getAttribute(PDO::ATTR_CLIENT_VERSION);
     }
 
     /*
      * quote
      */
 
-    public function quote($str) {
-        return $this->driver()->quote($str);
-    }
-
-    public function quoteString($str) {
-        return $str === null ? 'NULL' : $this->quote($str);
-    }
-
-    public function quoteParam($str) {
-        return '`' . $str . '`';
-    }
-
-    /*
-     * Утилиты
-     */
-
-    protected function util() {
-        return $this->register('cSqlUtil');
+    public function quote($str = null) {
+        if (empty($str)) {
+            return $this->driver()->quote($str);
+        } else {
+            return $this->register('cDatabaseQuote');
+        }
     }
 
 }

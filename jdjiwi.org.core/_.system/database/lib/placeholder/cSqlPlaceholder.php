@@ -1,6 +1,8 @@
 <?php
 
-class cSqlPlaceholder {
+cLoader::library('database:registry/cDatabaseRegistry');
+
+class cDatabasePlaceholder extends cDatabaseRegistry {
 
     private $args = null;
     private $arg = null;
@@ -17,7 +19,7 @@ class cSqlPlaceholder {
         $this->args = $a;
         $query = preg_replace_callback('~\?([^\:\s]*)\:([^\s\,\'\"]*)|\?(fields|field|function|t\%|[^\s\,\'\"\)]?)~S', array(&$this, 'run'), $query);
         $this->args = null;
-        return $this->parent()->query()->query($query);
+        return $this->DB()->bilder()->query($query);
     }
 
     private function run($m) {
@@ -50,15 +52,15 @@ class cSqlPlaceholder {
                 $sep = '';
                 while (list($k, $v) = each($a)) {
                     if (is_string($k))
-                        $str .= $sep . $t . $this->parent()->quoteParam($k) . ' AS ' . $v;
+                        $str .= $sep . $t . $this->DB()->quoteParam($k) . ' AS ' . $v;
                     else
-                        $str .= $sep . $t . $this->parent()->quoteParam($v);
+                        $str .= $sep . $t . $this->DB()->quoteParam($v);
                     $sep = ', ';
                 }
                 return $str;
 
             case 'field':
-                return $this->parent()->quoteParam($a);
+                return $this->DB()->quoteParam($a);
 
             case 's':
                 return addslashes($a);
@@ -70,13 +72,13 @@ class cSqlPlaceholder {
                 return (int) $a;
 
             case 't':
-                return $this->parent()->quoteParam($a);
+                return $this->DB()->quoteParam($a);
 
             case 't%':
                 $str = '';
                 $sep = '';
                 while (list($k, $v) = each($a)) {
-                    $str .= $sep . $this->parent()->quoteParam($v);
+                    $str .= $sep . $this->DB()->quoteParam($v);
                     $sep = ', ';
                 }
                 return $str;
@@ -88,7 +90,7 @@ class cSqlPlaceholder {
                 $str = '';
                 $sep = '';
                 while (list($k, $v) = each($a)) {
-                    $str .= $sep . $this->parent()->quoteString($v);
+                    $str .= $sep . $this->DB()->quoteString($v);
                     $sep = ', ';
                 }
                 return 'IN(' . $str . ')';
@@ -97,7 +99,7 @@ class cSqlPlaceholder {
                 $str = '';
                 $sep = '';
                 while (list($k, $v) = each($a)) {
-                    $str .= $sep . $this->quoteParam($k) . '=' . $this->quoteString($v);
+                    $str .= $sep . $this->DB()->quoteParam($k) . '=' . $this->DB()->quoteString($v);
                     $sep = ', ';
                 }
                 return $str;
@@ -107,14 +109,14 @@ class cSqlPlaceholder {
                     if (is_array($v)) {
                         if (count($v)) {
                             while (list($k2, $v2) = each($v))
-                                $v[$k2] = $this->parent()->quoteString($v2);
+                                $v[$k2] = $this->DB()->quoteString($v2);
                             $v = 'IN(' . implode(', ', $v) . ')';
                         } else
                             $v = 'IN(-1)';
 
-                        $a[$k] = $t . $this->parent()->quoteParam($k) . ' ' . $v;
+                        $a[$k] = $t . $this->DB()->quoteParam($k) . ' ' . $v;
                     } elseif (is_string($k))
-                        $a[$k] = $t . $this->parent()->quoteParam($k) . '=' . $this->parent()->quoteString($v);
+                        $a[$k] = $t . $this->DB()->quoteParam($k) . '=' . $this->DB()->quoteString($v);
                     else
                         $a[$k] = (string) $v;
 
@@ -128,13 +130,13 @@ class cSqlPlaceholder {
                     if (is_string($k))
                         $a[$k] = $t . $k . ' ' . $v;
                     else
-                        $a[$k] = $t . $this->parent()->quoteParam($v);
+                        $a[$k] = $t . $this->DB()->quoteParam($v);
                 }
                 return implode(', ', $a);
 
 
             default:
-                return $this->parent()->quoteString($a);
+                return $this->DB()->quoteString($a);
         }
     }
 

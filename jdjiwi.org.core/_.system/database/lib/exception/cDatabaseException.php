@@ -2,7 +2,7 @@
 
 cLoader::library('debug:exception/cException');
 
-class cSqlException extends cException {
+class cDatabaseException extends cException {
 
     protected $name = 'Ошибка базы данных';
     protected $sqlError = false;
@@ -25,4 +25,3 @@ class cSqlException extends cException {
     }
 
 }
-
