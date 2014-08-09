@@ -27,7 +27,7 @@ abstract class cDatabaseBilder {
         } else {
             $mTable = cDB::utility()->tableList();
         }
-        return $this->query('TRUNCATE TABLE '. cDB::utility()->tableList(...func_get_args()));
+        return $this->query('OPTIMIZE TABLE '. cDB::utility()->tableList(...func_get_args()));
     }
 
     private function query($query) {
