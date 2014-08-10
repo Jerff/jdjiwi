@@ -94,7 +94,7 @@ abstract class cDatabaseBilder {
         }
         $options = $this->options;
         $this->options = '';
-        return ' ' . $options . ' ';
+        return ' ' . implode(' ', $options) . ' ';
     }
 
     /*
@@ -126,7 +126,7 @@ abstract class cDatabaseBilder {
     }
 
     protected function parseOrderBy() {
-
+        
     }
 
     /*
@@ -138,7 +138,7 @@ abstract class cDatabaseBilder {
     }
 
     protected function parseWhere() {
-
+        
     }
 
     /*
