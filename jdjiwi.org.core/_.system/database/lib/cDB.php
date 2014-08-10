@@ -5,6 +5,8 @@ cLoader::library('database:driver/cMySql');
 
 class cDB {
 
+    const SQL_CALC_FOUND_ROWS = 'SQL_CALC_FOUND_ROWS';
+
     static private $driver;
 
     private static function driver() {

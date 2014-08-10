@@ -2,6 +2,7 @@
 
 abstract class cDatabaseBilder {
 
+    private $options = '';
     private $mData = array();
     private $mQuery = array();
 
@@ -40,8 +41,23 @@ abstract class cDatabaseBilder {
      * SELECT
      */
 
-    public function select($fields, $function = null, $options = array()) {
-        return $this->query('SELECT ' . implode(' ', $options) . cDB::quote()->fileds($fields) . ($function ? ', ' . cDB::quote()->func($fields) : '' ));
+    public function select($fields) {
+        return $this->query('SELECT ' . $this->getOptions() . self::parseFields($fields));
+    }
+
+    static protected function parseFields($fields, $sep = 'AS') {
+        $sep = ' ' . $sep . ' ';
+        foreach ($fields as $key => $value) {
+            $fields[$key] = $this->param($v);
+            if (is_array($value) and $key === 'function') {
+                foreach ($value as $k => $v) {
+                    $fields[] = $k . ' AS ' . $v;
+                }
+            } else if (is_string($k)) {
+                $fields[$key] = $this->field($k) . ' AS ' . $value;
+            }
+        }
+        return implode(', ', $fields);
     }
 
     /*
@@ -49,14 +65,88 @@ abstract class cDatabaseBilder {
      */
 
     public function from($table, $alias = null) {
-        return $this->query($table . ($alias? : ''));
+        return $this->query(cDB::quote()->table($table) . ($alias ? ' AS ' . $alias : ''));
     }
+
+    /*
+     * OPTIONS
+     */
+
+    public function options() {
+        switch (func_num_args()) {
+            case 0:
+                break;
+
+            case 1:
+                $this->options = func_get_arg(0);
+                break;
+
+            default:
+                $this->options = func_get_args();
+                break;
+        }
+        return $this;
+    }
+
+    public function getOptions() {
+        if (empty($this->options)) {
+            return '';
+        }
+        $options = $this->options;
+        $this->options = '';
+        return ' ' . $options . ' ';
+    }
+
+    /*
+     * UNION
+     */
+
+    public function union() {
+        return $this->query('('. implode(') UNION (', func_get_args() .')');
+    }
+
     /*
      * JOIN
      */
 
-    public function join($type, ...$mTable) {
+    public function join($table, $alias = null) {
+        return $this->query($this->getOptions() . ' JOIN ' . cDB::quote()->table($table) . ($alias ? ' AS ' . $alias : ''));
+    }
 
+    public function on() {
+        return $this->query(' ON ('. $this->parseWhere(...func_get_args()) .')');
+    }
+
+    /*
+     * SORT
+     */
+
+    public function orderBy() {
+        return $this->query(' ORDER BY '. $this->parseOrderBy(...func_get_args()));
+    }
+
+    protected function parseOrderBy() {
+
+    }
+
+    /*
+     * WHERE
+     */
+
+    public function where() {
+        return $this->query(' WHERE '. $this->parseWhere(...func_get_args()));
+    }
+
+    protected function parseWhere() {
+
+    }
+
+    /*
+     * LIMIT
+     */
+
+    public function limit($offset, $count = null) {
+        return $this->query('LIMIT ' . (int) $offset .($count? ', ', (int) $count : ''));
     }
 
     /*
