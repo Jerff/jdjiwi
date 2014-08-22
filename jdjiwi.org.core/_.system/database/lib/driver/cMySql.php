@@ -39,7 +39,7 @@ class cMySql extends cDatabase {
      */
 
     public function utility() {
-        return $this->register('cDatabaseUtility');
+        return $this->register('cMysqlUtility');
     }
 
 }

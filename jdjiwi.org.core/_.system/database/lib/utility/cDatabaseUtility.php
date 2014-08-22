@@ -1,11 +1,9 @@
 <?php
 
-class cDatabaseUtility {
+abstract class cDatabaseUtility {
 
     // количество рядов
-    public function getFoundRows() {
-        return (int) cDB::query('SELECT FOUND_ROWS()')->fetchRow(0);
-    }
+    abstract public function getFoundRows();
 
     // список все таблиц базы
     public function tableList() {

@@ -2,6 +2,7 @@
 
 abstract class cDatabaseBilder {
 
+    private $mConfig = array();
     private $options = '';
     private $mData = array();
     private $mQuery = array();
@@ -34,12 +35,14 @@ abstract class cDatabaseBilder {
         } else {
             $mTable = cDB::utility()->tableList();
         }
-        return $this->query('OPTIMIZE TABLE '. cDB::utility()->tableList(...func_get_args()));
+        return $this->query('OPTIMIZE TABLE ' . cDB::utility()->tableList(...func_get_args()));
     }
 
     /*
      * SELECT
      */
+
+    abstract public function selectCalcFoundRows($fields);
 
     public function select($fields) {
         return $this->query('SELECT ' . $this->getOptions() . self::parseFields($fields));
@@ -66,6 +69,23 @@ abstract class cDatabaseBilder {
 
     public function from($table, $alias = null) {
         return $this->query(cDB::quote()->table($table) . ($alias ? ' AS ' . $alias : ''));
+    }
+
+    /*
+     * CONFIG
+     */
+
+    public function config($key, $value = true) {
+        $mConfig[$key] = $value;
+        return $this;
+    }
+
+    public function isConfig($key) {
+        return isset(self::$mConfig[$key]);
+    }
+
+    public function getConfig($key) {
+        return get(self::$mConfig, $key);
     }
 
     /*
@@ -102,7 +122,7 @@ abstract class cDatabaseBilder {
      */
 
     public function union() {
-        return $this->query('('. implode(') UNION (', func_get_args() .')');
+        return $this->query('(' . implode(') UNION (', func_get_args() . ')'));
     }
 
     /*
@@ -114,7 +134,7 @@ abstract class cDatabaseBilder {
     }
 
     public function on() {
-        return $this->query(' ON ('. $this->parseWhere(...func_get_args()) .')');
+        return $this->query(' ON (' . $this->parseWhere(...func_get_args()) . ')');
     }
 
     /*
@@ -122,7 +142,7 @@ abstract class cDatabaseBilder {
      */
 
     public function orderBy() {
-        return $this->query(' ORDER BY '. $this->parseOrderBy(...func_get_args()));
+        return $this->query(' ORDER BY ' . $this->parseOrderBy(...func_get_args()));
     }
 
     protected function parseOrderBy() {
@@ -134,7 +154,7 @@ abstract class cDatabaseBilder {
      */
 
     public function where() {
-        return $this->query(' WHERE '. $this->parseWhere(...func_get_args()));
+        return $this->query(' WHERE ' . $this->parseWhere(...func_get_args()));
     }
 
     protected function parseWhere() {
@@ -146,7 +166,7 @@ abstract class cDatabaseBilder {
      */
 
     public function limit($offset, $count = null) {
-        return $this->query('LIMIT ' . (int) $offset .($count? ', ', (int) $count : ''));
+        return $this->query('LIMIT ' . (int) $offset . ($count ? ', ' . (int) $count : ''));
     }
 
     /*
@@ -175,7 +195,12 @@ abstract class cDatabaseBilder {
         foreach ($this->mQuery as $query) {
             $res = cDB::query($query);
         }
+        $this->initResult($res);
         return $res;
+    }
+
+    public function initResult(&$res) {
+        
     }
 
 }

@@ -4,15 +4,6 @@ cLoader::library('core:string/cConvert');
 
 class cString {
 
-    static public function init() {
-        cConfig::load('i18n');
-        setlocale(LC_ALL, cConfig::get('i18n.locale'));
-        if (extension_loaded('mbstring')) {
-            mb_language(cConfig::get('i18n.mbstring.language'));
-            mb_internal_encoding(cConfig::get('i18n.charset'));
-        }
-    }
-
     static public function convertEncoding($str) {
         $char = mb_detect_encoding($str);
         if ($char !== cConfig::get('i18n.charset')) {

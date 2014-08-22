@@ -1,10 +1,10 @@
 <?php
 
-class cPDOStatement extends PDOStatement {
+class cResult extends PDOStatement {
 
     //освобождение памяти при уничтожение объекта (сам он это не делает)
     public function __destruct() {
-        $this->closeCursor();
+        $this->free();
     }
 
     public function fetchAssoc() {
@@ -87,6 +87,20 @@ class cPDOStatement extends PDOStatement {
                 break;
         }
         return $new;
+    }
+
+    /*
+     * OPTION
+     */
+
+    private $calcFoundRows = null;
+
+    public function setCalcFoundRows($value) {
+        $this->calcFoundRows = $value;
+    }
+
+    public function getFoundRows() {
+        return $this->calcFoundRows;
     }
 
 }

@@ -31,6 +31,7 @@ class cDB {
     public static function __callStatic($name, $arguments) {
         switch ($name) {
             case 'select':
+            case 'selectCalcFoundRows':
             case 'insert':
             case 'update':
             case 'delete':
