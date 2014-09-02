@@ -42,7 +42,7 @@ abstract class cDatabaseBilder {
      * SELECT
      */
 
-    abstract public function selectCalcFoundRows($fields);
+    abstract public function selectCalcFoundRows();
 
     public function select($fields) {
         return $this->query('SELECT ' . $this->getOptions() . self::parseFields($fields));

@@ -4,8 +4,8 @@ cLoader::library('database:bilder/cDatabaseBilder');
 
 class cMysqlBilder extends cDatabaseBilder {
 
-    public function selectCalcFoundRows($fields) {
-        return $this->options('SQL_CALC_FOUND_ROWS')->config('SQL_CALC_FOUND_ROWS')->select($fields);
+    public function selectCalcFoundRows() {
+        return $this->options('SQL_CALC_FOUND_ROWS')->config('SQL_CALC_FOUND_ROWS')->select(...func_get_args());
     }
 
     public function initResult(&$res) {
