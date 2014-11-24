@@ -7,7 +7,9 @@ if (!class_exists('cLoaderCompile', false)) {
 class cLoader extends cLoaderCompile {
 
     static private $path = array(
-            cSoursePath, cSoursePath . '_.system', cSoursePath, cSoursePath . '_.library', PATH_SEPARATOR . cSoursePath . 'application'
+        cSoursePath, cSoursePath . '_.system',
+        cSoursePath, cSoursePath . '_.library',
+        PATH_SEPARATOR . cSoursePath . 'application'
     );
 
     static public function init() {
