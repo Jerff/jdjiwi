@@ -1,0 +1,17 @@
+{
+    "name": "jdjiwi.org/jdjiwi.org",
+    "description": "jdjiwi.org",
+    "authors": [
+        {
+            "name": "jdjiwi",
+            "email": "info@jdjiwi.org"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "dev-master",
+        "components/jquery": "dev-master",
+        "components/jqueryui": "dev-master",
+        "phpmailer/phpmailer": "dev-master",
+        "meenie/javascript-packer": "dev-master"
+    }
+}
