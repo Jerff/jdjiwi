@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('PHPMailer/class.phpmailer');
+cLoader::library('vendor/phpmailer/phpmailer/class.phpmailer');
 
 class cMail {
 

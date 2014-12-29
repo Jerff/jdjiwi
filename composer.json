@@ -1,6 +1,9 @@
 {
     "name": "jdjiwi.org/jdjiwi.org",
     "description": "jdjiwi.org",
+    "config": {
+        "vendor-dir": "jdjiwi.org.core/_.library/vendor"
+    },
     "authors": [
         {
             "name": "jdjiwi",

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6de87ff296b5c1a54e1a485dc349785b",
+    "hash": "8846988701c5230536742998ddcbe937",
     "packages": [
         {
             "name": "components/jquery",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/components/jquery.git",
-                "reference": "104762e247cc7e377cdbba9d27414a5944b9c81e"
+                "reference": "f8edb647d1833fd5d57410ab70860f03534cb2e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/jquery/zipball/104762e247cc7e377cdbba9d27414a5944b9c81e",
-                "reference": "104762e247cc7e377cdbba9d27414a5944b9c81e",
+                "url": "https://api.github.com/repos/components/jquery/zipball/f8edb647d1833fd5d57410ab70860f03534cb2e8",
+                "reference": "f8edb647d1833fd5d57410ab70860f03534cb2e8",
                 "shasum": ""
             },
             "type": "component",
@@ -46,7 +46,7 @@
             ],
             "description": "jQuery JavaScript Library",
             "homepage": "http://jquery.com",
-            "time": "2014-11-16 14:44:25"
+            "time": "2014-12-23 06:48:45"
         },
         {
             "name": "components/jqueryui",
@@ -176,12 +176,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "b7f1dd174d030e90a41728220b59f228844f04a0"
+                "reference": "dcf5bf624d3315902717835aa72276a038bb2b1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/b7f1dd174d030e90a41728220b59f228844f04a0",
-                "reference": "b7f1dd174d030e90a41728220b59f228844f04a0",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/dcf5bf624d3315902717835aa72276a038bb2b1e",
+                "reference": "dcf5bf624d3315902717835aa72276a038bb2b1e",
                 "shasum": ""
             },
             "require": {
@@ -221,7 +221,7 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2014-12-06 14:07:54"
+            "time": "2014-12-28 04:19:04"
         },
         {
             "name": "twbs/bootstrap",
@@ -286,6 +286,7 @@
         "meenie/javascript-packer": 20
     },
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": [],
     "platform-dev": []
 }

@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('packer.php/class.JavaScriptPacker');
+cLoader::library('vendor/meenie/javascript-packer/class.JavaScriptPacker');
 
 class cCompileJsCss {
     /*
@@ -52,7 +52,7 @@ class cCompileJsCss {
                 header('Content-Type: text/css');
                 $sep = '';
                 break;
-            
+
             default:
                 exit;
         }
