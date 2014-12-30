@@ -2,6 +2,7 @@
 
 cLoader::library('file:exception/cFileException');
 cLoader::library('file:system/cExec');
+cLoader::library('file:system/cFileAccess');
 cLoader::library('core:string/cConvert');
 
 class cFileSystem {

@@ -1,6 +1,7 @@
 <?php
 
 cConfig::load('file');
+cConfig::load('path');
 cModul::config('const');
 
 cLoader::library('file:path/cPath');

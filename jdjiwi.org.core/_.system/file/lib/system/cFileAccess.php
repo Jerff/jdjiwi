@@ -32,9 +32,6 @@ class cFileAccess {
     }
 
     static public function path($path) {
-        if ($path !== realpath($path)) {
-            throw new cFileException('Путь не соответсвует канонизированному абсолютному пути', $path);
-        }
         $mPath = array();
         switch (self::get()) {
             case self::CORE:
@@ -46,7 +43,7 @@ class cFileAccess {
                 $mPath[] = cConfig::get('path.data');
                 $mPath[] = cConfig::get('path.compile');
                 $mPath[] = cConfig::get('cache.site.path');
-                $mPath[] = cConfig::get('file.path');
+                $mPath[] = cConfig::get('path.file');
                 break;
 
             default:
@@ -54,10 +51,11 @@ class cFileAccess {
                 break;
         }
         foreach ($mPath as $root) {
-            if (strpos($path, $root) !== 0) {
-                throw new cFileException('Попытка доступа к запрещенной папке, вне правил {уровень доступа ' . self::get() . '}', $path);
+            if (strpos($path, $root) === 0) {
+                return;
             }
         }
+        throw new cFileException('Попытка доступа к запрещенной папке, вне правил {уровень доступа ' . self::get() . '}', $path);
     }
 
 }

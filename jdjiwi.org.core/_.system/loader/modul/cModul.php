@@ -77,6 +77,7 @@ class cModul extends cLoaderCompile {
 
     static public function call($modul) {
         self::$isCompile = true;
+        cLog::log('host: ' . cConfig::get('host'));
         cLog::log('run: ' . cApplication);
         self::load($modul);
         return self::loadFile($modul, 'call');

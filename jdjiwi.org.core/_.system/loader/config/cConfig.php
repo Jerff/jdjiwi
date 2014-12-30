@@ -33,6 +33,7 @@ class cConfig extends cLoaderCompile {
             foreach ($data as $host => $data) {
                 if (strpos($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], $data['url']) === 0) {
                     self::$host = $host;
+                    self::$mData['host'] = $host;
                     break;
                 }
             }

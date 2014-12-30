@@ -11,8 +11,6 @@ chdir(__DIR__);
 
 // конфигурация
 $compile = require(cSoursePath . '_.config/compile.php');
-//require('_.config/config.php');
-//require('_.config/setting.project.php');
 // системный кеш
 if ($compile['is']) {
     if (is_file($compile['path'] . 'loader.php')) {

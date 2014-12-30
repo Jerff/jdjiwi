@@ -10,6 +10,11 @@ return array(
      */
     'compile' => cWWWPath . 'core-compile/',
     /*
+     * file
+     */
+    'file' => cWWWPath .cConfig::get('file.path'),
+    'file.tmp' => cWWWPath .cConfig::get('file.path.tmp'),
+    /*
      * app
      */
     'app.ajax' => cConfig::get('host.app.theme') . 'ajax/',
@@ -17,7 +22,7 @@ return array(
     'app.form' => cConfig::get('host.app.theme') . 'form/',
     'app.templates' => cConfig::get('host.app.theme') . 'templates/',
     /*
-     * components 
+     * components
      */
     'components' => cSoursePath . 'components/',
 );

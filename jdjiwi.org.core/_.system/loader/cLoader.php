@@ -42,7 +42,6 @@ cLoader::setHistory('loader/cLoader');
 cLoader::setHistory('loader/compile/cLoaderCompile');
 cLoader::library('loader/config/cConfig');
 cConfig::load('host');
-cConfig::load('path');
 cLoader::library('loader/autoload/cAutoload');
 cLoader::library('loader/modul/cModul');
 cModul::load('loader', true);
