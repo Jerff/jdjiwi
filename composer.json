@@ -11,8 +11,7 @@
         }
     ],
     "require": {
-        "twbs/bootstrap": "dev-master",
-        "components/jquery": "dev-master",
+        "components/bootstrap": "dev-master",
         "components/jqueryui": "dev-master",
         "phpmailer/phpmailer": "dev-master",
         "meenie/javascript-packer": "dev-master"
