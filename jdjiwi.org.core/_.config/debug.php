@@ -2,9 +2,8 @@
 
 return array(
     'error' => true,
-    'modul' => true,
+    'modul' => false,
     'ajax' => false,
     'sql' => false,
     'sql.explain' => false,
-    'sql.log' => true,
 );

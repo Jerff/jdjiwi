@@ -3,7 +3,7 @@
 class cDebug {
 
     private static $isError = true;
-    private static $isModul = true;
+    private static $isModul = false;
     private static $isAjax = false;
     private static $isSql = false;
     private static $isExplain = false;

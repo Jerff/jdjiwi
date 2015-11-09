@@ -9,6 +9,7 @@ class cInit {
      */
 
     public static function init() {
+        cDebug::init();
         ini_set('html_errors', 'On');
         ini_set('docref_root', '');
         ini_set('docref_ext', '');
