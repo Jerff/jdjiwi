@@ -7,7 +7,7 @@ class cLog {
 
     private static $sqlTime = 0;
     private static $sqlCount = 0;
-    private static $log = '';
+    private static $log = array('log' => array());
     private static $startTime = null;
 
     /* инициализация */
@@ -18,7 +18,7 @@ class cLog {
     }
 
     static public function destroy() {
-        self::$log = null;
+        self::$log = array();
     }
 
     /* отладка memory */
@@ -29,7 +29,13 @@ class cLog {
 
     // количетсво потраченной пямяти
     static public function memory() {
-        self::$log .= PHP_EOL . 'memory: ' . self::round(memory_get_usage() / 1024 / 1024);
+        self::addLog('log', 'memory: ' . self::round(memory_get_usage() / 1024 / 1024));
+    }
+
+    static public function modul($modul) {
+        if (cDebug::isModul()) {
+            self::addLog('modul', $modul . ': ' . self::round(memory_get_usage() / 1024 / 1024));
+        }
     }
 
     /* ошибки error */
@@ -47,15 +53,19 @@ class cLog {
 //            if (!cDebug::isShutdown()) {
 //                echo '<pre>' . $message . '</pre>';
 //            }
-            self::$log .= PHP_EOL . $message . PHP_EOL;
+            self::addLog('log', $message . PHP_EOL);
         }
     }
 
     // добавить в лог ошибок php
+    static private function addLog($type, $message) {
+        self::$log[$type][] = $message;
+    }
+
     static public function log($message) {
-        if (cDebug::isError()) {
+        if (cDebug::isSql()) {
             self::processingMessage($message);
-            self::$log .= PHP_EOL . $message;
+            self::addLog('log', $message);
         }
     }
 
@@ -63,26 +73,26 @@ class cLog {
 
     // добавить в лог запросов к базе
     static public function sql($message = 'SELECT 1', $time = null) {
-        if (!cDebug::isSql())
-            return;
-        $message = ( ++self::$sqlCount) . ' ' . self::round($time) . " " . cString::specialchars($message);
-        if (class_exists('cPages', false)) {
-            $page = cPages::getItem();
-            if (cPages::isMain($page)) {
-                $message .=" [{$page}]";
-            } else {
-                $main = cPages::getMain($page);
-                $message .=" [{$main}] [{$page}]";
+        if (cDebug::isSql()) {
+            $message = ( ++self::$sqlCount) . ' ' . self::round($time) . " " . cString::specialchars($message);
+            if (class_exists('cPages', false)) {
+                $page = cPages::getItem();
+                if (cPages::isMain($page)) {
+                    $message .=" [{$page}]";
+                } else {
+                    $main = cPages::getMain($page);
+                    $message .=" [{$main}] [{$page}]";
+                }
             }
+            self::addLog('log', $message);
+            self::$sqlTime += $time;
         }
-        self::$log .= PHP_EOL . $message;
-        self::$sqlTime += $time;
     }
 
     // добавить в лог запросов к базе
     static public function explain($message) {
         if (cDebug::isExplain()) {
-            self::$log .= PHP_EOL . cString::specialchars($message);
+            self::addLog('log', cString::specialchars($message));
         }
     }
 
@@ -94,11 +104,17 @@ class cLog {
                 . PHP_EOL . '<b>RUN/INIT</b> = ' . self::round(cTime::microtime() - self::$startTime)
                 . '/' . self::round(self::$startTime - cTime::microtime(cTimeInit))
                 . PHP_EOL . '<b>TIME</b> = ' . self::round(cTime::microtime() - cTime::microtime(cTimeInit));
-        
+
         if (cDebug::isSql()) {
             $message .= PHP_EOL . '<b>SQL_TIME(' . self::$sqlCount . ')</b> = ' . self::round(self::$sqlTime);
         }
-        return $message . self::$log . '</pre>';
+        foreach (self::$log as $key => $value) {
+            if ($key !== 'log') {
+                $message .= PHP_EOL . PHP_EOL . $key . '.log:';
+            }
+            $message .= PHP_EOL . implode(PHP_EOL, $value);
+        }
+        return $message . '</pre>';
     }
 
     // запись ошибок в файл
@@ -121,4 +137,3 @@ class cLog {
     }
 
 }
-

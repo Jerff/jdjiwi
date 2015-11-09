@@ -16,7 +16,7 @@ class cLoader extends cLoaderCompile {
         set_include_path(get_include_path() . PATH_SEPARATOR . implode(PATH_SEPARATOR, self::$path));
     }
 
-    static public function path($file) {
+    static public function path(string $file) {
         foreach (self::$path as $path) {
             if (is_file($path . '/' . $file)) {
                 return $path . '/' . $file;
@@ -25,11 +25,11 @@ class cLoader extends cLoaderCompile {
         return false;
     }
 
-    static public function library($file) {
+    static public function library(string $file) {
         self::file(str_replace(':', '/lib/', $file));
     }
 
-    static public function isExtension($name) {
+    static public function isExtension(string $name) {
         if (!extension_loaded($name)) {
             throw new cException('расширение не загружено', $name);
         }

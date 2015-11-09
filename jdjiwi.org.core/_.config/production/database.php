@@ -5,7 +5,7 @@ return array(
      * Настройки базы
      */
     'mysql.host' => 'localhost',
-    'mysql.user' => 'root',
-    'mysql.password' => 'prog12345',
+    'mysql.user' => 'core_jdjiwi_ru',
+    'mysql.password' => 'core_jdjiwi_ru',
     'mysql.db' => 'core_jdjiwi_ru',
 );

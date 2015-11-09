@@ -36,5 +36,7 @@ function pre3() {
 function preTrace() {
     if (!cDebug::isError())
         return;
+    echo '<pre>';
     echo (new Exception())->getTraceAsString();
+    echo '</pre>';
 }

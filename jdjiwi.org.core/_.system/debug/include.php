@@ -1,5 +1,6 @@
 <?php
 
+cConfig::load('debug');
 cLoader::library('debug:exception/cException');
 cLoader::library('debug:cDebug');
 cLoader::library('debug:cLog');

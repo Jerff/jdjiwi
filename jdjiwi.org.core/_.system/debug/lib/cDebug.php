@@ -3,6 +3,7 @@
 class cDebug {
 
     private static $isError = true;
+    private static $isModul = true;
     private static $isAjax = false;
     private static $isSql = false;
     private static $isExplain = false;
@@ -12,10 +13,19 @@ class cDebug {
     // прекращение отладки
     static public function disable() {
         self::setError(false);
+        self::setModul(false);
         self::setAjax(false);
         self::setSql(false);
         self::setExplain(false);
         cLog::destroy();
+    }
+
+    static public function init() {
+        self::setError(cConfig::get('debug.error'));
+        self::setModul(cConfig::get('debug.modul'));
+        self::setAjax(cConfig::get('debug.ajax'));
+        self::setSql(cConfig::get('debug.sql'));
+        self::setExplain(cConfig::get('debug.sql.explain'));
     }
 
     /* отладка Error */
@@ -34,6 +44,20 @@ class cDebug {
 //            error_reporting(0);
 //        }
         self::$isError = (bool) $status;
+    }
+
+    /* отладка Error */
+
+
+    /* отладка Modul */
+
+    static public function isModul() {
+        return self::$isModul;
+    }
+
+    // установить режим отладки ошибок php
+    static public function setModul($status = true) {
+        self::$isModul = (bool) $status;
     }
 
     /* отладка Error */
@@ -110,4 +134,3 @@ class cDebug {
     }
 
 }
-

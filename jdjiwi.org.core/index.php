@@ -28,6 +28,7 @@ cLog::init();
 
 cDebug::setAjax();
 cDebug::setError();
+cDebug::setModul();
 cDebug::setSql();
 cCache::setPages();
 cCache::setData();

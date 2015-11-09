@@ -5,7 +5,7 @@ cInit::init();
 
 class cInit {
     /*
-     * инициализация работы 
+     * инициализация работы
      */
 
     public static function init() {

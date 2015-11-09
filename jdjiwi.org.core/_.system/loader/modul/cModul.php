@@ -69,6 +69,9 @@ class cModul extends cLoaderCompile {
     }
 
     static public function load($modul, $noCompile = false) {
+        if (class_exists('cLog')) {
+            cLog::modul($modul);
+        }
         if ($noCompile && defined('isCompile')) {
             return true;
         }
