@@ -4,9 +4,50 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e4a63daa864fbdf49863d961649e6fdd",
-    "content-hash": "f4a6a09b8c326309e2df49dcd21d3069",
+    "hash": "050d321bf384e5ef1c3ca69c9cde4e30",
+    "content-hash": "de59f59d65f8a5f395fa99289a17fce3",
     "packages": [
+        {
+            "name": "ckeditor/ckeditor",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ckeditor/ckeditor-releases.git",
+                "reference": "a84a972a367bc6c59bafb3e5fd503ec317d47daa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ckeditor/ckeditor-releases/zipball/a84a972a367bc6c59bafb3e5fd503ec317d47daa",
+                "reference": "a84a972a367bc6c59bafb3e5fd503ec317d47daa",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+",
+                "LGPL-2.1+",
+                "MPL-1.1+"
+            ],
+            "authors": [
+                {
+                    "name": "CKSource",
+                    "homepage": "http://cksource.com"
+                }
+            ],
+            "description": "JavaScript WYSIWYG web text editor.",
+            "homepage": "http://ckeditor.com",
+            "keywords": [
+                "CKEditor",
+                "editor",
+                "fckeditor",
+                "html",
+                "javascript",
+                "richtext",
+                "text",
+                "wysiwyg"
+            ],
+            "time": "2015-10-06 13:02:19"
+        },
         {
             "name": "components/bootstrap",
             "version": "dev-master",
@@ -299,6 +340,52 @@
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
             "time": "2015-11-09 07:21:34"
+        },
+        {
+            "name": "tinymce/tinymce",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tinymce/tinymce-dist.git",
+                "reference": "ba7dd60f92f050dbc408f037de7a5a659875358b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/ba7dd60f92f050dbc408f037de7a5a659875358b",
+                "reference": "ba7dd60f92f050dbc408f037de7a5a659875358b",
+                "shasum": ""
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "tinymce.js",
+                        "plugins/*/plugin.js",
+                        "themes/*/theme.js"
+                    ],
+                    "files": [
+                        "tinymce.min.js",
+                        "plugins/*/plugin.min.js",
+                        "themes/*/theme.min.js",
+                        "skins/**"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "description": "Web based JavaScript HTML WYSIWYG editor control.",
+            "homepage": "http://www.tinymce.com",
+            "keywords": [
+                "editor",
+                "html",
+                "javascript",
+                "richtext",
+                "tinymce",
+                "wysiwyg"
+            ],
+            "time": "2015-10-27 07:11:29"
         }
     ],
     "packages-dev": [],
@@ -308,7 +395,9 @@
         "components/bootstrap": 20,
         "components/jqueryui": 20,
         "phpmailer/phpmailer": 20,
-        "meenie/javascript-packer": 20
+        "meenie/javascript-packer": 20,
+        "ckeditor/ckeditor": 20,
+        "tinymce/tinymce": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
