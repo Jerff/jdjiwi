@@ -8,9 +8,11 @@ cLoader::library('core:input/cInputHeader');
 cLoader::library('core:input/cInputUrl');
 cLoader::library('core:input/cInputParam');
 cLoader::library('core:input/function');
-cLoader::library('patterns:cPatternsStaticRegistry');
+cLoader::library('trait:cTraitStaticRegistry');
 
-class cInput extends cPatternsStaticRegistry {
+class cInput {
+
+    use cTraitStaticRegistry;
 
 //    private $get;
 //    private $post;
@@ -61,5 +63,3 @@ class cInput extends cPatternsStaticRegistry {
     }
 
 }
-
-

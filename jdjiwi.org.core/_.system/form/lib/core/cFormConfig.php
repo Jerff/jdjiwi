@@ -1,8 +1,10 @@
 <?php
 
-cLoader::library('patterns/cPatternsConfig');
+cLoader::library('trait/cTraitConfig');
 
-class cFormConfig extends cPatternsConfig {
+class cFormConfig {
+
+    use cTraitConfig;
 
     protected function init() {
         return array(
@@ -73,4 +75,3 @@ class cFormConfig extends cPatternsConfig {
     }
 
 }
-

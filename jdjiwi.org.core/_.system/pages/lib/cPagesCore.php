@@ -4,9 +4,11 @@ cLoader::library('pages:cPagesBase');
 cLoader::library('pages:cPagesConfig');
 cLoader::library('pages:cPagesParam');
 cLoader::library('pages:cPagesTemplate');
-cLoader::library('patterns:cPatternsStaticRegistry');
+cLoader::library('trait:cTraitStaticRegistry');
 
-class cPagesCore extends cPatternsStaticRegistry {
+class cPagesCore {
+
+    use cTraitStaticRegistry;
 
     static private $main = null;
     static private $item = null;

@@ -1,12 +1,14 @@
 <?php
 
-cLoader::library('patterns:cPatternsStaticRegistry');
 cLoader::library('compile:cCompileConfig');
 cLoader::library('compile:cCompilePhp');
 cLoader::library('compile:cCompileJsCss');
 cLoader::library('compile:cCompileUpdate');
+cLoader::library('trait:cTraitStaticRegistry');
 
-class cCompile extends cPatternsStaticRegistry {
+class cCompile {
+
+    use cTraitStaticRegistry;
 
     static public function is() {
         return cSettings::get('compilde', 'css&js') or 1;
@@ -29,4 +31,3 @@ class cCompile extends cPatternsStaticRegistry {
     }
 
 }
-

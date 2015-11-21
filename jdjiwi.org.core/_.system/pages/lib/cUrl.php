@@ -1,9 +1,11 @@
 <?php
 
 cLoader::library('pages:cUrlAdmin');
-cLoader::library('patterns:cPatternsStaticRegistry');
+cLoader::library('trait:cTraitStaticRegistry');
 
-class cUrl extends cPatternsStaticRegistry {
+class cUrl {
+
+    use cTraitStaticRegistry;
 
     static public function admin() {
         return self::register('cUrlAdmin');

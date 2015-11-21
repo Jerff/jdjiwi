@@ -1,7 +1,8 @@
 <?php
 
-cLoader::library('patterns/cPatternsSettings');
+cLoader::library('trait/cTraitSettings');
 
-class cFormSettings extends cPatternsSettings {
-    
+class cFormSettings {
+
+    use cTraitSettings;
 }
