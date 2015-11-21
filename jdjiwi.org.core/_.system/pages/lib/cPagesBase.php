@@ -20,7 +20,7 @@ class cPagesBase {
                 }
             }
             $mSearch = array();
-            $url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+            $url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . cConfig::get('host.uri');
             foreach ($this->mBase as $key => $value) {
                 if (strpos($url, $value) !== false) {
                     $mSearch[cString::strlen($value)] = $key;
@@ -41,5 +41,3 @@ class cPagesBase {
     }
 
 }
-
-

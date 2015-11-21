@@ -108,6 +108,9 @@ class cLog {
         if (cDebug::isSql()) {
             $message .= PHP_EOL . '<b>SQL_TIME(' . self::$sqlCount . ')</b> = ' . self::round(self::$sqlTime);
         }
+        if (defined('ERROR_HOST')) {
+            $message .= PHP_EOL . '<b>Хост ' . $_SERVER['HTTP_HOST'] . ' не был найден</b>';
+        }
         foreach (self::$log as $key => $value) {
             if ($key !== 'log') {
                 $message .= PHP_EOL . PHP_EOL . $key . '.log:';

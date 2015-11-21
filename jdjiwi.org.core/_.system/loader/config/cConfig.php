@@ -30,11 +30,23 @@ class cConfig extends cLoaderCompile {
 
     static private function init($name, $data) {
         if ($name === 'host') {
-            foreach ($data as $host => $data) {
+            foreach ($mData = $data as $host => $data) {
                 if (strpos($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], $data['url']) === 0) {
                     self::$host = $host;
-                    self::$mData['host'] = $host;
+                    self::set('host', $host);
+                    self::set('host.uri', $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
                     break;
+                }
+            }
+            if (empty(self::$host)) {
+                foreach ($mData as $host => $data) {
+                    if (isset($data['default'])) {
+                        self::$host = $host;
+                        self::set('host', $host);
+                        self::set('host.uri', $data['url'] . $_SERVER['REQUEST_URI']);
+                        define('ERROR_HOST', true);
+                        break;
+                    }
                 }
             }
         }

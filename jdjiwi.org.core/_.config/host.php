@@ -5,13 +5,11 @@ return array(
      *  определяем домен
      */
     'develop' => array(
-        'url' => 'www.develop.core.jdjiwi.ru',
-        'static' => 'http://static.core.jdjiwi.ru/',
+        'url' => 'develop.core.jdjiwi.ru',
         'app.theme' => cSoursePath . 'themes/core/',
     ),
     'test-application' => array(
         'url' => 'www.core.jdjiwi.ru:8080',
-        'static' => 'http://static.core.jdjiwi.ru/',
         'app.theme' => cSoursePath . 'themes/core/',
     ),
     'test-application-2' => array(
@@ -20,7 +18,7 @@ return array(
     ),
     'production' => array(
         'url' => 'www.core.jdjiwi.ru',
-        'static' => 'http://static.core.jdjiwi.ru/',
+        'default' => true,
         'app.theme' => cSoursePath . 'themes/core/',
     ),
 );
