@@ -1,6 +1,6 @@
 <?php
 
-class cApplication {
+class cAdmin {
 
     // авторизация приложения
     static public function authorization() {
