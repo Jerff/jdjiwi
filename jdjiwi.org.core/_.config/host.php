@@ -9,15 +9,15 @@ return array(
         'app.theme' => cSoursePath . 'themes/core/',
     ),
     'test-application' => array(
-        'url' => 'www.core.jdjiwi.ru:8080',
+        'url' => 'core.jdjiwi.ru:8080',
         'app.theme' => cSoursePath . 'themes/core/',
     ),
     'test-application-2' => array(
-        'url' => 'www.core.jdjiwi.ru/test-application',
+        'url' => 'core.jdjiwi.ru/test-application',
         'app.theme' => cSoursePath . 'themes/core/',
     ),
     'production' => array(
-        'url' => 'www.core.jdjiwi.ru',
+        'url' => 'core.jdjiwi.ru',
         'default' => true,
         'app.theme' => cSoursePath . 'themes/core/',
     ),
