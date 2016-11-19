@@ -16,6 +16,7 @@
         "phpmailer/phpmailer": "dev-master",
         "meenie/javascript-packer": "dev-master",
         "ckeditor/ckeditor": "dev-master",
-        "tinymce/tinymce": "dev-master"
+        "tinymce/tinymce": "dev-master",
+        "phpunit/phpunit": "dev-master"
     }
 }
