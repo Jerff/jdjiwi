@@ -1,6 +1,6 @@
 <?php
 
-cModul::load('ajax');
+\Jdjiwi\Modul::load('ajax');
 cInit::init();
 
 class cInit {

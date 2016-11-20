@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('user:authorization/cAuthSession');
+\Jdjiwi\Loader::library('user:authorization/cAuthSession');
 
 abstract class cAuth {
 

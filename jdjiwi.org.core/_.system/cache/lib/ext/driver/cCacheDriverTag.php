@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('cache:ext/driver/cCacheDriver');
+\Jdjiwi\Loader::library('cache:ext/driver/cCacheDriver');
 
 abstract class cCacheDriverTag extends cCacheDriver {
 

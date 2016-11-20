@@ -14,6 +14,6 @@ return array(
      * места для кеша
      */
     'site.path' => cWWWPath . '.cache/',
-    'page.path' => cConfig::get('path.data') . 'cache/page/',
-    'sqlite.path' => cConfig::get('path.data') . 'cache/sqlite/mydb.sq3',
+    'page.path' => \Jdjiwi\Config::get('path.data') . 'cache/page/',
+    'sqlite.path' => \Jdjiwi\Config::get('path.data') . 'cache/sqlite/mydb.sq3',
 );

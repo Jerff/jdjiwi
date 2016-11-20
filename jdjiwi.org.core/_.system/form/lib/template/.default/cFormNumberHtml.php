@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('form:template/html/cFormTextHtml');
+\Jdjiwi\Loader::library('form:template/html/cFormTextHtml');
 
 class cFormNumberHtml extends cFormTextHtml {
 

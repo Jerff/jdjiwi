@@ -9,7 +9,7 @@ class cPagesBase {
     }
 
     public function router() {
-        $this->mBase = cCOnfig::get('router.list');
+        $this->mBase = \Jdjiwi\Config::get('router.list');
         try {
             if (defined('cApplication')) {
                 if (isset($this->mBase[cApplication])) {
@@ -20,7 +20,7 @@ class cPagesBase {
                 }
             }
             $mSearch = array();
-            $url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . cConfig::get('host.uri');
+            $url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . \Jdjiwi\Config::get('host.uri');
             foreach ($this->mBase as $key => $value) {
                 if (strpos($url, $value) !== false) {
                     $mSearch[cString::strlen($value)] = $key;

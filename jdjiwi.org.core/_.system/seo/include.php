@@ -3,4 +3,4 @@
 /* конфигурация */
 
 /* заагрузка библиотек */
-cLoader::library('seo:function');
+\Jdjiwi\Loader::library('seo:function');

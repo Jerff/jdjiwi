@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('vendor/phpmailer/phpmailer/class.phpmailer');
+\Jdjiwi\Loader::library('vendor/phpmailer/phpmailer/class.phpmailer');
 
 class cMail {
 

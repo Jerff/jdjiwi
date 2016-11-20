@@ -1,3 +1,3 @@
 <?php
 
-cModul::load('core');
+\Jdjiwi\Modul::load('core');

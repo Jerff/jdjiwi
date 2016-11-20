@@ -3,7 +3,7 @@
 class cPath {
 
     static public function modul($name) {
-        return cConfig::get('file.path') . str_replace('.', '/', $table) . '/';
+        return \Jdjiwi\Config::get('file.path') . str_replace('.', '/', $table) . '/';
     }
 
 }

@@ -1,7 +1,7 @@
 <?php
 
-cLoader::library('database:exception/cDatabaseException');
-cLoader::library('database:driver/cMySql');
+\Jdjiwi\Loader::library('database:exception/cDatabaseException');
+\Jdjiwi\Loader::library('database:driver/cMySql');
 
 class cDB {
 
@@ -11,7 +11,7 @@ class cDB {
 
     private static function driver() {
         if (empty(self::$driver)) {
-            switch (cConfig::get('database.driver')) {
+            switch (\Jdjiwi\Config::get('database.driver')) {
                 case 'mysql':
                     self::$driver = new cMySql();
                     break;
@@ -25,7 +25,7 @@ class cDB {
     }
 
     public static function table($table) {
-        return cConfig::get('database.pefix') . str_replace('.', '_', $table);
+        return \Jdjiwi\Config::get('database.pefix') . str_replace('.', '_', $table);
     }
 
     public static function __callStatic($name, $arguments) {

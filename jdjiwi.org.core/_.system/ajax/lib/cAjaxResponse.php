@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('core:jscript/cJScript');
+\Jdjiwi\Loader::library('core:jscript/cJScript');
 
 class cAjaxResponse {
 

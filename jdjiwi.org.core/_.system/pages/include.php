@@ -1,11 +1,11 @@
 <?php
 
 /* конфигурация */
-cConfig::load('router');
+\Jdjiwi\Config::load('router');
 
 /* заагрузка библиотек */
-cLoader::library('pages:cPages');
+\Jdjiwi\Loader::library('pages:cPages');
 
 /* конфигурация */
-cConfig::load('url');
-cModul::config('const');
+\Jdjiwi\Config::load('url');
+\Jdjiwi\Modul::config('const');

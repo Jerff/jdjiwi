@@ -1,7 +1,7 @@
 <?php
 
-cConfig::load('time');
-date_default_timezone_set(cConfig::get('time.zone'));
+\Jdjiwi\Config::load('time');
+date_default_timezone_set(\Jdjiwi\Config::get('time.zone'));
 
 class cTime {
 

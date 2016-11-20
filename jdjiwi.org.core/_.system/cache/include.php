@@ -1,8 +1,8 @@
 <?php
 
 /* конфигурация */
-cConfig::load('cache');
+\Jdjiwi\Config::load('cache');
 
 /* заагрузка библиотек */
-cLoader::library('cache:config/cCacheConfig');
-cLoader::library('cache:cCache');
+\Jdjiwi\Loader::library('cache:config/cCacheConfig');
+\Jdjiwi\Loader::library('cache:cCache');

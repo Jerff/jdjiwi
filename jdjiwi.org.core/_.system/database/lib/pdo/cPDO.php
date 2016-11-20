@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('database:pdo/cResult');
+\Jdjiwi\Loader::library('database:pdo/cResult');
 
 class cPDO extends PDO {
 

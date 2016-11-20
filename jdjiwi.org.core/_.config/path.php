@@ -12,15 +12,15 @@ return array(
     /*
      * file
      */
-    'file' => cWWWPath .cConfig::get('file.path'),
-    'file.tmp' => cWWWPath .cConfig::get('file.path.tmp'),
+    'file' => cWWWPath .\Jdjiwi\Config::get('file.path'),
+    'file.tmp' => cWWWPath .\Jdjiwi\Config::get('file.path.tmp'),
     /*
      * app
      */
-    'app.ajax' => cConfig::get('host.app.theme') . 'ajax/',
-    'app.controller' => cConfig::get('host.app.theme') . 'controller/',
-    'app.form' => cConfig::get('host.app.theme') . 'form/',
-    'app.templates' => cConfig::get('host.app.theme') . 'templates/',
+    'app.ajax' => \Jdjiwi\Config::get('host.app.theme') . 'ajax/',
+    'app.controller' => \Jdjiwi\Config::get('host.app.theme') . 'controller/',
+    'app.form' => \Jdjiwi\Config::get('host.app.theme') . 'form/',
+    'app.templates' => \Jdjiwi\Config::get('host.app.theme') . 'templates/',
     /*
      * components
      */

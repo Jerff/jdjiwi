@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('core:header/cHeader');
+\Jdjiwi\Loader::library('core:header/cHeader');
 
 class cSeo {
 

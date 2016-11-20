@@ -1,13 +1,13 @@
 <?php
 
-cLoader::library('wysiwyng:tinymce/cWysiwyngTinymce');
-cLoader::library('wysiwyng:ckeditor/cWysiwyngKCKeditor');
+\Jdjiwi\Loader::library('wysiwyng:tinymce/cWysiwyngTinymce');
+\Jdjiwi\Loader::library('wysiwyng:ckeditor/cWysiwyngKCKeditor');
 
 class cWysiwyng {
 
     static private function driver() {
         if (empty(self::$instance)) {
-            switch (cConfig::get('wysiwyng.driver')) {
+            switch (\Jdjiwi\Config::get('wysiwyng.driver')) {
                 case 'KCKeditor':
                     self::$instance = new cWysiwyngKCKeditor();
                     break;

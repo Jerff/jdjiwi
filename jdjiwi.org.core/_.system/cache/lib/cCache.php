@@ -1,9 +1,9 @@
 <?php
 
-cLoader::library('cache:cCacheDelegation');
-cLoader::library('cache:ext/cCacheSql');
-cLoader::library('cache:ext/cCacheSQLite');
-cLoader::library('cache:ext/cCacheMemcache');
+\Jdjiwi\Loader::library('cache:cCacheDelegation');
+\Jdjiwi\Loader::library('cache:ext/cCacheSql');
+\Jdjiwi\Loader::library('cache:ext/cCacheSQLite');
+\Jdjiwi\Loader::library('cache:ext/cCacheMemcache');
 
 class cCache extends cCacheDelegation {
 
@@ -16,7 +16,7 @@ class cCache extends cCacheDelegation {
             return self::$driver;
         }
 
-        $cache = self::getDriver(cConfig::get('cache.driver'));
+        $cache = self::getDriver(\Jdjiwi\Config::get('cache.driver'));
         if (!$cache->isRun()) {
             foreach (explode('|', cCacheConfig::DRIVER_LIST) as $d) {
                 if ($d !== $driver) {

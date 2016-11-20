@@ -1,12 +1,12 @@
 <?php
 
-cLoader::library('cache:ext/driver/cCacheDriverSql');
+\Jdjiwi\Loader::library('cache:ext/driver/cCacheDriverSql');
 
 class cCacheSQLite extends cCacheDriverSql {
 
     function __construct() {
 
-        $dns = 'sqlite:' . cConfig::get('cache.sqlite.path');
+        $dns = 'sqlite:' . \Jdjiwi\Config::get('cache.sqlite.path');
         //$dns = 'sqlite::memory:';
         try {
             $sql = new cmfPDO($dns);

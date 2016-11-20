@@ -1,7 +1,7 @@
 <?php
 
-cLoader::library('core:time/cTime');
-cModul::load('file');
+\Jdjiwi\Loader::library('core:time/cTime');
+\Jdjiwi\Modul::load('file');
 
 class cLog {
 
@@ -125,7 +125,7 @@ class cLog {
         self::error($message);
         try {
             $message = PHP_EOL . date("Y-m-d H:i:s (T): ") . ' ' . $message;
-            $dir = cConfig::get('path.data') . 'errorLog/' . date('Y-m') . '/';
+            $dir = \Jdjiwi\Config::get('path.data') . 'errorLog/' . date('Y-m') . '/';
             cFileSystem::mkdir($dir);
             $file = $dir . date('Y-m-d (H)') . '.log';
             cFile::isWritable($file);

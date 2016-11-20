@@ -1,10 +1,10 @@
 <?php
 
-cLoader::library('compile:cCompileConfig');
-cLoader::library('compile:cCompilePhp');
-cLoader::library('compile:cCompileJsCss');
-cLoader::library('compile:cCompileUpdate');
-cLoader::library('trait:cTraitStaticRegistry');
+\Jdjiwi\Loader::library('compile:cCompileConfig');
+\Jdjiwi\Loader::library('compile:cCompilePhp');
+\Jdjiwi\Loader::library('compile:cCompileJsCss');
+\Jdjiwi\Loader::library('compile:cCompileUpdate');
+\Jdjiwi\Loader::library('trait:cTraitStaticRegistry');
 
 class cCompile {
 

@@ -1,9 +1,9 @@
 <?php
 
-cLoader::library('file:exception/cFileException');
-cLoader::library('file:system/cExec');
-cLoader::library('file:system/cFileAccess');
-cLoader::library('core:string/cConvert');
+\Jdjiwi\Loader::library('file:exception/cFileException');
+\Jdjiwi\Loader::library('file:system/cExec');
+\Jdjiwi\Loader::library('file:system/cFileAccess');
+\Jdjiwi\Loader::library('core:string/cConvert');
 
 class cFileSystem {
 
@@ -32,7 +32,7 @@ class cFileSystem {
             return true;
         }
         if (is_null($mode)) {
-            $mode = cConfig::get('file.mode.dir');
+            $mode = \Jdjiwi\Config::get('file.mode.dir');
         }
         if (!$is = mkdir($folder, $mode, true)) {
             throw new cFileException('Невозможно создать папку', $folder);

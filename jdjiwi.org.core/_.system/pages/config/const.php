@@ -4,8 +4,8 @@
  * константы быстрого доступа
  */
 // устанавливаем адреса разделов
-define('cAppUrl', cConfig::get('url.app'));
-define('cAdminUrl', cConfig::get('url.admin'));
-define('cAjaxUrl', cConfig::get('url.ajax'));
-define('cCompileUrl', cConfig::get('url.compileJsCss'));
-define('cItemUrl', cConfig::get('url.item'));
+define('cAppUrl', \Jdjiwi\Config::get('url.app'));
+define('cAdminUrl', \Jdjiwi\Config::get('url.admin'));
+define('cAjaxUrl', \Jdjiwi\Config::get('url.ajax'));
+define('cCompileUrl', \Jdjiwi\Config::get('url.compileJsCss'));
+define('cItemUrl', \Jdjiwi\Config::get('url.item'));

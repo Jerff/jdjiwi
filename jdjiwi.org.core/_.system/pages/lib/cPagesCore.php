@@ -1,10 +1,10 @@
 <?php
 
-cLoader::library('pages:cPagesBase');
-cLoader::library('pages:cPagesConfig');
-cLoader::library('pages:cPagesParam');
-cLoader::library('pages:cPagesTemplate');
-cLoader::library('trait:cTraitStaticRegistry');
+\Jdjiwi\Loader::library('pages:cPagesBase');
+\Jdjiwi\Loader::library('pages:cPagesConfig');
+\Jdjiwi\Loader::library('pages:cPagesParam');
+\Jdjiwi\Loader::library('pages:cPagesTemplate');
+\Jdjiwi\Loader::library('trait:cTraitStaticRegistry');
 
 class cPagesCore {
 

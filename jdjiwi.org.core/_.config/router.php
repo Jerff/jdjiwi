@@ -5,13 +5,13 @@ return array(
      * разделов сайта
      */
     'list' => array(
-        'application' => 'http://' . cConfig::get('host.url'),
-        'ajax' => 'http://' . cConfig::get('host.url') . '/call-ajax',
-        'cron' => 'http://' . cConfig::get('host.url') . '/.cron',
-        'compileJsCss' => 'http://' . cConfig::get('host.url') . '/core-compile',
+        'application' => 'http://' . \Jdjiwi\Config::get('host.url'),
+        'ajax' => 'http://' . \Jdjiwi\Config::get('host.url') . '/call-ajax',
+        'cron' => 'http://' . \Jdjiwi\Config::get('host.url') . '/.cron',
+        'compileJsCss' => 'http://' . \Jdjiwi\Config::get('host.url') . '/core-compile',
         /*
          * система администрирования
          */
-        'admin' => 'http://' . cConfig::get('host.url') . '/admin',
+        'admin' => 'http://' . \Jdjiwi\Config::get('host.url') . '/admin',
     )
 );

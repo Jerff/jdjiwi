@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('cache:ext/driver/cCacheDriverSql');
+\Jdjiwi\Loader::library('cache:ext/driver/cCacheDriverSql');
 
 class cCacheSql extends cCacheDriverSql {
 

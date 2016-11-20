@@ -1,35 +1,35 @@
 <?php
 
-//cLoader::library('form:cmfFormConfig');
-//cLoader::library('form:cmfFormError');
+\Jdjiwi\Loader::library('form:cmfFormConfig');
+//\Jdjiwi\Loader::library('form:cmfFormError');
 //
-//cLoader::library('form:library/cmfFormLibJs');
-//cLoader::library('form:library/cmfFormLibString');
-//cLoader::library('form:library/cmfFormLibFilter');
-//cLoader::library('form:library/cmfFormLibReform');
-//cLoader::library('form:library/cmfFormLibFile');
-//cLoader::library('form:library/cmfFormLibImage');
+//\Jdjiwi\Loader::library('form:library/cmfFormLibJs');
+//\Jdjiwi\Loader::library('form:library/cmfFormLibString');
+//\Jdjiwi\Loader::library('form:library/cmfFormLibFilter');
+//\Jdjiwi\Loader::library('form:library/cmfFormLibReform');
+//\Jdjiwi\Loader::library('form:library/cmfFormLibFile');
+//\Jdjiwi\Loader::library('form:library/cmfFormLibImage');
 //
-//cLoader::library('form:cmfFormElement');
-//cLoader::library('form:element/cmfFormText');
-//cLoader::library('form:element/cmfFormKcaptcha');
-//cLoader::library('form:element/cmfFormPassword');
-//cLoader::library('form:element/cmfFormTextarea');
-//cLoader::library('form:element/cmfFormCheckbox');
-//cLoader::library('form:element/cmfFormSelect');
-//cLoader::library('form:element/cmfFormRadio');
-//cLoader::library('form:element/cmfFormFile');
-//cLoader::library('form:element/cmfFormImage');
+//\Jdjiwi\Loader::library('form:cmfFormElement');
+//\Jdjiwi\Loader::library('form:element/cmfFormText');
+//\Jdjiwi\Loader::library('form:element/cmfFormKcaptcha');
+//\Jdjiwi\Loader::library('form:element/cmfFormPassword');
+//\Jdjiwi\Loader::library('form:element/cmfFormTextarea');
+//\Jdjiwi\Loader::library('form:element/cmfFormCheckbox');
+//\Jdjiwi\Loader::library('form:element/cmfFormSelect');
+//\Jdjiwi\Loader::library('form:element/cmfFormRadio');
+//\Jdjiwi\Loader::library('form:element/cmfFormFile');
+//\Jdjiwi\Loader::library('form:element/cmfFormImage');
 
 
-cLoader::library('form:core/cFormLoader');
-cLoader::library('form:core/cFormCore');
-cLoader::library('form:core/cFormUpdate');
-cLoader::library('form:core/cFormError');
-cLoader::library('form:core/cFormHtml');
-cLoader::library('form:core/cFormSecurity');
-cLoader::library('form:core/cFormProcessing');
-cLoader::library('form:cFormElement');
+\Jdjiwi\Loader::library('form:core/cFormLoader');
+\Jdjiwi\Loader::library('form:core/cFormCore');
+\Jdjiwi\Loader::library('form:core/cFormUpdate');
+\Jdjiwi\Loader::library('form:core/cFormError');
+\Jdjiwi\Loader::library('form:core/cFormHtml');
+\Jdjiwi\Loader::library('form:core/cFormSecurity');
+\Jdjiwi\Loader::library('form:core/cFormProcessing');
+\Jdjiwi\Loader::library('form:cFormElement');
 
 class cForm extends cFormCore implements Iterator {
 

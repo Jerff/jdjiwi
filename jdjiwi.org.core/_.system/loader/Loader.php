@@ -1,10 +1,12 @@
 <?php
 
-if (!class_exists('cLoaderCompile', false)) {
-    require(__DIR__ . '/compile/cLoaderCompile.php');
+namespace Jdjiwi;
+
+if (!class_exists('\Jdjiwi\Loader\Compile', false)) {
+    require(__DIR__ . '/Compile.php');
 }
 
-class cLoader extends cLoaderCompile {
+class Loader extends Loader\Compile {
 
     static private $path = array(
         cSoursePath,
@@ -32,17 +34,17 @@ class cLoader extends cLoaderCompile {
 
     static public function isExtension(string $name) {
         if (!extension_loaded($name)) {
-            throw new cException('расширение не загружено', $name);
+            throw new \cException('расширение не загружено', $name);
         }
     }
 
 }
 
-cLoader::init();
-cLoader::setHistory('loader/cLoader');
-cLoader::setHistory('loader/compile/cLoaderCompile');
-cLoader::library('loader/config/cConfig');
-cConfig::load('host');
-cLoader::library('loader/autoload/cAutoload');
-cLoader::library('loader/modul/cModul');
-cModul::load('loader', true);
+Loader::init();
+Loader::setHistory('loader/Loader');
+Loader::setHistory('loader/Compile');
+Loader::library('loader/Config');
+Config::load('host');
+Loader::library('loader/Autoload');
+Loader::library('loader/Modul');
+Modul::load('loader', true);

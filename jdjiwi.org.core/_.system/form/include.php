@@ -1,4 +1,4 @@
 <?php
 
-cLoader::library('form:validator/cValidator');
-cLoader::library('form:cForm');
+\Jdjiwi\Loader::library('form:validator/cValidator');
+\Jdjiwi\Loader::library('form:cForm');

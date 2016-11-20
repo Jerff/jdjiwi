@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('vendor/meenie/javascript-packer/class.JavaScriptPacker');
+\Jdjiwi\Loader::library('vendor/meenie/javascript-packer/class.JavaScriptPacker');
 
 class cCompileJsCss {
     /*

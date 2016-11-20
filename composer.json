@@ -17,6 +17,13 @@
         "meenie/javascript-packer": "dev-master",
         "ckeditor/ckeditor": "dev-master",
         "tinymce/tinymce": "dev-master",
-        "phpunit/phpunit": "dev-master"
-    }
+        "phpunit/phpunit": "dev-master",
+        "fancyapps/fancyBox": "2.1.5"
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/fancyapps/fancyBox/"
+        }
+    ]
 }

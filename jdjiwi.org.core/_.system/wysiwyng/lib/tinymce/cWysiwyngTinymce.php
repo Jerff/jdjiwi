@@ -1,15 +1,15 @@
 <?php
 
-cLoader::library('wysiwyng:cWysiwyngDriver');
+\Jdjiwi\Loader::library('wysiwyng:cWysiwyngDriver');
 
 class cWysiwyngTinymce extends cWysiwyngDriver {
 
     public function html($model, $id, $inputId, $value, $height = 180) {
-        $filemanager = cConfig::get('filemanager.app.url');
+        $filemanager = \Jdjiwi\Config::get('filemanager.app.url');
         $saltId = $this->getSaltId();
         $salt = $this->createSalt();
 
-        cHeader::addJs(cConfig::get('tinymce.app.url') . 'tinymce.min.js');
+        cHeader::addJs(\Jdjiwi\Config::get('tinymce.app.url') . 'tinymce.min.js');
         $html = <<<HTML
 <script type="text/javascript">
     jQuery(function() {

@@ -1,17 +1,17 @@
 <?php
 
-cLoader::library('database:bilder/cMysqlbilder');
-cLoader::library('database:placeholder/cDatabasePlaceholder');
-cLoader::library('database:driver/cDatabase');
-cLoader::library('database:pdo/cPDO');
+\Jdjiwi\Loader::library('database:bilder/cMysqlbilder');
+\Jdjiwi\Loader::library('database:placeholder/cDatabasePlaceholder');
+\Jdjiwi\Loader::library('database:driver/cDatabase');
+\Jdjiwi\Loader::library('database:pdo/cPDO');
 
 class cMySql extends cDatabase {
 
     protected function driver() {
         static $driver = null;
         if (empty($driver)) {
-            $driver = new cPDO(cConfig::get('database.driver'), cConfig::get('database.mysql.db'), cConfig::get('database.mysql.host'), cConfig::get('database.mysql.user'), cConfig::get('database.mysql.password'));
-            foreach ((array) cConfig::get('database.mysql.query') as $query) {
+            $driver = new cPDO(\Jdjiwi\Config::get('database.driver'), \Jdjiwi\Config::get('database.mysql.db'), \Jdjiwi\Config::get('database.mysql.host'), \Jdjiwi\Config::get('database.mysql.user'), \Jdjiwi\Config::get('database.mysql.password'));
+            foreach ((array) \Jdjiwi\Config::get('database.mysql.query') as $query) {
                 $driver->query($query);
             }
         }

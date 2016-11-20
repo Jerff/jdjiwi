@@ -1,3 +1,3 @@
 <?php
 
-cLoader::library('ajax:cAjax');
+\Jdjiwi\Loader::library('ajax:cAjax');

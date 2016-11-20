@@ -1,4 +1,4 @@
 <?php
 
 /* конфигурация */
-cConfig::load('search');
+\Jdjiwi\Config::load('search');

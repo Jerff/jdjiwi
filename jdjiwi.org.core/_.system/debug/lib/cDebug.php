@@ -21,11 +21,11 @@ class cDebug {
     }
 
     static public function init() {
-        self::setError(cConfig::get('debug.error'));
-        self::setModul(cConfig::get('debug.modul'));
-        self::setAjax(cConfig::get('debug.ajax'));
-        self::setSql(cConfig::get('debug.sql'));
-        self::setExplain(cConfig::get('debug.sql.explain'));
+        self::setError(\Jdjiwi\Config::get('debug.error'));
+        self::setModul(\Jdjiwi\Config::get('debug.modul'));
+        self::setAjax(\Jdjiwi\Config::get('debug.ajax'));
+        self::setSql(\Jdjiwi\Config::get('debug.sql'));
+        self::setExplain(\Jdjiwi\Config::get('debug.sql.explain'));
     }
 
     /* отладка Error */

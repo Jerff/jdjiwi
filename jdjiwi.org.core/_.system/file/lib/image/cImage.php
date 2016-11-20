@@ -1,18 +1,18 @@
 <?php
 
-cConfig::load('image');
+\Jdjiwi\Config::load('image');
 
 class cImage {
 
     const logo = 'logo.png';
 
     static public function isImageMagic() {
-        return cConfig::get('image.ImageMagick.is');
+        return \Jdjiwi\Config::get('image.ImageMagick.is');
     }
 
     static public function command($command) {
         if (cImageMagickPath) {
-            return cConfig::get('image.ImageMagick.path') . $command;
+            return \Jdjiwi\Config::get('image.ImageMagick.path') . $command;
         } else {
             return $command;
         }

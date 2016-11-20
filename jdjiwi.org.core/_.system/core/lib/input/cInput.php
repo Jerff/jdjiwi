@@ -1,14 +1,14 @@
 <?php
 
-cLoader::library('core:input/cInputGet');
-cLoader::library('core:input/cInputPost');
-cLoader::library('core:input/cInputFiles');
-cLoader::library('core:input/cInputIp');
-cLoader::library('core:input/cInputHeader');
-cLoader::library('core:input/cInputUrl');
-cLoader::library('core:input/cInputParam');
-cLoader::library('core:input/function');
-cLoader::library('trait:cTraitStaticRegistry');
+\Jdjiwi\Loader::library('core:input/cInputGet');
+\Jdjiwi\Loader::library('core:input/cInputPost');
+\Jdjiwi\Loader::library('core:input/cInputFiles');
+\Jdjiwi\Loader::library('core:input/cInputIp');
+\Jdjiwi\Loader::library('core:input/cInputHeader');
+\Jdjiwi\Loader::library('core:input/cInputUrl');
+\Jdjiwi\Loader::library('core:input/cInputParam');
+\Jdjiwi\Loader::library('core:input/function');
+\Jdjiwi\Loader::library('trait:cTraitStaticRegistry');
 
 class cInput {
 

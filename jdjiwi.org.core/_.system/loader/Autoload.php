@@ -1,15 +1,16 @@
 <?php
 
+namespace Jdjiwi\Loader;
+
 // авто загрузчик
 spl_autoload_register(function($name) {
-    cAutoload::init($name);
+    Autoload::init($name);
 });
 
-class cAutoload {
+class Autoload {
 
     static public function init($name) {
 //        var_dump($name);
     }
 
 }
-

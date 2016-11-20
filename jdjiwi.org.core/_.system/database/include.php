@@ -1,7 +1,7 @@
 <?php
 
 /* конфигурация */
-cConfig::load('database');
+\Jdjiwi\Config::load('database');
 
 /* заагрузка библиотек */
-cLoader::library('database:cDB');
+\Jdjiwi\Loader::library('database:cDB');

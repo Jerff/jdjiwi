@@ -1,7 +1,7 @@
 <?php
 
-cLoader::library('pages:cUrlAdmin');
-cLoader::library('trait:cTraitStaticRegistry');
+\Jdjiwi\Loader::library('pages:cUrlAdmin');
+\Jdjiwi\Loader::library('trait:cTraitStaticRegistry');
 
 class cUrl {
 

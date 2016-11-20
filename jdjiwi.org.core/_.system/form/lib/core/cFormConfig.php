@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('trait/cTraitConfig');
+\Jdjiwi\Loader::library('trait/cTraitConfig');
 
 class cFormConfig {
 

@@ -17,11 +17,11 @@ if ($compile['is']) {
         define('isCompile', true);
         require($compile['path'] . 'loader.php');
     } else {
-        require(cSoursePath . '_.system/loader/cLoader.php');
+        require(cSoursePath . '_.system/loader/Loader.php');
         cCompile::php()->createrLoader();
     }
 } else {
-    require(cSoursePath . '_.system/loader/cLoader.php');
+    require(cSoursePath . '_.system/loader/Loader.php');
 }
 cLog::memory();
 cLog::init();
@@ -32,4 +32,4 @@ cDebug::setError();
 cDebug::setSql();
 cCache::setPages();
 cCache::setData();
-return cModul::call(cApplication);
+return \Jdjiwi\Modul::call(cApplication);

@@ -1,6 +1,8 @@
 <?php
 
-class cLoaderCompile {
+namespace Jdjiwi\Loader;
+
+class Compile {
 
     static private $mHistory = array();
     static private $mCompile = array();
@@ -66,4 +68,3 @@ class cLoaderCompile {
     }
 
 }
-

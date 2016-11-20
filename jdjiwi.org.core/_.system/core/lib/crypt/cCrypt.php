@@ -1,6 +1,6 @@
 <?php
 
-cConfig::load('crypt');
+\Jdjiwi\Config::load('crypt');
 
 class cCrypt {
 
@@ -14,11 +14,11 @@ class cCrypt {
 
     static public function hash() {
         $n = serialize(func_get_args());
-        return self::sha1(cConfig::get('crypt.salt') . $n) . self::crc32(cConfig::get('crypt.salt') . $n);
+        return self::sha1(\Jdjiwi\Config::get('crypt.salt') . $n) . self::crc32(\Jdjiwi\Config::get('crypt.salt') . $n);
     }
 
     static public function password($password) {
-        return crypt($password, cConfig::get('crypt.salt'));
+        return crypt($password, \Jdjiwi\Config::get('crypt.salt'));
     }
 
 }

@@ -3,5 +3,5 @@
 /*
  * константы быстрого доступа
  */
-define('cFileMode', cConfig::get('file.mode.file'));
-define('cFolderMode', cConfig::get('file.mode.dir'));
+define('cFileMode', \Jdjiwi\Config::get('file.mode.file'));
+define('cFolderMode', \Jdjiwi\Config::get('file.mode.dir'));

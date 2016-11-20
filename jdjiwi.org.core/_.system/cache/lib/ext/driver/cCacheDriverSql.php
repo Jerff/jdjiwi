@@ -1,7 +1,7 @@
 <?php
 
-cLoader::library('cache:ext/driver/cCacheDriver');
-cLoader::library('core:crypt/cCrypt');
+\Jdjiwi\Loader::library('cache:ext/driver/cCacheDriver');
+\Jdjiwi\Loader::library('core:crypt/cCrypt');
 
 class cCacheDriverSql extends cCacheDriver {
 

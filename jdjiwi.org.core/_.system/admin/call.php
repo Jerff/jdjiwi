@@ -1,4 +1,4 @@
 <?php
 
-cLoader::library('application:call/cAdminCall');
+\Jdjiwi\Loader::library('application:call/cAdminCall');
 cAdminCall::start();

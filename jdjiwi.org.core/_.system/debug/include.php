@@ -1,8 +1,8 @@
 <?php
 
-cConfig::load('debug');
-cLoader::library('debug:exception/cException');
-cLoader::library('debug:cDebug');
-cLoader::library('debug:cLog');
-cLoader::library('debug:function');
-cLoader::library('debug:init/cInit');
+\Jdjiwi\Config::load('debug');
+\Jdjiwi\Loader::library('debug:exception/cException');
+\Jdjiwi\Loader::library('debug:cDebug');
+\Jdjiwi\Loader::library('debug:cLog');
+\Jdjiwi\Loader::library('debug:function');
+\Jdjiwi\Loader::library('debug:init/cInit');

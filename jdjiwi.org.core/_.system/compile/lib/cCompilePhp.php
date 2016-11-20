@@ -1,7 +1,7 @@
 <?php
 
-cLoader::library('core:crypt/cCrypt');
-cLoader::library('core:string/cString');
+\Jdjiwi\Loader::library('core:crypt/cCrypt');
+\Jdjiwi\Loader::library('core:string/cString');
 
 class cCompilePhp {
     /*
@@ -9,18 +9,18 @@ class cCompilePhp {
      */
 
     public function load($type, $file) {
-        if (cConfig::get('compile.is') < 2) {
+        if (\Jdjiwi\Config::get('compile.is') < 2) {
             return $file;
         }
-        $hash = cCrypt::hash(cLoader::getIndex(), $type, $file);
-        $compile = cConfig::get('compile.path') . $type . '/' . substr($hash, 0, 1) . '/' . substr($hash, 1, 2) . '/' . $hash . '.php';
+        $hash = cCrypt::hash(\Jdjiwi\Loader::getIndex(), $type, $file);
+        $compile = \Jdjiwi\Config::get('compile.path') . $type . '/' . substr($hash, 0, 1) . '/' . substr($hash, 1, 2) . '/' . $hash . '.php';
         if (file_exists($compile)) {
             return $compile;
         }
-        cLoader::initLoad();
+        \Jdjiwi\Loader::initLoad();
         cFileSystem::mkdir(dirname($compile));
         require_once ($file);
-        file_put_contents($compile, $this->compile(cLoader::getLoadFile()));
+        file_put_contents($compile, $this->compile(\Jdjiwi\Loader::getLoadFile()));
     }
 
     /*
@@ -28,14 +28,14 @@ class cCompilePhp {
      */
 
     public function createrLoader() {
-        cFileSystem::mkdir(cConfig::get('compile.path'));
+        cFileSystem::mkdir(\Jdjiwi\Config::get('compile.path'));
         file_put_contents(
-                cConfig::get('compile.path') . cCompile::config()->loaderPhp(), cCompile::php()->compile(cLoader::getLoadFile())
+                \Jdjiwi\Config::get('compile.path') . cCompile::config()->loaderPhp(), cCompile::php()->compile(\Jdjiwi\Loader::getLoadFile())
         );
     }
 
     public function update() {
-        cFileSystem::rmdir(cConfig::get('compile.path'));
+        cFileSystem::rmdir(\Jdjiwi\Config::get('compile.path'));
     }
 
     public function compile($mFiles) {
@@ -46,20 +46,20 @@ class cCompilePhp {
                     . "?><?php\n#end {$file}\n?>";
             $arg = explode('::', $file);
             switch ($arg[0]) {
-                case 'cConfig':
-                case 'cModul':
-                    $compile .= "<?php cLoaderCompile::compile('{$file}', function() { ?>{$code}<?php }); ?>";
+                case 'Config':
+                case 'Modul':
+                    $compile .= "<?php \Jdjiwi\Loader\Compile::compile('{$file}', function() { ?>{$code}<?php }); ?>";
                     break;
 
-                case 'cLoader':
+                case 'Loader':
                     switch ($file) {
-                        case 'cLoader::loader/compile/cLoaderCompile':
-                            $history .= "<?php cLoader::setHistory('{$arg[1]}'); ?>";
+                        case '\Jdjiwi\Loader::loader/compile/Compile':
+                            $history .= "<?php \Jdjiwi\Loader::setHistory('{$arg[1]}'); ?>";
                             $loader .= $code;
                             break;
 
                         default:
-                            $history .= "<?php cLoader::setHistory('{$arg[1]}'); ?>";
+                            $history .= "<?php \Jdjiwi\Loader::setHistory('{$arg[1]}'); ?>";
                             $content .= $code;
                             break;
                     }
@@ -69,7 +69,7 @@ class cCompilePhp {
                     break;
             }
         }
-        $content .="<?php cModul::load('loader'); ?>";
+        $content .="<?php \Jdjiwi\Modul::load('loader'); ?>";
         $content = preg_replace('#\?>\s*<\?php#S', ' ', $loader . $compile . $history . $content);
         $content = str_replace("\r", '', $content);
         return $content;
@@ -97,9 +97,9 @@ class cCompilePhp {
     private function parse($file) {
         $arg = explode('::', $file);
         switch ($arg[0]) {
-            case 'cLoader':
-            case 'cConfig':
-            case 'cModul':
+            case 'Loader':
+            case 'Config':
+            case 'Modul':
                 return $this->file($arg[1] . '.php');
 
             default:

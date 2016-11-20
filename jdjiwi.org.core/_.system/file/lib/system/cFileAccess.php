@@ -40,10 +40,10 @@ class cFileAccess {
                 break;
 
             case self::FILE:
-                $mPath[] = cConfig::get('path.data');
-                $mPath[] = cConfig::get('path.compile');
-                $mPath[] = cConfig::get('cache.site.path');
-                $mPath[] = cConfig::get('path.file');
+                $mPath[] = \Jdjiwi\Config::get('path.data');
+                $mPath[] = \Jdjiwi\Config::get('path.compile');
+                $mPath[] = \Jdjiwi\Config::get('cache.site.path');
+                $mPath[] = \Jdjiwi\Config::get('path.file');
                 break;
 
             default:

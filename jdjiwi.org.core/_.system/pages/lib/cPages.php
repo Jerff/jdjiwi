@@ -1,7 +1,7 @@
 <?php
 
-cLoader::library('pages:cPagesCore');
-cLoader::library('pages:cUrl');
+\Jdjiwi\Loader::library('pages:cPagesCore');
+\Jdjiwi\Loader::library('pages:cUrl');
 
 class cPages extends cPagesCore {
     /* Application */
@@ -12,7 +12,7 @@ class cPages extends cPagesCore {
             return;
         }
 
-        $url = parse_url('http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], strlen(cConfig::get('url.itemUri'))), PHP_URL_PATH);
+        $url = parse_url('http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], strlen(\Jdjiwi\Config::get('url.itemUri'))), PHP_URL_PATH);
         $url = urldecode($url);
 
         $page = '/404/';
@@ -70,7 +70,7 @@ class cPages extends cPagesCore {
         }
 
         if (!empty($_SERVER['HTTP_REFERER'])) {
-            if (parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) !== cConfig::get('host.url')) {
+            if (parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) !== \Jdjiwi\Config::get('host.url')) {
                 self::setMain('/admin/index/');
                 return;
             }

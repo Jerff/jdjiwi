@@ -1,7 +1,7 @@
 <?php
 
-cLoader::library('debug:exception/cErrorException');
-cLoader::library('core:string/cString');
+\Jdjiwi\Loader::library('debug:exception/cErrorException');
+\Jdjiwi\Loader::library('core:string/cString');
 
 class cException extends \Exception {
     /*
@@ -51,7 +51,7 @@ class cException extends \Exception {
         if (class_exists('cString', false)) {
             return cString::specialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)));
         } else {
-            return htmlspecialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)), ENT_QUOTES, cConfig::get('i18n.charset'));
+            return htmlspecialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)), ENT_QUOTES, \Jdjiwi\Config::get('i18n.charset'));
         }
     }
 

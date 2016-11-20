@@ -1,6 +1,8 @@
 <?php
 
-class cConfig extends cLoaderCompile {
+namespace Jdjiwi;
+
+class Config extends Loader\Compile {
 
     const path = '_.config/';
 

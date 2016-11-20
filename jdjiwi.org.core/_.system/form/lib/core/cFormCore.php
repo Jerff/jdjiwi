@@ -1,8 +1,8 @@
 <?php
 
-cLoader::library('form:core/cFormRegister');
-cLoader::library('form:core/cFormConfig');
-cLoader::library('form:core/cFormSettings');
+\Jdjiwi\Loader::library('form:core/cFormRegister');
+\Jdjiwi\Loader::library('form:core/cFormConfig');
+\Jdjiwi\Loader::library('form:core/cFormSettings');
 
 class cFormCore extends cFormRegister {
 

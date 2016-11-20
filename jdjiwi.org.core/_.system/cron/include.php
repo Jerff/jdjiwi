@@ -1,3 +1,3 @@
 <?php
 
-cLoader::library('cron:cCronRun');
+\Jdjiwi\Loader::library('cron:cCronRun');

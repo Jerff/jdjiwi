@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('cache:ext/driver/cCacheDriverTag');
+\Jdjiwi\Loader::library('cache:ext/driver/cCacheDriverTag');
 
 class cCacheMemcache extends cCacheDriverTag {
 
@@ -14,7 +14,7 @@ class cCacheMemcache extends cCacheDriverTag {
         }
 
         $res = new Memcache();
-        $res->connect(cConfig::get('cache.memcache.host'), cConfig::get('cache.memcache.port'));
+        $res->connect(\Jdjiwi\Config::get('cache.memcache.host'), \Jdjiwi\Config::get('cache.memcache.port'));
         $this->setResurse($res);
         $this->setFlag(cSettings::get('memcache.compressed') ? MEMCACHE_COMPRESSED : false);
 

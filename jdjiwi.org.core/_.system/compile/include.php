@@ -1,7 +1,7 @@
 <?php
 
 /* конфигурация */
-cConfig::load('compile');
+\Jdjiwi\Config::load('compile');
 
 /* заагрузка библиотек */
-cLoader::library('compile:cCompile');
+\Jdjiwi\Loader::library('compile:cCompile');

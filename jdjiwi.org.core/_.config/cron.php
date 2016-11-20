@@ -4,5 +4,5 @@ return array(
     /*
      * список задач
      */
-    'status' => cConfig::get('path.data') . '/cron/cron.run',
+    'status' => \Jdjiwi\Config::get('path.data') . '/cron/cron.run',
 );

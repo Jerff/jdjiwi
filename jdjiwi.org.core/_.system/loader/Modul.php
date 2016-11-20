@@ -1,14 +1,16 @@
 <?php
 
-cLoader::library('loader/modul/cModulException');
-cModul::load('debug');
-cModul::load('compile');
+namespace Jdjiwi;
+
+Loader::library('loader/modul/Exception');
+Modul::load('debug');
+Modul::load('compile');
 
 /*
  * загрузка модулей
  */
 
-class cModul extends cLoaderCompile {
+class Modul extends Loader\Compile {
 
     static private $isCompile = false;
     static private $item = null;
@@ -40,10 +42,10 @@ class cModul extends cLoaderCompile {
 
     static private function loadFile($modul, $file) {
         if (empty($modul) or ! is_string($modul)) {
-            throw new cModulException('Не указано имя модуля');
+            throw new Modul\Exception('Не указано имя модуля');
         }
         if (preg_match('#[^a-z0-9:._]#iS', $modul)) {
-            throw new cModulException(sprintf('Название модуля "%s" не корректно', $modul));
+            throw new Modul\Exception(sprintf('Название модуля "%s" не корректно', $modul));
         }
         $hash = $modul . '/' . $file;
         if (isset(self::$mModul[$hash])) {
@@ -53,7 +55,7 @@ class cModul extends cLoaderCompile {
         try {
             if (self::isCompile()) {
                 self::setHistory($hash);
-                $res = cCompile::php()->load('modul', $hash . '.php');
+                $res = \cCompile::php()->load('modul', $hash . '.php');
             } else {
                 $res = self::file($hash);
             };
@@ -61,7 +63,7 @@ class cModul extends cLoaderCompile {
                 $res = true;
             }
         } catch (Exception $e) {
-            throw new cModulException(sprintf('Модуль "%s" не найден', $modul), 0, $e);
+            throw new Modul\Exception(sprintf('Модуль "%s" не найден', $modul), 0, $e);
             return self::$mModul[$hash] = false;
         }
         self::freeItem();
@@ -70,7 +72,7 @@ class cModul extends cLoaderCompile {
 
     static public function load($modul, $noCompile = false) {
         if (class_exists('cLog')) {
-            cLog::modul($modul);
+            \cLog::modul($modul);
         }
         if ($noCompile && defined('isCompile')) {
             return true;
@@ -80,8 +82,8 @@ class cModul extends cLoaderCompile {
 
     static public function call($modul) {
         self::$isCompile = true;
-        cLog::log('host: ' . cConfig::get('host'));
-        cLog::log('run: ' . cApplication);
+        \cLog::log('host: ' . Config::get('host'));
+        \cLog::log('run: ' . cApplication);
         self::load($modul);
         return self::loadFile($modul, 'call');
     }
@@ -92,15 +94,15 @@ class cModul extends cLoaderCompile {
             self::load($modul);
             self::loadFile($modul, 'cron/' . $file);
             return true;
-        } catch (Exception $e) {
-            throw new cModulException(sprintf('Команда крона "%s" не найдена', $command), 0, $e);
+        } catch (\Exception $e) {
+            throw new Modul\Exception(sprintf('Команда крона "%s" не найдена', $command), 0, $e);
             return false;
         }
     }
 
     static public function config($file) {
         if (empty(self::getItem())) {
-            throw new cModulException('попытка подключения конфигурации вне модуля', 0, $e);
+            throw new Modul\Exception('попытка подключения конфигурации вне модуля', 0, $e);
         } else {
             return self::loadFile(self::getItem(), 'config/' . $file);
         }

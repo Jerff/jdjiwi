@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('core:session/cCookie');
+\Jdjiwi\Loader::library('core:session/cCookie');
 
 class cSession {
 

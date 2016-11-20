@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('database:quote/cDatabaseQuote');
+\Jdjiwi\Loader::library('database:quote/cDatabaseQuote');
 
 abstract class cDatabase {
 

@@ -75,7 +75,7 @@ class cCronCall {
             cDb::update(cDb::table('sys.cron'), array('status' => 'start', 'date' => date('Y-m-d H:i:s')), $id);
         }
         cCronRun::start();
-        $isOk = cModul::cron($name);
+        $isOk = \Jdjiwi\Modul::cron($name);
         cCronRun::stop();
         if ($id and $isOk) {
             cDb::update(cDb::table('sys.cron'), array('status' => 'end', 'date' => date('Y-m-d H:i:s')), $id);

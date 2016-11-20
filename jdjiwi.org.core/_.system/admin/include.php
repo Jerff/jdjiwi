@@ -1,5 +1,5 @@
 <?php
 
-cModul::load('application');
-cLoader::library('admin:cAdmin');
-//cConfig::set('form.templates', 'html');
+\Jdjiwi\Modul::load('application');
+\Jdjiwi\Loader::library('admin:cAdmin');
+//\Jdjiwi\Config::set('form.templates', 'html');

@@ -1,5 +1,5 @@
 <?php
 
-cModul::load('application');
-cLoader::library('ajax:call/cAjaxCall');
+\Jdjiwi\Modul::load('application');
+\Jdjiwi\Loader::library('ajax:call/cAjaxCall');
 cComponentCall::start();

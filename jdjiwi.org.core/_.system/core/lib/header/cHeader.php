@@ -1,6 +1,6 @@
 <?php
 
-cModul::load('compile');
+\Jdjiwi\Modul::load('compile');
 
 class cHeader {
 
@@ -48,10 +48,10 @@ class cHeader {
         $head = '';
         if ($isBase) {
             $head .= '
-        <base href="' . cConfig::get('url.app') . '/"/>';
+        <base href="' . \Jdjiwi\Config::get('url.app') . '/"/>';
         }
         $head .= '
-        <meta content="text/html; charset=' . cConfig::get('i18n.charset') . '" http-equiv="Content-Type"/>';
+        <meta content="text/html; charset=' . \Jdjiwi\Config::get('i18n.charset') . '" http-equiv="Content-Type"/>';
 
         cCompile::fileJsCss()->initHeader(self::$mData);
         foreach (self::$mData as $key => list($type, $value)) {

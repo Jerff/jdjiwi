@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('debug:exception/cException');
+\Jdjiwi\Loader::library('debug:exception/cException');
 
 class cDatabaseException extends cException {
 

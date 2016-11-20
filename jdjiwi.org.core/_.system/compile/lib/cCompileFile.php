@@ -1,6 +1,6 @@
 <?php
 
-cLoader::library('packer.php/class.JavaScriptPacker');
+\Jdjiwi\Loader::library('packer.php/class.JavaScriptPacker');
 
 class cCompileFile {
 

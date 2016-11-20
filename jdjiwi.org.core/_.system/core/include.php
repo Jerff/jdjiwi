@@ -1,27 +1,27 @@
 <?php
 
 /* конфигурация */
-cConfig::load('i18n');
-setlocale(LC_ALL, cConfig::get('i18n.locale'));
+\Jdjiwi\Config::load('i18n');
+setlocale(LC_ALL, \Jdjiwi\Config::get('i18n.locale'));
 if (extension_loaded('mbstring')) {
-    mb_language(cConfig::get('i18n.mbstring.language'));
-    mb_internal_encoding(cConfig::get('i18n.charset'));
+    mb_language(\Jdjiwi\Config::get('i18n.mbstring.language'));
+    mb_internal_encoding(\Jdjiwi\Config::get('i18n.charset'));
 }
 
 /* заагрузка библиотек */
-cLoader::library('core:input/cInput');
-cLoader::library('core:session/cSession');
-cLoader::library('core:settings/cSettings');
-cLoader::library('core:string/cString');
-cLoader::library('core:jscript/cJScript');
-cLoader::library('core:crypt/cCrypt');
-cLoader::library('core:time/cTime');
-cLoader::library('core:header/cHeader');
+\Jdjiwi\Loader::library('core:input/cInput');
+\Jdjiwi\Loader::library('core:session/cSession');
+\Jdjiwi\Loader::library('core:settings/cSettings');
+\Jdjiwi\Loader::library('core:string/cString');
+\Jdjiwi\Loader::library('core:jscript/cJScript');
+\Jdjiwi\Loader::library('core:crypt/cCrypt');
+\Jdjiwi\Loader::library('core:time/cTime');
+\Jdjiwi\Loader::library('core:header/cHeader');
 
 /* загрузка модулей */
-cModul::load('database');
-cModul::load('seo');
-cModul::load('file');
-cModul::load('pages');
-cModul::load('cache');
-cModul::load('mail');
+\Jdjiwi\Modul::load('database');
+\Jdjiwi\Modul::load('seo');
+\Jdjiwi\Modul::load('file');
+\Jdjiwi\Modul::load('pages');
+\Jdjiwi\Modul::load('cache');
+\Jdjiwi\Modul::load('mail');
