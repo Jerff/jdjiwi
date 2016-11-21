@@ -1,5 +1,9 @@
 <?php
 
+function isDebug() {
+    return \Jdjiwi\Debug::isError();
+}
+
 function pre() {
     if (!\Jdjiwi\Debug::isError())
         return;

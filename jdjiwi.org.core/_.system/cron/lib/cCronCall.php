@@ -4,9 +4,9 @@ class cCronCall {
 
     static public function start() {
         cApplication::authorization();
-        cInit::sessionClose();
-        cInit::timeLimit();
-        cInit::ignoreUserAbort();
+        \Jdjiwi\Init::sessionClose();
+        \Jdjiwi\Init::timeLimit();
+        \Jdjiwi\Init::ignoreUserAbort();
 
         ob_start();
         if (cCronRun::is()) {

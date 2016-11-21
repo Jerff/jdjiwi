@@ -3,13 +3,13 @@
 class cCompileUpdate {
 
     public static function start() {
-        cInit::ignoreUserAbort();
-        cInit::timeLimit();
+        \Jdjiwi\Init::ignoreUserAbort();
+        \Jdjiwi\Init::timeLimit();
 
 
         cCompile::php()->update();
         cCompile::fileJsCss()->update();
-        cInit::ignoreUserAbort(false);
+        \Jdjiwi\Init::ignoreUserAbort(false);
     }
 
 }

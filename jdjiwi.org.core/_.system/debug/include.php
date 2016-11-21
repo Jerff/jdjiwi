@@ -5,4 +5,4 @@
 \Jdjiwi\Loader::library('debug:Debug');
 \Jdjiwi\Loader::library('debug:Log');
 \Jdjiwi\Loader::library('debug:function');
-\Jdjiwi\Loader::library('debug:init/cInit');
+\Jdjiwi\Loader::library('debug:Init');

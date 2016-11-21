@@ -1,15 +1,17 @@
 <?php
 
-\Jdjiwi\Modul::load('ajax');
-cInit::init();
+namespace Jdjiwi;
 
-class cInit {
+Modul::load('ajax');
+Init::init();
+
+class Init {
     /*
      * инициализация работы
      */
 
     public static function init() {
-        \Jdjiwi\Debug::init();
+        Debug::init();
         ini_set('html_errors', 'On');
         ini_set('docref_root', '');
         ini_set('docref_ext', '');
@@ -19,21 +21,21 @@ class cInit {
             if (is_a($e, 'cException')) {
                 $e->errorLog('Необработанное исключение');
             } else {
-                \Jdjiwi\Log::errorLog($e);
+                Log::errorLog($e);
             }
         });
         set_error_handler(function($c, $m, $f, $l) {
             try {
-                throw new cErrorException($m, $c, $f, $l);
-            } catch (cErrorException $e) {
+                throw new \cErrorException($m, $c, $f, $l);
+            } catch (\cErrorException $e) {
                 $e->errorLog();
             }
         });
         register_shutdown_function(function() {
-            if (cAjax::is()) {
-                cAjax::shutdown();
+            if (\cAjax::is()) {
+                \cAjax::shutdown();
             } else {
-                \Jdjiwi\Debug::shutdown();
+                Debug::shutdown();
             }
         });
     }

@@ -41,8 +41,8 @@ class cAdmin {
 //            \Jdjiwi\Debug::setExplain();
             }
         }
-        cInit::timeLimit();
-        cInit::ignoreUserAbort();
+        \Jdjiwi\Init::timeLimit();
+        \Jdjiwi\Init::ignoreUserAbort();
 
         \Jdjiwi\Log::memory();
         cAdmin::template()->start();
