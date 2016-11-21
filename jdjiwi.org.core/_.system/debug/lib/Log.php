@@ -31,12 +31,12 @@ class Log {
 
     // количетсво потраченной пямяти
     static public function memory() {
-        self::add('log', 'memory: ' . self::round(memory_get_usage() / 1024 / 1024));
+        self::push('log', 'memory: ' . self::round(memory_get_usage() / 1024 / 1024));
     }
 
     static public function modul($modul) {
         if (Debug::isModul()) {
-            self::add('modul', $modul . ': ' . self::round(memory_get_usage() / 1024 / 1024));
+            self::push('modul', $modul . ': ' . self::round(memory_get_usage() / 1024 / 1024));
         }
     }
 
@@ -55,19 +55,19 @@ class Log {
 //            if (!Debug::isShutdown()) {
 //                echo '<pre>' . $message . '</pre>';
 //            }
-            self::add('log', $message . PHP_EOL);
+            self::push('log', $message . PHP_EOL);
         }
     }
 
     // добавить в лог ошибок php
-    static private function add($type, $message) {
+    static private function push($type, $message) {
         self::$arLog[$type][] = $message;
     }
 
-    static public function log($message) {
+    static public function add($message) {
         if (Debug::isSql()) {
             self::processingMessage($message);
-            self::add('log', $message);
+            self::push('log', $message);
         }
     }
 
@@ -86,7 +86,7 @@ class Log {
                     $message .=" [{$main}] [{$page}]";
                 }
             }
-            self::add('log', $message);
+            self::push('log', $message);
             self::$sqlTime += $time;
         }
     }
@@ -94,7 +94,7 @@ class Log {
     // добавить в лог запросов к базе
     static public function explain($message) {
         if (Debug::isExplain()) {
-            self::add('log', \cString::specialchars($message));
+            self::push('log', \cString::specialchars($message));
         }
     }
 

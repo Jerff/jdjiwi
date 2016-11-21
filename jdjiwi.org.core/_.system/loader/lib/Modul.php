@@ -82,8 +82,8 @@ class Modul extends Loader\Compile {
 
     static public function call($modul) {
         self::$isCompile = true;
-        Log::log('host: ' . Config::get('host'));
-        Log::log('run: ' . cApplication);
+        Log::add('host: ' . Config::get('host'));
+        Log::add('run: ' . cApplication);
         self::load($modul);
         return self::loadFile($modul, 'call');
     }

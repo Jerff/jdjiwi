@@ -7,21 +7,21 @@ class cCacheDelegation {
     static public function set($n, $v, $tags = null, $time = cCacheConfig::TIME) {
         if (cCache::isNoData())
             return false;
-        \Jdjiwi\Log::log('cache.set ' . $n);
+        \Jdjiwi\Log::add('cache.set ' . $n);
         cCache::driver()->set($n, $v, $tags, $time * 60);
     }
 
     static public function get($n) {
         if (cCache::isNoData())
             return false;
-        \Jdjiwi\Log::log('cache.get ' . $n);
+        \Jdjiwi\Log::add('cache.get ' . $n);
         return cCache::driver()->get($n);
     }
 
     static public function delete($n) {
         if (cCache::isNoData())
             return false;
-        \Jdjiwi\Log::log('cache.delete ' . $n);
+        \Jdjiwi\Log::add('cache.delete ' . $n);
         cCache::driver()->delete($n);
     }
 
