@@ -6,11 +6,11 @@ class cAdmin {
     static public function authorization() {
         if (cAdmin::user()->authorization()) {
             if (cAdmin::user()->debugError === 'yes')
-                cDebug::setError();
+                \Jdjiwi\Debug::setError();
             if (cAdmin::user()->debugSql === 'yes')
-                cDebug::setSql();
+                \Jdjiwi\Debug::setSql();
             if (cAdmin::user()->debugExplain === 'yes')
-                cDebug::setExplain();
+                \Jdjiwi\Debug::setExplain();
             //if(cRegister::getAdmin()->debugCache==='yes')	cmfCache::setPages();
             //cmfCache::setData(cRegister::getAdmin()->debugCache==='yes');
         } else {
@@ -34,19 +34,19 @@ class cAdmin {
                             ->reload();
                 }
                 if (cAdmin::user()->debugError === 'yes')
-                    cDebug::setError();
+                    \Jdjiwi\Debug::setError();
                 if (cAdmin::user()->debugSql === 'yes')
-                    cDebug::setSql();
+                    \Jdjiwi\Debug::setSql();
 //        if ($admin->debugExplain === 'yes')
-//            cDebug::setExplain();
+//            \Jdjiwi\Debug::setExplain();
             }
         }
         cInit::timeLimit();
         cInit::ignoreUserAbort();
 
-        cLog::memory();
+        \Jdjiwi\Log::memory();
         cAdmin::template()->start();
-        cLog::memory();
+        \Jdjiwi\Log::memory();
     }
 
 }

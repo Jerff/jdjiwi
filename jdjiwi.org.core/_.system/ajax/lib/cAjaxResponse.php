@@ -70,7 +70,7 @@ class cAjaxResponse {
     }
 
     public function html($id, $content) {
-        if ($id !== '#ajax-content' and cDebug::isAjax()) {
+        if ($id !== '#ajax-content' and \Jdjiwi\Debug::isAjax()) {
             $this->mHtmlLog[$id] = $content;
         }
         $this->mHtml[] = array(

@@ -5,10 +5,10 @@ class cApplicationCall {
     static protected function start() {
         cApplication::authorization();
 
-        cLog::memory();
+        \Jdjiwi\Log::memory();
         $controler = new cmfApplicationTemplate();
         echo $controler->main();
-        cLog::memory();
+        \Jdjiwi\Log::memory();
     }
 
 }

@@ -1,6 +1,8 @@
 <?php
 
-class cDebug {
+namespace Jdjiwi;
+
+class Debug {
 
     private static $isError = true;
     private static $isModul = false;
@@ -17,15 +19,15 @@ class cDebug {
         self::setAjax(false);
         self::setSql(false);
         self::setExplain(false);
-        cLog::destroy();
+        Log::destroy();
     }
 
     static public function init() {
-        self::setError(\Jdjiwi\Config::get('debug.error'));
-        self::setModul(\Jdjiwi\Config::get('debug.modul'));
-        self::setAjax(\Jdjiwi\Config::get('debug.ajax'));
-        self::setSql(\Jdjiwi\Config::get('debug.sql'));
-        self::setExplain(\Jdjiwi\Config::get('debug.sql.explain'));
+        self::setError(Config::get('debug.error'));
+        self::setModul(Config::get('debug.modul'));
+        self::setAjax(Config::get('debug.ajax'));
+        self::setSql(Config::get('debug.sql'));
+        self::setExplain(Config::get('debug.sql.explain'));
     }
 
     /* отладка Error */
@@ -129,7 +131,7 @@ class cDebug {
 
     static public function shutdown() {
         if (self::isView()) {
-            echo cLog::message();
+            echo Log::message();
         }
     }
 

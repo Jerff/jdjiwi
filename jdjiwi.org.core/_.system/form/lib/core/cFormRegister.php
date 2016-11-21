@@ -12,11 +12,11 @@ abstract class cFormRegister {
     private $parent = false;
 
 //    public function __construct() {
-//        cLog::log('__construct ' . get_class($this));
+//        \Jdjiwi\Log::log('__construct ' . get_class($this));
 //    }
 //
 //    public function __destruct() {
-//        cLog::log('__destruct ' . get_class($this));
+//        \Jdjiwi\Log::log('__destruct ' . get_class($this));
 //    }
 
 
@@ -58,9 +58,9 @@ protected function &register($class, $type = self::personal) {
             break;
     }
     if (is_subclass_of($object, 'cFormRegister')) {
-//            cLog::log(get_class($this) .' => '. $type .' => ' . print_r(array_keys($this->mCollective), true));
-//            cLog::log("\t\t\t\t". get_class($this) .' => '. $type .' => ' . get_class($object));
-//            cLog::log(print_r(array_keys($this->mCollective), true));
+//            \Jdjiwi\Log::log(get_class($this) .' => '. $type .' => ' . print_r(array_keys($this->mCollective), true));
+//            \Jdjiwi\Log::log("\t\t\t\t". get_class($this) .' => '. $type .' => ' . get_class($object));
+//            \Jdjiwi\Log::log(print_r(array_keys($this->mCollective), true));
         $object->initRegister($this, $this->form, $this->mCollective);
     }
     return $object;

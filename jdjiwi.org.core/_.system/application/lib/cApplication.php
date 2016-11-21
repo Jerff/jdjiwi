@@ -7,11 +7,11 @@ class cApplication {
         if (cUser::authorization()) {
             $config = cUser::config();
             if (cAdmin::user()->debugError === 'yes')
-                cDebug::setError();
+                \Jdjiwi\Debug::setError();
             if (cAdmin::user()->debugSql === 'yes')
-                cDebug::setSql();
+                \Jdjiwi\Debug::setSql();
             if (cAdmin::user()->debugExplain === 'yes')
-                cDebug::setExplain();
+                \Jdjiwi\Debug::setExplain();
             //if(cRegister::getAdmin()->debugCache==='yes')	cmfCache::setPages();
             //cmfCache::setData(cRegister::getAdmin()->debugCache==='yes');
         } else {

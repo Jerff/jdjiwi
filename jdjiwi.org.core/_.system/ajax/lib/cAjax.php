@@ -51,7 +51,7 @@ class cAjax {
     }
 
     static public function shutdown() {
-        if (cDebug::isAjax()) {
+        if (\Jdjiwi\Debug::isAjax()) {
             pre(
                     self::get()->log()
             );
@@ -64,10 +64,10 @@ class cAjax {
             $result['error'] = self::$message;
         }
         $content = ob_get_clean();
-        if (cDebug::isView()) {
+        if (\Jdjiwi\Debug::isView()) {
             $result['debug'] = array(
                 'is' => true,
-                'log' => $content . cLog::message()
+                'log' => $content . \Jdjiwi\Log::message()
             );
         }
         echo json_encode($result);

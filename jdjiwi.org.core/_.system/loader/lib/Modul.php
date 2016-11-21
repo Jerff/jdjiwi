@@ -2,7 +2,7 @@
 
 namespace Jdjiwi;
 
-Loader::library('loader/modul/Exception');
+Loader::library('loader:Exception');
 Modul::load('debug');
 Modul::load('compile');
 
@@ -71,8 +71,8 @@ class Modul extends Loader\Compile {
     }
 
     static public function load($modul, $noCompile = false) {
-        if (class_exists('cLog')) {
-            \cLog::modul($modul);
+        if (class_exists('\Jdjiwi\Log', false)) {
+            Log::modul($modul);
         }
         if ($noCompile && defined('isCompile')) {
             return true;
@@ -82,8 +82,8 @@ class Modul extends Loader\Compile {
 
     static public function call($modul) {
         self::$isCompile = true;
-        \cLog::log('host: ' . Config::get('host'));
-        \cLog::log('run: ' . cApplication);
+        Log::log('host: ' . Config::get('host'));
+        Log::log('run: ' . cApplication);
         self::load($modul);
         return self::loadFile($modul, 'call');
     }

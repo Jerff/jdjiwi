@@ -20,7 +20,7 @@ class cJScript {
     }
 
     static public function encode($command) {
-//        if(cDebug::isAjax()) {
+//        if(\Jdjiwi\Debug::isAjax()) {
 //            return $command;
 //        }
         $command = (string) $command;

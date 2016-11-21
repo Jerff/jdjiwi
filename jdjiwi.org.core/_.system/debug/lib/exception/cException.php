@@ -39,12 +39,12 @@ class cException extends \Exception {
 
     public function error($message = false) {
         $this->updateMessage($message);
-        cLog::error((string) $this);
+        \Jdjiwi\Log::error((string) $this);
     }
 
     public function errorLog($message = false) {
         $this->updateMessage($message);
-        cLog::errorLog((string) $this);
+        \Jdjiwi\Log::errorLog((string) $this);
     }
 
     static public function parseTrace($trace) {

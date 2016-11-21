@@ -102,7 +102,7 @@ class cCompileJsCss {
                 $content .= PHP_EOL . '/* ' . $file . ' */' . PHP_EOL . $sourse . PHP_EOL . $sep . PHP_EOL;
             }
         }
-        cDebug::disable();
+        \Jdjiwi\Debug::disable();
         echo $content;
         file_put_contents($this->pathCompile($type, $sFile), $content);
     }

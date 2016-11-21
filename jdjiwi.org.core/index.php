@@ -23,13 +23,13 @@ if ($compile['is']) {
 } else {
     require(cSoursePath . '_.system/loader/Loader.php');
 }
-cLog::memory();
-cLog::init();
+\Jdjiwi\Log::memory();
+\Jdjiwi\Log::init();
 
-cDebug::setAjax();
-cDebug::setError();
-//cDebug::setModul();
-cDebug::setSql();
+\Jdjiwi\Debug::setAjax();
+\Jdjiwi\Debug::setError();
+//\Jdjiwi\Debug::setModul();
+\Jdjiwi\Debug::setSql();
 cCache::setPages();
 cCache::setData();
 return \Jdjiwi\Modul::call(cApplication);

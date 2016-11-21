@@ -1,7 +1,7 @@
 <?php
 
 function pre() {
-    if (!cDebug::isError())
+    if (!\Jdjiwi\Debug::isError())
         return;
     echo '<pre>';
     foreach (func_get_args() as $value)
@@ -14,7 +14,7 @@ function pre() {
 }
 
 function pre2() {
-    if (!cDebug::isError())
+    if (!\Jdjiwi\Debug::isError())
         return;
     echo '<pre>';
     foreach (func_get_args() as $value) {
@@ -24,7 +24,7 @@ function pre2() {
 }
 
 function pre3() {
-    if (!cDebug::isError())
+    if (!\Jdjiwi\Debug::isError())
         return;
     echo '<pre>';
     foreach (func_get_args() as $value) {
@@ -34,7 +34,7 @@ function pre3() {
 }
 
 function preTrace() {
-    if (!cDebug::isError())
+    if (!\Jdjiwi\Debug::isError())
         return;
     echo '<pre>';
     echo (new Exception())->getTraceAsString();

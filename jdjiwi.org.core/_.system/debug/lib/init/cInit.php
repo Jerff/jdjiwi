@@ -9,7 +9,7 @@ class cInit {
      */
 
     public static function init() {
-        cDebug::init();
+        \Jdjiwi\Debug::init();
         ini_set('html_errors', 'On');
         ini_set('docref_root', '');
         ini_set('docref_ext', '');
@@ -19,7 +19,7 @@ class cInit {
             if (is_a($e, 'cException')) {
                 $e->errorLog('Необработанное исключение');
             } else {
-                cLog::errorLog($e);
+                \Jdjiwi\Log::errorLog($e);
             }
         });
         set_error_handler(function($c, $m, $f, $l) {
@@ -33,7 +33,7 @@ class cInit {
             if (cAjax::is()) {
                 cAjax::shutdown();
             } else {
-                cDebug::shutdown();
+                \Jdjiwi\Debug::shutdown();
             }
         });
     }

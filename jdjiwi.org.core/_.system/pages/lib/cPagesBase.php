@@ -32,7 +32,7 @@ class cPagesBase {
             krsort($mSearch);
             define('cApplication', each($mSearch)['value']);
         } catch (cException $e) {
-            cLog::errorLog($e);
+            \Jdjiwi\Log::errorLog($e);
             if (!defined('cApplication')) {
                 define('cApplication', 'application');
             }

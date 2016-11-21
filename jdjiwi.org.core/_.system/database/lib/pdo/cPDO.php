@@ -10,7 +10,7 @@ class cPDO extends PDO {
             $this->setAttribute(PDO::ATTR_STATEMENT_CLASS, array('cResult'));
         } catch (PDOException $e) {
             print "Error!: база данных недоступна";
-            cLog::errorLog($e);
+            \Jdjiwi\Log::errorLog($e);
             exit();
         }
     }

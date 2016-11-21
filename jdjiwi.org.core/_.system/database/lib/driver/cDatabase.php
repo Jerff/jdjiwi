@@ -27,19 +27,19 @@ abstract class cDatabase {
 
     public function query($query) {
         try {
-            if (cDebug::isSql()) {
+            if (\Jdjiwi\Debug::isSql()) {
                 $t = cSystem::microtime();
             }
             if ($res = $this->driver()->query($query)) {
-                if (cDebug::isSql()) {
-                    cLog::sql(trim($query), cSystem::microtime() - $t);
-                    if (cDebug::isExplain() and ( stripos($query, 'SELECT') !== false)) {
+                if (\Jdjiwi\Debug::isSql()) {
+                    \Jdjiwi\Log::sql(trim($query), cSystem::microtime() - $t);
+                    if (\Jdjiwi\Debug::isExplain() and ( stripos($query, 'SELECT') !== false)) {
                         $exp = $this->driver()->query('EXPLAIN ' . $query)->fetchAssocAll();
                         $query = '<b>EXPLAIN</b> ' . $query;
                         foreach ($exp as $r) {
                             $query .= "\n" . print_r($r, true);
                         }
-                        cLog::explain($query);
+                        \Jdjiwi\Log::explain($query);
                     }
                 }
             } else {

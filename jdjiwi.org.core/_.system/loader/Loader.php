@@ -3,7 +3,7 @@
 namespace Jdjiwi;
 
 if (!class_exists('\Jdjiwi\Loader\Compile', false)) {
-    require(__DIR__ . '/Compile.php');
+    require(__DIR__ . '/lib/Compile.php');
 }
 
 class Loader extends Loader\Compile {
@@ -42,9 +42,9 @@ class Loader extends Loader\Compile {
 
 Loader::init();
 Loader::setHistory('loader/Loader');
-Loader::setHistory('loader/Compile');
-Loader::library('loader/Config');
+Loader::setHistory('loader:Compile');
+Loader::library('loader:Config');
 Config::load('host');
-Loader::library('loader/Autoload');
-Loader::library('loader/Modul');
+Loader::library('loader:Autoload');
+Loader::library('loader:Modul');
 Modul::load('loader', true);
