@@ -1,10 +1,10 @@
 <?php
 
-namespace Jdjiwi\Cache;
+namespace Jdjiwi\Cache\Extensions;
 
-\Jdjiwi\Loader::library('cache:ext/driver/DriverSql');
+\Jdjiwi\Loader::library('cache:extensions/driver/DriverSql');
 
-class SQLite extends DriverSql {
+class SQLite extends Driver\DriverSql {
 
     function __construct() {
 

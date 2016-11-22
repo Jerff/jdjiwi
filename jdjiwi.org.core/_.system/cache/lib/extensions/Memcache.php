@@ -1,10 +1,10 @@
 <?php
 
-namespace Jdjiwi\Cache;
+namespace Jdjiwi\Cache\Extensions;
 
-\Jdjiwi\Loader::library('cache:ext/driver/DriverTag');
+\Jdjiwi\Loader::library('cache:extensions/driver/DriverTag');
 
-class Memcache extends DriverTag {
+class Memcache extends Driver\DriverTag {
 
     private $res = null;
     private $flag = null;

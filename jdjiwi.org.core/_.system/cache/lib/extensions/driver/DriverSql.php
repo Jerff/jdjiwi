@@ -1,8 +1,8 @@
 <?php
 
-namespace Jdjiwi\Cache;
+namespace Jdjiwi\Cache\Extensions\Driver;
 
-\Jdjiwi\Loader::library('cache:ext/driver/Driver');
+\Jdjiwi\Loader::library('cache:extensions/driver/Driver');
 \Jdjiwi\Loader::library('core:crypt/cCrypt');
 
 class DriverSql extends Driver {

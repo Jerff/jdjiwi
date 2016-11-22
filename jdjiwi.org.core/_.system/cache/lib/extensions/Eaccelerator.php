@@ -1,10 +1,10 @@
 <?php
 
-namespace Jdjiwi\Cache;
+namespace Jdjiwi\Cache\Extensions;
 
-\Jdjiwi\Loader::library('cache:ext/driver/DriverTag');
+\Jdjiwi\Loader::library('cache:extensions/driver/DriverTag');
 
-class Eaccelerator extends DriverTag {
+class Eaccelerator extends Driver\DriverTag {
 
     function __construct() {
         if (!extension_loaded('eaccelerator')) {

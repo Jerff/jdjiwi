@@ -1,10 +1,10 @@
 <?php
 
-namespace Jdjiwi\Cache;
+namespace Jdjiwi\Cache\Extensions;
 
-\Jdjiwi\Loader::library('cache:ext/driver/cCacheDriverTag');
+\Jdjiwi\Loader::library('cache:extensions/driver/DriverTag');
 
-class Apc extends DriverTag {
+class Apc extends Driver\DriverTag {
 
     function __construct() {
         if (!extension_loaded('apc')) {

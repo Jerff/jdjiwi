@@ -1,12 +1,12 @@
 <?php
 
-namespace Jdjiwi\Cache;
+namespace Jdjiwi\Cache\Extensions\Driver;
 
-\Jdjiwi\Loader::library('cache:ext/driver/Driver');
+\Jdjiwi\Loader::library('cache:extensions/driver/Driver');
 
 abstract class DriverTag extends Driver {
 
-    const tagId = '\Jdjiwi\Cache\DriverTag';
+    const tagId = '\Jdjiwi\Cache\Extensions\Driver\DriverTag';
 
     abstract protected function setId($n, $v, $time);
 

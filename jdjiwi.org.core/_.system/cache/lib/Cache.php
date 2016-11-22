@@ -4,11 +4,10 @@ namespace Jdjiwi;
 
 use Jdjiwi\Log;
 
-Loader::library('cache:Delegation');
 Loader::library('cache:Control');
-Loader::library('cache:ext/Sql');
-Loader::library('cache:ext/SQLite');
-Loader::library('cache:ext/Memcache');
+Loader::library('cache:extensions/Sql');
+Loader::library('cache:extensions/SQLite');
+Loader::library('cache:extensions/Memcache');
 
 class Cache {
 
@@ -17,12 +16,12 @@ class Cache {
             return self::$driver;
         }
 
-        $cache = self::getDriver(Config::get('cache.driver'));
+        $cache = '\Jdjiwi\Cache\Extensions\\' . self::getDriver(Config::get('cache.driver'));
         $cache = new $cache;
         if (!$cache->isRun()) {
             foreach (Config::get('cache.driver.list') as $d) {
                 if ($d !== $driver) {
-                    $cache = self::getDriver($d);
+                    $cache = '\Jdjiwi\Cache\Extensions\\' . self::getDriver($d);
                     $cache = new $cache;
                     if ($cache->isRun())
                         break;

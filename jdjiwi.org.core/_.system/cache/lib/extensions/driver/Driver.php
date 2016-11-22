@@ -1,6 +1,6 @@
 <?php
 
-namespace Jdjiwi\Cache;
+namespace Jdjiwi\Cache\Extensions\Driver;
 
 abstract class Driver {
 
