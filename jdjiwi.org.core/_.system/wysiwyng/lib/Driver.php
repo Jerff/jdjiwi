@@ -1,11 +1,14 @@
 <?php
 
-\Jdjiwi\Loader::library('wysiwyng:cWysiwyngDriver');
+namespace Jdjiwi\Wysiwyng;
 
-abstract class cWysiwyngDriver {
+use Jdjiwi\Loader,
+    \Jdjiwi\Config;
+
+abstract class Driver {
 
     static public function getSalt() {
-        return \Jdjiwi\Config::get('wysiwyng.salt');
+        return Config::get('wysiwyng.salt');
     }
 
     public function createSalt($model, $id) {
@@ -52,11 +55,11 @@ abstract class cWysiwyngDriver {
     abstract static public function jsUpdate($id, $value);
 
     public function getPath() {
-        $param = $this->parserParam(cInput::get()->get(\Jdjiwi\Config::get('filemanager.app.key')));
+        $param = $this->parserParam(cInput::get()->get(Config::get('filemanager.app.key')));
         if (empty($param)) {
             die('Access Denied!');
         }
-        cInput::get()->set(\Jdjiwi\Config::get('filemanager.app.key'), $this->getSalt());
+        cInput::get()->set(Config::get('filemanager.app.key'), $this->getSalt());
 
         $model = cModel::init($param['model']);
         cAccess::isWrite($param['model']);
@@ -66,7 +69,7 @@ abstract class cWysiwyngDriver {
 
         $path = $model->getWysiwyngPath();
         if ($param['id']{0} === 't') {
-            $path = \Jdjiwi\Config::get('file.path.tmp') . $param['id'] . '/';
+            $path = Config::get('file.path.tmp') . $param['id'] . '/';
         } else {
             $path .= $param['id'] . '/';
         }
@@ -94,4 +97,3 @@ abstract class cWysiwyngDriver {
     }
 
 }
-

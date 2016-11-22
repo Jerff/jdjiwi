@@ -1,15 +1,20 @@
 <?php
 
-\Jdjiwi\Loader::library('wysiwyng:cWysiwyngDriver');
+namespace Jdjiwi\Wysiwyng;
 
-class cWysiwyngTinymce extends cWysiwyngDriver {
+use Jdjiwi\Loader,
+    Jdjiwi\Config;
+
+Loader::library('wysiwyng:Driver');
+
+class Tinymce extends Driver {
 
     public function html($model, $id, $inputId, $value, $height = 180) {
-        $filemanager = \Jdjiwi\Config::get('filemanager.app.url');
+        $filemanager = Config::get('filemanager.app.url');
         $saltId = $this->getSaltId();
         $salt = $this->createSalt();
 
-        cHeader::addJs(\Jdjiwi\Config::get('tinymce.app.url') . 'tinymce.min.js');
+        \cHeader::addJs(Config::get('tinymce.app.url') . 'tinymce.min.js');
         $html = <<<HTML
 <script type="text/javascript">
     jQuery(function() {
@@ -37,7 +42,7 @@ HTML;
     }
 
     public function jsUpdate($id, $value) {
-        $value = cJScript::quote($value);
+        $value = \cJScript::quote($value);
         $js = <<<HTML
 
 HTML;

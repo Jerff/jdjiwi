@@ -1,15 +1,21 @@
 <?php
-\Jdjiwi\Loader::library('wysiwyng:cWysiwyngDriver');
 
-class cWysiwyngKCKeditor extends cWysiwyngDriver {
+namespace Jdjiwi\Wysiwyng;
+
+use Jdjiwi\Loader,
+    Jdjiwi\Config;
+
+Loader::library('wysiwyng:Driver');
+
+class KCKeditor extends Driver {
 
     public function html($model, $id, $inputId, $value, $height = null) {
-        $filemanager = \Jdjiwi\Config::get('filemanager.app.url');
+        $filemanager = Config::get('filemanager.app.url');
         $saltId = $this->getSaltId();
         $salt = $this->createSalt();
 
-        cHeader::addJs(\Jdjiwi\Config::get('kckeditor.app.url') . 'ckeditor.js');
-        cHeader::addJs(\Jdjiwi\Config::get('kckeditor.app.url') . 'adapters/jquery.js');
+        \cHeader::addJs(Config::get('kckeditor.app.url') . 'ckeditor.js');
+        \cHeader::addJs(Config::get('kckeditor.app.url') . 'adapters/jquery.js');
         $html = <<<HTML
 <script type="text/javascript">
     jQuery(function() {
@@ -27,7 +33,7 @@ HTML;
     }
 
     public function jsUpdate($id, $value) {
-        $value = cJScript::quote($value);
+        $value = \cJScript::quote($value);
         $js = <<<HTML
 CKEDITOR.Instances.{$id}.setData('$value');
 HTML;

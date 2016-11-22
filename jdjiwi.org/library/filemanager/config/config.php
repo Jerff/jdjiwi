@@ -20,7 +20,7 @@ mb_internal_encoding('UTF-8');
 //    |   |   |   |   |- plugin.min.js
 
 require('../../../accessWysiwyng.php');
-list($wwwPath, $filePath) = cWysiwyng::getPath();
+list($wwwPath, $filePath) = \Jdjiwi\Wysiwyng::getPath();
 $base_url ="http://".$_SERVER['HTTP_HOST'];  // DON'T TOUCH (base url (only domain) of site (without final /)).
 $upload_dir = $wwwPath; // path from base_url to base of upload folder (with start and final /)
 $current_path = $filePath; // relative path from filemanager folder to upload folder (with final /)
@@ -48,7 +48,7 @@ define('USE_ACCESS_KEYS', true); // TRUE or FALSE
 // $akey = md5($username.$salt);
 // DO NOT use 'key' as access key!
 // Keys are CASE SENSITIVE!
-$access_keys = array('myPrivateKey',cWysiwyng::getSalt());
+$access_keys = array('myPrivateKey',\Jdjiwi\Wysiwyng::getSalt());
 
 //--------------------------------------------------------------------------------------------------------
 // YOU CAN COPY AND CHANGE THESE VARIABLES INTO FOLDERS config.php FILES TO CUSTOMIZE EACH FOLDER OPTIONS

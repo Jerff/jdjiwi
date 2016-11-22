@@ -25,11 +25,11 @@ class cmfFormTextareaWysiwyng extends cFormText {
     }
 
     public function html($param, $height = null) {
-        return cWysiwyng::html($this->path, $this->number, $this->getId(), $this->getValue(), $height);
+        return \Jdjiwi\Wysiwyng::html($this->path, $this->number, $this->getId(), $this->getValue(), $height);
     }
 
     public function jsUpdate() {
-        return parent::jsUpdate() . cWysiwyng::jsUpdate($this->getId(), $this->getValue());
+        return parent::jsUpdate() . \Jdjiwi\Wysiwyng::jsUpdate($this->getId(), $this->getValue());
     }
 
 }

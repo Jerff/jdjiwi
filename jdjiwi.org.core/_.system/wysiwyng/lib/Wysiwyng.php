@@ -1,23 +1,27 @@
 <?php
 
-\Jdjiwi\Loader::library('wysiwyng:tinymce/cWysiwyngTinymce');
-\Jdjiwi\Loader::library('wysiwyng:ckeditor/cWysiwyngKCKeditor');
+namespace Jdjiwi;
+
+use Jdjiwi\Exception;
+
+Loader::library('wysiwyng:tinymce/cWysiwyngTinymce');
+Loader::library('wysiwyng:ckeditor/cWysiwyngKCKeditor');
 
 class cWysiwyng {
 
     static private function driver() {
         if (empty(self::$instance)) {
-            switch (\Jdjiwi\Config::get('wysiwyng.driver')) {
+            switch (Config::get('wysiwyng.driver')) {
                 case 'KCKeditor':
-                    self::$instance = new cWysiwyngKCKeditor();
+                    self::$instance = new Wysiwyng\KCKeditor();
                     break;
 
                 case 'tinymce':
-                    self::$instance = new cWysiwyngTinymce();
+                    self::$instance = new Wysiwyng\Tinymce();
                     break;
 
                 default:
-                    throw new \Jdjiwi\Exception('нет установлен драйвер визуального редактора');
+                    throw new Exception('нет установлен драйвер визуального редактора');
                     exit;
             }
         }
