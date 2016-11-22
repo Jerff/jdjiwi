@@ -2,7 +2,8 @@
 
 namespace Jdjiwi\Mail\Phpmailer;
 
-use Jdjiwi\Loader;
+use Jdjiwi\Loader,
+    \Jdjiwi\Cache;
 
 Loader::library('vendor/phpmailer/phpmailer/class.phpmailer');
 
@@ -36,14 +37,11 @@ class Phpmailer {
 
     // почтовые переменные
     static public function getMailVar($name = null) {
-        if (!$_var = \cCache::get('cmfMail::getMailVar')) {
-
-            $_var = \cDB::sql()->placeholder("SELECT var, value FROM ?t", cDB::table('mail.var'))
-                    ->fetchRowAll(0, 1);
-
-            \cCache::set('cmfMail::getMailVar', $_var, 'mail');
-        }
-        return $name ? get($_var, $name) : $_var;
+        $arValues = Cache::run(array(__NAMESPACE__, __CLASS__, __FUNCTION__), function() {
+                    return \cDB::sql()->placeholder("SELECT var, value FROM ?t", cDB::table('mail.var'))
+                                    ->fetchRowAll(0, 1);
+                });
+        return $name ? get($arValues, $name) : $arValues;
     }
 
     // работа c вложениями
@@ -150,15 +148,11 @@ class Phpmailer {
 
     // отправка шаблона письма по адресам указанным в админке
     public function sendType($type, $name, $data) {
-        if (!$_email = \cCache::get('cmfMail::sendType' . $type)) {
-
-            $_email = \cDB::sql()->placeholder("SELECT email FROM ?t WHERE `?s`='yes'", cDB::table('mail.list'), $type)
-                    ->fetchRowAll(0);
-
-            \cCache::set('cmfMail::sendType' . $type, $_email, 'mail');
-        }
-
-        foreach ($_email as $email) {
+        $arEmails = Cache::run(array(__NAMESPACE__, __CLASS__, __FUNCTION__), function() {
+                    $arEmail = \cDB::sql()->placeholder("SELECT email FROM ?t WHERE `?s`='yes'", cDB::table('mail.list'), $type)
+                            ->fetchRowAll(0);
+                });
+        foreach ($arEmails as $email) {
             $this->sendTemplates($name, $data, $email);
         }
     }

@@ -30,6 +30,6 @@ if ($compile['is']) {
 \Jdjiwi\Debug::setError();
 //\Jdjiwi\Debug::setModul();
 \Jdjiwi\Debug::setSql();
-cCache::setPages();
-cCache::setData();
+\Jdjiwi\Cache\Control::setPages();
+\Jdjiwi\Cache\Control::setData();
 return \Jdjiwi\Modul::call(cApplication);

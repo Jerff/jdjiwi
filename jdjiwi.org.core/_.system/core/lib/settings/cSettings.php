@@ -1,23 +1,26 @@
 <?php
 
+use Jdjiwi\Cache;
+
 class cSettings {
 
     private static $value = array();
 
     private static function start() {
         static $is = false;
-        if ($is)
+        if ($is) {
             return;
-        $is = true;
-        if (false === ($value = cCache::get('config'))) {
-            $res = cDB::sql()->placeholder("SELECT id, data FROM ?t WHERE cache='yes' AND data!=''", cDB::table('sys.settings'))
-                    ->fetchAssocAll();
-            $value = array();
-            foreach ($res as $row) {
-                $value[$row['id']] = unserialize($row['data']);
-            }
-            cCache::set('config', $value, 'config');
         }
+        $is = true;
+        self::$value = Cache::run(array(__NAMESPACE__, __CLASS__, __FUNCTION__), function() {
+                    $res = cDB::sql()->placeholder("SELECT id, data FROM ?t WHERE cache='yes' AND data!=''", cDB::table('sys.settings'))
+                            ->fetchAssocAll();
+                    $value = array();
+                    foreach ($res as $row) {
+                        $value[$row['id']] = unserialize($row['data']);
+                    }
+                    return $value;
+                });
         self::$value = $value;
     }
 

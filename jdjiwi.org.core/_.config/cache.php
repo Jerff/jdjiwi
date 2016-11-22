@@ -5,6 +5,11 @@ return array(
      *  драйвер кеша
      */
     'driver' => 'sql',
+    'driver.list' => 'SQLite|Memcache|Xcache|eaccelerator|sql',
+    /*
+     *  настройки
+     */
+    'default.time' => 3600,
     /*
      *  конфигурация мемкеша
      */

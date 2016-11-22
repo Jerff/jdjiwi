@@ -1,8 +1,10 @@
 <?php
 
-\Jdjiwi\Loader::library('cache:ext/driver/cCacheDriverTag');
+namespace Jdjiwi\Cache;
 
-class cCacheMemcache extends cCacheDriverTag {
+\Jdjiwi\Loader::library('cache:ext/driver/DriverTag');
+
+class Memcache extends DriverTag {
 
     private $res = null;
     private $flag = null;
@@ -13,10 +15,10 @@ class cCacheMemcache extends cCacheDriverTag {
             return;
         }
 
-        $res = new Memcache();
+        $res = new \Memcache();
         $res->connect(\Jdjiwi\Config::get('cache.memcache.host'), \Jdjiwi\Config::get('cache.memcache.port'));
         $this->setResurse($res);
-        $this->setFlag(cSettings::get('memcache.compressed') ? MEMCACHE_COMPRESSED : false);
+        $this->setFlag(\cSettings::get('memcache.compressed') ? MEMCACHE_COMPRESSED : false);
 
         parent::__construct();
     }

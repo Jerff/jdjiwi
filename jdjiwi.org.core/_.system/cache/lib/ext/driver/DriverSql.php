@@ -1,9 +1,11 @@
 <?php
 
-\Jdjiwi\Loader::library('cache:ext/driver/cCacheDriver');
+namespace Jdjiwi\Cache;
+
+\Jdjiwi\Loader::library('cache:ext/driver/Driver');
 \Jdjiwi\Loader::library('core:crypt/cCrypt');
 
-class cCacheDriverSql extends cCacheDriver {
+class DriverSql extends Driver {
 
     // ресурс базы данных
     private $res = null;
@@ -58,7 +60,7 @@ class cCacheDriverSql extends cCacheDriver {
     }
 
     public function deleteTime() {
-        $this->getResurse()->query("DELETE FROM " . cDB::table('cache.data') . " WHERE `time`<'" . time() . "'");
+        $this->getResurse()->query("DELETE FROM " . \cDB::table('cache.data') . " WHERE `time`<'" . time() . "'");
     }
 
     public function deleteTag($n) {

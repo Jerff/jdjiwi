@@ -12,8 +12,8 @@ class cApplication {
                 \Jdjiwi\Debug::setSql();
             if (cAdmin::user()->debugExplain === 'yes')
                 \Jdjiwi\Debug::setExplain();
-            //if(cRegister::getAdmin()->debugCache==='yes')	cmfCache::setPages();
-            //cmfCache::setData(cRegister::getAdmin()->debugCache==='yes');
+            //if(cRegister::getAdmin()->debugCache==='yes')	\Jdjiwi\Cache\Control::setPages();
+            //\Jdjiwi\Cache\Control::setData(cRegister::getAdmin()->debugCache==='yes');
         } else {
 //            echo 'Для просмотра нужна авторизация';
 //            exit;

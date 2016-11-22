@@ -1,10 +1,12 @@
 <?php
 
-\Jdjiwi\Loader::library('cache:ext/driver/cCacheDriver');
+namespace Jdjiwi\Cache;
 
-abstract class cCacheDriverTag extends cCacheDriver {
+\Jdjiwi\Loader::library('cache:ext/driver/Driver');
 
-    const tagId = 'cmfCacheDriverTag';
+abstract class DriverTag extends Driver {
+
+    const tagId = '\Jdjiwi\Cache\DriverTag';
 
     abstract protected function setId($n, $v, $time);
 
@@ -14,7 +16,7 @@ abstract class cCacheDriverTag extends cCacheDriver {
 
     //функция хеширования
     protected function hash($n) {
-        return cCrypt::crc32($n) . sha1($n);
+        return \cCrypt::crc32($n) . sha1($n);
     }
 
     // хранение тегов
@@ -86,4 +88,3 @@ abstract class cCacheDriverTag extends cCacheDriver {
     }
 
 }
-

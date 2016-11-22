@@ -1,6 +1,8 @@
 <?php
 
-abstract class cCacheDriver {
+namespace Jdjiwi\Cache;
+
+abstract class Driver {
 
     // ошибка запуска драйвера
     private $isError = false;
@@ -26,5 +28,3 @@ abstract class cCacheDriver {
 
     abstract public function clear();
 }
-
-
