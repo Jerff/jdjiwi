@@ -4,8 +4,14 @@ return array(
     /*
      *  драйвер кеша
      */
-    'driver' => 'sql',
-    'driver.list' => 'SQLite|Memcache|Xcache|eaccelerator|sql',
+    'driver' => 'Sql',
+    'driver.list' => array(
+        'SQLite',
+        'Memcache',
+        'Xcache',
+        'eaccelerator',
+        'Sql'
+    ),
     /*
      *  настройки
      */
