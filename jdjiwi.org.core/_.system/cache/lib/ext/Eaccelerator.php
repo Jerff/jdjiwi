@@ -1,8 +1,10 @@
 <?php
 
-\Jdjiwi\Loader::library('cache:ext/driver/cCacheDriverTag');
+namespace Jdjiwi\Cache;
 
-class cCacheEaccelerator extends cCacheDriverTag {
+\Jdjiwi\Loader::library('cache:ext/driver/DriverTag');
+
+class Eaccelerator extends DriverTag {
 
     function __construct() {
         if (!extension_loaded('eaccelerator')) {
@@ -36,4 +38,3 @@ class cCacheEaccelerator extends cCacheDriverTag {
     }
 
 }
-

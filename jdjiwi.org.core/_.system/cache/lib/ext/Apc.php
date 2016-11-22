@@ -1,8 +1,10 @@
 <?php
 
+namespace Jdjiwi\Cache;
+
 \Jdjiwi\Loader::library('cache:ext/driver/cCacheDriverTag');
 
-class cCacheApc extends cCacheDriverTag {
+class Apc extends DriverTag {
 
     function __construct() {
         if (!extension_loaded('apc')) {
@@ -27,4 +29,3 @@ class cCacheApc extends cCacheDriverTag {
     }
 
 }
-
