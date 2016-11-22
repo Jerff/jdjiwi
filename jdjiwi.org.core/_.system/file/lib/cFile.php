@@ -1,5 +1,7 @@
 <?php
 
+use Jdjiwi\FileSystem\Exception;
+
 class cFile {
     /* === копирование файлов === */
 
@@ -17,11 +19,11 @@ class cFile {
                 }
             }
             if (copy($file, $name)) {
-                throw new cFileException('файл не скопирован', array($file, $name));
+                throw new Exception('файл не скопирован', array($file, $name));
             }
             cFileSystem::chmod($name);
             return $name;
-        } catch (cFileException $e) {
+        } catch (Exception $e) {
             $e->errorLog('Невозможно скопировать файл');
         }
         return false;
@@ -31,11 +33,11 @@ class cFile {
     static public function isWritable($file) {
         if (file_exists($file)) {
             if (!is_writable($file)) {
-                throw new cFileException('Невозможна запись в файл', $file);
+                throw new Exception('Невозможна запись в файл', $file);
             }
         } else {
             if (!is_writable(dirname($file))) {
-                throw new cFileException('Невозможно создать файл в папке', dirname($file));
+                throw new Exception('Невозможно создать файл в папке', dirname($file));
             }
         }
         return true;

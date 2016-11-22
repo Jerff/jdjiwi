@@ -1,5 +1,9 @@
 <?php
 
+use Jdjiwi\Exception,
+    \Jdjiwi\Log,
+    \Jdjiwi\Config;
+
 class cPagesBase {
 
     private $mBase = null;
@@ -9,13 +13,13 @@ class cPagesBase {
     }
 
     public function router() {
-        $this->mBase = \Jdjiwi\Config::get('router.list');
+        $this->mBase = Config::get('router.list');
         try {
             if (defined('cApplication')) {
                 if (isset($this->mBase[cApplication])) {
                     return $this->mBase[cApplication];
                 } else {
-                    throw new cException('не найден раздел сайта', cApplication);
+                    throw new Exception('не найден раздел сайта', cApplication);
                     exit;
                 }
             }
@@ -27,12 +31,12 @@ class cPagesBase {
                 }
             }
             if (empty($mSearch)) {
-                throw new cException('неправильный раздел сайта');
+                throw new Exception('неправильный раздел сайта');
             }
             krsort($mSearch);
             define('cApplication', each($mSearch)['value']);
-        } catch (cException $e) {
-            \Jdjiwi\Log::errorLog($e);
+        } catch (Exception $e) {
+            Log::errorLog($e);
             if (!defined('cApplication')) {
                 define('cApplication', 'application');
             }

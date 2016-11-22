@@ -17,7 +17,7 @@ class cWysiwyng {
                     break;
 
                 default:
-                    throw new cException('нет установлен драйвер визуального редактора');
+                    throw new \Jdjiwi\Exception('нет установлен драйвер визуального редактора');
                     exit;
             }
         }

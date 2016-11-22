@@ -44,7 +44,7 @@ class Log {
 
     private static function processingMessage(&$e) {
         if (is_a($e, 'Exception')) {
-            $e = \cException::parseTrace((string) $e);
+            $e = Exception::parseTrace((string) $e);
         }
     }
 

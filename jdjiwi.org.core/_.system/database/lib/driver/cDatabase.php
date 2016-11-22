@@ -1,5 +1,7 @@
 <?php
 
+use Jdjiwi\Database\Exception;
+
 \Jdjiwi\Loader::library('database:quote/cDatabaseQuote');
 
 abstract class cDatabase {
@@ -43,9 +45,9 @@ abstract class cDatabase {
                     }
                 }
             } else {
-                throw new cDatabaseException($query, $this->driver()->errorInfo());
+                throw new Exception($query, $this->driver()->errorInfo());
             }
-        } catch (cDatabaseException $e) {
+        } catch (Exception $e) {
             $e->errorLog();
         }
         return $res;

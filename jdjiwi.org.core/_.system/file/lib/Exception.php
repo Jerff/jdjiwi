@@ -1,6 +1,8 @@
 <?php
 
-class cFileException extends cException {
+namespace Jdjiwi\FileSystem;
+
+class Exception extends \Jdjiwi\Exception {
 
     protected $name = 'Работа с файловой системой';
 

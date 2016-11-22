@@ -34,7 +34,7 @@ class Loader extends Loader\Compile {
 
     static public function isExtension(string $name) {
         if (!extension_loaded($name)) {
-            throw new \cException('расширение не загружено', $name);
+            throw new Exception('расширение не загружено', $name);
         }
     }
 

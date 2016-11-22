@@ -1,8 +1,8 @@
 <?php
 
-\Jdjiwi\Loader::library('debug:exception/cException');
+namespace Jdjiwi\Database;
 
-class cDatabaseException extends cException {
+class Exception extends \Jdjiwi\Exception {
 
     protected $name = 'Ошибка базы данных';
     protected $sqlError = false;

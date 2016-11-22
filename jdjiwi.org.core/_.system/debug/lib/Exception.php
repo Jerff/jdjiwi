@@ -1,9 +1,11 @@
 <?php
 
-\Jdjiwi\Loader::library('debug:exception/cErrorException');
-\Jdjiwi\Loader::library('core:string/cString');
+namespace Jdjiwi;
 
-class cException extends \Exception {
+Loader::library('debug:exception/Error');
+Loader::library('core:string/cString');
+
+class Exception extends \Exception {
     /*
       final function getMessage(); // сообщение исключения
       final function getCode(); // код исключения
@@ -39,19 +41,19 @@ class cException extends \Exception {
 
     public function error($message = false) {
         $this->updateMessage($message);
-        \Jdjiwi\Log::error((string) $this);
+        Log::error((string) $this);
     }
 
     public function errorLog($message = false) {
         $this->updateMessage($message);
-        \Jdjiwi\Log::errorLog((string) $this);
+        Log::errorLog((string) $this);
     }
 
     static public function parseTrace($trace) {
         if (class_exists('cString', false)) {
-            return cString::specialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)));
+            return \cString::specialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)));
         } else {
-            return htmlspecialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)), ENT_QUOTES, \Jdjiwi\Config::get('i18n.charset'));
+            return htmlspecialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)), ENT_QUOTES, Config::get('i18n.charset'));
         }
     }
 

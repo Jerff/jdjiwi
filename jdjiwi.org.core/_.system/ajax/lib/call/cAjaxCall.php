@@ -11,7 +11,7 @@ class cAjaxCall {
         $file = preg_replace('~(([\-a-z\.\/]*)\/).*~is', '$2', $file);
         $file = \Jdjiwi\Config::get('path.app.ajax') . str_replace(array('..', '.'), '', $file) . '.php';
         if (!is_file($file)) {
-            throw new cException('контроллер не существует', $file);
+            throw new \Jdjiwi\Exception('контроллер не существует', $file);
         }
         return cCompile::php()->load('ajax', $file);
     }

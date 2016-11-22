@@ -1,6 +1,8 @@
 <?php
 
-\Jdjiwi\Loader::library('file:exception/cFileException');
+use Jdjiwi\FileSystem\Exception,
+    Jdjiwi\Config;
+
 \Jdjiwi\Loader::library('file:system/cExec');
 \Jdjiwi\Loader::library('file:system/cFileAccess');
 \Jdjiwi\Loader::library('core:string/cConvert');
@@ -14,7 +16,7 @@ class cFileSystem {
             $mode = cFileMode;
         }
         if (!chmod($path, $mode)) {
-            throw new cFileException('права файла не изменены', array($path, $mode));
+            throw new Exception('права файла не изменены', array($path, $mode));
         }
     }
 
@@ -32,10 +34,10 @@ class cFileSystem {
             return true;
         }
         if (is_null($mode)) {
-            $mode = \Jdjiwi\Config::get('file.mode.dir');
+            $mode = Config::get('file.mode.dir');
         }
         if (!$is = mkdir($folder, $mode, true)) {
-            throw new cFileException('Невозможно создать папку', $folder);
+            throw new Exception('Невозможно создать папку', $folder);
         }
         self::chmod($folder, $mode);
     }

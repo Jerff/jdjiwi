@@ -2,6 +2,8 @@
 
 namespace Jdjiwi;
 
+use Jdjiwi\Exception\Error;
+
 Modul::load('ajax');
 Init::init();
 
@@ -18,7 +20,7 @@ class Init {
         error_reporting(E_ALL);
 
         set_exception_handler(function($e) {
-            if (is_a($e, 'cException')) {
+            if (is_a($e, '\Jdjiwi\Exception')) {
                 $e->errorLog('Необработанное исключение');
             } else {
                 Log::errorLog($e);
@@ -26,8 +28,8 @@ class Init {
         });
         set_error_handler(function($c, $m, $f, $l) {
             try {
-                throw new \cErrorException($m, $c, $f, $l);
-            } catch (\cErrorException $e) {
+                throw new Error($m, $c, $f, $l);
+            } catch (Error $e) {
                 $e->errorLog();
             }
         });

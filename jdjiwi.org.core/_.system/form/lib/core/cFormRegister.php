@@ -54,7 +54,7 @@ protected function &register($class, $type = self::personal) {
             break;
 
         default:
-            throw new cException('нет такого типа данных', $type);
+            throw new \Jdjiwi\Exception('нет такого типа данных', $type);
             break;
     }
     if (is_subclass_of($object, 'cFormRegister')) {

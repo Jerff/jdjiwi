@@ -1,6 +1,8 @@
 <?php
 
-class cErrorException extends cException {
+namespace Jdjiwi\Exception;
+
+class Error extends \Jdjiwi\Exception {
 
     protected $name = 'Ошибка';
 
@@ -48,4 +50,3 @@ class cErrorException extends cException {
     }
 
 }
-

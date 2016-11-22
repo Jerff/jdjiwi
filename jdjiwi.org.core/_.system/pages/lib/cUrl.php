@@ -1,5 +1,7 @@
 <?php
 
+use \Jdjiwi\Exception;
+
 \Jdjiwi\Loader::library('pages:cUrlAdmin');
 \Jdjiwi\Loader::library('trait:cTraitStaticRegistry');
 
@@ -26,10 +28,10 @@ class cUrl {
             $param = func_get_args();
             $conf = cPages::getPageConfig(array_shift($param));
             if ($conf and $conf->isNoPage()) {
-                throw new cException('нет такой страницы', func_get_args());
+                throw new Exception('нет такой страницы', func_get_args());
             }
             return cPages::base()->{$conf->base} . self::reform($conf->uri, $param);
-        } catch (cException $e) {
+        } catch (Exception $e) {
             $e->errorLog();
         }
         return false;
@@ -40,10 +42,10 @@ class cUrl {
         try {
             $conf = cPages::getPageConfig(array_shift($param));
             if ($conf and $conf->isNoPage()) {
-                throw new cException('нет такой страницы', func_get_args());
+                throw new Exception('нет такой страницы', func_get_args());
             }
             return cPages::base()->{$conf->base} . self::reform($conf->uri, $param);
-        } catch (cException $e) {
+        } catch (Exception $e) {
             $e->errorLog();
         }
         return false;
@@ -56,10 +58,10 @@ class cUrl {
             $lang = array_shift($param);
             $conf = cPages::getPageConfig(array_shift($param));
             if ($conf and $conf->isNoPage()) {
-                throw new cException('нет такой страницы', func_get_args());
+                throw new Exception('нет такой страницы', func_get_args());
             }
             return cPages::base()->{$conf->base} . self::reform($conf->uri, $param);
-        } catch (cException $e) {
+        } catch (Exception $e) {
             $e->errorLog();
         }
         return false;
@@ -71,10 +73,10 @@ class cUrl {
             $param = func_get_args();
             $uri = cPages::getPageConfig(array_shift($param), 'u');
             if (empty($uri)) {
-                throw new cException('нет такой страницы', func_get_args());
+                throw new Exception('нет такой страницы', func_get_args());
             }
             return self::reform($uri, $param);
-        } catch (cException $e) {
+        } catch (Exception $e) {
             $e->errorLog();
         }
         return false;

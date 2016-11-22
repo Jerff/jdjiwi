@@ -1,5 +1,7 @@
 <?php
 
+use Jdjiwi\FileSystem\Exception;
+
 class cFileUpload {
 
     // upload file
@@ -18,15 +20,14 @@ class cFileUpload {
                 }
             }
             if (!move_uploaded_file($upload['tmp_name'], $folder . $name)) {
-                throw new cFileException('файл не перемещен', array($file, $name));
+                throw new Exception('файл не перемещен', array($file, $name));
             }
             cFileSystem::chmod($folder . $name);
             return $prefix . $name;
-        } catch (cFileException $e) {
+        } catch (Exception $e) {
             $e->errorLog('Невозможно сохранить загруженый файл');
         }
         return false;
     }
 
 }
-

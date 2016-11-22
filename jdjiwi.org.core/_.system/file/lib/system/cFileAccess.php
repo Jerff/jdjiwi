@@ -1,5 +1,8 @@
 <?php
 
+use Jdjiwi\FileSystem\Exception,
+    Jdjiwi\Config;
+
 class cFileAccess {
     /*
      * FILE - проверяет принадлежность к папке данных
@@ -40,14 +43,14 @@ class cFileAccess {
                 break;
 
             case self::FILE:
-                $mPath[] = \Jdjiwi\Config::get('path.data');
-                $mPath[] = \Jdjiwi\Config::get('path.compile');
-                $mPath[] = \Jdjiwi\Config::get('cache.site.path');
-                $mPath[] = \Jdjiwi\Config::get('path.file');
+                $mPath[] = Config::get('path.data');
+                $mPath[] = Config::get('path.compile');
+                $mPath[] = Config::get('cache.site.path');
+                $mPath[] = Config::get('path.file');
                 break;
 
             default:
-                throw new cFileException('Неизветный статус доступа к файлам', self::get());
+                throw new Exception('Неизветный статус доступа к файлам', self::get());
                 break;
         }
         foreach ($mPath as $root) {
@@ -55,7 +58,7 @@ class cFileAccess {
                 return;
             }
         }
-        throw new cFileException('Попытка доступа к запрещенной папке, вне правил {уровень доступа ' . self::get() . '}', $path);
+        throw new Exception('Попытка доступа к запрещенной папке, вне правил {уровень доступа ' . self::get() . '}', $path);
     }
 
 }
