@@ -3,7 +3,8 @@
 namespace Jdjiwi\Wysiwyng;
 
 use Jdjiwi\Loader,
-    Jdjiwi\Config;
+    Jdjiwi\Config,
+    Jdjiwi\Header;
 
 Loader::library('wysiwyng:Driver');
 
@@ -14,8 +15,8 @@ class KCKeditor extends Driver {
         $saltId = $this->getSaltId();
         $salt = $this->createSalt();
 
-        \cHeader::addJs(Config::get('kckeditor.app.url') . 'ckeditor.js');
-        \cHeader::addJs(Config::get('kckeditor.app.url') . 'adapters/jquery.js');
+        Header::addJs(Config::get('kckeditor.app.url') . 'ckeditor.js');
+        Header::addJs(Config::get('kckeditor.app.url') . 'adapters/jquery.js');
         $html = <<<HTML
 <script type="text/javascript">
     jQuery(function() {

@@ -16,7 +16,7 @@ if (extension_loaded('mbstring')) {
 \Jdjiwi\Loader::library('core:jscript/cJScript');
 \Jdjiwi\Loader::library('core:crypt/cCrypt');
 \Jdjiwi\Loader::library('core:time/cTime');
-\Jdjiwi\Loader::library('core:header/cHeader');
+\Jdjiwi\Loader::library('core:header/Header');
 
 /* загрузка модулей */
 \Jdjiwi\Modul::load('database');

@@ -3,7 +3,8 @@
 namespace Jdjiwi\Wysiwyng;
 
 use Jdjiwi\Loader,
-    Jdjiwi\Config;
+    Jdjiwi\Config,
+    Jdjiwi\Header;
 
 Loader::library('wysiwyng:Driver');
 
@@ -14,7 +15,7 @@ class Tinymce extends Driver {
         $saltId = $this->getSaltId();
         $salt = $this->createSalt();
 
-        \cHeader::addJs(Config::get('tinymce.app.url') . 'tinymce.min.js');
+        Header::addJs(Config::get('tinymce.app.url') . 'tinymce.min.js');
         $html = <<<HTML
 <script type="text/javascript">
     jQuery(function() {

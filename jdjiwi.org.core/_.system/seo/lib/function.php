@@ -1,12 +1,13 @@
 <?php
 
-function cRedirect($u) {
+namespace Jdjiwi;
+
+function Redirect($u) {
     header('Location: ' . $u);
     exit;
 }
 
-function cRedirectSeo($u) {
+function Redirect301($u) {
     header('HTTP/1.1 301 Moved Permanently: ' . $u);
-    cRedirect($u);
+    Redirect($u);
 }
-

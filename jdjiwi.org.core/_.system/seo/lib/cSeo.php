@@ -1,15 +1,18 @@
 <?php
 
-use Jdjiwi\Cache;
+namespace Jdjiwi;
 
-\Jdjiwi\Loader::library('core:header/cHeader');
+use Jdjiwi\Cache,
+    Jdjiwi\Loader;
 
-class cSeo {
+Loader::library('core:header/Header');
 
-    static private $mSeo = array();
+class Seo {
+
+    static private $arData = array();
 
     static public function set($n, $v) {
-        self::$mSeo[$n] = strip_tags($v);
+        self::$arData[$n] = strip_tags($v);
     }
 
     static private function getData() {
@@ -45,11 +48,11 @@ class cSeo {
                     if (!isset($d))
                         $d = '';
 
-                    while (list($n, $v) = each(self::$mSeo)) {
+                    while (list($n, $v) = each(self::$arData)) {
                         $n = '{' . $n . '}';
                         list($t, $k, $d, $dt, $dk, $dd) = str_replace($n, $v, array($t, $k, $d, $dt, $dk, $dd));
                     }
-                    self::$mSeo = array();
+                    self::$arData = array();
 
                     if (empty($t))
                         $t = $dt;
@@ -66,33 +69,31 @@ class cSeo {
     /* view s */
 
     static public function getTitleMeta() {
-        return cBuffer::add('cSeo::_getTitleMeta');
-    }
+        return Buffer::add(function() {
+                    list($t, $k, $d) = self::getData();
 
-    static public function _getTitleMeta() {
-        list($t, $k, $d) = self::getData();
-
-        $head = '
+                    $head = '
     <title>' . $t . '</title>
     <meta name="keywords" content="' . $k . '"/>
     <meta name="description" content="' . $d . '"/>';
 
-        if (cPages::getPageConfig(cPages::getMain())->noCache) {
-            $head .= '
+                    if (cPages::getPageConfig(cPages::getMain())->noCache) {
+                        $head .= '
     <meta http-equiv="pragma" content="no-cache"/>
     <meta http-equiv="cache-control" content="no-cache"/>';
-            header('Pragma: no-cache');
-            header('Cache-Control: no-cache');
-        } else {
-            $days = 1;
-            $day = 24 * 60 * 60;
-            $add = ((rand(9, 19)) * 60 + rand(1, 59)) * 60 + rand(1, 59);
-            $time = gmdate('D, d M Y H:i:s', (floor(time() / $day) - $days) * $day + $add) . ' GMT';
-            $head .= '
+                        header('Pragma: no-cache');
+                        header('Cache-Control: no-cache');
+                    } else {
+                        $days = 1;
+                        $day = 24 * 60 * 60;
+                        $add = ((rand(9, 19)) * 60 + rand(1, 59)) * 60 + rand(1, 59);
+                        $time = gmdate('D, d M Y H:i:s', (floor(time() / $day) - $days) * $day + $add) . ' GMT';
+                        $head .= '
     <meta http-equiv="last-modified" content="' . $time . '"/>';
-            header('Last-Modified: ' . $time);
-        }
-        return $head;
+                        header('Last-Modified: ' . $time);
+                    }
+                    return $head;
+                });
     }
 
 }
