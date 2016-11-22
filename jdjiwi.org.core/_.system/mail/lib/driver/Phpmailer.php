@@ -1,8 +1,12 @@
 <?php
 
-\Jdjiwi\Loader::library('vendor/phpmailer/phpmailer/class.phpmailer');
+namespace Jdjiwi\Mail\Phpmailer;
 
-class cMail {
+use Jdjiwi\Loader;
+
+Loader::library('vendor/phpmailer/phpmailer/class.phpmailer');
+
+class Phpmailer {
 
     private $charset = 'utf-8';
     private $login = null;
@@ -20,7 +24,7 @@ class cMail {
     // читает из базы, но можно передавать через массив
     public function loadConfig($config = null) {
         if (!$config) {
-            $config = cDB::sql()->placeholder("SELECT login, secure, password, host, port FROM ?t WHERE id='1'", cDB::table('mail.config'))
+            $config = \cDB::sql()->placeholder("SELECT login, secure, password, host, port FROM ?t WHERE id='1'", cDB::table('mail.config'))
                     ->fetchAssoc();
         }
         foreach (array('login', 'password', 'secure', 'host', 'port') as $k) {
@@ -32,12 +36,12 @@ class cMail {
 
     // почтовые переменные
     static public function getMailVar($name = null) {
-        if (!$_var = cCache::get('cmfMail::getMailVar')) {
+        if (!$_var = \cCache::get('cmfMail::getMailVar')) {
 
-            $_var = cDB::sql()->placeholder("SELECT var, value FROM ?t", cDB::table('mail.var'))
+            $_var = \cDB::sql()->placeholder("SELECT var, value FROM ?t", cDB::table('mail.var'))
                     ->fetchRowAll(0, 1);
 
-            cCache::set('cmfMail::getMailVar', $_var, 'mail');
+            \cCache::set('cmfMail::getMailVar', $_var, 'mail');
         }
         return $name ? get($_var, $name) : $_var;
     }
@@ -58,7 +62,7 @@ class cMail {
     }
 
     public function &init() {
-        $mail = new PHPMailer();
+        $mail = new \PHPMailer();
 
         $mail->IsSMTP();
         $mail->SMTPAuth = true;                  // enable SMTP authentication
@@ -129,7 +133,7 @@ class cMail {
 
     // отправка шаблона письма по адресу
     public function sendTemplates($name, $data, $email) {
-        list($header, $content, $html) = cDB::sql()->placeholder("SELECT header, content, html FROM ?t WHERE name=?", cDB::table('mail.templates'), $name)
+        list($header, $content, $html) = \cDB::sql()->placeholder("SELECT header, content, html FROM ?t WHERE name=?", cDB::table('mail.templates'), $name)
                 ->fetchRow();
         if (!$header)
             $header = $name;
@@ -146,12 +150,12 @@ class cMail {
 
     // отправка шаблона письма по адресам указанным в админке
     public function sendType($type, $name, $data) {
-        if (!$_email = cCache::get('cmfMail::sendType' . $type)) {
+        if (!$_email = \cCache::get('cmfMail::sendType' . $type)) {
 
-            $_email = cDB::sql()->placeholder("SELECT email FROM ?t WHERE `?s`='yes'", cDB::table('mail.list'), $type)
+            $_email = \cDB::sql()->placeholder("SELECT email FROM ?t WHERE `?s`='yes'", cDB::table('mail.list'), $type)
                     ->fetchRowAll(0);
 
-            cCache::set('cmfMail::sendType' . $type, $_email, 'mail');
+            \cCache::set('cmfMail::sendType' . $type, $_email, 'mail');
         }
 
         foreach ($_email as $email) {
@@ -160,4 +164,3 @@ class cMail {
     }
 
 }
-

@@ -3,4 +3,4 @@
 /* конфигурация */
 
 /* заагрузка библиотек */
-\Jdjiwi\Loader::library('mail:cMail');
+\Jdjiwi\Loader::library('mail:Mail');
