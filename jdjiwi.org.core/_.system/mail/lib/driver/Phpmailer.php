@@ -37,7 +37,7 @@ class Phpmailer {
 
     // почтовые переменные
     static public function getMailVar($name = null) {
-        $arValues = Cache::run(array(__NAMESPACE__, __CLASS__, __FUNCTION__), function() {
+        $arValues = Cache::run(array(__CLASS__, __FUNCTION__), function() {
                     return \cDB::sql()->placeholder("SELECT var, value FROM ?t", cDB::table('mail.var'))
                                     ->fetchRowAll(0, 1);
                 });
@@ -148,7 +148,7 @@ class Phpmailer {
 
     // отправка шаблона письма по адресам указанным в админке
     public function sendType($type, $name, $data) {
-        $arEmails = Cache::run(array(__NAMESPACE__, __CLASS__, __FUNCTION__), function() {
+        $arEmails = Cache::run(array(__CLASS__, __FUNCTION__), function() {
                     $arEmail = \cDB::sql()->placeholder("SELECT email FROM ?t WHERE `?s`='yes'", cDB::table('mail.list'), $type)
                             ->fetchRowAll(0);
                 });
