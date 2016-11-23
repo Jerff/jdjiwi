@@ -1,6 +1,8 @@
 <?php
 
-class cInputParam {
+namespace Jdjiwi\Input;
+
+class Param {
 
     static private $r = null;
 
@@ -8,7 +10,7 @@ class cInputParam {
         $_param = explode('/', $param);
         $count = count($_param);
         self::$r = array();
-        for ($i = 0; $i <= $count; $i+=2)
+        for ($i = 0; $i <= $count; $i += 2)
             if (isset($_param[$i + 1])) {
                 self::$r[$_param[$i]] = $_param[$i + 1];
             }
@@ -38,4 +40,3 @@ class cInputParam {
     }
 
 }
-

@@ -1,6 +1,8 @@
 <?php
 
-class cInputIp {
+namespace Jdjiwi\Input;
+
+class Ip {
 
     const path = 'HTTP_X_FORWARDED_FOR|HTTP_CLIENT_IP|HTTP_X_CLIENT_IP|HTTP_X_CLUSTER_CLIENT_IP|REMOTE_ADDR';
 
@@ -160,5 +162,3 @@ class cInputIp {
     }
 
 }
-
-

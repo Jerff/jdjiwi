@@ -14,7 +14,7 @@ class cFormSecurity extends cFormCore {
     public function isValid() {
         if ($this->is()) {
             $this->value(); // баг
-            if ($is = cInput::post()->get($this->key()) !== $this->value()) {
+            if ($is = \Jdjiwi\Input::post()->get($this->key()) !== $this->value()) {
                 $this->error()->setSecurity(
                         $this->config()->error()->security
                 );

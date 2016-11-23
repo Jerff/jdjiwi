@@ -1,6 +1,8 @@
 <?php
 
-class cInputGet {
+namespace Jdjiwi\Input;
+
+class Get {
 
     private $get;
     private $bak;
@@ -39,5 +41,3 @@ class cInputGet {
     }
 
 }
-
-

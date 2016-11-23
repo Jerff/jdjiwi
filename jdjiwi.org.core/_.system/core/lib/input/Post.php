@@ -1,6 +1,8 @@
 <?php
 
-class cInputPost {
+namespace Jdjiwi\Input;
+
+class Post {
 
     private $post;
 
@@ -29,5 +31,3 @@ class cInputPost {
     }
 
 }
-
-

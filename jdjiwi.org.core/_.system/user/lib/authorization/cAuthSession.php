@@ -64,7 +64,7 @@ class cAuthSession {
         $session = $this->getData();
 
         if ($session) {
-            if ($session['ip'] !== cInput::ip()->getInt() or $session['proxy'] !== cInput::ip()->proxyInt()) {
+            if ($session['ip'] !== \Jdjiwi\Input::ip()->getInt() or $session['proxy'] !== \Jdjiwi\Input::ip()->proxyInt()) {
                 $this->remove();
                 return false;
             }
@@ -75,7 +75,7 @@ class cAuthSession {
             return true;
         }
 
-        $is = cRegister::sql()->placeholder("SELECT 1 FROM ?t WHERE `id`=? AND IF(`isIp`='yes', `sesIp`=? AND `sesProxy`=?, 1)", $this->getDb(), $this->getId(), cInput::ip()->getInt(), cInput::ip()->proxyInt())
+        $is = cRegister::sql()->placeholder("SELECT 1 FROM ?t WHERE `id`=? AND IF(`isIp`='yes', `sesIp`=? AND `sesProxy`=?, 1)", $this->getDb(), $this->getId(), \Jdjiwi\Input::ip()->getInt(), \Jdjiwi\Input::ip()->proxyInt())
                 ->numRows();
         if (!$is) {
             $this->remove();
@@ -89,8 +89,8 @@ class cAuthSession {
         $this->update();
         Session::set($this->getName(), array('id' => $this->getId(),
             'data' => $row,
-            'session' => array('ip' => cInput::ip()->getInt(), 'ip' => cInput::ip()->getInt(), 'proxy' => cInput::ip()->proxyInt(), 'date' => time())));
-        cRegister::sql()->replace($this->getDb(), array('id' => $this->getId(), 'isIp' => $row['isIp'], 'sesIp' => cInput::ip()->getInt(), 'sesProxy' => cInput::ip()->proxyInt(), 'sesDate' => date('Y-m-d H:i:s')));
+            'session' => array('ip' => \Jdjiwi\Input::ip()->getInt(), 'ip' => \Jdjiwi\Input::ip()->getInt(), 'proxy' => \Jdjiwi\Input::ip()->proxyInt(), 'date' => time())));
+        cRegister::sql()->replace($this->getDb(), array('id' => $this->getId(), 'isIp' => $row['isIp'], 'sesIp' => \Jdjiwi\Input::ip()->getInt(), 'sesProxy' => \Jdjiwi\Input::ip()->proxyInt(), 'sesDate' => date('Y-m-d H:i:s')));
     }
 
     // продление сессии

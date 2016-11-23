@@ -24,21 +24,21 @@ class cAjax {
     }
 
     static public function is() {
-        if (cInput::post()->get('isAjax')) {
+        if (\Jdjiwi\Input::post()->get('isAjax')) {
             self::start();
         }
         return self::$start;
     }
 
     static public function getUrl() {
-        return (string) cInput::post()->get('ajaxUrl');
+        return (string) \Jdjiwi\Input::post()->get('ajaxUrl');
     }
 
     static public function isCommand($command = null) {
         if ($command) {
-            return cInput::post()->get('ajaxCommand') === $command;
+            return \Jdjiwi\Input::post()->get('ajaxCommand') === $command;
         } else {
-            return cInput::post()->is('ajaxCommand');
+            return \Jdjiwi\Input::post()->is('ajaxCommand');
         }
     }
 

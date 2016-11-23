@@ -1,5 +1,7 @@
 <?php
 
+namespace Jdjiwi\Input;
+
 class cInputHeader {
 
     private $header = null;
@@ -39,5 +41,3 @@ class cInputHeader {
     }
 
 }
-
-

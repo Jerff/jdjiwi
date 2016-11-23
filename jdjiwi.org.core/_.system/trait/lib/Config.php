@@ -4,7 +4,7 @@ namespace Jdjiwi\Traits;
 
 trait Config {
 
-    private $config = array();
+    private $arConfig = array();
 
     public function __construct($config = null) {
         if (empty($config)) {
@@ -15,27 +15,27 @@ trait Config {
     }
 
     protected function set($config) {
-        $this->config = $config;
+        $this->arConfig = $config;
     }
 
     abstract protected function init();
 
     public function is($name) {
-        return isset($this->config[$name]);
+        return isset($this->arConfig[$name]);
     }
 
     public function replace($search, $replace) {
-        return str_replace($search, $replace, $this->config);
+        return str_replace($search, $replace, $this->arConfig);
     }
 
     public function __get($name) {
-        return get($this->config, $name);
+        return get($this->arConfig, $name);
     }
 
     public function __call($name, $arguments) {
-        if (isset($this->config[$name])) {
+        if (isset($this->arConfig[$name])) {
             $class = get_class($this);
-            return new $class($this->config[$name]);
+            return new $class($this->arConfig[$name]);
         } else {
             return $this->__get($name);
         }

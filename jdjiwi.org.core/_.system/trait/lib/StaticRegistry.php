@@ -4,13 +4,13 @@ namespace Jdjiwi\Traits;
 
 trait StaticRegistry {
 
-    static private $mRegister = array();
+    static private $arRegister = array();
 
     static protected function &register($class) {
-        if (!isset(self::$mRegister[$class])) {
-            self::$mRegister[$class] = new $class();
+        if (!isset(self::$arRegister[$class])) {
+            self::$arRegister[$class] = new $class();
         }
-        return self::$mRegister[$class];
+        return self::$arRegister[$class];
     }
 
 }

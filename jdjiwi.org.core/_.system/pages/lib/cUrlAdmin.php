@@ -3,7 +3,7 @@
 class cUrlAdmin {
 
     static public function requestUri($opt = null) {
-        $get = cInput::get()->all();
+        $get = \Jdjiwi\Input::get()->all();
         if (!is_null($opt))
             $get = array_merge($get, (array) $opt);
 

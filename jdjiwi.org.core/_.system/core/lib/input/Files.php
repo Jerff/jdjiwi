@@ -1,6 +1,8 @@
 <?php
 
-class cInputFiles {
+namespace Jdjiwi\Input;
+
+class Files {
 
     private $files;
 
@@ -21,5 +23,3 @@ class cInputFiles {
     }
 
 }
-
-

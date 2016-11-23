@@ -20,4 +20,3 @@ function get3($v, $k, $k2, $k3, $d = null) {
     else
         return $d;
 }
-

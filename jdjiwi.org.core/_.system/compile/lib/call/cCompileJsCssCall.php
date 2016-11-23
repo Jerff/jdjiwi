@@ -3,7 +3,7 @@
 class cCompileJsCssCall {
 
     static public function start() {
-        cCompile::fileJsCss()->compile(cInput::get()->get('query'));
+        cCompile::fileJsCss()->compile(\Jdjiwi\Input::get()->get('query'));
     }
 
 }

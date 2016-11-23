@@ -191,8 +191,8 @@ abstract class cAuth {
                 if ($error >= 20) {
                     $data = array('date' => date('d.m.y H:i:s'),
                         'user' => $login,
-                        'ip' => cInput::ip()->getInt(),
-                        'proxy' => cInput::ip()->proxyInt());
+                        'ip' => \Jdjiwi\Input::ip()->getInt(),
+                        'proxy' => \Jdjiwi\Input::ip()->proxyInt());
                 }
             }
             $sql->placeholder("UPDATE ?t SET ?% WHERE ?w", $this->getDb(), array('banCount' => $error, 'banDate' => date('Y-m-d H:i:s', $time)), array('login' => $login));
