@@ -24,7 +24,7 @@ class cFile {
             cFileSystem::chmod($name);
             return $name;
         } catch (Exception $e) {
-            $e->errorLog('Невозможно скопировать файл');
+            $e->addErrorLog('Невозможно скопировать файл');
         }
         return false;
     }

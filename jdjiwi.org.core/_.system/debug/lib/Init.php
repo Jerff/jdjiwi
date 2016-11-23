@@ -21,16 +21,16 @@ class Init {
 
         set_exception_handler(function($e) {
             if (is_a($e, '\Jdjiwi\Exception')) {
-                $e->errorLog('Необработанное исключение');
+                $e->addErrorLog('Необработанное исключение');
             } else {
-                Log::errorLog($e);
+                Log::addError($e);
             }
         });
         set_error_handler(function($c, $m, $f, $l) {
             try {
                 throw new Error($m, $c, $f, $l);
             } catch (Error $e) {
-                $e->errorLog();
+                $e->addErrorLog();
             }
         });
         register_shutdown_function(function() {

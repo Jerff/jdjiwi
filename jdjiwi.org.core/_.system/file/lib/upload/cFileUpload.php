@@ -25,7 +25,7 @@ class cFileUpload {
             cFileSystem::chmod($folder . $name);
             return $prefix . $name;
         } catch (Exception $e) {
-            $e->errorLog('Невозможно сохранить загруженый файл');
+            $e->addErrorLog('Невозможно сохранить загруженый файл');
         }
         return false;
     }

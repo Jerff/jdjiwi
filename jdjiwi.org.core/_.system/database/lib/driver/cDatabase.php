@@ -48,7 +48,7 @@ abstract class cDatabase {
                 throw new Exception($query, $this->driver()->errorInfo());
             }
         } catch (Exception $e) {
-            $e->errorLog();
+            $e->addErrorLog();
         }
         return $res;
     }

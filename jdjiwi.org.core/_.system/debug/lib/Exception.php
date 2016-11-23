@@ -39,14 +39,14 @@ class Exception extends \Exception {
         return $this->getCode();
     }
 
-    public function error($message = false) {
+    public function addError($message = false) {
         $this->updateMessage($message);
         Log::error((string) $this);
     }
 
-    public function errorLog($message = false) {
+    public function addErrorLog($message = false) {
         $this->updateMessage($message);
-        Log::errorLog((string) $this);
+        Log::addError((string) $this);
     }
 
     static public function parseTrace($trace) {

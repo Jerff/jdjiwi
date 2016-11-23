@@ -123,7 +123,7 @@ class Log {
     }
 
     // запись ошибок в файл
-    static public function errorLog($message) {
+    static public function addError($message) {
         self::error($message);
         try {
             $message = PHP_EOL . date("Y-m-d H:i:s (T): ") . ' ' . $message;

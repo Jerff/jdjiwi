@@ -5,5 +5,5 @@ return array(
      * ImageMagick
      */
     'ImageMagick.is' => true,
-    'ImageMagick.path' => '/usr/local/bin/',
+    'ImageMagick.path' => '/usr/bin/',
 );

@@ -36,7 +36,7 @@ class cPagesBase {
             krsort($mSearch);
             define('cApplication', each($mSearch)['value']);
         } catch (Exception $e) {
-            Log::errorLog($e);
+            Log::addError($e);
             if (!defined('cApplication')) {
                 define('cApplication', 'application');
             }

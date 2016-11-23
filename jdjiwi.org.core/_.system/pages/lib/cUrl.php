@@ -32,7 +32,7 @@ class cUrl {
             }
             return cPages::base()->{$conf->base} . self::reform($conf->uri, $param);
         } catch (Exception $e) {
-            $e->errorLog();
+            $e->addErrorLog();
         }
         return false;
     }
@@ -46,7 +46,7 @@ class cUrl {
             }
             return cPages::base()->{$conf->base} . self::reform($conf->uri, $param);
         } catch (Exception $e) {
-            $e->errorLog();
+            $e->addErrorLog();
         }
         return false;
     }
@@ -62,7 +62,7 @@ class cUrl {
             }
             return cPages::base()->{$conf->base} . self::reform($conf->uri, $param);
         } catch (Exception $e) {
-            $e->errorLog();
+            $e->addErrorLog();
         }
         return false;
     }
@@ -77,7 +77,7 @@ class cUrl {
             }
             return self::reform($uri, $param);
         } catch (Exception $e) {
-            $e->errorLog();
+            $e->addErrorLog();
         }
         return false;
     }
