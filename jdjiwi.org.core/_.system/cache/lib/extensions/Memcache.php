@@ -2,7 +2,11 @@
 
 namespace Jdjiwi\Cache\Extensions;
 
-\Jdjiwi\Loader::library('cache:extensions/driver/DriverTag');
+use Jdjiwi\Config,
+    Jdjiwi\Loader,
+    Jdjiwi\Settings;
+
+Loader::library('cache:extensions/driver/DriverTag');
 
 class Memcache extends Driver\DriverTag {
 
@@ -16,9 +20,9 @@ class Memcache extends Driver\DriverTag {
         }
 
         $res = new \Memcache();
-        $res->connect(\Jdjiwi\Config::get('cache.memcache.host'), \Jdjiwi\Config::get('cache.memcache.port'));
+        $res->connect(Config::get('cache.memcache.host'), Config::get('cache.memcache.port'));
         $this->setResurse($res);
-        $this->setFlag(\cSettings::get('memcache.compressed') ? MEMCACHE_COMPRESSED : false);
+        $this->setFlag(Settings::get('memcache.compressed') ? MEMCACHE_COMPRESSED : false);
 
         parent::__construct();
     }
@@ -57,4 +61,3 @@ class Memcache extends Driver\DriverTag {
     }
 
 }
-

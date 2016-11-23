@@ -2,7 +2,7 @@
 
 namespace Jdjiwi\Exception;
 
-class Error extends \Jdjiwi\Exception {
+class Error extends Exception {
 
     protected $name = 'Ошибка';
 

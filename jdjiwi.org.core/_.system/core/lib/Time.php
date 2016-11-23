@@ -1,9 +1,11 @@
 <?php
 
-\Jdjiwi\Config::load('time');
-date_default_timezone_set(\Jdjiwi\Config::get('time.zone'));
+namespace Jdjiwi;
 
-class cTime {
+Config::load('time');
+date_default_timezone_set(Config::get('time.zone'));
+
+class Time {
 
     static public function microtime($t = null) {
         list($usec, $sec) = explode(" ", empty($t) ? microtime() : $t);
@@ -11,4 +13,3 @@ class cTime {
     }
 
 }
-

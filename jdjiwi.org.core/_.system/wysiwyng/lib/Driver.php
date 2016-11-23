@@ -3,7 +3,8 @@
 namespace Jdjiwi\Wysiwyng;
 
 use Jdjiwi\Loader,
-    \Jdjiwi\Config;
+    \Jdjiwi\Config,
+    Jdjiwi\Crypt;
 
 abstract class Driver {
 
@@ -15,7 +16,7 @@ abstract class Driver {
         static $salt = array();
         if (empty($salt[$model][$id])) {
             if (empty($id)) {
-                $id = 't' . cCrypt::hash($model, time(), rand(0, 100));
+                $id = 't' . Crypt::hash($model, time(), rand(0, 100));
             }
             $data = array(
                 'model' => $model,
@@ -47,7 +48,7 @@ abstract class Driver {
     }
 
     protected function getSaltId($model, $id) {
-        return cCrypt::hash(__CLASS__, $model, $id);
+        return Crypt::hash(__CLASS__, $model, $id);
     }
 
     abstract static public function html($model, $id, $inputId, $value, $height = null);

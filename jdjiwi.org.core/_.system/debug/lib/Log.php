@@ -2,7 +2,7 @@
 
 namespace Jdjiwi;
 
-Loader::library('core:time/cTime');
+Loader::library('core:Time');
 Modul::load('file');
 
 class Log {
@@ -16,7 +16,7 @@ class Log {
 
     // инициализация работы
     static public function init() {
-        self::$startTime = \cTime::microtime();
+        self::$startTime = Time::microtime();
     }
 
     static public function destroy() {
@@ -103,9 +103,9 @@ class Log {
     // показ лога
     static public function message() {
         $message = '<pre id="coreDebugLog">'
-                . PHP_EOL . '<b>RUN/INIT</b> = ' . self::round(\cTime::microtime() - self::$startTime)
-                . '/' . self::round(self::$startTime - \cTime::microtime(cTimeInit))
-                . PHP_EOL . '<b>TIME</b> = ' . self::round(\cTime::microtime() - \cTime::microtime(cTimeInit));
+                . PHP_EOL . '<b>RUN/INIT</b> = ' . self::round(Time::microtime() - self::$startTime)
+                . '/' . self::round(self::$startTime - Time::microtime(cTimeInit))
+                . PHP_EOL . '<b>TIME</b> = ' . self::round(Time::microtime() - Time::microtime(cTimeInit));
 
         if (Debug::isSql()) {
             $message .= PHP_EOL . '<b>SQL_TIME(' . self::$sqlCount . ')</b> = ' . self::round(self::$sqlTime);

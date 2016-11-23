@@ -1,35 +1,38 @@
 <?php
 
-\Jdjiwi\Loader::library('form:cmfFormConfig');
-//\Jdjiwi\Loader::library('form:cmfFormError');
+use Jdjiwi\Loader,
+    Jdjiwi\Crypt;
+
+Loader::library('form:cmfFormConfig');
+//Loader::library('form:cmfFormError');
 //
-//\Jdjiwi\Loader::library('form:library/cmfFormLibJs');
-//\Jdjiwi\Loader::library('form:library/cmfFormLibString');
-//\Jdjiwi\Loader::library('form:library/cmfFormLibFilter');
-//\Jdjiwi\Loader::library('form:library/cmfFormLibReform');
-//\Jdjiwi\Loader::library('form:library/cmfFormLibFile');
-//\Jdjiwi\Loader::library('form:library/cmfFormLibImage');
+//Loader::library('form:library/cmfFormLibJs');
+//Loader::library('form:library/cmfFormLibString');
+//Loader::library('form:library/cmfFormLibFilter');
+//Loader::library('form:library/cmfFormLibReform');
+//Loader::library('form:library/cmfFormLibFile');
+//Loader::library('form:library/cmfFormLibImage');
 //
-//\Jdjiwi\Loader::library('form:cmfFormElement');
-//\Jdjiwi\Loader::library('form:element/cmfFormText');
-//\Jdjiwi\Loader::library('form:element/cmfFormKcaptcha');
-//\Jdjiwi\Loader::library('form:element/cmfFormPassword');
-//\Jdjiwi\Loader::library('form:element/cmfFormTextarea');
-//\Jdjiwi\Loader::library('form:element/cmfFormCheckbox');
-//\Jdjiwi\Loader::library('form:element/cmfFormSelect');
-//\Jdjiwi\Loader::library('form:element/cmfFormRadio');
-//\Jdjiwi\Loader::library('form:element/cmfFormFile');
-//\Jdjiwi\Loader::library('form:element/cmfFormImage');
+//Loader::library('form:cmfFormElement');
+//Loader::library('form:element/cmfFormText');
+//Loader::library('form:element/cmfFormKcaptcha');
+//Loader::library('form:element/cmfFormPassword');
+//Loader::library('form:element/cmfFormTextarea');
+//Loader::library('form:element/cmfFormCheckbox');
+//Loader::library('form:element/cmfFormSelect');
+//Loader::library('form:element/cmfFormRadio');
+//Loader::library('form:element/cmfFormFile');
+//Loader::library('form:element/cmfFormImage');
 
 
-\Jdjiwi\Loader::library('form:core/cFormLoader');
-\Jdjiwi\Loader::library('form:core/cFormCore');
-\Jdjiwi\Loader::library('form:core/cFormUpdate');
-\Jdjiwi\Loader::library('form:core/cFormError');
-\Jdjiwi\Loader::library('form:core/cFormHtml');
-\Jdjiwi\Loader::library('form:core/cFormSecurity');
-\Jdjiwi\Loader::library('form:core/cFormProcessing');
-\Jdjiwi\Loader::library('form:cFormElement');
+Loader::library('form:core/cFormLoader');
+Loader::library('form:core/cFormCore');
+Loader::library('form:core/cFormUpdate');
+Loader::library('form:core/cFormError');
+Loader::library('form:core/cFormHtml');
+Loader::library('form:core/cFormSecurity');
+Loader::library('form:core/cFormProcessing');
+Loader::library('form:cFormElement');
 
 class cForm extends cFormCore implements Iterator {
 
@@ -66,11 +69,11 @@ class cForm extends cFormCore implements Iterator {
     }
 
     public function hash($salt = '') {
-        return 'f' . cCrypt::hash($salt . $this->settings()->name . session_id());
+        return 'f' . Crypt::hash($salt . $this->settings()->name . session_id());
     }
 
     public function name($salt = '') {
-        return 'f' . cCrypt::hash($salt . $this->settings()->name);
+        return 'f' . Crypt::hash($salt . $this->settings()->name);
     }
 
     /* === /компаненты формы === */

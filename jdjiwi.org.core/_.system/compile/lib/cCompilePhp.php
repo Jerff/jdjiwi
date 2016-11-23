@@ -1,26 +1,31 @@
 <?php
 
-\Jdjiwi\Loader::library('core:crypt/cCrypt');
-\Jdjiwi\Loader::library('core:string/cString');
+use Jdjiwi\Crypt,
+    Jdjiwi\Config,
+    Jdjiwi\Loader,
+    Jdjiwi\FileSystem\Utility;
 
 class cCompilePhp {
     /*
      *  compile sourse path
      */
 
+    static private function path() {
+        return cSoursePath . Config::get('compile.path');
+    }
+
     public function load($type, $file) {
-        if (\Jdjiwi\Config::get('compile.is') < 2) {
+        if (Config::get('compile.is') < 2) {
             return $file;
         }
-        $hash = cCrypt::hash(\Jdjiwi\Loader::getIndex(), $type, $file);
-        $compile = \Jdjiwi\Config::get('compile.path') . $type . '/' . substr($hash, 0, 1) . '/' . substr($hash, 1, 2) . '/' . $hash . '.php';
+        $hash = Crypt::hash(Loader::getIndex(), $type, $file);
+        $compile = self::path() . $type . '/' . substr($hash, 0, 1) . '/' . substr($hash, 1, 2) . '/' . $hash . '.php';
         if (file_exists($compile)) {
             return $compile;
         }
-        \Jdjiwi\Loader::initLoad();
-        cFileSystem::mkdir(dirname($compile));
+        Loader::initLoad();
         require_once ($file);
-        file_put_contents($compile, $this->compile(\Jdjiwi\Loader::getLoadFile()));
+        Utility::putContent($compile, $this->compile(Loader::getLoadFile()));
     }
 
     /*
@@ -28,14 +33,13 @@ class cCompilePhp {
      */
 
     public function createrLoader() {
-        cFileSystem::mkdir(\Jdjiwi\Config::get('compile.path'));
-        file_put_contents(
-                \Jdjiwi\Config::get('compile.path') . cCompile::config()->loaderPhp(), cCompile::php()->compile(\Jdjiwi\Loader::getLoadFile())
+        Utility::putContent(
+                self::path() . cCompile::config()->loaderPhp(), cCompile::php()->compile(Loader::getLoadFile())
         );
     }
 
     public function update() {
-        cFileSystem::rmdir(\Jdjiwi\Config::get('compile.path'));
+        cFileSystem::rmdir(self::path());
     }
 
     public function compile($mFiles) {
@@ -69,7 +73,7 @@ class cCompilePhp {
                     break;
             }
         }
-        $content .="<?php \Jdjiwi\Modul::load('loader'); ?>";
+        $content .= "<?php \Jdjiwi\Modul::load('loader'); ?>";
         $content = preg_replace('#\?>\s*<\?php#S', ' ', $loader . $compile . $history . $content);
         $content = str_replace("\r", '', $content);
         return $content;

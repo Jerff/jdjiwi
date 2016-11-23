@@ -1,18 +1,21 @@
 <?php
 
-\Jdjiwi\Config::load('image');
+use Jdjiwi\Settings,
+    Jdjiwi\Config;
+
+Config::load('image');
 
 class cImage {
 
     const logo = 'logo.png';
 
     static public function isImageMagic() {
-        return \Jdjiwi\Config::get('image.ImageMagick.is');
+        return Config::get('image.ImageMagick.is');
     }
 
     static public function command($command) {
         if (cImageMagickPath) {
-            return \Jdjiwi\Config::get('image.ImageMagick.path') . $command;
+            return Config::get('image.ImageMagick.path') . $command;
         } else {
             return $command;
         }
@@ -33,12 +36,12 @@ class cImage {
     static public function watermark($image) {
         if (!self::isImageMagic())
             return;
-        $place = cSettings::read('watermark', 'place');
-        $type = cSettings::read('watermark', 'type');
+        $place = Settings::read('watermark', 'place');
+        $type = Settings::read('watermark', 'type');
         if ($type === 'text') {
             $logo = cWWWPath . path_watermark . cImage::logo;
         } else {
-            $logo = cWWWPath . path_watermark . cSettings::read('watermark', 'image');
+            $logo = cWWWPath . path_watermark . Settings::read('watermark', 'image');
         }
         list($wLogom, $hLogo) = getimagesize($logo);
         list($wImage, $hImage) = getimagesize($image);

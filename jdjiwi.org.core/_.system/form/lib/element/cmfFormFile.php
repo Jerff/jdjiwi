@@ -30,7 +30,7 @@ class cmfFormFile extends cFormElement {
     }
 
     public function getWatermark() {
-        return cSettings::read('watermark', 'enable') == 'yes' ? $this->watermark : false;
+        return Settings::read('watermark', 'enable') == 'yes' ? $this->watermark : false;
     }
 
     public function setSize($size) {

@@ -1,5 +1,7 @@
 <?php
 
+use Jdjiwi\Crypt;
+
 \Jdjiwi\Loader::library('vendor/meenie/javascript-packer/class.JavaScriptPacker');
 
 class cCompileJsCss {
@@ -8,11 +10,11 @@ class cCompileJsCss {
      */
 
     public function pathWWW($type, $file) {
-        return '/' . cCompile::config()->pathJsCss() . '/v/' . time() . '/' . $type . '/' . cCrypt::hash($file);
+        return '/' . cCompile::config()->pathJsCss() . '/v/' . time() . '/' . $type . '/' . Crypt::hash($file);
     }
 
     public function pathCompile($type, $file) {
-        return cWWWPath . cCompile::config()->pathJsCss() . '/' . cCrypt::hash($file) . '.' . $type;
+        return cWWWPath . cCompile::config()->pathJsCss() . '/' . Crypt::hash($file) . '.' . $type;
     }
 
     /*
@@ -164,5 +166,3 @@ class cCompileJsCss {
     }
 
 }
-
-

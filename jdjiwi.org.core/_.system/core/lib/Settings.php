@@ -1,8 +1,8 @@
 <?php
 
-use Jdjiwi\Cache;
+namespace Jdjiwi;
 
-class cSettings {
+class Settings {
 
     private static $value = array();
 

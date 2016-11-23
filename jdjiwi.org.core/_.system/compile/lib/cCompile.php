@@ -1,5 +1,7 @@
 <?php
 
+use Jdjiwi\Settings;
+
 \Jdjiwi\Loader::library('compile:cCompileConfig');
 \Jdjiwi\Loader::library('compile:cCompilePhp');
 \Jdjiwi\Loader::library('compile:cCompileJsCss');
@@ -11,7 +13,7 @@ class cCompile {
     use cTraitStaticRegistry;
 
     static public function is() {
-        return cSettings::get('compilde', 'css&js') or 1;
+        return Settings::get('compilde', 'css&js') or 1;
     }
 
     static public function config() {

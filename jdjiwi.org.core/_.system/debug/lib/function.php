@@ -1,11 +1,13 @@
 <?php
 
+use Jdjiwi\Debug;
+
 function isDebug() {
-    return \Jdjiwi\Debug::isError();
+    return Debug::isError();
 }
 
 function pre() {
-    if (!\Jdjiwi\Debug::isError())
+    if (!Debug::isError())
         return;
     echo '<pre>';
     foreach (func_get_args() as $value)
@@ -18,7 +20,7 @@ function pre() {
 }
 
 function pre2() {
-    if (!\Jdjiwi\Debug::isError())
+    if (!Debug::isError())
         return;
     echo '<pre>';
     foreach (func_get_args() as $value) {
@@ -28,7 +30,7 @@ function pre2() {
 }
 
 function pre3() {
-    if (!\Jdjiwi\Debug::isError())
+    if (!Debug::isError())
         return;
     echo '<pre>';
     foreach (func_get_args() as $value) {
@@ -38,7 +40,7 @@ function pre3() {
 }
 
 function preTrace() {
-    if (!\Jdjiwi\Debug::isError())
+    if (!Debug::isError())
         return;
     echo '<pre>';
     echo (new Exception())->getTraceAsString();

@@ -2,6 +2,8 @@
 
 namespace Jdjiwi\Loader;
 
+use Jdjiwi\Crypt;
+
 class Compile {
 
     static private $mHistory = array();
@@ -24,7 +26,7 @@ class Compile {
 
     static public function getIndex() {
         ksort(self::$mHistory);
-        return cCrypt::hash(serialize(self::$mHistory));
+        return Crypt::hash(serialize(self::$mHistory));
     }
 
     static public function isLoad($file) {

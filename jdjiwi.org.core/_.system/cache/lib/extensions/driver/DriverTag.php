@@ -2,6 +2,8 @@
 
 namespace Jdjiwi\Cache\Extensions\Driver;
 
+use Jdjiwi\Crypt;
+
 \Jdjiwi\Loader::library('cache:extensions/driver/Driver');
 
 abstract class DriverTag extends Driver {
@@ -16,7 +18,7 @@ abstract class DriverTag extends Driver {
 
     //функция хеширования
     protected function hash($n) {
-        return \cCrypt::crc32($n) . sha1($n);
+        return Crypt::crc32($n) . sha1($n);
     }
 
     // хранение тегов

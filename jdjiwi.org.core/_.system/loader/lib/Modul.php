@@ -3,8 +3,6 @@
 namespace Jdjiwi;
 
 Loader::library('loader:Exception');
-Modul::load('debug');
-Modul::load('compile');
 
 /*
  * загрузка модулей

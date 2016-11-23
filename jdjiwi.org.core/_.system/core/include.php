@@ -9,14 +9,15 @@ if (extension_loaded('mbstring')) {
 }
 
 /* заагрузка библиотек */
-\Jdjiwi\Loader::library('core:input/cInput');
 \Jdjiwi\Loader::library('core:Session');
 \Jdjiwi\Loader::library('core:Cookie');
-\Jdjiwi\Loader::library('core:settings/cSettings');
-\Jdjiwi\Loader::library('core:string/cString');
+\Jdjiwi\Loader::library('core:Crypt');
 \Jdjiwi\Loader::library('core:JScript');
-\Jdjiwi\Loader::library('core:crypt/cCrypt');
-\Jdjiwi\Loader::library('core:time/cTime');
+\Jdjiwi\Loader::library('core:Time');
+\Jdjiwi\Loader::library('core:Settings');
+\Jdjiwi\Loader::library('core:Limit');
+\Jdjiwi\Loader::library('core:input/cInput');
+\Jdjiwi\Loader::library('core:string/cString');
 \Jdjiwi\Loader::library('core:Header');
 
 /* загрузка модулей */

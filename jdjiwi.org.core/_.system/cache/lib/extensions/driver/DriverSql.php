@@ -2,8 +2,9 @@
 
 namespace Jdjiwi\Cache\Extensions\Driver;
 
+use Jdjiwi\Crypt;
+
 \Jdjiwi\Loader::library('cache:extensions/driver/Driver');
-\Jdjiwi\Loader::library('core:crypt/cCrypt');
 
 class DriverSql extends Driver {
 
@@ -20,7 +21,7 @@ class DriverSql extends Driver {
 
     //функция хеширования
     protected function hash($n) {
-        return cCrypt::crc32($n);
+        return Crypt::crc32($n);
     }
 
     protected function hash2($n) {
@@ -76,4 +77,3 @@ class DriverSql extends Driver {
     }
 
 }
-

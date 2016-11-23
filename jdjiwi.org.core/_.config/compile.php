@@ -12,5 +12,5 @@ return array(
     /*
      * компилированный код
      */
-    'path' => cSoursePath . '.data/compile/'
+    'path' => '.data/compile/'
 );
