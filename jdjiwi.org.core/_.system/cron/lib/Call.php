@@ -1,15 +1,20 @@
 <?
 
-class cCronCall {
+namespace Jdjiwi\Cron;
+
+use Jdjiwi\Init,
+    Jdjiwi\Modul;
+
+class Call {
 
     static public function start() {
         cApplication::authorization();
-        \Jdjiwi\Init::sessionClose();
-        \Jdjiwi\Init::timeLimit();
-        \Jdjiwi\Init::ignoreUserAbort();
+        Init::sessionClose();
+        Init::timeLimit();
+        Init::ignoreUserAbort();
 
         ob_start();
-        if (cCronRun::is()) {
+        if (Cron::is()) {
             exit;
         }
 
@@ -23,7 +28,7 @@ class cCronCall {
         foreach ($res as $id => $row) {
             $modul = $row['name'];
             if ($row['status'] === 'none') {
-                cCronRun::runModul($modul, $id);
+                Cron::runModul($modul, $id);
             }
             $time = strtotime($row['date']);
             $changefreq = explode(' ', $row['changefreq']);
@@ -74,9 +79,9 @@ class cCronCall {
         if ($id) {
             cDb::update(cDb::table('sys.cron'), array('status' => 'start', 'date' => date('Y-m-d H:i:s')), $id);
         }
-        cCronRun::start();
-        $isOk = \Jdjiwi\Modul::cron($name);
-        cCronRun::stop();
+        Cron::start();
+        $isOk = Modul::cron($name);
+        Cron::stop();
         if ($id and $isOk) {
             cDb::update(cDb::table('sys.cron'), array('status' => 'end', 'date' => date('Y-m-d H:i:s')), $id);
         }
@@ -84,4 +89,3 @@ class cCronCall {
     }
 
 }
-

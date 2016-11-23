@@ -1,4 +1,4 @@
 <?php
 
-\Jdjiwi\Loader::library('cron:cCronCall');
-cCronCall::start();
+\Jdjiwi\Loader::library('cron:Call');
+\Jdjiwi\Cron\Call::start();

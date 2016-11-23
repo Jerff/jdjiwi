@@ -4,7 +4,7 @@ namespace Jdjiwi;
 
 use Jdjiwi\FileSystem\Utility;
 
-class CronRun {
+class Cron {
 
     static private function path() {
         return cWWWPath . Config::get('file.path') . Config::get('cron.status');
