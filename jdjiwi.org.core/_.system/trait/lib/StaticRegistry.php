@@ -1,6 +1,8 @@
 <?php
 
-trait cTraitStaticRegistry {
+namespace Jdjiwi\Traits;
+
+trait StaticRegistry {
 
     static private $mRegister = array();
 

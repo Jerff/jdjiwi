@@ -1,6 +1,8 @@
 <?php
 
-trait cTraitsRegistry {
+namespace Jdjiwi\Traits;
+
+trait sRegistry {
 
     private $mRegister = array();
     private $parent = false;
@@ -21,7 +23,8 @@ trait cTraitsRegistry {
     }
 
     protected function parent() {
-        return $this->parent;
+    return $this->parent;
+
     }
 
 }

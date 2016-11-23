@@ -1,6 +1,8 @@
 <?php
 
-trait cTraitConfig {
+namespace Jdjiwi\Traits;
+
+trait Config {
 
     private $config = array();
 

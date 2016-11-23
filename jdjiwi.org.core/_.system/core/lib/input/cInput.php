@@ -8,11 +8,11 @@
 \Jdjiwi\Loader::library('core:input/cInputUrl');
 \Jdjiwi\Loader::library('core:input/cInputParam');
 \Jdjiwi\Loader::library('core:input/function');
-\Jdjiwi\Loader::library('trait:cTraitStaticRegistry');
+\Jdjiwi\Loader::library('trait:StaticRegistry');
 
 class cInput {
 
-    use cTraitStaticRegistry;
+    use \Jdjiwi\Traits\StaticRegistry;
 
 //    private $get;
 //    private $post;

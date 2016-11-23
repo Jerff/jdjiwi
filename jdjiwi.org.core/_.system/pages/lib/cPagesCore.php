@@ -4,11 +4,11 @@
 \Jdjiwi\Loader::library('pages:cPagesConfig');
 \Jdjiwi\Loader::library('pages:cPagesParam');
 \Jdjiwi\Loader::library('pages:cPagesTemplate');
-\Jdjiwi\Loader::library('trait:cTraitStaticRegistry');
+\Jdjiwi\Loader::library('trait:StaticRegistry');
 
 class cPagesCore {
 
-    use cTraitStaticRegistry;
+    use \Jdjiwi\Traits\StaticRegistry;
 
     static private $main = null;
     static private $item = null;

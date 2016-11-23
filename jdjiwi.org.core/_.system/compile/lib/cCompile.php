@@ -6,11 +6,11 @@ use Jdjiwi\Settings;
 \Jdjiwi\Loader::library('compile:cCompilePhp');
 \Jdjiwi\Loader::library('compile:cCompileJsCss');
 \Jdjiwi\Loader::library('compile:cCompileUpdate');
-\Jdjiwi\Loader::library('trait:cTraitStaticRegistry');
+\Jdjiwi\Loader::library('trait:StaticRegistry');
 
 class cCompile {
 
-    use cTraitStaticRegistry;
+    use \Jdjiwi\Traits\StaticRegistry;
 
     static public function is() {
         return Settings::get('compilde', 'css&js') or 1;

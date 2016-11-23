@@ -1,8 +1,8 @@
 <?php
 
-\Jdjiwi\Loader::library('trait/cTraitSettings');
+\Jdjiwi\Loader::library('trait/Settings');
 
 class cFormSettings {
 
-    use cTraitSettings;
+    use \Jdjiwi\Traits\Settings;
 }

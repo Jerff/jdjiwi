@@ -1,10 +1,10 @@
 <?php
 
-\Jdjiwi\Loader::library('trait/cTraitConfig');
+\Jdjiwi\Loader::library('trait/Config');
 
 class cFormConfig {
 
-    use cTraitConfig;
+    use \Jdjiwi\Traits\Config;
 
     protected function init() {
         return array(

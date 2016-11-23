@@ -1,6 +1,8 @@
 <?php
 
-trait cTraitSettings {
+namespace Jdjiwi\Traits;
+
+trait Settings {
 
     private $mSettings = array();
     private $mReplace = array();

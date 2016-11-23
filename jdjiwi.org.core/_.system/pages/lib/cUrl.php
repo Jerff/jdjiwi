@@ -3,11 +3,11 @@
 use \Jdjiwi\Exception;
 
 \Jdjiwi\Loader::library('pages:cUrlAdmin');
-\Jdjiwi\Loader::library('trait:cTraitStaticRegistry');
+\Jdjiwi\Loader::library('trait:StaticRegistry');
 
 class cUrl {
 
-    use cTraitStaticRegistry;
+    use StaticRegistry;
 
     static public function admin() {
         return self::register('cUrlAdmin');
