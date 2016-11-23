@@ -1,5 +1,7 @@
 <?php
 
+use Jdjiwi\JScript;
+
 \Jdjiwi\Loader::library('form:element/cFormText');
 \Jdjiwi\Loader::library('form:element/cFormEmail');
 \Jdjiwi\Loader::library('form:element/cFormPassword');
@@ -197,11 +199,11 @@ abstract class cFormElement extends cFormCore {
         $this->template()->js($this, $isOldUpdate);
 //        if ($isOldUpdate) {
 //            cAjax::get()->script(
-//                    cJScript::queryId($this->oldId())->val($this->get())
+//                    JScript::queryId($this->oldId())->val($this->get())
 //            );
 //        }
 //        cAjax::get()->script(
-//                cJScript::queryId($this->id())->val($this->value())
+//                JScript::queryId($this->id())->val($this->value())
 //        );
     }
 

@@ -10,10 +10,11 @@ if (extension_loaded('mbstring')) {
 
 /* заагрузка библиотек */
 \Jdjiwi\Loader::library('core:input/cInput');
-\Jdjiwi\Loader::library('core:session/cSession');
+\Jdjiwi\Loader::library('core:Session');
+\Jdjiwi\Loader::library('core:Cookie');
 \Jdjiwi\Loader::library('core:settings/cSettings');
 \Jdjiwi\Loader::library('core:string/cString');
-\Jdjiwi\Loader::library('core:jscript/cJScript');
+\Jdjiwi\Loader::library('core:JScript');
 \Jdjiwi\Loader::library('core:crypt/cCrypt');
 \Jdjiwi\Loader::library('core:time/cTime');
 \Jdjiwi\Loader::library('core:Header');

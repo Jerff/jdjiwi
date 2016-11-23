@@ -1,10 +1,12 @@
 <?php
 
-class cJScript {
+namespace Jdjiwi;
+
+class JScript {
 
     //cmfToJsString(
-    //cJScript::toString(
-    //cJScript::quote(
+    //JScript::toString(
+    //JScript::quote(
 
     /* === преобразованны mix данные в строки javascript-а === */
     static public function quote($d) {
@@ -70,7 +72,7 @@ HTML;
     }
 
     static public function query($selected) {
-        return new cJScript($selected);
+        return new self($selected);
     }
 
     /* === выборка значений === */

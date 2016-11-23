@@ -1,5 +1,7 @@
 <?php
 
+use Jdjiwi\JScript;
+
 class cFormError extends cFormCore {
 
     private $mError = array();
@@ -36,7 +38,7 @@ class cFormError extends cFormCore {
                     $mHidden[] = $this->mError[$name];
                     cAjax::get()->script('cForm.error.color.show("' . $el->id() . '", "' . $this->form()->settings()->color . '");');
                 } else {
-                    cAjax::get()->script('cForm.error.show("' . $el->id() . '", "' . $el->errorId() . '", "' . $this->form()->settings()->color . '", "' . cJScript::quote($this->mError[$name]) . '");');
+                    cAjax::get()->script('cForm.error.show("' . $el->id() . '", "' . $el->errorId() . '", "' . $this->form()->settings()->color . '", "' . JScript::quote($this->mError[$name]) . '");');
                 }
                 unset($this->mError[$name]);
             } else {
@@ -44,19 +46,19 @@ class cFormError extends cFormCore {
             }
         }
         if (!empty($mHidden)) {
-            cAjax::get()->script('cForm.error.alert("' . cJScript::quote($this->config()->error()->form) . '", "' . cJScript::quote(implode('<br>', $mHidden)) . '");');
+            cAjax::get()->script('cForm.error.alert("' . JScript::quote($this->config()->error()->form) . '", "' . JScript::quote(implode('<br>', $mHidden)) . '");');
         }
         if (isset($this->mError[$name = 'form-security'])) {
-            cAjax::get()->script('cForm.error.alert("' . cJScript::quote($this->mError[$name = 'form-security']) . '");');
+            cAjax::get()->script('cForm.error.alert("' . JScript::quote($this->mError[$name = 'form-security']) . '");');
             unset($this->mError[$name]);
         }
         if (empty($this->mError)) {
             cAjax::get()->script(
-                    cJScript::queryId($this->errorId())->hide()
+                    JScript::queryId($this->errorId())->hide()
             );
         } else {
             cAjax::get()->script(
-                    cJScript::queryId($this->errorId())->html(implode('<br>', $this->mError))->show()
+                    JScript::queryId($this->errorId())->html(implode('<br>', $this->mError))->show()
             );
         }
         $this->clear();

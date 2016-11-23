@@ -1,5 +1,7 @@
 <?php
 
+use Jdjiwi\JScript;
+
 class cmfFormSelect extends cFormElement {
 
     private $multiple = false;
@@ -192,17 +194,17 @@ class cmfFormSelect extends cFormElement {
         reset($values['array']);
         while (list($level1, $text) = each($values['array'])) {
             if (is_array($text)) {
-                $js .= "\n optgroup = cmf.form.select.optgroup(selectObj, '" . cJScript::quote($level1) . "');";
+                $js .= "\n optgroup = cmf.form.select.optgroup(selectObj, '" . JScript::quote($level1) . "');";
                 reset($text);
                 while (list($level2, $text2) = each($text)) {
                     $select = isset($values['sel'][$level1][$level2]) ? 'true' : 'false';
-                    $js .= "\n opt1 = cmf.form.select.option(optgroup, '" . cJScript::quote($text2) . "', '" . cJScript::quote($level2) . "', $select);";
+                    $js .= "\n opt1 = cmf.form.select.option(optgroup, '" . JScript::quote($text2) . "', '" . JScript::quote($level2) . "', $select);";
                     foreach ($this->getOptions($level2) as $opt => $value)
                         $js .= "\n \$(opt1).attr('{$opt}', '{$value}');";
                 }
             } else {
                 $select = isset($values['sel'][$level1]) ? 'true' : 'false';
-                $js .= "\n opt1 = cmf.form.select.option(selectObj, '" . cJScript::quote($text) . "', '" . cJScript::quote($level1) . "', $select);";
+                $js .= "\n opt1 = cmf.form.select.option(selectObj, '" . JScript::quote($text) . "', '" . JScript::quote($level1) . "', $select);";
                 foreach ($this->getOptions($level1) as $opt => $value)
                     $js .= "\n \$(opt1).attr('{$opt}', '{$value}');";
             }
@@ -432,8 +434,8 @@ HTML;
         $paramId = $this->getParamId();
         $paramOldId = $this->getParamOldId();
         foreach ($dataParam as $k => $v) {
-            $k = cJScript::quote($k);
-            $v = cJScript::quote($v);
+            $k = JScript::quote($k);
+            $v = JScript::quote($v);
             $js .= "\ncmf.setValue('{$paramId}[{$k}]', '{$v}');";
         }
         $js .= "\ncmf.setValue('{$paramOldId}', '{$this->dataParam}');";

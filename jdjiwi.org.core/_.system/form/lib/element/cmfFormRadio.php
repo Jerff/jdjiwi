@@ -1,5 +1,7 @@
 <?php
 
+use Jdjiwi\JScript;
+
 class cmfFormRadio extends cmfFormSelect {
 
     public function htmlError($s = null, $s2 = null) {
@@ -52,7 +54,7 @@ class cmfFormRadio extends cmfFormSelect {
         $js = '';
         $_sel = $this->getValuesSelect();
         foreach ($this->getValuesAll() as $k => $v) {
-            $js .="\ncmf.form.radio.select('{$name}_{$k}', " . (isset($_sel[$k]) ? 'true' : 'false') . ");";
+            $js .= "\ncmf.form.radio.select('{$name}_{$k}', " . (isset($_sel[$k]) ? 'true' : 'false') . ");";
         }
         return $js;
     }
@@ -72,7 +74,7 @@ class cmfFormRadioAll extends cmfFormRadio {
 
     public function jsUpdateValue() {
         $name = $this->getId();
-        $content = cJScript::quote($this->html($name));
+        $content = JScript::quote($this->html($name));
         return "\n$('#{$name}_all').html('$content');";
     }
 
@@ -90,4 +92,3 @@ class cmfFormRadioAllInt extends cmfFormRadioAll {
     }
 
 }
-

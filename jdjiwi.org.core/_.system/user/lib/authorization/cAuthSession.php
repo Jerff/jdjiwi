@@ -1,5 +1,8 @@
 <?php
 
+use Jdjiwi\Cookie,
+    Jdjiwi\Session;
+
 class cAuthSession {
 
     private $id = null;
@@ -7,10 +10,10 @@ class cAuthSession {
 
     public function __construct($auth, $name) {
         $this->setName($name);
-        if (!$id = (int) cCookie::get($name))
+        if (!$id = (int) Cookie::get($name))
             return;
         $this->setId($id);
-        if (!$ses = cSession::get($name))
+        if (!$ses = Session::get($name))
             return;
         if (get2($ses, 'data', 'debugError') === 'yes')
             return;
@@ -84,7 +87,7 @@ class cAuthSession {
     // инициализация сессии
     public function init($row) {
         $this->update();
-        cSession::set($this->getName(), array('id' => $this->getId(),
+        Session::set($this->getName(), array('id' => $this->getId(),
             'data' => $row,
             'session' => array('ip' => cInput::ip()->getInt(), 'ip' => cInput::ip()->getInt(), 'proxy' => cInput::ip()->proxyInt(), 'date' => time())));
         cRegister::sql()->replace($this->getDb(), array('id' => $this->getId(), 'isIp' => $row['isIp'], 'sesIp' => cInput::ip()->getInt(), 'sesProxy' => cInput::ip()->proxyInt(), 'sesDate' => date('Y-m-d H:i:s')));
@@ -92,15 +95,15 @@ class cAuthSession {
 
     // продление сессии
     public function update() {
-        cCookie::set($this->getName(), $this->getId(), 12);
-        cSession::set($this->getName(), 'session', 'date', time());
+        Cookie::set($this->getName(), $this->getId(), 12);
+        Session::set($this->getName(), 'session', 'date', time());
     }
 
     // удаление сессии
     public function remove() {
         $this->setId(0);
-        cCookie::del($this->getName());
-        cSession::del($this->getName());
+        Cookie::del($this->getName());
+        Session::del($this->getName());
         cRegister::sql()->del($this->getDb(), $this->getId());
     }
 

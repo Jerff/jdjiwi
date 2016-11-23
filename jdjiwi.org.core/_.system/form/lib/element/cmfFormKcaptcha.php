@@ -1,5 +1,7 @@
 <?php
 
+use Jdjiwi\Session;
+
 class cmfFormKcaptcha extends cFormText {
 
     protected function init($o) {
@@ -16,7 +18,7 @@ class cmfFormKcaptcha extends cFormText {
     }
 
     public function processing($data, $old, $upload) {
-        $value2 = cSession::get('kcaptcha', $this->getKcaptchaName());
+        $value2 = Session::get('kcaptcha', $this->getKcaptchaName());
         if (empty($value2) or get($data, $this->getId()) != $value2) {
             cmfFormError::set("поле заполнено неправильно");
         }
@@ -24,7 +26,7 @@ class cmfFormKcaptcha extends cFormText {
     }
 
     public function free() {
-        cSession::del('kcaptcha', $this->getKcaptchaName());
+        Session::del('kcaptcha', $this->getKcaptchaName());
     }
 
     public function html($param, $style = '') {
@@ -44,4 +46,3 @@ class cmfFormKcaptcha extends cFormText {
     }
 
 }
-

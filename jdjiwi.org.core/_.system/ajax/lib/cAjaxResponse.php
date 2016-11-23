@@ -1,6 +1,8 @@
 <?php
 
-\Jdjiwi\Loader::library('core:jscript/cJScript');
+use Jdjiwi\JScript;
+
+\Jdjiwi\Loader::library('core:JScript');
 
 class cAjaxResponse {
 
@@ -56,7 +58,7 @@ class cAjaxResponse {
 
     // alert
     public function alert($content) {
-        return $this->script('alert("' . cJScript::quote($content) . '");');
+        return $this->script('alert("' . JScript::quote($content) . '");');
     }
 
     /* === /скрипты === */
@@ -91,8 +93,8 @@ class cAjaxResponse {
             return;
 
         $d = func_get_args();
-        $k = cJScript::quote(array_shift($d));
-        $v = cJScript::quote(array_pop($d));
+        $k = JScript::quote(array_shift($d));
+        $v = JScript::quote(array_pop($d));
         $js = "cmf.getId('$k')";
 
         reset($d);
@@ -106,4 +108,3 @@ class cAjaxResponse {
 
     /* === /пользовательские скрипты === */
 }
-

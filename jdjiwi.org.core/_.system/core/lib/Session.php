@@ -1,8 +1,8 @@
 <?php
 
-\Jdjiwi\Loader::library('core:session/cCookie');
+namespace Jdjiwi;
 
-class cSession {
+class Session {
 
     private static function start() {
         static $is = false;
@@ -53,4 +53,3 @@ class cSession {
     }
 
 }
-

@@ -1,5 +1,7 @@
 <?php
 
+use Jdjiwi\JScript;
+
 abstract class cFormTemplateHtml {
 
     public function error($el) {
@@ -57,11 +59,11 @@ abstract class cFormTemplateHtml {
     public function js($el, $isOldUpdate = true) {
         if ($isOldUpdate) {
             cAjax::get()->script(
-                    cJScript::queryId($el->oldId())->val($el->get())
+                    JScript::queryId($el->oldId())->val($el->get())
             );
         }
         cAjax::get()->script(
-                cJScript::queryId($el->id())->val($el->value())
+                JScript::queryId($el->id())->val($el->value())
         );
     }
 

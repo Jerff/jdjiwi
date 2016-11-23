@@ -1,5 +1,8 @@
 <?php
 
+use Jdjiwi\Session,
+    Jdjiwi\JScript;
+
 class cFormSecurity extends cFormCore {
 
     // проверка
@@ -29,12 +32,12 @@ class cFormSecurity extends cFormCore {
 
     // обновление ключа
     protected function reset() {
-        cSession::set($this->key(), time());
+        Session::set($this->key(), time());
     }
 
     // значение
     protected function value($salt = '') {
-        return $this->form()->hash($salt . 'security-value' . cSession::get($this->key()));
+        return $this->form()->hash($salt . 'security-value' . Session::get($this->key()));
     }
 
     // показ, и обновление формы
@@ -56,8 +59,8 @@ class cFormSecurity extends cFormCore {
     }
 
     protected function js() {
-        return cJScript::encode(
-                        cJScript::queryClass($this->form()->name('security'))
+        return JScript::encode(
+                        JScript::queryClass($this->form()->name('security'))
                                 ->attr(array('id' => $this->key(), 'name' => $this->key()))
                                 ->val($this->value())
         );

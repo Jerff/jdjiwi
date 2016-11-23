@@ -1,4 +1,7 @@
 <?php
+
+use Jdjiwi\JScript;
+
 \Jdjiwi\Loader::library('form:template/html/cFormTextHtml');
 
 class cFormPasswordHtml extends cFormTextHtml {
@@ -10,7 +13,7 @@ class cFormPasswordHtml extends cFormTextHtml {
     public function js($el, $isOldUpdate = true) {
         if ($isOldUpdate) {
             cAjax::get()->script(
-                    cJScript::queryId($el->id())->val('')
+                    JScript::queryId($el->id())->val('')
             );
         }
     }

@@ -4,7 +4,8 @@ namespace Jdjiwi\Wysiwyng;
 
 use Jdjiwi\Loader,
     Jdjiwi\Config,
-    Jdjiwi\Header;
+    Jdjiwi\Header,
+    Jdjiwi\JScript;
 
 Loader::library('wysiwyng:Driver');
 
@@ -34,7 +35,7 @@ HTML;
     }
 
     public function jsUpdate($id, $value) {
-        $value = \cJScript::quote($value);
+        $value = JScript::quote($value);
         $js = <<<HTML
 CKEDITOR.Instances.{$id}.setData('$value');
 HTML;
