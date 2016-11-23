@@ -1,10 +1,12 @@
 <?php
 
-class cConvert {
+namespace Jdjiwi\String;
+
+class Convert {
     /* === match === */
 
     //cmfToFloat(
-    //cConvert::toFloat(
+    //\Jdjiwi\String\cConvert::toFloat(
     public static function toFloat($value) {
         if (is_array($value)) {
             return array_map('self::toFloat', $value);
@@ -17,7 +19,7 @@ class cConvert {
     }
 
     //cmfToArrayInt(
-    //cConvert::toInt(
+    //\Jdjiwi\String\cConvert::toInt(
     public static function toInt($value) {
         if (is_array($value)) {
             return array_map('self::toInt', $value);
@@ -26,8 +28,8 @@ class cConvert {
         }
     }
 
-    //cString::objectToArray(
-    //cConvert::objectToArray(
+    //\Jdjiwi\String::objectToArray(
+    //\Jdjiwi\String\cConvert::objectToArray(
     static public function objectToArray($value) {
         if (is_object($value)) {
             $value = array_map('self::objectToArray', (array) $value);
@@ -41,13 +43,13 @@ class cConvert {
 
     /* === array === */
 
-    //cString::arrayToPath(
+    //\Jdjiwi\String::arrayToPath(
     //cSConvert::arrayToPath(
     static public function arrayToPath($arg) {
         return empty($arg) ? '' : '[' . implode('][', $arg) . ']';
     }
 
-    //cString::pathToArray(
+    //\Jdjiwi\String::pathToArray(
     //cSConvert::pathToArray(
     static public function pathToArray($str) {
         if (empty($str)) {
@@ -58,32 +60,32 @@ class cConvert {
         }
     }
 
-    //cString::unserialize(
+    //\Jdjiwi\String::unserialize(
     //cSConvert::unserialize(
     static public function unserialize($arg) {
         return empty($arg) ? '' : unserialize($arg);
     }
 
-    //cString::serialize(
+    //\Jdjiwi\String::serialize(
     //cSConvert::serialize(
     static public function serialize($arg) {
         return empty($arg) ? '' : serialize($arg);
     }
 
     //cmfFormtaArray(
-    //cConvert::formtArray(
+    //\Jdjiwi\String\cConvert::formtArray(
     static public function arrayView($d, $sep = ' ', $br = "\n") {
         $str = '';
         $max = 0;
         foreach ($d as $k => $v) {
-            $len = cString::strlen($k);
+            $len = \Jdjiwi\String::strlen($k);
             if ($len > $max)
                 $max = $len;
         }
         $max += 5;
 
         foreach ($d as $k => $v) {
-            $len = $max - cString::strlen($k);
+            $len = $max - \Jdjiwi\String::strlen($k);
             $str .= $br . $k . ': ';
             for ($i = 0; $i < $len; $i++)
                 $str .= $sep;
@@ -107,7 +109,7 @@ class cConvert {
 
     /* === translate === */
 
-    //cString::translate(
+    //\Jdjiwi\String::translate(
     //cSConvert::translate(
     static public function translate($str) {
         static $t = array('а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'jo', 'ж' => 'gh', 'з' => 'z', 'и' => 'i',
@@ -115,10 +117,10 @@ class cConvert {
             'х' => 'x', 'ц' => 'c', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'th', 'ъ' => '', 'ь' => '', 'ы' => 'y', 'э' => 'eh', 'ю' => 'ju', 'я' => 'ja');
 
         $new = '';
-        $str = cString::strtolower(trim($str));
+        $str = \Jdjiwi\String::strtolower(trim($str));
         $str = preg_replace('~\s~S', '_', $str);
-        for ($i = 0, $c = cString::strlen($str); $i < $c; $i++) {
-            $s = cString::substr($str, $i, 1);
+        for ($i = 0, $c = \Jdjiwi\String::strlen($str); $i < $c; $i++) {
+            $s = \Jdjiwi\String::substr($str, $i, 1);
             if (isset($t[$s]))
                 $new .= $t[$s];
             else if ((ord($s) > 126) or ( ord($s) == 20))
@@ -135,7 +137,7 @@ class cConvert {
 
     /* === file === */
 
-    //cString::toFileName(
+    //\Jdjiwi\String::toFileName(
     //cSConvert::toFileName(
     static public function toFileName($str) {
         return preg_replace('([^a-z0-9\-\=\+\.])', '_', self::translate($str));

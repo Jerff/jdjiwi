@@ -76,7 +76,7 @@ class Log {
     // добавить в лог запросов к базе
     static public function sql($message = 'SELECT 1', $time = null) {
         if (Debug::isSql()) {
-            $message = ( ++self::$sqlCount) . ' ' . self::round($time) . " " . \cString::specialchars($message);
+            $message = ( ++self::$sqlCount) . ' ' . self::round($time) . " " . \\Jdjiwi\String::specialchars($message);
             if (class_exists('cPages', false)) {
                 $page = \cPages::getItem();
                 if (\cPages::isMain($page)) {
@@ -94,7 +94,7 @@ class Log {
     // добавить в лог запросов к базе
     static public function explain($message) {
         if (Debug::isExplain()) {
-            self::push('log', \cString::specialchars($message));
+            self::push('log', \\Jdjiwi\String::specialchars($message));
         }
     }
 

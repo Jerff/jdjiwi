@@ -37,7 +37,7 @@ function cmfReformFloat($d, $i, $u) {
 
 function cmfReformStrLen(&$s, $m) {
     if ($l = strlen($s)) {
-        $s = cString::subContent($s, 0, $m - 1);
+        $s = \Jdjiwi\String::subContent($s, 0, $m - 1);
     }
     return $s;
 }
@@ -54,7 +54,7 @@ function cmfReformSerializeInt($v, $in) {
     if (empty($v))
         return '';
     if ($in === 'serialize') {
-        return сSConvert::serialize(cConvert::toInt($v));
+        return сSConvert::serialize(\Jdjiwi\String\cConvert::toInt($v));
     }
     return unserialize($v);
 }
@@ -64,13 +64,13 @@ function cmfReformArrayPath($v, $in) {
         return сSConvert::arrayToPath($v);
     if (empty($v))
         return null;
-    return cConvert::pathToArray($v);
+    return \Jdjiwi\String\cConvert::pathToArray($v);
 }
 
 function cmfReformUri($value, $opt = false, $opt2 = false) {
     if ($opt === false)
         return $value;
-    $value = cConvert::translate(trim($value));
+    $value = \Jdjiwi\String\cConvert::translate(trim($value));
     $value = preg_replace(array('#\s#mS', '#[^a-z0-9\-_\.\=]#mSi', '#[_]{2,}#mSi'), '-', $value);
     if ($opt)
         $value = substr($value, 0, $opt - 1);

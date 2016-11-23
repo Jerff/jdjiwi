@@ -51,7 +51,7 @@ class Exception extends \Exception {
 
     static public function parseTrace($trace) {
         if (class_exists('cString', false)) {
-            return \cString::specialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)));
+            return \\Jdjiwi\String::specialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)));
         } else {
             return htmlspecialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)), ENT_QUOTES, Config::get('i18n.charset'));
         }

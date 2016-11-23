@@ -15,7 +15,7 @@ class cmfFormRadio extends cmfFormSelect {
             $str = '';
             foreach ($this->getValueArray() as $key) {
                 $select = isset($values['sel'][$key]) ? 'checked' : '';
-                $str .= " <label><input $style type=\"radio\" name=\"$name\" value=\"" . cString::specialchars($key) . "\" {$select} id=\"{$name}_{$key}\" />"
+                $str .= " <label><input $style type=\"radio\" name=\"$name\" value=\"" . \Jdjiwi\String::specialchars($key) . "\" {$select} id=\"{$name}_{$key}\" />"
                         . "&nbsp;" . $values['array'][$key] . "&nbsp;</label>";
             }
             return $str;
@@ -31,7 +31,7 @@ class cmfFormRadio extends cmfFormSelect {
         $select = isset($values['sel'][$param]) ? 'checked' : '';
         $label = ($param3 ? $param3 : $values['array'][$param]);
         $option = $this->getOptionsStr($param);
-        $input = "<input $style type=\"radio\" name=\"$name\" value=\"" . cString::specialchars($param) . "\" {$select} {$option} id=\"{$name}_{$param}\" />";
+        $input = "<input $style type=\"radio\" name=\"$name\" value=\"" . \Jdjiwi\String::specialchars($param) . "\" {$select} {$option} id=\"{$name}_{$param}\" />";
 
         if ($param2 === 'radio' or ! $label) {
             return $input;

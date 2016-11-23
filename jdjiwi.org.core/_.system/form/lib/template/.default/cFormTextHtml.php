@@ -13,7 +13,7 @@ class cFormTextHtml extends cFormTemplateHtml {
 
     public function html($el, $attr) {
         //placeholder вместо data-default
-        ?><input type="<?= $el->type() ?>" name="<?= $el->id() ?>" id="<?= $el->id() ?>" placeholder="<?= $el->settings()->default ?>" value="<?= cString::specialchars($el->value()) ?>" <?= $this->attr($el, $attr) ?> /><?
+        ?><input type="<?= $el->type() ?>" name="<?= $el->id() ?>" id="<?= $el->id() ?>" placeholder="<?= $el->settings()->default ?>" value="<?= \Jdjiwi\String::specialchars($el->value()) ?>" <?= $this->attr($el, $attr) ?> /><?
     }
 
 }

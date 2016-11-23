@@ -84,7 +84,7 @@ class cFormFilter {
 
     //  числовой диапозон
     static public function strRange($v, $error, $min, $max) {
-        $v = cString::strlen($v);
+        $v = \Jdjiwi\String::strlen($v);
         if ($v < $min or $v > $max) {
             return $error->strRange()->replace(array('%min%', '%max%'), array($min, $max));
         }
@@ -93,7 +93,7 @@ class cFormFilter {
 
 // строка короче
     static public function strMin($v, $error, $min) {
-        $v = cString::strlen($v);
+        $v = \Jdjiwi\String::strlen($v);
         if ($v < $min) {
             return $error->strMin()->replace('%min%', $min);
         }
@@ -102,7 +102,7 @@ class cFormFilter {
 
     // строка длиннее
     static public function strMax($v, $error, $max) {
-        $v = cString::strlen($v);
+        $v = \Jdjiwi\String::strlen($v);
         if ($v > $max) {
             return $error->strMax()->replace('%max%', $max);
         }
@@ -133,7 +133,7 @@ class cFormFilter {
 
     // правильность
 //    static public function strRange($v, $error, $min, $max) {
-//        $v = cString::strlen($v);
+//        $v = \Jdjiwi\String::strlen($v);
 //        pre('strRange', $v);
 //        if ($v < $min or $v > $max) {
 //            return $error->numberRange()->replace(array('%min%', '%max%'), array($min, $max));

@@ -166,12 +166,12 @@ class cmfFormSelect extends cFormElement {
                     foreach ($value as $level2 => $value2) {
                         $select = ((isset($values['sel'][$level1][$level2])) ? 'selected' : '');
                         $option = $this->getOptionsStr($level2);
-                        $html .= "\n<option value=\"" . cString::specialchars($level2) . "\" $select $option>" . str_replace(' ', '&nbsp;', cString::specialchars($value2)) . "</option>";
+                        $html .= "\n<option value=\"" . \Jdjiwi\String::specialchars($level2) . "\" $select $option>" . str_replace(' ', '&nbsp;', \Jdjiwi\String::specialchars($value2)) . "</option>";
                     }
                 } else {
                     $select = ((isset($values['sel'][$level1])) ? 'selected' : '');
                     $option = $this->getOptionsStr($level1);
-                    $html .= "\n<option value=\"" . cString::specialchars($level1) . "\" $select $option>" . str_replace(' ', '&nbsp;', cString::specialchars($value)) . "</option>";
+                    $html .= "\n<option value=\"" . \Jdjiwi\String::specialchars($level1) . "\" $select $option>" . str_replace(' ', '&nbsp;', \Jdjiwi\String::specialchars($value)) . "</option>";
                 }
             }
         }
@@ -292,7 +292,7 @@ class cmfFormSelectCheckbox extends cmfFormSelectMultiple {
             foreach ($values['array'] as $k => $v) {
                 $select = isset($values['sel'][$k]) ? 'checked' : '';
                 $html .= "<span class=\"formCheckbox\"><label><input type=\"checkbox\" name=\"{$id}[{$k}]\" id=\"{$id}[{$k}]\" {$select} />"
-                        . "&nbsp;" . cString::specialchars($v) . "&nbsp;</label>" . '</span>' . $sep;
+                        . "&nbsp;" . \Jdjiwi\String::specialchars($v) . "&nbsp;</label>" . '</span>' . $sep;
             }
         }
         return $html;
@@ -365,12 +365,12 @@ class cmfFormSelectCheckboxParam extends cmfFormSelectCheckbox {
         $id = $this->getId();
         $paramId = $this->getParamId();
         $values = $this->getValues();
-        $dataParam = cConvert::unserialize($this->dataParam);
+        $dataParam = \Jdjiwi\String\cConvert::unserialize($this->dataParam);
         $html = '';
         if (isset($values['array']) and is_array($values['array'])) {
             foreach ($values['array'] as $k => $v) {
                 $select = isset($values['sel'][$k]) ? 'checked' : '';
-                $v = cString::specialchars($v);
+                $v = \Jdjiwi\String::specialchars($v);
                 $param = get($dataParam, $k);
                 $html .= <<<HTML
 <label>
@@ -387,7 +387,7 @@ HTML;
     }
 
     public function htmlOld() {
-        return parent::htmlOld() . '<input type="hidden" name="' . ($name = $this->getParamOldId()) . '" id="' . $name . '" value="' . cString::specialchars($this->dataParam) . '" />';
+        return parent::htmlOld() . '<input type="hidden" name="' . ($name = $this->getParamOldId()) . '" id="' . $name . '" value="' . \Jdjiwi\String::specialchars($this->dataParam) . '" />';
     }
 
     public function processing($data, $old, $upload) {
@@ -405,7 +405,7 @@ HTML;
                 }
             }
         }
-        $dataParam = cConvert::serialize($dataParam);
+        $dataParam = \Jdjiwi\String\cConvert::serialize($dataParam);
 
         // проверяем изменились ли данные?
         if ($this->getOld() and $old) {
@@ -428,7 +428,7 @@ HTML;
 
     public function jsUpdateValue() {
         $js = parent::jsUpdateValue();
-        $dataParam = cConvert::unserialize($this->dataParam);
+        $dataParam = \Jdjiwi\String\cConvert::unserialize($this->dataParam);
         if (empty($dataParam))
             return $js;
         $paramId = $this->getParamId();

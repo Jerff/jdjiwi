@@ -83,7 +83,7 @@ class cCompilePhp {
 
     private function file($file) {
         $this->itemFile = $file;
-        $content = cString::convertEncoding(php_strip_whitespace($file));
+        $content = \Jdjiwi\String::convertEncoding(php_strip_whitespace($file));
         $content = trim(preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((require|require_once|include|include_once)\('(.*?)'\);)#sS", array(&$this, 'includeFile'), $content));
         if (substr($content, -2) === '?>') {
             $content = substr($content, 0, -2);

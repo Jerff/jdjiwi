@@ -35,7 +35,7 @@ function cmfUploadUrl($folder_in, $name, $folder_out = null) {
 
 // загрузка файлов на сервер
 function cmfUploadFile($folder, $upload) {
-    $name = $file = cConvert::translate($upload['name']);
+    $name = $file = \Jdjiwi\String\cConvert::translate($upload['name']);
     while (file_exists($folder . $name))
         $name = rand(0, 9999) . $file;
     if (move_uploaded_file($upload['tmp_name'], $folder . $name)) {

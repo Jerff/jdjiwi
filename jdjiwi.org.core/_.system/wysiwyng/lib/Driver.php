@@ -23,13 +23,13 @@ abstract class Driver {
                 'id' => $id,
                 'salt' => $this->getSalt()
             );
-            $salt[$model][$id] = base64_encode(cConvert::serialize($data));
+            $salt[$model][$id] = base64_encode(\Jdjiwi\String\cConvert::serialize($data));
         }
         return $salt[$model][$id];
     }
 
     protected function parserParam($data) {
-        $data = cConvert::unserialize(base64_decode($data));
+        $data = \Jdjiwi\String\cConvert::unserialize(base64_decode($data));
         if (empty($data['model']) or empty($data['id']) or empty($data['salt'])) {
             return false;
         }

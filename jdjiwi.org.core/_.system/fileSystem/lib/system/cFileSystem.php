@@ -71,7 +71,7 @@ class cFileSystem {
     }
 
     static public function toFileName($str) {
-        $str = preg_replace('~([^a-z0-9\_\-\=\+\.])~S', '_', cConvert::translate($str));
+        $str = preg_replace('~([^a-z0-9\_\-\=\+\.])~S', '_', \Jdjiwi\String\cConvert::translate($str));
         return preg_replace('~(_{2,})~S', '_', $str);
     }
 
