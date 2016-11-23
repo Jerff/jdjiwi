@@ -2,6 +2,7 @@
 
 namespace Jdjiwi;
 
+Loader::library('core:header/Seo');
 Modul::load('compile');
 
 class Header {

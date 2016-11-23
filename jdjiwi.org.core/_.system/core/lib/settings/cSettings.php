@@ -12,7 +12,7 @@ class cSettings {
             return;
         }
         $is = true;
-        self::$value = Cache::run(array(__NAMESPACE__, __CLASS__, __FUNCTION__), function() {
+        self::$value = Cache::run(array(__CLASS__, __FUNCTION__), function() {
                     $res = cDB::sql()->placeholder("SELECT id, data FROM ?t WHERE cache='yes' AND data!=''", cDB::table('sys.settings'))
                             ->fetchAssocAll();
                     $value = array();

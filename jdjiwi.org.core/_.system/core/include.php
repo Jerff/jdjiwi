@@ -16,12 +16,11 @@ if (extension_loaded('mbstring')) {
 \Jdjiwi\Loader::library('core:jscript/cJScript');
 \Jdjiwi\Loader::library('core:crypt/cCrypt');
 \Jdjiwi\Loader::library('core:time/cTime');
-\Jdjiwi\Loader::library('core:header/Header');
+\Jdjiwi\Loader::library('core:Header');
 
 /* загрузка модулей */
 \Jdjiwi\Modul::load('database');
-\Jdjiwi\Modul::load('seo');
-\Jdjiwi\Modul::load('file');
+\Jdjiwi\Modul::load('fileSystem');
 \Jdjiwi\Modul::load('pages');
 \Jdjiwi\Modul::load('cache');
 \Jdjiwi\Modul::load('mail');
