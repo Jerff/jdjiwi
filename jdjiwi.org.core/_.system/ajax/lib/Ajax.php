@@ -1,10 +1,10 @@
 <?php
 
-//namespace Jdjiwi;
+namespace Jdjiwi;
 
-\Jdjiwi\Loader::library('ajax:cAjaxResponse');
+Loader::library('ajax:Response');
 
-class cAjax {
+class Ajax {
 
     static private $start = false;
     static private $message = false;
@@ -19,27 +19,27 @@ class cAjax {
     static public function get() {
         static $r = false;
         if (empty($r)) {
-            $r = new cAjaxResponse();
+            $r = new Ajax\Response();
         }
         return $r;
     }
 
     static public function is() {
-        if (\Jdjiwi\Input::post()->get('isAjax')) {
+        if (Input::post()->get('isAjax')) {
             self::start();
         }
         return self::$start;
     }
 
     static public function getUrl() {
-        return (string) \Jdjiwi\Input::post()->get('ajaxUrl');
+        return (string) Input::post()->get('ajaxUrl');
     }
 
     static public function isCommand($command = null) {
         if ($command) {
-            return \Jdjiwi\Input::post()->get('ajaxCommand') === $command;
+            return Input::post()->get('ajaxCommand') === $command;
         } else {
-            return \Jdjiwi\Input::post()->is('ajaxCommand');
+            return Input::post()->is('ajaxCommand');
         }
     }
 
@@ -52,7 +52,7 @@ class cAjax {
     }
 
     static public function shutdown() {
-        if (\Jdjiwi\Debug::isAjax()) {
+        if (Debug::isAjax()) {
             pre(
                     self::get()->log()
             );
@@ -65,10 +65,10 @@ class cAjax {
             $result['error'] = self::$message;
         }
         $content = ob_get_clean();
-        if (\Jdjiwi\Debug::isView()) {
+        if (Debug::isView()) {
             $result['debug'] = array(
                 'is' => true,
-                'log' => $content . \Jdjiwi\Log::message()
+                'log' => $content . Log::message()
             );
         }
         echo json_encode($result);

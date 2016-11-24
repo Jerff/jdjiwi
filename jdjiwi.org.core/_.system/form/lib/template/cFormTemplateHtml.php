@@ -58,11 +58,11 @@ abstract class cFormTemplateHtml {
 
     public function js($el, $isOldUpdate = true) {
         if ($isOldUpdate) {
-            cAjax::get()->script(
+            \Jdjiwi\Ajax::get()->script(
                     JScript::queryId($el->oldId())->val($el->get())
             );
         }
-        cAjax::get()->script(
+        \Jdjiwi\Ajax::get()->script(
                 JScript::queryId($el->id())->val($el->value())
         );
     }

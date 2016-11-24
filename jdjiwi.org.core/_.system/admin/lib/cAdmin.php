@@ -21,16 +21,16 @@ class cAdmin {
 
     // инициализация админ панели
     static protected function initAdmin() {
-        if (cAjax::is()) {
+        if (\Jdjiwi\Ajax::is()) {
             if (!cAdmin::user()->authorization()) {
                 cPages::setMain('/admin/enter/');
             } else {
                 if (cPages::isMain('/admin/index/') or cPages::isMain('/admin/enter/')) {
-                    cAjax::get()->redirect(cBaseAdminUrl);
+                    \Jdjiwi\Ajax::get()->redirect(cBaseAdminUrl);
                 }
-                if (cAjax::isCommand('exit')) {
+                if (\Jdjiwi\Ajax::isCommand('exit')) {
                     cAdmin::user()->logOut();
-                    cAjax::get()->alert('Выход из системы')
+                    \Jdjiwi\Ajax::get()->alert('Выход из системы')
                             ->reload();
                 }
                 if (cAdmin::user()->debugError === 'yes')

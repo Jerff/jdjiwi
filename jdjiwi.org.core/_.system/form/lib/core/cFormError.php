@@ -36,28 +36,28 @@ class cFormError extends cFormCore {
             if (isset($this->mError[$name])) {
                 if ($el->settings()->isErrorHide) {
                     $mHidden[] = $this->mError[$name];
-                    cAjax::get()->script('cForm.error.color.show("' . $el->id() . '", "' . $this->form()->settings()->color . '");');
+                    \Jdjiwi\Ajax::get()->script('cForm.error.color.show("' . $el->id() . '", "' . $this->form()->settings()->color . '");');
                 } else {
-                    cAjax::get()->script('cForm.error.show("' . $el->id() . '", "' . $el->errorId() . '", "' . $this->form()->settings()->color . '", "' . JScript::quote($this->mError[$name]) . '");');
+                    \Jdjiwi\Ajax::get()->script('cForm.error.show("' . $el->id() . '", "' . $el->errorId() . '", "' . $this->form()->settings()->color . '", "' . JScript::quote($this->mError[$name]) . '");');
                 }
                 unset($this->mError[$name]);
             } else {
-                cAjax::get()->script('cForm.error.hide("' . $el->id() . '", "' . $el->errorId() . '");');
+                \Jdjiwi\Ajax::get()->script('cForm.error.hide("' . $el->id() . '", "' . $el->errorId() . '");');
             }
         }
         if (!empty($mHidden)) {
-            cAjax::get()->script('cForm.error.alert("' . JScript::quote($this->config()->error()->form) . '", "' . JScript::quote(implode('<br>', $mHidden)) . '");');
+            \Jdjiwi\Ajax::get()->script('cForm.error.alert("' . JScript::quote($this->config()->error()->form) . '", "' . JScript::quote(implode('<br>', $mHidden)) . '");');
         }
         if (isset($this->mError[$name = 'form-security'])) {
-            cAjax::get()->script('cForm.error.alert("' . JScript::quote($this->mError[$name = 'form-security']) . '");');
+            \Jdjiwi\Ajax::get()->script('cForm.error.alert("' . JScript::quote($this->mError[$name = 'form-security']) . '");');
             unset($this->mError[$name]);
         }
         if (empty($this->mError)) {
-            cAjax::get()->script(
+            \Jdjiwi\Ajax::get()->script(
                     JScript::queryId($this->errorId())->hide()
             );
         } else {
-            cAjax::get()->script(
+            \Jdjiwi\Ajax::get()->script(
                     JScript::queryId($this->errorId())->html(implode('<br>', $this->mError))->show()
             );
         }

@@ -59,12 +59,12 @@ class cPages extends cPagesCore {
 
         if (\Jdjiwi\Input::get()->is('url')) {
             $url = \Jdjiwi\Input::get()->get('url');
-        } else if (!cAjax::is()) {
+        } else if (!\Jdjiwi\Ajax::is()) {
             cPages::setMain('/admin/index/');
             return;
         } else {
 
-            $url = cAjax::getUrl();
+            $url = \Jdjiwi\Ajax::getUrl();
             preg_match('~' . preg_quote(cAdminUrl) . '([^#]*)\#?(\&?.*)~', $url, $tmp);
             $url = empty($tmp[1]) ? '/' : $tmp[1];
         }
@@ -110,7 +110,7 @@ class cPages extends cPagesCore {
             }
         }
         if (!$page) {
-            cAjax::get()->alert('Ничего не найдено!');
+            \Jdjiwi\Ajax::get()->alert('Ничего не найдено!');
             exit;
         }
 

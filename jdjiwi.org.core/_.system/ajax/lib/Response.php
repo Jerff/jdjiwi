@@ -1,10 +1,13 @@
 <?php
 
-use Jdjiwi\JScript;
+namespace Jdjiwi\Ajax;
+
+use Jdjiwi\JScript,
+    Jdjiwi\Debug;
 
 \Jdjiwi\Loader::library('core:JScript');
 
-class cAjaxResponse {
+class Response {
 
     private $mScript = null;
     private $mHtml = null;
@@ -72,7 +75,7 @@ class cAjaxResponse {
     }
 
     public function html($id, $content) {
-        if ($id !== '#ajax-content' and \Jdjiwi\Debug::isAjax()) {
+        if ($id !== '#ajax-content' and Debug::isAjax()) {
             $this->mHtmlLog[$id] = $content;
         }
         $this->mHtml[] = array(

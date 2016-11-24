@@ -12,7 +12,7 @@ class cFormPasswordHtml extends cFormTextHtml {
 
     public function js($el, $isOldUpdate = true) {
         if ($isOldUpdate) {
-            cAjax::get()->script(
+            \Jdjiwi\Ajax::get()->script(
                     JScript::queryId($el->id())->val('')
             );
         }

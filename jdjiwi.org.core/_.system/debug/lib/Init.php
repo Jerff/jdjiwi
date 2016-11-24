@@ -34,8 +34,8 @@ class Init {
             }
         });
         register_shutdown_function(function() {
-            if (\cAjax::is()) {
-                \cAjax::shutdown();
+            if (\\Jdjiwi\Ajax::is()) {
+                \\Jdjiwi\Ajax::shutdown();
             } else {
                 Debug::shutdown();
             }

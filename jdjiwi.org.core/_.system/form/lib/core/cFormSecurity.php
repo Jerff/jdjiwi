@@ -54,7 +54,7 @@ class cFormSecurity extends cFormCore {
 
     public function update() {
         if ($this->form()->settings()->security) {
-            cAjax::get()->script($this->js());
+            \Jdjiwi\Ajax::get()->script($this->js());
         }
     }
 
