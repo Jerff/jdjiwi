@@ -7,7 +7,7 @@ use \Jdjiwi\Exception;
 
 class cUrl {
 
-    use StaticRegistry;
+    use \Jdjiwi\Traits\StaticRegistry;
 
     static public function admin() {
         return self::register('cUrlAdmin');

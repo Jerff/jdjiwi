@@ -1,6 +1,7 @@
 <?php
 
-\Jdjiwi\Loader::library('core:input/cInput');
+//namespace Jdjiwi;
+
 \Jdjiwi\Loader::library('ajax:cAjaxResponse');
 
 class cAjax {

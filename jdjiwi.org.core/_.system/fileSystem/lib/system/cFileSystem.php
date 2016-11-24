@@ -3,9 +3,9 @@
 use Jdjiwi\FileSystem\Exception,
     Jdjiwi\Config;
 
-\Jdjiwi\Loader::library('file:system/cExec');
-\Jdjiwi\Loader::library('file:system/cFileAccess');
-\Jdjiwi\Loader::library('core:string/cConvert');
+\Jdjiwi\Loader::library('fileSystem:system/cExec');
+\Jdjiwi\Loader::library('fileSystem:system/cFileAccess');
+\Jdjiwi\Loader::library('core:string/Convert');
 
 class cFileSystem {
 

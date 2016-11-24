@@ -15,7 +15,7 @@ class cCompileFile {
             return '';
         foreach ($list as $dir) {
             if (is_file($dir . $file)) {
-                $sourse = \Jdjiwi\String::convertEncoding(file_get_contents($dir . $file));
+                $sourse = \Jdjiwi\jString::convertEncoding(file_get_contents($dir . $file));
                 break;
             }
         }
@@ -32,7 +32,7 @@ class cCompileFile {
         }
         $this->mInclude[$file] = 1;
 
-        if (\Jdjiwi\String::strrpos($file, 'min') === false and \Jdjiwi\String::strrpos($file, 'pack') === false and $js) {
+        if (\Jdjiwi\jString::strrpos($file, 'min') === false and \Jdjiwi\jString::strrpos($file, 'pack') === false and $js) {
             $sourse = new JavaScriptPacker($sourse, 'None', false, false);
             $sourse = $sourse->pack();
         }
@@ -47,7 +47,7 @@ class cCompileFile {
         foreach ($list as $dir) {
             $prefix = preg_replace('~^.+(\..+)$~i', '$1', $name);
             foreach (cDir::getFiles($dir) as $file) {
-                if ($name != $file and \Jdjiwi\String::strrpos($file, $prefix) !== false) {
+                if ($name != $file and \Jdjiwi\jString::strrpos($file, $prefix) !== false) {
                     $sourse .= $this->pack($list, $file, $js);
                     $sourse .= "\n{$sep}\n";
                 }

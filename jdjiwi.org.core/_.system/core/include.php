@@ -17,7 +17,7 @@ if (extension_loaded('mbstring')) {
 \Jdjiwi\Loader::library('core:Settings');
 \Jdjiwi\Loader::library('core:Limit');
 \Jdjiwi\Loader::library('core:Input');
-\Jdjiwi\Loader::library('core:String');
+\Jdjiwi\Loader::library('core:jString');
 \Jdjiwi\Loader::library('core:Header');
 
 /* загрузка модулей */

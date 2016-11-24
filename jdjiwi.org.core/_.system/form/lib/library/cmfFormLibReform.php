@@ -37,7 +37,7 @@ function cmfReformFloat($d, $i, $u) {
 
 function cmfReformStrLen(&$s, $m) {
     if ($l = strlen($s)) {
-        $s = \Jdjiwi\String::subContent($s, 0, $m - 1);
+        $s = \Jdjiwi\jString::subContent($s, 0, $m - 1);
     }
     return $s;
 }

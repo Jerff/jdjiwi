@@ -4,10 +4,10 @@
 \Jdjiwi\Config::load('path');
 \Jdjiwi\Modul::config('const');
 
-\Jdjiwi\Loader::library('file:Exception');
-\Jdjiwi\Loader::library('file:path/cPath');
-\Jdjiwi\Loader::library('file:system/cFileSystem');
-\Jdjiwi\Loader::library('file:cDir');
-\Jdjiwi\Loader::library('file:cFile');
-\Jdjiwi\Loader::library('file:upload/cFileUpload');
-\Jdjiwi\Loader::library('file:image/cImage');
+\Jdjiwi\Loader::library('fileSystem:Exception');
+\Jdjiwi\Loader::library('fileSystem:path/cPath');
+\Jdjiwi\Loader::library('fileSystem:system/cFileSystem');
+\Jdjiwi\Loader::library('fileSystem:cDir');
+\Jdjiwi\Loader::library('fileSystem:cFile');
+\Jdjiwi\Loader::library('fileSystem:upload/cFileUpload');
+\Jdjiwi\Loader::library('fileSystem:image/cImage');

@@ -74,7 +74,7 @@ class cCompileJsCss {
         $content = '';
         foreach ($mList as $file) {
             if (is_file(cWWWPath . $file)) {
-                $sourse = \Jdjiwi\String::convertEncoding(file_get_contents(cWWWPath . $file));
+                $sourse = \Jdjiwi\jString::convertEncoding(file_get_contents(cWWWPath . $file));
                 self::set(dirname($file) . '/');
                 switch ($type) {
                     case 'js':
@@ -84,7 +84,7 @@ class cCompileJsCss {
                             }
                             return $m[0];
                         }, $sourse);
-                        if (\Jdjiwi\String::strrpos($file, 'min') === false and \Jdjiwi\String::strrpos($file, 'pack') === false) {
+                        if (\Jdjiwi\jString::strrpos($file, 'min') === false and \Jdjiwi\jString::strrpos($file, 'pack') === false) {
                             $sourse = new JavaScriptPacker($sourse, 'None', false, false);
                             $sourse = $sourse->pack();
                         }

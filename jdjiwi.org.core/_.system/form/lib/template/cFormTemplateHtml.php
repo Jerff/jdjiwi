@@ -53,7 +53,7 @@ abstract class cFormTemplateHtml {
         abstract public function html($el, $attr);
 
         public function old($el) {
-            ?><input type="hidden" name="<?= $el->oldId() ?>" id="<?= $el->oldId() ?>" value="<?= \Jdjiwi\String::specialchars($el->get()) ?>" /><?
+            ?><input type="hidden" name="<?= $el->oldId() ?>" id="<?= $el->oldId() ?>" value="<?= \Jdjiwi\jString::specialchars($el->get()) ?>" /><?
     }
 
     public function js($el, $isOldUpdate = true) {
