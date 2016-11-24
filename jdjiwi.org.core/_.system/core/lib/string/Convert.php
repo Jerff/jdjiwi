@@ -6,10 +6,10 @@ class Convert {
     /* === match === */
 
     //cmfToFloat(
-    //\Jdjiwi\String\cConvert::toFloat(
+    //String\cConvert::toFloat(
     public static function toFloat($value) {
         if (is_array($value)) {
-            return array_map('self::toFloat', $value);
+            return array_map(array(__CLASS__,__FUNCTION__), $value);
         } else {
 
             $value = preg_replace('#\s#mS', '', $value);
@@ -19,20 +19,20 @@ class Convert {
     }
 
     //cmfToArrayInt(
-    //\Jdjiwi\String\cConvert::toInt(
+    //String\cConvert::toInt(
     public static function toInt($value) {
         if (is_array($value)) {
-            return array_map('self::toInt', $value);
+            return array_map(array(__CLASS__,__FUNCTION__), $value);
         } else {
             return (int) $value;
         }
     }
 
-    //\Jdjiwi\String::objectToArray(
-    //\Jdjiwi\String\cConvert::objectToArray(
+    //String::objectToArray(
+    //String\cConvert::objectToArray(
     static public function objectToArray($value) {
         if (is_object($value)) {
-            $value = array_map('self::objectToArray', (array) $value);
+            $value = array_map(array(__CLASS__,__FUNCTION__), (array) $value);
         }
         return $value;
     }
@@ -43,13 +43,13 @@ class Convert {
 
     /* === array === */
 
-    //\Jdjiwi\String::arrayToPath(
+    //String::arrayToPath(
     //cSConvert::arrayToPath(
     static public function arrayToPath($arg) {
         return empty($arg) ? '' : '[' . implode('][', $arg) . ']';
     }
 
-    //\Jdjiwi\String::pathToArray(
+    //String::pathToArray(
     //cSConvert::pathToArray(
     static public function pathToArray($str) {
         if (empty($str)) {
@@ -60,32 +60,32 @@ class Convert {
         }
     }
 
-    //\Jdjiwi\String::unserialize(
+    //String::unserialize(
     //cSConvert::unserialize(
     static public function unserialize($arg) {
         return empty($arg) ? '' : unserialize($arg);
     }
 
-    //\Jdjiwi\String::serialize(
+    //String::serialize(
     //cSConvert::serialize(
     static public function serialize($arg) {
         return empty($arg) ? '' : serialize($arg);
     }
 
     //cmfFormtaArray(
-    //\Jdjiwi\String\cConvert::formtArray(
+    //String\cConvert::formtArray(
     static public function arrayView($d, $sep = ' ', $br = "\n") {
         $str = '';
         $max = 0;
         foreach ($d as $k => $v) {
-            $len = \Jdjiwi\String::strlen($k);
+            $len = String::strlen($k);
             if ($len > $max)
                 $max = $len;
         }
         $max += 5;
 
         foreach ($d as $k => $v) {
-            $len = $max - \Jdjiwi\String::strlen($k);
+            $len = $max - String::strlen($k);
             $str .= $br . $k . ': ';
             for ($i = 0; $i < $len; $i++)
                 $str .= $sep;
@@ -109,7 +109,7 @@ class Convert {
 
     /* === translate === */
 
-    //\Jdjiwi\String::translate(
+    //String::translate(
     //cSConvert::translate(
     static public function translate($str) {
         static $t = array('а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'jo', 'ж' => 'gh', 'з' => 'z', 'и' => 'i',
@@ -117,10 +117,10 @@ class Convert {
             'х' => 'x', 'ц' => 'c', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'th', 'ъ' => '', 'ь' => '', 'ы' => 'y', 'э' => 'eh', 'ю' => 'ju', 'я' => 'ja');
 
         $new = '';
-        $str = \Jdjiwi\String::strtolower(trim($str));
+        $str = String::strtolower(trim($str));
         $str = preg_replace('~\s~S', '_', $str);
-        for ($i = 0, $c = \Jdjiwi\String::strlen($str); $i < $c; $i++) {
-            $s = \Jdjiwi\String::substr($str, $i, 1);
+        for ($i = 0, $c = String::strlen($str); $i < $c; $i++) {
+            $s = String::substr($str, $i, 1);
             if (isset($t[$s]))
                 $new .= $t[$s];
             else if ((ord($s) > 126) or ( ord($s) == 20))
@@ -137,7 +137,7 @@ class Convert {
 
     /* === file === */
 
-    //\Jdjiwi\String::toFileName(
+    //String::toFileName(
     //cSConvert::toFileName(
     static public function toFileName($str) {
         return preg_replace('([^a-z0-9\-\=\+\.])', '_', self::translate($str));
@@ -145,4 +145,3 @@ class Convert {
 
     /* === /file === */
 }
-

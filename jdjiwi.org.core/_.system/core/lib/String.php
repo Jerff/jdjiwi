@@ -63,7 +63,7 @@ class String {
     //self::trim(
     static public function trim($value) {
         if (is_array($value)) {
-            return array_map(array(self, 'trim'), $value);
+            return array_map(array(__CLASS__,__FUNCTION__), $value);
         } else {
             return trim($value);
         }
