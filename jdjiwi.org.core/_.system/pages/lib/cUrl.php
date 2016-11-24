@@ -3,7 +3,7 @@
 use \Jdjiwi\Exception;
 
 \Jdjiwi\Loader::library('pages:cUrlAdmin');
-\Jdjiwi\Loader::library('trait:StaticRegistry');
+\Jdjiwi\Loader::library('core:traits/StaticRegistry');
 
 class cUrl {
 

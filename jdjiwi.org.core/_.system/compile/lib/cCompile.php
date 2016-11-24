@@ -6,7 +6,7 @@ use Jdjiwi\Settings;
 \Jdjiwi\Loader::library('compile:cCompilePhp');
 \Jdjiwi\Loader::library('compile:cCompileJsCss');
 \Jdjiwi\Loader::library('compile:cCompileUpdate');
-\Jdjiwi\Loader::library('trait:StaticRegistry');
+\Jdjiwi\Loader::library('core:traits/StaticRegistry');
 
 class cCompile {
 

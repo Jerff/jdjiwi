@@ -4,7 +4,7 @@
 \Jdjiwi\Loader::library('pages:cPagesConfig');
 \Jdjiwi\Loader::library('pages:cPagesParam');
 \Jdjiwi\Loader::library('pages:cPagesTemplate');
-\Jdjiwi\Loader::library('trait:StaticRegistry');
+\Jdjiwi\Loader::library('core:traits/StaticRegistry');
 
 class cPagesCore {
 
