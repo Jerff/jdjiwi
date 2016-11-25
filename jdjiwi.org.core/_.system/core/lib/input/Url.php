@@ -2,9 +2,9 @@
 
 namespace Jdjiwi\Input;
 
-pre(Url::fullPath());
-pre(Url::uri());
-exit;
+//pre(Url::fullPath());
+//pre(Url::uri());
+//exit;
 
 class Url {
 
@@ -40,7 +40,7 @@ class Url {
     static public function fullPath() {
 //        return 'http://username:password@hostname:9090/path?arg=value&ffj=5#anchor';
 //        return 'http://core.jdjiwi.ru/fffefe/fe?jdjd=ff&ffkgk=333kff';
-        return ($_SERVER['HTTPS']) ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        return (isset($_SERVER['HTTPS']) ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     }
 
     static public function host() {
