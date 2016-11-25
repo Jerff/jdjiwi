@@ -1,5 +1,5 @@
 <?php
 
-if (!cAdmin::user()->is()) {
+if (!Jdjiwi\Admin\User::is()) {
     exit;
 }

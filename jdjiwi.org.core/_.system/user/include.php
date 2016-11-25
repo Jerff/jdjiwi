@@ -1,4 +1,4 @@
 <?php
 
 /* конфигурация */
-\Jdjiwi\Loader::library('user:authorization/cAuth');
+\Jdjiwi\Loader::library('user:authorization/Auth');
