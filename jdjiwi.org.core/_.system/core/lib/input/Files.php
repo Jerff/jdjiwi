@@ -4,22 +4,16 @@ namespace Jdjiwi\Input;
 
 class Files {
 
-    private $files;
-
-    function __construct() {
-        $this->files = &$_FILES;
-    }
-
     public function is($n) {
-        return isset($this->files[$n]);
+        return isset($_FILES[$n]);
     }
 
     public function get($n) {
-        return get($this->files, $n);
+        return get($_FILES, $n);
     }
 
-    public function all() {
-        return $this->files;
+    public function &all() {
+        return $_FILES;
     }
 
 }

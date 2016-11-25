@@ -4,30 +4,20 @@ namespace Jdjiwi\Input;
 
 class Post {
 
-    private $post;
-
-    function __construct() {
-        $this->post = &$_POST;
+    static public function is($n) {
+        return isset($_POST[$n]);
     }
 
-    public function is($n) {
-        return isset($this->post[$n]);
+    static public function get($n, $d = null) {
+        return get($_POST, $n, $d);
     }
 
-    public function get($n, $d = null) {
-        return get($this->post, $n, $d);
+    static public function all() {
+        return $_POST;
     }
 
-    public function all() {
-        return $this->post;
-    }
-
-    public function set($n, $v) {
-        $this->post[$n] = $v;
-    }
-
-    public function delete($n) {
-        unset($this->post[$n]);
+    static public function set($n, $v) {
+        $_POST[$n] = $v;
     }
 
 }

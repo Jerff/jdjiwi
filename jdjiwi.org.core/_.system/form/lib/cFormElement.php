@@ -168,7 +168,7 @@ abstract class cFormElement extends cFormCore {
     }
 
     public function processing($isChange = true, $isUpload = true) {
-        $value = \Jdjiwi\Input::post()->get($this->id());
+        $value = \Jdjiwi\Input\Post::get($this->id());
         if ($this->isDefault($value)) {
             $value = null;
         }
@@ -176,7 +176,7 @@ abstract class cFormElement extends cFormCore {
         $this->filter()->start($value);
 
         if ($isChange) {
-            if ($value == \Jdjiwi\Input::post()->get($this->oldId()))
+            if ($value == \Jdjiwi\Input\Post::get($this->oldId()))
                 return null;
 //            if($value===$this->getOld()) return null;
 //            else if($value==$this->getOld()) return null;

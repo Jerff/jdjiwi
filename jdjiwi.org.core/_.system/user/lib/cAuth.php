@@ -1,8 +1,13 @@
 <?php
 
-\Jdjiwi\Loader::library('user:authorization/cAuthSession');
+namespace Jdjiwi\User;
 
-abstract class cAuth {
+use Jdjiwi\Loader,
+    Jdjiwi\Input\Ip;
+
+Loader::library('user:auth/Session');
+
+abstract class Auth {
 
     private $name = null;
     private $data = null;
@@ -12,7 +17,7 @@ abstract class cAuth {
     private $ban = null;
 
     public function __construct() {
-        $this->setSession(new cAuthSession($this, $this->getName()));
+        $this->setSession(new Auth\Session($this, $this->getName()));
         if ($this->authorization()) {
             $this->sessionUpdate();
         } else {
@@ -191,8 +196,8 @@ abstract class cAuth {
                 if ($error >= 20) {
                     $data = array('date' => date('d.m.y H:i:s'),
                         'user' => $login,
-                        'ip' => \Jdjiwi\Input::ip()->getInt(),
-                        'proxy' => \Jdjiwi\Input::ip()->proxyInt());
+                        'ip' => Ip::getInt(),
+                        'proxy' => Ip::proxyInt());
                 }
             }
             $sql->placeholder("UPDATE ?t SET ?% WHERE ?w", $this->getDb(), array('banCount' => $error, 'banDate' => date('Y-m-d H:i:s', $time)), array('login' => $login));

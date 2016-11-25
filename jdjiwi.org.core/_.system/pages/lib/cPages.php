@@ -57,8 +57,8 @@ class cPages extends cPagesCore {
 //            return;
 //        }
 
-        if (\Jdjiwi\Input::get()->is('url')) {
-            $url = \Jdjiwi\Input::get()->get('url');
+        if (\Jdjiwi\Input\Get::is('url')) {
+            $url = \Jdjiwi\Input\Get::get('url');
         } else if (!\Jdjiwi\Ajax::is()) {
             cPages::setMain('/admin/index/');
             return;
@@ -81,9 +81,9 @@ class cPages extends cPagesCore {
                 if ($v) {
                     $v = explode('=', $v);
                     if (isset($v[1])) {
-                        \Jdjiwi\Input::get()->set($v[0], $v[1]);
+                        \Jdjiwi\Input\Get::set($v[0], $v[1]);
                     } else {
-                        \Jdjiwi\Input::get()->set($v[0], 1);
+                        \Jdjiwi\Input\Get::set($v[0], 1);
                     }
                 }
         }

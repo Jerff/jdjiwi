@@ -74,8 +74,9 @@ class Cache {
     // кеширование данных  + добавляется url
     static private function getPath() {
         static $url = null;
-        if (!$url)
-            $url = cInput::url()->path();
+        if (empty($url)) {
+            $url = Input\Url::path();
+        }
         return $url;
     }
 

@@ -9,6 +9,7 @@ if (extension_loaded('mbstring')) {
 }
 
 /* заагрузка библиотек */
+\Jdjiwi\Loader::library('core:function');
 \Jdjiwi\Loader::library('core:Session');
 \Jdjiwi\Loader::library('core:Cookie');
 \Jdjiwi\Loader::library('core:Crypt');

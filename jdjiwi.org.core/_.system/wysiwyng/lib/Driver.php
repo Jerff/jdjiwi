@@ -3,8 +3,9 @@
 namespace Jdjiwi\Wysiwyng;
 
 use Jdjiwi\Loader,
-    \Jdjiwi\Config,
-    Jdjiwi\Crypt;
+    Jdjiwi\Config,
+    Jdjiwi\Crypt,
+    Jdjiwi\Input\Get;
 
 abstract class Driver {
 
@@ -40,7 +41,7 @@ abstract class Driver {
     }
 
     public function getTmpId($model, $id) {
-        $data = $this->parserParam(cInput::post()->get($this->getSaltId($model, $id)));
+        $data = $this->parserParam(\Jdjiwi\Input\Post::get($this->getSaltId($model, $id)));
         if (empty($data)) {
             return false;
         }
@@ -56,11 +57,11 @@ abstract class Driver {
     abstract static public function jsUpdate($id, $value);
 
     public function getPath() {
-        $param = $this->parserParam(cInput::get()->get(Config::get('filemanager.app.key')));
+        $param = $this->parserParam(Get::get(Config::get('wysiwyng.app.key')));
         if (empty($param)) {
             die('Access Denied!');
         }
-        cInput::get()->set(Config::get('filemanager.app.key'), $this->getSalt());
+        Get::set(Config::get('wysiwyng.app.key'), $this->getSalt());
 
         $model = cModel::init($param['model']);
         cAccess::isWrite($param['model']);

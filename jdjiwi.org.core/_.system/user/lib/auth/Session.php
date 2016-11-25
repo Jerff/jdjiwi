@@ -1,9 +1,12 @@
 <?php
 
-use Jdjiwi\Cookie,
-    Jdjiwi\Session;
+namespace Jdjiwi\User\Auth;
 
-class cAuthSession {
+use Jdjiwi\Cookie,
+    Jdjiwi\Session,
+    Jdjiwi\Ip;
+
+class Session {
 
     private $id = null;
     private $session = null;
@@ -64,7 +67,7 @@ class cAuthSession {
         $session = $this->getData();
 
         if ($session) {
-            if ($session['ip'] !== \Jdjiwi\Input::ip()->getInt() or $session['proxy'] !== \Jdjiwi\Input::ip()->proxyInt()) {
+            if ($session['ip'] !== Ip::getInt() or $session['proxy'] !== Ip::proxyInt()) {
                 $this->remove();
                 return false;
             }
@@ -75,7 +78,7 @@ class cAuthSession {
             return true;
         }
 
-        $is = cRegister::sql()->placeholder("SELECT 1 FROM ?t WHERE `id`=? AND IF(`isIp`='yes', `sesIp`=? AND `sesProxy`=?, 1)", $this->getDb(), $this->getId(), \Jdjiwi\Input::ip()->getInt(), \Jdjiwi\Input::ip()->proxyInt())
+        $is = cRegister::sql()->placeholder("SELECT 1 FROM ?t WHERE `id`=? AND IF(`isIp`='yes', `sesIp`=? AND `sesProxy`=?, 1)", $this->getDb(), $this->getId(), Ip::getInt(), Ip::proxyInt())
                 ->numRows();
         if (!$is) {
             $this->remove();
@@ -89,8 +92,8 @@ class cAuthSession {
         $this->update();
         Session::set($this->getName(), array('id' => $this->getId(),
             'data' => $row,
-            'session' => array('ip' => \Jdjiwi\Input::ip()->getInt(), 'ip' => \Jdjiwi\Input::ip()->getInt(), 'proxy' => \Jdjiwi\Input::ip()->proxyInt(), 'date' => time())));
-        cRegister::sql()->replace($this->getDb(), array('id' => $this->getId(), 'isIp' => $row['isIp'], 'sesIp' => \Jdjiwi\Input::ip()->getInt(), 'sesProxy' => \Jdjiwi\Input::ip()->proxyInt(), 'sesDate' => date('Y-m-d H:i:s')));
+            'session' => array('ip' => Ip::getInt(), 'ip' => Ip::getInt(), 'proxy' => Ip::proxyInt(), 'date' => time())));
+        cRegister::sql()->replace($this->getDb(), array('id' => $this->getId(), 'isIp' => $row['isIp'], 'sesIp' => Ip::getInt(), 'sesProxy' => Ip::proxyInt(), 'sesDate' => date('Y-m-d H:i:s')));
     }
 
     // продление сессии

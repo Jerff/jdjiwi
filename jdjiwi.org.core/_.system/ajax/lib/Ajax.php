@@ -25,21 +25,21 @@ class Ajax {
     }
 
     static public function is() {
-        if (Input::post()->get('isAjax')) {
+        if (Input\Post::get('isAjax')) {
             self::start();
         }
         return self::$start;
     }
 
     static public function getUrl() {
-        return (string) Input::post()->get('ajaxUrl');
+        return (string) Input\Post::get('ajaxUrl');
     }
 
     static public function isCommand($command = null) {
         if ($command) {
-            return Input::post()->get('ajaxCommand') === $command;
+            return Input\Post::get('ajaxCommand') === $command;
         } else {
-            return Input::post()->is('ajaxCommand');
+            return Input\Post::is('ajaxCommand');
         }
     }
 

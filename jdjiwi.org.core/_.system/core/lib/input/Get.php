@@ -4,40 +4,20 @@ namespace Jdjiwi\Input;
 
 class Get {
 
-    private $get;
-    private $bak;
-
-    function __construct() {
-        $this->get = &$_GET;
-        $this->bak = (array) $_GET;
+    static public function is($n) {
+        return isset($_GET[$n]);
     }
 
-    public function initBackup() {
-        $this->bak = (array) $this->get;
+    static public function get($n, $d = null) {
+        return get($_GET, $n, $d);
     }
 
-    public function reset() {
-        $this->get = (array) $this->bak;
+    static public function all() {
+        return $_GET;
     }
 
-    public function is($n) {
-        return isset($this->get[$n]);
-    }
-
-    public function get($n, $d = null) {
-        return get($this->get, $n, $d);
-    }
-
-    public function all() {
-        return $this->get;
-    }
-
-    public function set($n, $v) {
-        $this->get[$n] = $v;
-    }
-
-    public function delete($n) {
-        unset($this->get[$n]);
+    static public function set($n, $v) {
+        $_GET[$n] = $v;
     }
 
 }

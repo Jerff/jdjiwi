@@ -6,13 +6,11 @@ class Ip {
 
     const path = 'HTTP_X_FORWARDED_FOR|HTTP_CLIENT_IP|HTTP_X_CLIENT_IP|HTTP_X_CLUSTER_CLIENT_IP|REMOTE_ADDR';
 
-    private $ip = null;
-    private $proxy = null;
+    static private $ip = null;
+    static private $proxy = null;
 
-    //cmfGetIp(
-    //cInput::ip()->get(;
-    public function get() {
-        if (is_null($this->ip)) {
+    static public function get() {
+        if (is_null(self::$ip)) {
             foreach (explode('|', self::path) as $index) {
                 if (!empty($_SERVER[$index])) {
                     $item = $_SERVER[$index];
@@ -20,46 +18,40 @@ class Ip {
                         list($item) = explode(',', $item, 2);
                     }
                     if ($this->isValid($item)) {
-                        $this->ip = $item;
+                        self::$ip = $item;
                         break;
                     }
                 }
             }
 
-            if (empty($this->ip)) {
-                $this->ip = '0.0.0.0';
+            if (empty(self::$ip)) {
+                self::$ip = '0.0.0.0';
             }
         }
-        return $this->ip;
+        return self::$ip;
     }
 
-    //cmfGetIpInt(
-    //cInput::ip()->getInt(
-    public function getInt() {
+    static public function getInt() {
         return ip2long($this->get());
     }
 
-    //cmfGetProxy(
-    //cInput::ip()->proxy(
-    public function proxy() {
-        if (is_null($this->proxy)) {
+    static public function proxy() {
+        if (is_null(self::$proxy)) {
             if (empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-                $this->proxy = $_SERVER['REMOTE_ADDR'];
+                self::$proxy = $_SERVER['REMOTE_ADDR'];
             }
-            if (empty($this->proxy)) {
-                $this->proxy = '0.0.0.0';
+            if (empty(self::$proxy)) {
+                self::$proxy = '0.0.0.0';
             }
         }
-        return $this->proxy;
+        return self::$proxy;
     }
 
-    //cmfGetProxyInt(
-    //cInput::ip()->proxyInt(
-    public function proxyInt() {
-        return (int) ip2long($this->proxy());
+    static public function proxyInt() {
+        return (int) ip2long(self::$proxy());
     }
 
-    public function isValid($ip, $flag = '') {
+    static public function isValid($ip, $flag = '') {
         $flag = strtolower($flag);
 
         // First check if filter_var is available
@@ -95,7 +87,7 @@ class Ip {
         return $this->$func($ip);
     }
 
-    protected function isValidIpv4($ip) {
+    static protected function isValidIpv4($ip) {
         $mSegments = explode('.', $ip);
 
         if (count($mSegments) !== 4) {
@@ -113,7 +105,7 @@ class Ip {
         return true;
     }
 
-    protected function isValidIpv6($str) {
+    static protected function isValidIpv6($str) {
         // 8 groups, separated by :
         // 0-ffff per group
         // one set of consecutive 0 groups can be collapsed to ::
