@@ -36,7 +36,7 @@ class cCompileFile {
             $sourse = new JavaScriptPacker($sourse, 'None', false, false);
             $sourse = $sourse->pack();
         }
-        return $include . "\n" . $sourse;
+        return $include . PHP_EOL . $sourse;
     }
 
     public function compile($name, $js = true) {

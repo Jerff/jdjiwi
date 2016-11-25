@@ -5,29 +5,27 @@ namespace Jdjiwi\Ajax;
 use Jdjiwi\JScript,
     Jdjiwi\Debug;
 
-\Jdjiwi\Loader::library('core:JScript');
-
 class Response {
 
-    private $mScript = null;
-    private $mHtml = null;
-    private $mHtmlLog = array();
+    private $arScript = null;
+    private $arHtml = null;
+    private $arHtmlLog = array();
 
     public function log() {
         return array(
             'ajax-result' => '',
-            'script' => $this->mScript,
-            'html' => $this->mHtmlLog
+            'script' => $this->arScript,
+            'html' => $this->arHtmlLog
         );
     }
 
     public function result() {
         $result = array();
-        if (!empty($this->mScript)) {
-            $result['script'] = $this->mScript;
+        if (!empty($this->arScript)) {
+            $result['script'] = $this->arScript;
         }
-        if (!empty($this->mHtml)) {
-            $result['html'] = $this->mHtml;
+        if (!empty($this->arHtml)) {
+            $result['html'] = $this->arHtml;
         }
         return $result;
     }
@@ -55,7 +53,7 @@ class Response {
     /* === скрипты === */
 
     public function script($js) {
-        $this->mScript .= "\n" . $js;
+        $this->arScript .= PHP_EOL . $js;
         return $this;
     }
 
@@ -76,9 +74,9 @@ class Response {
 
     public function html($id, $content) {
         if ($id !== '#ajax-content' and Debug::isAjax()) {
-            $this->mHtmlLog[$id] = $content;
+            $this->arHtmlLog[$id] = $content;
         }
-        $this->mHtml[] = array(
+        $this->arHtml[] = array(
             'selected' => $id,
             'content' => $content
         );

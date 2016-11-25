@@ -1,19 +1,21 @@
 <?php
 
-class cApplication {
+namespace Jdjiwi;
+
+class Application {
 
     // авторизация приложения
     static public function authorization() {
         if (cUser::authorization()) {
             $config = cUser::config();
             if (cAdmin::user()->debugError === 'yes')
-                \Jdjiwi\Debug::setError();
+                GetDebug::setError();
             if (cAdmin::user()->debugSql === 'yes')
-                \Jdjiwi\Debug::setSql();
+                GetDebug::setSql();
             if (cAdmin::user()->debugExplain === 'yes')
-                \Jdjiwi\Debug::setExplain();
-            //if(cRegister::getAdmin()->debugCache==='yes')	\Jdjiwi\Cache\Control::setPages();
-            //\Jdjiwi\Cache\Control::setData(cRegister::getAdmin()->debugCache==='yes');
+                GetDebug::setExplain();
+            //if(cRegister::getAdmin()->debugCache==='yes')	GetCache\Control::setPages();
+            //GetCache\Control::setData(cRegister::getAdmin()->debugCache==='yes');
         } else {
 //            echo 'Для просмотра нужна авторизация';
 //            exit;
@@ -21,4 +23,3 @@ class cApplication {
     }
 
 }
-

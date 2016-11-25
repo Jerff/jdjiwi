@@ -1,5 +1,7 @@
 <?php
 
+use Jdjiwi\Input\Get;
+
 \Jdjiwi\Loader::library('pages:cPagesCore');
 \Jdjiwi\Loader::library('pages:cUrl');
 
@@ -57,8 +59,8 @@ class cPages extends cPagesCore {
 //            return;
 //        }
 
-        if (\Jdjiwi\Input\Get::is('url')) {
-            $url = \Jdjiwi\Input\Get::get('url');
+        if (Get::is('url')) {
+            $url = Get::get('url');
         } else if (!\Jdjiwi\Ajax::is()) {
             cPages::setMain('/admin/index/');
             return;
@@ -81,9 +83,9 @@ class cPages extends cPagesCore {
                 if ($v) {
                     $v = explode('=', $v);
                     if (isset($v[1])) {
-                        \Jdjiwi\Input\Get::set($v[0], $v[1]);
+                        Get::set($v[0], $v[1]);
                     } else {
-                        \Jdjiwi\Input\Get::set($v[0], 1);
+                        Get::set($v[0], 1);
                     }
                 }
         }

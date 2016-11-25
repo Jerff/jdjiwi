@@ -11,7 +11,7 @@ class JScript {
     /* === преобразованны mix данные в строки javascript-а === */
     static public function quote($d) {
         if (is_string($d))
-            return str_replace(array("\n", "\r"), array('\n', '\r'), addslashes($d));
+            return str_replace(array(PHP_EOL, "\r"), array('\n', '\r'), addslashes($d));
         if (is_array($d)) {
             reset($d);
             while (list($k, $v) = each($d))
@@ -80,7 +80,7 @@ HTML;
     // преобразовать в строку
     public function __toString() {
         $this->mCommand[] = $this->command . ';';
-        return implode("\n", $this->mCommand);
+        return implode(PHP_EOL, $this->mCommand);
     }
 
     // добавить команду

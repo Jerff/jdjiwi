@@ -3,12 +3,13 @@
 namespace Jdjiwi\Ajax;
 
 use Jdjiwi\Config,
-    \Jdjiwi\Exception;
+    Jdjiwi\Exception,
+    Jdjiwi\Application;
 
 class Call {
 
     static protected function start() {
-        cApplication::authorization();
+        Application::authorization();
         ini_set('html_errors', 'Off');
 
         Ajax::start();

@@ -3,12 +3,13 @@
 namespace Jdjiwi\Cron;
 
 use Jdjiwi\Init,
-    Jdjiwi\Modul;
+    Jdjiwi\Modul,
+    Jdjiwi\Application;
 
 class Call {
 
     static public function start() {
-        cApplication::authorization();
+        Application::authorization();
         Init::sessionClose();
         Init::timeLimit();
         Init::ignoreUserAbort();

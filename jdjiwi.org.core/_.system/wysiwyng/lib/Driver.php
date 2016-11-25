@@ -5,7 +5,8 @@ namespace Jdjiwi\Wysiwyng;
 use Jdjiwi\Loader,
     Jdjiwi\Config,
     Jdjiwi\Crypt,
-    Jdjiwi\Input\Get;
+    Jdjiwi\Input\Get,
+    Jdjiwi\Input\Post;
 
 abstract class Driver {
 
@@ -41,7 +42,7 @@ abstract class Driver {
     }
 
     public function getTmpId($model, $id) {
-        $data = $this->parserParam(\Jdjiwi\Input\Post::get($this->getSaltId($model, $id)));
+        $data = $this->parserParam(Post::get($this->getSaltId($model, $id)));
         if (empty($data)) {
             return false;
         }

@@ -2,6 +2,8 @@
 
 namespace Jdjiwi;
 
+use Jdjiwi\Input\Post;
+
 Loader::library('ajax:Response');
 
 class Ajax {
@@ -25,21 +27,21 @@ class Ajax {
     }
 
     static public function is() {
-        if (Input\Post::get('isAjax')) {
+        if (Post::get('isAjax')) {
             self::start();
         }
         return self::$start;
     }
 
     static public function getUrl() {
-        return (string) Input\Post::get('ajaxUrl');
+        return (string) Post::get('ajaxUrl');
     }
 
     static public function isCommand($command = null) {
         if ($command) {
-            return Input\Post::get('ajaxCommand') === $command;
+            return Post::get('ajaxCommand') === $command;
         } else {
-            return Input\Post::is('ajaxCommand');
+            return Post::is('ajaxCommand');
         }
     }
 

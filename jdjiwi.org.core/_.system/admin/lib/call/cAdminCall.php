@@ -3,7 +3,7 @@
 class cApplicationCall {
 
     static protected function start() {
-        cApplication::authorization();
+        \Jdjiwi\Application::authorization();
 
         \Jdjiwi\Log::memory();
         $controler = new cmfApplicationTemplate();

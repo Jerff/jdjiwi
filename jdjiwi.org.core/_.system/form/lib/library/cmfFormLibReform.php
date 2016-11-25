@@ -276,7 +276,7 @@ function cmfReformTextFormat($value, $len = 80) {
     $new_value = '';
 
     while ($pos + $len <= $value_len) {
-        if (false !== ($i = stripos($value, "\n", $pos)) and $i - $pos <= $len) {
+        if (false !== ($i = stripos($value, PHP_EOL, $pos)) and $i - $pos <= $len) {
             $new_value .= substr($value, $pos, $i - $pos + 1);
             $pos = $i + 1;
         } else
@@ -284,12 +284,12 @@ function cmfReformTextFormat($value, $len = 80) {
                 if (false !== stripos("\t -?!.,:;", $value[$i])) {
                     $new_value .= substr($value, $pos, $i - $pos + 1);
                     $pos = $i + 1;
-                    if (isset($value[$pos]) and $value[$pos] !== "\n" and $value[$pos] !== "\r")
-                        $new_value .= "\n";
+                    if (isset($value[$pos]) and $value[$pos] !== PHP_EOL and $value[$pos] !== "\r")
+                        $new_value .= PHP_EOL;
                     break;
                 } else
                 if ($i == $pos) {
-                    $new_value .= substr($value, $pos, $len) . "\n";
+                    $new_value .= substr($value, $pos, $len) . PHP_EOL;
                     $pos = $pos + $len;
                     break;
                 }

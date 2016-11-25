@@ -74,7 +74,7 @@ class Convert {
 
     //cmfFormtaArray(
     //String\cConvert::formtArray(
-    static public function arrayView($d, $sep = ' ', $br = "\n") {
+    static public function arrayView($d, $sep = ' ', $br = PHP_EOL) {
         $str = '';
         $max = 0;
         foreach ($d as $k => $v) {

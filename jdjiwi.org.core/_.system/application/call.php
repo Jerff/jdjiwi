@@ -1,4 +1,4 @@
 <?php
 
-\Jdjiwi\Loader::library('application:call/cApplicationCall');
-cApplicationCall::start();
+\Jdjiwi\Loader::library('application:Call');
+\Jdjiwi\Application\Call::start();

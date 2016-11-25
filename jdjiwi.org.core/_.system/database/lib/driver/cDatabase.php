@@ -39,7 +39,7 @@ abstract class cDatabase {
                         $exp = $this->driver()->query('EXPLAIN ' . $query)->fetchAssocAll();
                         $query = '<b>EXPLAIN</b> ' . $query;
                         foreach ($exp as $r) {
-                            $query .= "\n" . print_r($r, true);
+                            $query .= PHP_EOL . print_r($r, true);
                         }
                         \Jdjiwi\Log::explain($query);
                     }
