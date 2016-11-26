@@ -166,12 +166,12 @@ class cmfFormSelect extends cFormElement {
                     foreach ($value as $level2 => $value2) {
                         $select = ((isset($values['sel'][$level1][$level2])) ? 'selected' : '');
                         $option = $this->getOptionsStr($level2);
-                        $html .= "\n<option value=\"" . \Jdjiwi\jString::specialchars($level2) . "\" $select $option>" . str_replace(' ', '&nbsp;', \Jdjiwi\jString::specialchars($value2)) . "</option>";
+                        $html .= "\n<option value=\"" . \Jdjiwi\Str::specialchars($level2) . "\" $select $option>" . str_replace(' ', '&nbsp;', \Jdjiwi\Str::specialchars($value2)) . "</option>";
                     }
                 } else {
                     $select = ((isset($values['sel'][$level1])) ? 'selected' : '');
                     $option = $this->getOptionsStr($level1);
-                    $html .= "\n<option value=\"" . \Jdjiwi\jString::specialchars($level1) . "\" $select $option>" . str_replace(' ', '&nbsp;', \Jdjiwi\jString::specialchars($value)) . "</option>";
+                    $html .= "\n<option value=\"" . \Jdjiwi\Str::specialchars($level1) . "\" $select $option>" . str_replace(' ', '&nbsp;', \Jdjiwi\Str::specialchars($value)) . "</option>";
                 }
             }
         }
@@ -292,7 +292,7 @@ class cmfFormSelectCheckbox extends cmfFormSelectMultiple {
             foreach ($values['array'] as $k => $v) {
                 $select = isset($values['sel'][$k]) ? 'checked' : '';
                 $html .= "<span class=\"formCheckbox\"><label><input type=\"checkbox\" name=\"{$id}[{$k}]\" id=\"{$id}[{$k}]\" {$select} />"
-                        . "&nbsp;" . \Jdjiwi\jString::specialchars($v) . "&nbsp;</label>" . '</span>' . $sep;
+                        . "&nbsp;" . \Jdjiwi\Str::specialchars($v) . "&nbsp;</label>" . '</span>' . $sep;
             }
         }
         return $html;
@@ -370,7 +370,7 @@ class cmfFormSelectCheckboxParam extends cmfFormSelectCheckbox {
         if (isset($values['array']) and is_array($values['array'])) {
             foreach ($values['array'] as $k => $v) {
                 $select = isset($values['sel'][$k]) ? 'checked' : '';
-                $v = \Jdjiwi\jString::specialchars($v);
+                $v = \Jdjiwi\Str::specialchars($v);
                 $param = get($dataParam, $k);
                 $html .= <<<HTML
 <label>
@@ -387,7 +387,7 @@ HTML;
     }
 
     public function htmlOld() {
-        return parent::htmlOld() . '<input type="hidden" name="' . ($name = $this->getParamOldId()) . '" id="' . $name . '" value="' . \Jdjiwi\jString::specialchars($this->dataParam) . '" />';
+        return parent::htmlOld() . '<input type="hidden" name="' . ($name = $this->getParamOldId()) . '" id="' . $name . '" value="' . \Jdjiwi\Str::specialchars($this->dataParam) . '" />';
     }
 
     public function processing($data, $old, $upload) {

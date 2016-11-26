@@ -27,7 +27,7 @@ class cPagesBase {
             $url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . \Jdjiwi\Config::get('host.uri');
             foreach ($this->mBase as $key => $value) {
                 if (strpos($url, $value) !== false) {
-                    $mSearch[\Jdjiwi\jString::strlen($value)] = $key;
+                    $mSearch[\Jdjiwi\Str::strlen($value)] = $key;
                 }
             }
             if (empty($mSearch)) {

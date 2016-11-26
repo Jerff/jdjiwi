@@ -1,16 +1,17 @@
 <?php
 
-class cCompileConfig {
+namespace Jdjiwi\Compile;
+
+class Config {
 
     //cmfCompilePhp
-    public static function loaderPhp() {
+    static public function loaderPhp() {
         return 'loader.php';
     }
 
     //cmfCompileFile
-    public static function pathJsCss() {
+    static public function pathJsCss() {
         return 'core-compile';
     }
 
 }
-

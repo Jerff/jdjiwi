@@ -9,7 +9,7 @@ if (extension_loaded('mbstring')) {
 }
 
 /* заагрузка библиотек */
-\Jdjiwi\Loader::library('core:function');
+\Jdjiwi\Loader::library('core:Input');
 \Jdjiwi\Loader::library('core:Session');
 \Jdjiwi\Loader::library('core:Cookie');
 \Jdjiwi\Loader::library('core:Crypt');
@@ -17,8 +17,7 @@ if (extension_loaded('mbstring')) {
 \Jdjiwi\Loader::library('core:Time');
 \Jdjiwi\Loader::library('core:Settings');
 \Jdjiwi\Loader::library('core:Limit');
-\Jdjiwi\Loader::library('core:Input');
-\Jdjiwi\Loader::library('core:jString');
+\Jdjiwi\Loader::library('core:Str');
 \Jdjiwi\Loader::library('core:Header');
 
 /* загрузка модулей */

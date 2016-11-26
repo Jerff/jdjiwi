@@ -1,4 +1,4 @@
 <?php
 
-\Jdjiwi\Loader::library('compile:call/cCompileJsCssCall');
-cCompileJsCssCall::start();
+\Jdjiwi\Loader::library('compile:jsCss/Call');
+\Jdjiwi\Compile\JsCss\Call::start();

@@ -23,15 +23,15 @@ class cUrlAdmin {
     //cUrl::admin()->get
     public function get($page, $param = null) {
         $param = func_get_args();
-        $uri = cPages::getPageConfig(array_shift($param))->uri;
-        return cPages::base()->admin . cUrl::reform($uri, $param) . '#';
+        $uri = \Jdjiwi\Pages::getPageConfig(array_shift($param))->uri;
+        return \Jdjiwi\Pages::base()->admin . cUrl::reform($uri, $param) . '#';
     }
 
     //cUrl::admin()->command
     public function command($page, $param = null) {
         $param = func_get_args();
-        $uri = cPages::getPageConfig(array_shift($param))->uri;
-        return cPages::base()->admin . '/?url=' . cUrl::reform($uri, $param);
+        $uri = \Jdjiwi\Pages::getPageConfig(array_shift($param))->uri;
+        return \Jdjiwi\Pages::base()->admin . '/?url=' . cUrl::reform($uri, $param);
     }
 
 }

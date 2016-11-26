@@ -1,5 +1,7 @@
 <?php
 
+namespace Jdjiwi;
+
 //if (!defined('cApplication')) {
 //    define('cApplication', 'application');
 //}
@@ -18,18 +20,18 @@ if ($compile['is']) {
         require($compile['path'] . 'loader.php');
     } else {
         require(cSoursePath . '_.system/loader/Loader.php');
-        cCompile::php()->createrLoader();
+        Compile\Php::createrLoader();
     }
 } else {
     require(cSoursePath . '_.system/loader/Loader.php');
 }
-\Jdjiwi\Log::memory();
-\Jdjiwi\Log::init();
+Log::memory();
+Log::init();
 
-\Jdjiwi\Debug::setAjax();
-\Jdjiwi\Debug::setError();
-//\Jdjiwi\Debug::setModul();
-\Jdjiwi\Debug::setSql();
-\Jdjiwi\Cache\Control::setPages();
-\Jdjiwi\Cache\Control::setData();
-return \Jdjiwi\Modul::call(cApplication);
+Debug::setAjax();
+Debug::setError();
+//Debug::setModul();
+Debug::setSql();
+Cache\Control::setPages();
+Cache\Control::setData();
+return Modul::call(cApplication);

@@ -947,8 +947,8 @@ $p['/product/']=array(
 'u'=>'/(1)/'
 );
 // --------- /Товары ---------
-cPages::roterAdmin($p);
-cPages::template()->set(array(
+\Jdjiwi\Pages::roterAdmin($p);
+\Jdjiwi\Pages::template()->set(array(
     0 => 'admin.index.php',
     1 => 'admin.login.php',
     2 => 'admin.start.php',

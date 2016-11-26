@@ -4,7 +4,7 @@ namespace Jdjiwi;
 
 Loader::library('core:string/Convert');
 
-class jString {
+class Str {
 
     static public function convertEncoding($str) {
         $char = mb_detect_encoding($str);

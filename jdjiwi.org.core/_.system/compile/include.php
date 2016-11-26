@@ -4,4 +4,4 @@
 \Jdjiwi\Config::load('compile');
 
 /* заагрузка библиотек */
-\Jdjiwi\Loader::library('compile:cCompile');
+\Jdjiwi\Loader::library('compile:Compile');

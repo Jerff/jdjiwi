@@ -135,7 +135,7 @@ abstract class cFormElement extends cFormCore {
         if ($mTemplate === false) {
             $mTemplate = array();
             foreach (cDir::getFiles(\Jdjiwi\Config::get('path.app.form') . \Jdjiwi\Config::get('form.templates')) as $file) {
-                $name = \Jdjiwi\jString::substr(basename($file), -4);
+                $name = \Jdjiwi\Str::substr(basename($file), -4);
                 $mTemplate[$name] = str_replace(cSoursePath, '', $file);
             }
         }

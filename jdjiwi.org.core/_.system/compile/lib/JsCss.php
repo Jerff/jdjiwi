@@ -1,20 +1,26 @@
 <?php
 
-use Jdjiwi\Crypt;
+namespace Jdjiwi\Compile;
 
-\Jdjiwi\Loader::library('vendor/meenie/javascript-packer/class.JavaScriptPacker');
+use Jdjiwi\Crypt,
+    Jdjiwi\Loader,
+    Jdjiwi\Str,
+    Jdjiwi\Debug,
+    Jdjiwi\FileSystem\Utility;
 
-class cCompileJsCss {
+Loader::library('vendor/meenie/javascript-packer/class.JavaScriptPacker');
+
+class JsCss {
     /*
      * config
      */
 
-    public function pathWWW($type, $file) {
-        return '/' . cCompile::config()->pathJsCss() . '/v/' . time() . '/' . $type . '/' . Crypt::hash($file);
+    static public function pathWWW($type, $file) {
+        return '/' . Compile\Config::pathJsCss() . '/v/' . time() . '/' . $type . '/' . Crypt::hash($file);
     }
 
-    public function pathCompile($type, $file) {
-        return cWWWPath . cCompile::config()->pathJsCss() . '/' . Crypt::hash($file) . '.' . $type;
+    static public function pathCompile($type, $file) {
+        return cWWWPath . Compile\Config::pathJsCss() . '/' . Crypt::hash($file) . '.' . $type;
     }
 
     /*
@@ -22,7 +28,7 @@ class cCompileJsCss {
      */
 
     public function update() {
-        cFileSystem::rmdir(cWWWPath . cCompile::config()->pathJsCss());
+        cFileSystem::rmdir(cWWWPath . Compile\Config::pathJsCss());
     }
 
     /*
@@ -43,7 +49,7 @@ class cCompileJsCss {
      * compile
      */
 
-    public function compile($sFile) {
+    static public function compile($sFile) {
         switch ($type = preg_replace('~^.+\.(css|js|map)$~', '$1', $sFile)) {
             case 'js':
                 header('Content-Type: application/x-javascript');
@@ -59,22 +65,22 @@ class cCompileJsCss {
                 exit;
         }
 
-        $mList = explode(';', $sFile);
+        $arList = explode(';', $sFile);
         $path = '';
-        foreach ($mList as $key => $value) {
+        foreach ($arList as $key => $value) {
             if (preg_match('~\/~', $value)) {
                 $path = dirname($value);
             } else {
                 if ($path) {
-                    $mList[$key] = $path . '/' . $value;
+                    $arList[$key] = $path . '/' . $value;
                 }
             }
         }
 
         $content = '';
-        foreach ($mList as $file) {
+        foreach ($arList as $file) {
             if (is_file(cWWWPath . $file)) {
-                $sourse = \Jdjiwi\jString::convertEncoding(file_get_contents(cWWWPath . $file));
+                $sourse = Str::convertEncoding(file_get_contents(cWWWPath . $file));
                 self::set(dirname($file) . '/');
                 switch ($type) {
                     case 'js':
@@ -84,7 +90,7 @@ class cCompileJsCss {
                             }
                             return $m[0];
                         }, $sourse);
-                        if (\Jdjiwi\jString::strrpos($file, 'min') === false and \Jdjiwi\jString::strrpos($file, 'pack') === false) {
+                        if (Str::strrpos($file, 'min') === false and Str::strrpos($file, 'pack') === false) {
                             $sourse = new JavaScriptPacker($sourse, 'None', false, false);
                             $sourse = $sourse->pack();
                         }
@@ -104,20 +110,20 @@ class cCompileJsCss {
                 $content .= PHP_EOL . '/* ' . $file . ' */' . PHP_EOL . $sourse . PHP_EOL . $sep . PHP_EOL;
             }
         }
-        \Jdjiwi\Debug::disable();
+        Debug::disable();
         echo $content;
-        file_put_contents($this->pathCompile($type, $sFile), $content);
+        Utility::putContents(self::pathCompile($type, $sFile), $content);
     }
 
     /*
      * compile header list
      */
 
-    public function initHeader(&$mData) {
-        if (!cCompile::is())
+    static public function initHeader(&$arData) {
+        if (!Compile::is())
             return;
         $lastKey = $lastPath = array();
-        foreach ($mData as $key => list($type, $value)) {
+        foreach ($arData as $key => list($type, $value)) {
             switch ($type) {
                 case 'string':
                     $lastKey = $lastPath = array();
@@ -127,15 +133,15 @@ class cCompileJsCss {
                 case 'css':
                     $path = dirname($value);
                     if (get($lastPath, $type) === $path) {
-                        $mData[$lastKey[$type]][1] .= ';' . basename($value);
-                        unset($mData[$key]);
+                        $arData[$lastKey[$type]][1] .= ';' . basename($value);
+                        unset($arData[$key]);
                     } else {
                         if (isset($lastKey[$type])) {
-                            $mData[$lastKey[$type]][1] .= ';' . $value;
-                            unset($mData[$key]);
+                            $arData[$lastKey[$type]][1] .= ';' . $value;
+                            unset($arData[$key]);
                         } else {
                             $lastKey[$type] = $key;
-//                                $mData[$lastKey[$type]][1] = cCompile::file()->path($type) . $mData[$lastKey[$type]][1];
+//                                $mData[$lastKey[$type]][1] = Compile\file::path($type) . $mData[$lastKey[$type]][1];
                         }
                         $lastPath[$type] = $path;
                     }
@@ -153,11 +159,11 @@ class cCompileJsCss {
                     break;
             }
         }
-        foreach ($mData as $key => list($type, $value)) {
+        foreach ($arData as $key => list($type, $value)) {
             switch ($type) {
                 case 'js':
                 case 'css':
-                    $mData[$key][1] = $this->pathWWW($type, $value) . $value;
+                    $arData[$key][1] = self::pathWWW($type, $value) . $value;
                     break;
                 default:
                     break;

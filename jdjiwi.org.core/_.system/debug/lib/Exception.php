@@ -3,7 +3,7 @@
 namespace Jdjiwi;
 
 Loader::library('debug:exception/Error');
-Loader::library('core:jString');
+Loader::library('core:Str');
 
 class Exception extends \Exception {
     /*
@@ -51,7 +51,7 @@ class Exception extends \Exception {
 
     static public function parseTrace($trace) {
         if (class_exists('\Jdjiwi\String', false)) {
-            return jString::specialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)));
+            return Str::specialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)));
         } else {
             return htmlspecialchars(trim(preg_replace('~^(.*)(#5 (.*))$~ms', '$1', $trace)), ENT_QUOTES, Config::get('i18n.charset'));
         }

@@ -2,6 +2,8 @@
 
 namespace Jdjiwi;
 
+use Jdjiwi\Compile\Php;
+
 Loader::library('loader:Exception');
 
 /*
@@ -12,16 +14,16 @@ class Modul extends Loader\Compile {
 
     static private $isCompile = false;
     static private $item = null;
-    static private $mItem = array();
-    static private $mModul = array();
+    static private $arItem = array();
+    static private $arModul = array();
 
     static public function isCompile() {
-        return empty(self::$mItem) and self::$isCompile;
+        return empty(self::$arItem) and self::$isCompile;
     }
 
     static public function setItem($modul) {
         if (!empty(self::$item)) {
-            self::$mItem[] = self::$item;
+            self::$arItem[] = self::$item;
         }
         self::$item = $modul;
     }
@@ -31,10 +33,10 @@ class Modul extends Loader\Compile {
     }
 
     static public function freeItem() {
-        if (empty(self::$mItem)) {
+        if (empty(self::$arItem)) {
             self::$item = null;
         } else {
-            self::$item = array_pop(self::$mItem);
+            self::$item = array_pop(self::$arItem);
         }
     }
 
@@ -46,14 +48,14 @@ class Modul extends Loader\Compile {
             throw new Modul\Exception(sprintf('Название модуля "%s" не корректно', $modul));
         }
         $hash = $modul . '/' . $file;
-        if (isset(self::$mModul[$hash])) {
-            return self::$mModul[$hash];
+        if (isset(self::$arModul[$hash])) {
+            return self::$arModul[$hash];
         }
         self::setItem($modul);
         try {
             if (self::isCompile()) {
                 self::setHistory($hash);
-                $res = \cCompile::php()->load('modul', $hash . '.php');
+                $res = Php::load('modul', $hash . '.php');
             } else {
                 $res = self::file($hash);
             };
@@ -62,10 +64,10 @@ class Modul extends Loader\Compile {
             }
         } catch (Exception $e) {
             throw new Modul\Exception(sprintf('Модуль "%s" не найден', $modul), 0, $e);
-            return self::$mModul[$hash] = false;
+            return self::$arModul[$hash] = false;
         }
         self::freeItem();
-        return self::$mModul[$hash] = $res;
+        return self::$arModul[$hash] = $res;
     }
 
     static public function load($modul, $noCompile = false) {

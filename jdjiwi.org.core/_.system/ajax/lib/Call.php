@@ -4,7 +4,8 @@ namespace Jdjiwi\Ajax;
 
 use Jdjiwi\Config,
     Jdjiwi\Exception,
-    Jdjiwi\Application;
+    Jdjiwi\Application,
+    Jdjiwi\Compile\Php;
 
 class Call {
 
@@ -19,7 +20,7 @@ class Call {
         if (!is_file($file)) {
             throw new Exception('контроллер не существует', $file);
         }
-        return cCompile::php()->load('ajax', $file);
+        return Php::load('ajax', $file);
     }
 
 }

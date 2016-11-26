@@ -1,11 +1,14 @@
 <?php
 
+namespace Jdjiwi\Compile;
+
 use Jdjiwi\Crypt,
     Jdjiwi\Config,
     Jdjiwi\Loader,
+    Jdjiwi\Str,
     Jdjiwi\FileSystem\Utility;
 
-class cCompilePhp {
+class Php {
     /*
      *  compile sourse path
      */
@@ -14,7 +17,7 @@ class cCompilePhp {
         return cSoursePath . Config::get('compile.path');
     }
 
-    public function load($type, $file) {
+    static public function load($type, $file) {
         if (Config::get('compile.is') < 2) {
             return $file;
         }
@@ -25,28 +28,28 @@ class cCompilePhp {
         }
         Loader::initLoad();
         require_once ($file);
-        Utility::putContent($compile, $this->compile(Loader::getLoadFile()));
+        Utility::putContent($compile, self::compile(Loader::getLoadFile()));
     }
 
     /*
      * update
      */
 
-    public function createrLoader() {
+    static public function createrLoader() {
         Utility::putContent(
-                self::path() . cCompile::config()->loaderPhp(), cCompile::php()->compile(Loader::getLoadFile())
+                self::path() . Compile\Config::loaderPhp(), self::compile(Loader::getLoadFile())
         );
     }
 
-    public function update() {
+    static public function update() {
         cFileSystem::rmdir(self::path());
     }
 
-    public function compile($mFiles) {
+    static public function compile($arFiles) {
         $compile = $loader = $history = $content = '';
-        foreach ($mFiles as $file) {
+        foreach ($arFiles as $file) {
             $code = "<?php\n#include {$file}\n?>"
-                    . $this->parse($file)
+                    . self::parse($file)
                     . "?><?php\n#end {$file}\n?>";
             $arg = explode('::', $file);
             switch ($arg[0]) {
@@ -79,11 +82,11 @@ class cCompilePhp {
         return $content;
     }
 
-    private $itemFile = false;
+    static private $itemFile = false;
 
-    private function file($file) {
-        $this->itemFile = $file;
-        $content = \Jdjiwi\jString::convertEncoding(php_strip_whitespace($file));
+    static private function file($file) {
+        self::$itemFile = $file;
+        $content = Str::convertEncoding(php_strip_whitespace($file));
         $content = trim(preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((require|require_once|include|include_once)\('(.*?)'\);)#sS", array(&$this, 'includeFile'), $content));
         if (substr($content, -2) === '?>') {
             $content = substr($content, 0, -2);
@@ -91,11 +94,11 @@ class cCompilePhp {
         return $content;
     }
 
-    private function includeFile($m) {
+    static private function includeFile($m) {
         if (!isset($m[6]))
             return $m[0];
         //realpath
-        return $this->file($m[6]);
+        return self::file($m[6]);
     }
 
     private function parse($file) {
@@ -104,12 +107,12 @@ class cCompilePhp {
             case 'Loader':
             case 'Config':
             case 'Modul':
-                return $this->file($arg[1] . '.php');
+                return self::file($arg[1] . '.php');
 
             default:
                 break;
         }
-        return $this->file($file);
+        return self::file($file);
     }
 
 }

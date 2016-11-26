@@ -1,11 +1,13 @@
 <?php
 
+namespace Jdjiwi;
+
 use Jdjiwi\Input\Get;
 
-\Jdjiwi\Loader::library('pages:cPagesCore');
-\Jdjiwi\Loader::library('pages:cUrl');
+Loader::library('pages:cPagesCore');
+Loader::library('pages:cUrl');
 
-class cPages extends cPagesCore {
+class Pages extends \cPagesCore {
     /* Application */
 
     public static function routerApplication(&$mP, &$mN, &$mPr) {
@@ -14,7 +16,7 @@ class cPages extends cPagesCore {
             return;
         }
 
-        $url = parse_url('http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], strlen(\Jdjiwi\Config::get('url.itemUri'))), PHP_URL_PATH);
+        $url = parse_url('http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], strlen(Config::get('url.itemUri'))), PHP_URL_PATH);
         $url = urldecode($url);
 
         $page = '/404/';
@@ -61,18 +63,18 @@ class cPages extends cPagesCore {
 
         if (Get::is('url')) {
             $url = Get::get('url');
-        } else if (!\Jdjiwi\Ajax::is()) {
-            cPages::setMain('/admin/index/');
+        } else if (!Ajax::is()) {
+            Pages::setMain('/admin/index/');
             return;
         } else {
 
-            $url = \Jdjiwi\Ajax::getUrl();
+            $url = Ajax::getUrl();
             preg_match('~' . preg_quote(cAdminUrl) . '([^#]*)\#?(\&?.*)~', $url, $tmp);
             $url = empty($tmp[1]) ? '/' : $tmp[1];
         }
 
         if (!empty($_SERVER['HTTP_REFERER'])) {
-            if (parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) !== \Jdjiwi\Config::get('host.url')) {
+            if (parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) !== Config::get('host.url')) {
                 self::setMain('/admin/index/');
                 return;
             }
@@ -112,7 +114,7 @@ class cPages extends cPagesCore {
             }
         }
         if (!$page) {
-            \Jdjiwi\Ajax::get()->alert('Ничего не найдено!');
+            Ajax::get()->alert('Ничего не найдено!');
             exit;
         }
 
@@ -124,5 +126,3 @@ class cPages extends cPagesCore {
     }
 
 }
-
-

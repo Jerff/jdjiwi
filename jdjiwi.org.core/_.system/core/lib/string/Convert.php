@@ -28,7 +28,7 @@ class Convert {
         }
     }
 
-    //jString::objectToArray(
+    //Str::objectToArray(
     //String\cConvert::objectToArray(
     static public function objectToArray($value) {
         if (is_object($value)) {
@@ -43,13 +43,13 @@ class Convert {
 
     /* === array === */
 
-    //jString::arrayToPath(
+    //Str::arrayToPath(
     //cSConvert::arrayToPath(
     static public function arrayToPath($arg) {
         return empty($arg) ? '' : '[' . implode('][', $arg) . ']';
     }
 
-    //jString::pathToArray(
+    //Str::pathToArray(
     //cSConvert::pathToArray(
     static public function pathToArray($str) {
         if (empty($str)) {
@@ -60,13 +60,13 @@ class Convert {
         }
     }
 
-    //jString::unserialize(
+    //Str::unserialize(
     //cSConvert::unserialize(
     static public function unserialize($arg) {
         return empty($arg) ? '' : unserialize($arg);
     }
 
-    //jString::serialize(
+    //Str::serialize(
     //cSConvert::serialize(
     static public function serialize($arg) {
         return empty($arg) ? '' : serialize($arg);
@@ -78,14 +78,14 @@ class Convert {
         $str = '';
         $max = 0;
         foreach ($d as $k => $v) {
-            $len = jString::strlen($k);
+            $len = Str::strlen($k);
             if ($len > $max)
                 $max = $len;
         }
         $max += 5;
 
         foreach ($d as $k => $v) {
-            $len = $max - jString::strlen($k);
+            $len = $max - Str::strlen($k);
             $str .= $br . $k . ': ';
             for ($i = 0; $i < $len; $i++)
                 $str .= $sep;
@@ -109,7 +109,7 @@ class Convert {
 
     /* === translate === */
 
-    //jString::translate(
+    //Str::translate(
     //cSConvert::translate(
     static public function translate($str) {
         static $t = array('а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'jo', 'ж' => 'gh', 'з' => 'z', 'и' => 'i',
@@ -117,10 +117,10 @@ class Convert {
             'х' => 'x', 'ц' => 'c', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'th', 'ъ' => '', 'ь' => '', 'ы' => 'y', 'э' => 'eh', 'ю' => 'ju', 'я' => 'ja');
 
         $new = '';
-        $str = jString::strtolower(trim($str));
+        $str = Str::strtolower(trim($str));
         $str = preg_replace('~\s~S', '_', $str);
-        for ($i = 0, $c = jString::strlen($str); $i < $c; $i++) {
-            $s = jString::substr($str, $i, 1);
+        for ($i = 0, $c = Str::strlen($str); $i < $c; $i++) {
+            $s = Str::substr($str, $i, 1);
             if (isset($t[$s]))
                 $new .= $t[$s];
             else if ((ord($s) > 126) or ( ord($s) == 20))
@@ -137,7 +137,7 @@ class Convert {
 
     /* === file === */
 
-    //jString::toFileName(
+    //Str::toFileName(
     //cSConvert::toFileName(
     static public function toFileName($str) {
         return preg_replace('([^a-z0-9\-\=\+\.])', '_', self::translate($str));

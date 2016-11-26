@@ -2,6 +2,8 @@
 
 namespace Jdjiwi;
 
+use Jdjiwi\Pages;
+
 Loader::library('core:Time');
 Modul::load('fileSystem');
 
@@ -76,13 +78,13 @@ class Log {
     // добавить в лог запросов к базе
     static public function sql($message = 'SELECT 1', $time = null) {
         if (Debug::isSql()) {
-            $message = ( ++self::$sqlCount) . ' ' . self::round($time) . " " . jString::specialchars($message);
+            $message = ( ++self::$sqlCount) . ' ' . self::round($time) . " " . Str::specialchars($message);
             if (class_exists('cPages', false)) {
-                $page = \cPages::getItem();
-                if (\cPages::isMain($page)) {
+                $page = Pages::getItem();
+                if (Pages::isMain($page)) {
                     $message .=" [{$page}]";
                 } else {
-                    $main = \cPages::getMain($page);
+                    $main = Pages::getMain($page);
                     $message .=" [{$main}] [{$page}]";
                 }
             }
@@ -94,7 +96,7 @@ class Log {
     // добавить в лог запросов к базе
     static public function explain($message) {
         if (Debug::isExplain()) {
-            self::push('log', jString::specialchars($message));
+            self::push('log', Str::specialchars($message));
         }
     }
 

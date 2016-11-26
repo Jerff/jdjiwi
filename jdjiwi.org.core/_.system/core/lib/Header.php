@@ -2,6 +2,8 @@
 
 namespace Jdjiwi;
 
+use Jdjiwi\Compile\JsCss;
+
 Loader::library('core:header/Seo');
 Modul::load('compile');
 
@@ -53,7 +55,7 @@ class Header {
                     $head .= '
         <meta content="text/html; charset=' . Config::get('i18n.charset') . '" http-equiv="Content-Type"/>';
 
-                    cCompile::fileJsCss()->initHeader(self::$arData);
+                    JsCss::initHeader(self::$arData);
                     foreach (self::$arData as $key => list($type, $value)) {
                         switch ($type) {
                             case 'string':

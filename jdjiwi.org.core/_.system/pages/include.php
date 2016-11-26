@@ -4,7 +4,7 @@
 \Jdjiwi\Config::load('router');
 
 /* заагрузка библиотек */
-\Jdjiwi\Loader::library('pages:cPages');
+\Jdjiwi\Loader::library('pages:Pages');
 
 /* конфигурация */
 \Jdjiwi\Config::load('url');
