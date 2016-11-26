@@ -1,17 +1,17 @@
 <?php
 
+namespace Jdjiwi;
+
 use Jdjiwi\FileSystem\Exception,
-    Jdjiwi\Config;
+    Jdjiwi\Str\Convert;
 
-\Jdjiwi\Loader::library('fileSystem:system/cExec');
-\Jdjiwi\Loader::library('fileSystem:system/cFileAccess');
-\Jdjiwi\Loader::library('core:string/Convert');
+Loader::library('fileSystem:Access');
 
-class cFileSystem {
+class FileSystem {
 
     // сменить права
     static public function chmod($path, $mode = null) {
-        cFileAccess::path($path);
+        Access::path($path);
         if (is_null($mode)) {
             $mode = cFileMode;
         }
@@ -21,7 +21,7 @@ class cFileSystem {
     }
 
     static public function unlink($file) {
-        cFileAccess::path($file);
+        Access::path($file);
         if (is_file($file)) {
             unlink($file);
         }
@@ -29,7 +29,7 @@ class cFileSystem {
 
     // создание папки
     static public function mkdir($folder, $mode = null) {
-        cFileAccess::path($folder);
+        Access::path($folder);
         if (is_dir($folder)) {
             return true;
         }
@@ -42,27 +42,31 @@ class cFileSystem {
         self::chmod($folder, $mode);
     }
 
+    static private function _rmdir($folder) {
+        foreach (scandir($folder) as $file) {
+            if (is_dir($folder . $file) and $file{0} !== '.') {
+                self::_rmdir($folder . $file . '/');
+                rmdir($folder . $file . '/');
+            } else {
+                if (is_file($folder . $file) and $file{0} !== '.') {
+                    unlink($folder . $file);
+                }
+            }
+        }
+    }
+
     static public function rmdir($folder, $del = false) {
-        cFileAccess::path($folder);
+        Access::path($folder);
         if (!is_dir($folder)) {
             return;
         }
-        if (cExec::is()) {
-            cExec::run('rm -rf ' . $folder);
+        if (Shell::isOn()) {
+            Shell::exec('rm -rf ' . $folder);
             if (!$del) {
                 self::mkdir($folder);
             }
         } else {
-            foreach (scandir($folder) as $file) {
-                if (is_dir($folder . $file) and $file{0} !== '.') {
-                    self::rmdir($folder . $file . '/');
-                    rmdir($folder . $file . '/');
-                } else {
-                    if (is_file($folder . $file) and $file{0} !== '.') {
-                        unlink($folder . $file);
-                    }
-                }
-            }
+            self::_rmdir($folder);
             sleep(1);
             if ($del) {
                 rmdir($folder);
@@ -71,7 +75,7 @@ class cFileSystem {
     }
 
     static public function toFileName($str) {
-        $str = preg_replace('~([^a-z0-9\_\-\=\+\.])~S', '_', \Jdjiwi\String\cConvert::translate($str));
+        $str = preg_replace('~([^a-z0-9\_\-\=\+\.])~S', '_', Convert::translate($str));
         return preg_replace('~(_{2,})~S', '_', $str);
     }
 

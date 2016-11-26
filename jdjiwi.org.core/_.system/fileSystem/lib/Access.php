@@ -1,9 +1,10 @@
 <?php
 
-use Jdjiwi\FileSystem\Exception,
-    Jdjiwi\Config;
+namespace Jdjiwi\FileSystem;
 
-class cFileAccess {
+use Jdjiwi\Config;
+
+class Access {
     /*
      * FILE - проверяет принадлежность к папке данных
      * CORE - проверяет принадлежность к папкам сайта
@@ -13,11 +14,11 @@ class cFileAccess {
     const CORE = 1;
 
     static private $item = self::FILE;
-    static private $mItem = array();
+    static private $arItem = array();
 
     static public function set($mode) {
         if (!empty(self::$item)) {
-            self::$mItem[] = self::$item;
+            self::$arItem[] = self::$item;
         }
         self::$item = $mode;
     }
@@ -27,33 +28,33 @@ class cFileAccess {
     }
 
     static public function free() {
-        if (empty(self::$mItem)) {
+        if (empty(self::$arItem)) {
             self::$item = self::FILE;
         } else {
-            self::$item = array_pop(self::$mItem);
+            self::$item = array_pop(self::$arItem);
         }
     }
 
     static public function path($path) {
-        $mPath = array();
+        $arPath = array();
         switch (self::get()) {
             case self::CORE:
-                $mPath[] = cSoursePath;
-                $mPath[] = cWWWPath;
+                $arPath[] = cSoursePath;
+                $arPath[] = cWWWPath;
                 break;
 
             case self::FILE:
-                $mPath[] = Config::get('path.data');
-                $mPath[] = Config::get('path.compile');
-                $mPath[] = Config::get('cache.site.path');
-                $mPath[] = Config::get('path.file');
+                $arPath[] = Config::get('path.data');
+                $arPath[] = Config::get('path.compile');
+                $arPath[] = Config::get('cache.site.path');
+                $arPath[] = Config::get('path.file');
                 break;
 
             default:
                 throw new Exception('Неизветный статус доступа к файлам', self::get());
                 break;
         }
-        foreach ($mPath as $root) {
+        foreach ($arPath as $root) {
             if (strpos($path, $root) === 0) {
                 return;
             }

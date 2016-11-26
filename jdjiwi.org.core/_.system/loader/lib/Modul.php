@@ -63,7 +63,7 @@ class Modul extends Loader\Compile {
                 $res = true;
             }
         } catch (Exception $e) {
-            throw new Modul\Exception(sprintf('Модуль "%s" не найден', $modul), 0, $e);
+            throw new Modul\Exception('Модуль "' . $modul . '" не найден', 0, $e);
             return self::$arModul[$hash] = false;
         }
         self::freeItem();

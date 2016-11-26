@@ -2,6 +2,8 @@
 
 namespace Jdjiwi;
 
+use Jdjiwi\Str;
+
 Loader::library('core:string/Convert');
 
 class Str {
@@ -47,29 +49,29 @@ class Str {
 //        return mb_strtoupper(self::substr($str, 0, 1), Config::get('i18n.charset')) . self::substr($str, 1, self::strlen($str) - 1);
     }
 
-    //\Jdjiwi\String\cConvert::specialchars(
+    //\Jdjiwi\Str\Convert::specialchars(
     //self::specialchars(
     static public function specialchars($str) {
         return htmlspecialchars(trim($str), ENT_QUOTES, Config::get('i18n.charset'));
     }
 
-    //\Jdjiwi\String\cConvert::specialchars(
+    //\Jdjiwi\Str\Convert::specialchars(
     //self::specialchars(
     function entityDecode($str) {
         return html_entity_decode($str, ENT_QUOTES, Config::get('i18n.charset'));
     }
 
-    //\Jdjiwi\String\cConvert::trim(
+    //\Jdjiwi\Str\Convert::trim(
     //self::trim(
     static public function trim($value) {
         if (is_array($value)) {
-            return array_map(array(__CLASS__,__FUNCTION__), $value);
+            return array_map(array(__CLASS__, __FUNCTION__), $value);
         } else {
             return trim($value);
         }
     }
 
-    //\Jdjiwi\String\cConvert::subContent(
+    //\Jdjiwi\Str\Convert::subContent(
     //self::subContent(
     static public function subContent($content, $pos0 = 0, $select_len = 300) {
         $select_len -= 4;

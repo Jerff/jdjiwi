@@ -2,8 +2,6 @@
 
 namespace Jdjiwi;
 
-use Jdjiwi\Settings;
-
 Loader::library('compile:Config');
 Loader::library('compile:Php');
 Loader::library('compile:JsCss');

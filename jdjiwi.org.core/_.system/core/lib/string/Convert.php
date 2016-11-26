@@ -6,7 +6,7 @@ class Convert {
     /* === match === */
 
     //cmfToFloat(
-    //String\cConvert::toFloat(
+    //Str\Convert::toFloat(
     public static function toFloat($value) {
         if (is_array($value)) {
             return array_map(array(__CLASS__,__FUNCTION__), $value);
@@ -19,7 +19,7 @@ class Convert {
     }
 
     //cmfToArrayInt(
-    //String\cConvert::toInt(
+    //Str\Convert::toInt(
     public static function toInt($value) {
         if (is_array($value)) {
             return array_map(array(__CLASS__,__FUNCTION__), $value);
@@ -29,7 +29,7 @@ class Convert {
     }
 
     //Str::objectToArray(
-    //String\cConvert::objectToArray(
+    //Str\Convert::objectToArray(
     static public function objectToArray($value) {
         if (is_object($value)) {
             $value = array_map(array(__CLASS__,__FUNCTION__), (array) $value);
@@ -44,13 +44,13 @@ class Convert {
     /* === array === */
 
     //Str::arrayToPath(
-    //cSConvert::arrayToPath(
+    //Convert::arrayToPath(
     static public function arrayToPath($arg) {
         return empty($arg) ? '' : '[' . implode('][', $arg) . ']';
     }
 
     //Str::pathToArray(
-    //cSConvert::pathToArray(
+    //Convert::pathToArray(
     static public function pathToArray($str) {
         if (empty($str)) {
             return array();
@@ -61,13 +61,13 @@ class Convert {
     }
 
     //Str::unserialize(
-    //cSConvert::unserialize(
+    //Convert::unserialize(
     static public function unserialize($arg) {
         return empty($arg) ? '' : unserialize($arg);
     }
 
     //Str::serialize(
-    //cSConvert::serialize(
+    //Convert::serialize(
     static public function serialize($arg) {
         return empty($arg) ? '' : serialize($arg);
     }
@@ -110,7 +110,7 @@ class Convert {
     /* === translate === */
 
     //Str::translate(
-    //cSConvert::translate(
+    //Convert::translate(
     static public function translate($str) {
         static $t = array('а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'jo', 'ж' => 'gh', 'з' => 'z', 'и' => 'i',
             'й' => 'j', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f',
@@ -138,7 +138,7 @@ class Convert {
     /* === file === */
 
     //Str::toFileName(
-    //cSConvert::toFileName(
+    //Convert::toFileName(
     static public function toFileName($str) {
         return preg_replace('([^a-z0-9\-\=\+\.])', '_', self::translate($str));
     }

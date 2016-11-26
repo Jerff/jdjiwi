@@ -1,8 +1,10 @@
 <?php
 
-class cExec {
+namespace Jdjiwi;
 
-    static public function is() {
+class Shell {
+
+    static public function isOn() {
         static $is = null;
         if ($is !== null) {
             return $is;
@@ -10,9 +12,8 @@ class cExec {
         return $is = !in_array('exec', explode(',', ini_get('disable_functions')));
     }
 
-    static public function run($command) {
+    static public function exec($command) {
         return exec($command);
     }
 
 }
-

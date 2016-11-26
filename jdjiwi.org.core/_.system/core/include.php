@@ -19,6 +19,7 @@ if (extension_loaded('mbstring')) {
 \Jdjiwi\Loader::library('core:Limit');
 \Jdjiwi\Loader::library('core:Str');
 \Jdjiwi\Loader::library('core:Header');
+\Jdjiwi\Loader::library('core:Shell');
 
 /* загрузка модулей */
 \Jdjiwi\Modul::load('database');

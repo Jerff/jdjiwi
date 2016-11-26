@@ -5,9 +5,9 @@
 \Jdjiwi\Modul::config('const');
 
 \Jdjiwi\Loader::library('fileSystem:Exception');
-\Jdjiwi\Loader::library('fileSystem:path/cPath');
-\Jdjiwi\Loader::library('fileSystem:system/cFileSystem');
-\Jdjiwi\Loader::library('fileSystem:cDir');
-\Jdjiwi\Loader::library('fileSystem:cFile');
-\Jdjiwi\Loader::library('fileSystem:upload/cFileUpload');
-\Jdjiwi\Loader::library('fileSystem:image/cImage');
+\Jdjiwi\Loader::library('fileSystem:FileSystem');
+\Jdjiwi\Loader::library('fileSystem:Upload');
+\Jdjiwi\Loader::library('fileSystem:Image');
+//\Jdjiwi\Loader::library('fileSystem:Path');
+\Jdjiwi\Loader::library('fileSystem:Folder');
+\Jdjiwi\Loader::library('fileSystem:File');

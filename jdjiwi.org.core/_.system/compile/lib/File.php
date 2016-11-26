@@ -1,9 +1,10 @@
 <?php
 
-namespace Jdjiwi\Compile;
+//namespace Jdjiwi\FileSystem;
 
 use Jdjiwi\Loader,
     Jdjiwi\Str,
+    Jdjiwi\Compile,
     Jdjiwi\FileSystem\Utility;
 
 Loader::library('packer.php/class.JavaScriptPacker');
@@ -52,7 +53,7 @@ class File {
         self::reset();
         foreach ($list as $dir) {
             $prefix = preg_replace('~^.+(\..+)$~i', '$1', $name);
-            foreach (cDir::getFiles($dir) as $file) {
+            foreach (Folder::getFileList($dir) as $file) {
                 if ($name != $file and Str::strrpos($file, $prefix) !== false) {
                     $sourse .= self::pack($list, $file, $js);
                     $sourse .= "\n{$sep}\n";

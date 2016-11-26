@@ -1,5 +1,8 @@
 <?php
 
+use Jdjiwi\Str,
+    Jdjiwi\FileSystem\Folder;
+
 // ------------- работа с файлами -------------
 // копирование файлов на сервер
 function cmfCopyFile($folder_in, $name, $folder_out = null) {
@@ -35,11 +38,11 @@ function cmfUploadUrl($folder_in, $name, $folder_out = null) {
 
 // загрузка файлов на сервер
 function cmfUploadFile($folder, $upload) {
-    $name = $file = \Jdjiwi\String\cConvert::translate($upload['name']);
+    $name = $file = Convert::translate($upload['name']);
     while (file_exists($folder . $name))
         $name = rand(0, 9999) . $file;
     if (move_uploaded_file($upload['tmp_name'], $folder . $name)) {
-        chmod($folder . $name, cDir::mode);
+        chmod($folder . $name, Folder::mode);
         return $name;
     }
     return null;
@@ -50,5 +53,3 @@ function cmfFileUnlick($file) {
     if (is_file($file))
         unlink($file);
 }
-
-

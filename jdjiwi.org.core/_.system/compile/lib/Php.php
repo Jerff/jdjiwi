@@ -6,6 +6,7 @@ use Jdjiwi\Crypt,
     Jdjiwi\Config,
     Jdjiwi\Loader,
     Jdjiwi\Str,
+    Jdjiwi\FileSystem,
     Jdjiwi\FileSystem\Utility;
 
 class Php {
@@ -42,7 +43,7 @@ class Php {
     }
 
     static public function update() {
-        cFileSystem::rmdir(self::path());
+        FileSystem::rmdir(self::path());
     }
 
     static public function compile($arFiles) {

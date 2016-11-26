@@ -1,5 +1,9 @@
 <?php
 
+use Jdjiwi\FileSystem\Image,
+    Jdjiwi\FileSystem\Image\Watermark,
+    Jdjiwi\FileSystem\File;
+
 class cmfFormFile extends cFormElement {
 
     protected $UPLOAD_FILE = '|7z|aiff|asf|avi|bmp|csv|doc|fla|flv|gif|gz|gzip|jpeg|jpg|mid|mov|mp3|mp4|mpc|mpeg|mpg|ods|odt|pdf|png|ppt|pxd|qt|ram|rar|rm|rmi|rmvb|rtf|sdc|sitd|swf|sxc|sxw|tar|tgz|tif|tiff|txt|vsd|wav|wma|wmv|xls|xml|zip|';
@@ -95,14 +99,14 @@ class cmfFormFile extends cFormElement {
         $resize = $this->getSize();
         if (!is_null($resize)) {
             list($width, $height) = $resize;
-            cImage::resize($file['tmp_name'], $width, $height);
+            Image::resize($file['tmp_name'], $width, $height);
             if ($this->getWatermark()) {
-                cImage::watermark($file['tmp_name']);
+                Watermark::run($file['tmp_name']);
             }
         }
 
         if ($this->isUpload()) {
-            $name = cFile::upload($this->getFolder(), $file);
+            $name = File::upload($this->getFolder(), $file);
         } else {
             $name = $file['tmp_name'];
         }
@@ -163,12 +167,11 @@ class cmfFormFile extends cFormElement {
     }
 
     public function deleteFile(&$row) {
-        cFile::unlink($this->getFolder() . $this->getValue());
+        File::unlink($this->getFolder() . $this->getValue());
     }
 
     public function copyFile(&$row, $name) {
-        $row[$name] = cFile::copy($this->getFolder() . $this->getValue(), $this->getFolder() . $this->getValue());
+        $row[$name] = File::copy($this->getFolder() . $this->getValue(), $this->getFolder() . $this->getValue());
     }
 
 }
-

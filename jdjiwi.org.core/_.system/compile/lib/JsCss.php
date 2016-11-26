@@ -6,6 +6,7 @@ use Jdjiwi\Crypt,
     Jdjiwi\Loader,
     Jdjiwi\Str,
     Jdjiwi\Debug,
+    Jdjiwi\FileSystem,
     Jdjiwi\FileSystem\Utility;
 
 Loader::library('vendor/meenie/javascript-packer/class.JavaScriptPacker');
@@ -28,7 +29,7 @@ class JsCss {
      */
 
     public function update() {
-        cFileSystem::rmdir(cWWWPath . Compile\Config::pathJsCss());
+        FileSystem::rmdir(cWWWPath . Compile\Config::pathJsCss());
     }
 
     /*

@@ -1,29 +1,33 @@
 <?php
 
-use Jdjiwi\JScript;
+use Jdjiwi\JScript,
+    Jdjiwi\Loader,
+    Jdjiwi\Str,
+    Jdjiwi\Config,
+    Jdjiwi\FileSystem\Folder;
 
-\Jdjiwi\Loader::library('form:element/cFormText');
-\Jdjiwi\Loader::library('form:element/cFormEmail');
-\Jdjiwi\Loader::library('form:element/cFormPassword');
-\Jdjiwi\Loader::library('form:element/cFormNumber');
-\Jdjiwi\Loader::library('form:element/cFormInt');
-\Jdjiwi\Loader::library('form:element/cFormFloat');
-\Jdjiwi\Loader::library('form:element/cFormRange');
+Loader::library('form:element/cFormText');
+Loader::library('form:element/cFormEmail');
+Loader::library('form:element/cFormPassword');
+Loader::library('form:element/cFormNumber');
+Loader::library('form:element/cFormInt');
+Loader::library('form:element/cFormFloat');
+Loader::library('form:element/cFormRange');
 
-//\Jdjiwi\Loader::library('form:element/cmfFormText');
-//\Jdjiwi\Loader::library('form:element/cmfFormKcaptcha');
-//\Jdjiwi\Loader::library('form:element/cmfFormPassword');
-//\Jdjiwi\Loader::library('form:element/cmfFormTextarea');
-//\Jdjiwi\Loader::library('form:element/cmfFormCheckbox');
-//\Jdjiwi\Loader::library('form:element/cmfFormSelect');
-//\Jdjiwi\Loader::library('form:element/cmfFormRadio');
-//\Jdjiwi\Loader::library('form:element/cmfFormFile');
-//\Jdjiwi\Loader::library('form:element/cmfFormImage');
+//Loader::library('form:element/cmfFormText');
+//Loader::library('form:element/cmfFormKcaptcha');
+//Loader::library('form:element/cmfFormPassword');
+//Loader::library('form:element/cmfFormTextarea');
+//Loader::library('form:element/cmfFormCheckbox');
+//Loader::library('form:element/cmfFormSelect');
+//Loader::library('form:element/cmfFormRadio');
+//Loader::library('form:element/cmfFormFile');
+//Loader::library('form:element/cmfFormImage');
 
-\Jdjiwi\Loader::library('form:core/cFormElementReform');
-\Jdjiwi\Loader::library('form:core/cFormElementFilter');
-\Jdjiwi\Loader::library('form:library/cFormReform');
-\Jdjiwi\Loader::library('form:library/cFormFilter');
+Loader::library('form:core/cFormElementReform');
+Loader::library('form:core/cFormElementFilter');
+Loader::library('form:library/cFormReform');
+Loader::library('form:library/cFormFilter');
 
 abstract class cFormElement extends cFormCore {
 
@@ -134,16 +138,16 @@ abstract class cFormElement extends cFormCore {
         static $mTemplate = false;
         if ($mTemplate === false) {
             $mTemplate = array();
-            foreach (cDir::getFiles(\Jdjiwi\Config::get('path.app.form') . \Jdjiwi\Config::get('form.templates')) as $file) {
-                $name = \Jdjiwi\Str::substr(basename($file), -4);
+            foreach (Folder::getFileList(Config::get('path.app.form') . Config::get('form.templates')) as $file) {
+                $name = Str::substr(basename($file), -4);
                 $mTemplate[$name] = str_replace(cSoursePath, '', $file);
             }
         }
         $class = get_class($this) . 'Html';
         if (isset($mTemplate[$class])) {
-            \Jdjiwi\Loader::library($mTemplate[$class]);
+            Loader::library($mTemplate[$class]);
         } else {
-            \Jdjiwi\Loader::library('form:template/' . \Jdjiwi\Config::get('form.templates') . '/' . $class);
+            Loader::library('form:template/' . Config::get('form.templates') . '/' . $class);
         }
         return $this->register($class);
     }

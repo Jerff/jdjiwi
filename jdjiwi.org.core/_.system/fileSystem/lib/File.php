@@ -1,15 +1,15 @@
 <?php
 
-use Jdjiwi\FileSystem\Exception;
+namespace Jdjiwi\FileSystem;
 
-class cFile {
+class File {
     /* === копирование файлов === */
 
     static function copy($file, $newFile) {
         try {
             $folder = dirname($newFile);
-            cFileSystem::mkdir($folder);
-            cFile::isWritable($file);
+            FileSystem::mkdir($folder);
+            self::isWritable($file);
             $name = $newFile;
             while (file_exists($name)) {
                 if (strpos($file, '.')) {
@@ -21,7 +21,7 @@ class cFile {
             if (copy($file, $name)) {
                 throw new Exception('файл не скопирован', array($file, $name));
             }
-            cFileSystem::chmod($name);
+            FileSystem::chmod($name);
             return $name;
         } catch (Exception $e) {
             $e->addErrorLog('Невозможно скопировать файл');

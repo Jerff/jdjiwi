@@ -82,10 +82,10 @@ class Log {
             if (class_exists('cPages', false)) {
                 $page = Pages::getItem();
                 if (Pages::isMain($page)) {
-                    $message .=" [{$page}]";
+                    $message .= " [{$page}]";
                 } else {
                     $main = Pages::getMain($page);
-                    $message .=" [{$main}] [{$page}]";
+                    $message .= " [{$main}] [{$page}]";
                 }
             }
             self::push('log', $message);
@@ -130,11 +130,11 @@ class Log {
         try {
             $message = PHP_EOL . date("Y-m-d H:i:s (T): ") . ' ' . $message;
             $dir = Config::get('path.data') . 'errorLog/' . date('Y-m') . '/';
-            \cFileSystem::mkdir($dir);
+            FileSystem::mkdir($dir);
             $file = $dir . date('Y-m-d (H)') . '.log';
             \cFile::isWritable($file);
             if (!($f = fopen($file, 'a'))) {
-                throw new \cFileException('запись не произведена', $file);
+                throw new FileSystem\Exception('запись не произведена', $file);
             }
             fwrite($f, strip_tags(trim($message)) . PHP_EOL . PHP_EOL . PHP_EOL);
             fclose($f);

@@ -1,5 +1,7 @@
 <?php
 
+use Jdjiwi\Str\Convert;
+
 function cmfReformFloatSelect(&$d, $t = true) {
     if (is_string($d)) {
         $d = preg_replace('#\s#mS', '', $d);
@@ -54,23 +56,23 @@ function cmfReformSerializeInt($v, $in) {
     if (empty($v))
         return '';
     if ($in === 'serialize') {
-        return сSConvert::serialize(\Jdjiwi\String\cConvert::toInt($v));
+        return Convert::serialize(Convert::toInt($v));
     }
     return unserialize($v);
 }
 
 function cmfReformArrayPath($v, $in) {
     if ($in === 'serialize')
-        return сSConvert::arrayToPath($v);
+        return Convert::arrayToPath($v);
     if (empty($v))
         return null;
-    return \Jdjiwi\String\cConvert::pathToArray($v);
+    return Convert::pathToArray($v);
 }
 
 function cmfReformUri($value, $opt = false, $opt2 = false) {
     if ($opt === false)
         return $value;
-    $value = \Jdjiwi\String\cConvert::translate(trim($value));
+    $value = Convert::translate(trim($value));
     $value = preg_replace(array('#\s#mS', '#[^a-z0-9\-_\.\=]#mSi', '#[_]{2,}#mSi'), '-', $value);
     if ($opt)
         $value = substr($value, 0, $opt - 1);

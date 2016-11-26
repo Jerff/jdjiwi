@@ -1,5 +1,9 @@
 <?php
 
+use Jdjiwi\FileSystem\File,
+    Jdjiwi\FileSystem\Image,
+    Jdjiwi\FileSystem\Image\Watermark;
+
 class cmfFormImage extends cmfFormFile {
 
     protected $UPLOAD_FILE = '|jpg|gif|jpeg|png|bmp|';
@@ -44,7 +48,7 @@ class cmfFormImage extends cmfFormFile {
 
     protected function upload($name, $file) {
         if ($this->isUpload()) {
-            $file = cFile::upload($this->getFolder(), $file);
+            $file = File::upload($this->getFolder(), $file);
         } else {
             return $file['tmp_name'];
         }
@@ -58,17 +62,17 @@ class cmfFormImage extends cmfFormFile {
             list($width, $height) = $size;
             if ($img === 'main') {
                 if (!empty($_POST['isReize' . $this->getId()])) {
-                    cImage::resize($path . $file, $width, $height);
+                    Image::resize($path . $file, $width, $height);
                 }
                 if ($this->getWatermark()) {
-                    cImage::watermark($path . $file);
+                    Watermark::run($path . $file);
                 }
                 $send['image'][$name . '_' . $img] = $file;
             } else {
 
                 $newFile = $img . '/' . $file;
-                if (cFile::copy($path . $file, $path . $newFile)) {
-                    cImage::resize($path . $newFile, $width, $height);
+                if (File::copy($path . $file, $path . $newFile)) {
+                    Image::resize($path . $newFile, $width, $height);
                     $send['image'][$name . '_' . $img] = $newFile;
                 }
             }
@@ -93,7 +97,7 @@ class cmfFormImage extends cmfFormFile {
             foreach ($value['image'] as $key => $file) {
                 if (!$this->getSerialize())
                     $row[$key] = null;
-                cFile::unlink($this->getFolder() . $file);
+                File::unlink($this->getFolder() . $file);
             }
     }
 
@@ -102,7 +106,7 @@ class cmfFormImage extends cmfFormFile {
         $value = $this->getValues();
         if (isset($value['image']))
             foreach ($value['image'] as $key => $file)
-                $value['image'][$key] = cFile::copy($this->getPath() . $this->getValue(), $this->getPath() . $this->getValue());
+                $value['image'][$key] = File::copy($this->getPath() . $this->getValue(), $this->getPath() . $this->getValue());
 
         $row[$name] = serialize($value);
         if ($this->getSerialize())
@@ -122,4 +126,3 @@ class cmfFormImage extends cmfFormFile {
     }
 
 }
-

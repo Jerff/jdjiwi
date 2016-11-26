@@ -1,6 +1,7 @@
 <?php
 
-use Jdjiwi\JScript;
+use Jdjiwi\JScript,
+    Jdjiwi\Str;
 
 class cmfFormSelect extends cFormElement {
 
@@ -365,7 +366,7 @@ class cmfFormSelectCheckboxParam extends cmfFormSelectCheckbox {
         $id = $this->getId();
         $paramId = $this->getParamId();
         $values = $this->getValues();
-        $dataParam = \Jdjiwi\String\cConvert::unserialize($this->dataParam);
+        $dataParam = Convert::unserialize($this->dataParam);
         $html = '';
         if (isset($values['array']) and is_array($values['array'])) {
             foreach ($values['array'] as $k => $v) {
@@ -405,7 +406,7 @@ HTML;
                 }
             }
         }
-        $dataParam = \Jdjiwi\String\cConvert::serialize($dataParam);
+        $dataParam = Convert::serialize($dataParam);
 
         // проверяем изменились ли данные?
         if ($this->getOld() and $old) {
@@ -428,7 +429,7 @@ HTML;
 
     public function jsUpdateValue() {
         $js = parent::jsUpdateValue();
-        $dataParam = \Jdjiwi\String\cConvert::unserialize($this->dataParam);
+        $dataParam = Convert::unserialize($this->dataParam);
         if (empty($dataParam))
             return $js;
         $paramId = $this->getParamId();
@@ -453,4 +454,3 @@ class cmfFormSelectCheckboxParamInt extends cmfFormSelectCheckboxParam {
     }
 
 }
-
