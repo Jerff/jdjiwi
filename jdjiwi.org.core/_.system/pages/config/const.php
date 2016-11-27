@@ -7,5 +7,5 @@
 define('cAppUrl', \Jdjiwi\Config::get('url.app'));
 define('cAdminUrl', \Jdjiwi\Config::get('url.admin'));
 define('cAjaxUrl', \Jdjiwi\Config::get('url.ajax'));
-define('cCompileUrl', \Jdjiwi\Config::get('url.compileJsCss'));
+define('cCompileUrl', \Jdjiwi\Config::get('url.compile.jsCss'));
 define('cItemUrl', \Jdjiwi\Config::get('url.item'));

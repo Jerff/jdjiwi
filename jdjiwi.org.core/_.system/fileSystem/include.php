@@ -2,7 +2,6 @@
 
 \Jdjiwi\Config::load('file');
 \Jdjiwi\Config::load('path');
-\Jdjiwi\Modul::config('const');
 
 \Jdjiwi\Loader::library('fileSystem:Exception');
 \Jdjiwi\Loader::library('fileSystem:FileSystem');

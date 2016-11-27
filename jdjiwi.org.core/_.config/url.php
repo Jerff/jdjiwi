@@ -7,6 +7,8 @@ return array(
     'item' => \Jdjiwi\Pages::base()->router() . '/',
     'app' => \Jdjiwi\Pages::base()->application . '/',
     'ajax' => \Jdjiwi\Pages::base()->ajax . '/',
-    'compileJsCss' => \Jdjiwi\Pages::base()->compileJsCss . '/',
+    'compile' => array(
+        'jsCss' => \Jdjiwi\Pages::base()->compileJsCss . '/'
+    ),
     'admin' => \Jdjiwi\Pages::base()->admin . '/',
 );

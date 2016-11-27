@@ -3,7 +3,8 @@
 namespace Jdjiwi;
 
 use Jdjiwi\FileSystem\Exception,
-    Jdjiwi\Str\Convert;
+    Jdjiwi\Str\Convert,
+    Jdjiwi\Config;
 
 Loader::library('fileSystem:Access');
 
@@ -13,7 +14,7 @@ class FileSystem {
     static public function chmod($path, $mode = null) {
         Access::path($path);
         if (is_null($mode)) {
-            $mode = cFileMode;
+            $mode = Config::get('file.mode.file');
         }
         if (!chmod($path, $mode)) {
             throw new Exception('права файла не изменены', array($path, $mode));

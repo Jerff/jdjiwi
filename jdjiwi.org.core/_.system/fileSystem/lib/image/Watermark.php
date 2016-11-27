@@ -8,9 +8,13 @@ use Jdjiwi\Settings,
 
 class Watermark {
 
+    static public function getPath($file = '') {
+        return cWWWPath . path_watermark;
+    }
+
     static public function createLogo($size, $notice) {
         if (ImageMagick::isOn()) {
-            ImageMagick::createLogo($size, $notice);
+            ImageMagick::createLogo(Config::get('image.watermark.logo'), $size, $notice);
         }
     }
 

@@ -44,7 +44,7 @@ class Image {
 
         if (ImageMagick::isOn()) {
             ImageMagick::resize($image, $width, $height);
-//            exec($com = self::command('mogrify') . " -resize {$width}x{$height} $image");
+//            Shell::exec($com = self::command('mogrify') . " -resize {$width}x{$height} $image");
             //pre($com);
             return;
         } else {
