@@ -4,11 +4,11 @@ return array(
     /*
      * префиксы разделов сайта
      */
-    'item' => \Jdjiwi\Pages::base()->router() . '/',
-    'app' => \Jdjiwi\Pages::base()->application . '/',
-    'ajax' => \Jdjiwi\Pages::base()->ajax . '/',
+    'item' => \Jdjiwi\Pages\Router::start() . '/',
+    'app' => \Jdjiwi\Pages\Router::get('application') . '/',
+    'ajax' => \Jdjiwi\Pages\Router::get('ajax') . '/',
     'compile' => array(
-        'jsCss' => \Jdjiwi\Pages::base()->compileJsCss . '/'
+        'jsCss' => \Jdjiwi\Pages\Router::get('compileJsCss') . '/'
     ),
-    'admin' => \Jdjiwi\Pages::base()->admin . '/',
+    'admin' => \Jdjiwi\Pages\Router::get('admin') . '/',
 );

@@ -562,8 +562,8 @@ $pr['application']['/user/order/success/'] = array('#^/user/order/([^/]+)/succes
 $pr['application']['/user/order/fail/'] = array('#^/user/order/([^/]+)/fail/$#');
 $pr['application']['/subscribe/command/'] = array('#^/subscribe/(command/.*)/$#');
 $pr['application']['/catalog/url/'] = array('#^(/((search)/)?((.*?)/)?(name/(.*?)/)?(param/([0-9-]+)/)?((sale|new)/)?(sort/(desc|asc|new|old)/)?(page_([0-9]+)/)?(limit/([0-9]+|all)/)?)$#');
-\Jdjiwi\Pages::routerApplication($p, $n, $pr);
-\Jdjiwi\Pages::template()->set(array(
+\Jdjiwi\Pages\Router::application($p);
+\Jdjiwi\Pages\Template::set(array(
     0 => 'main.info.php',
     1 => 'main.index.php',
     2 => 'main.catalog.php',

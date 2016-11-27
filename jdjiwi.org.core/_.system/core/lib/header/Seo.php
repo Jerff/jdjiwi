@@ -5,7 +5,8 @@ namespace Jdjiwi\Header;
 use Jdjiwi\Cache,
     Jdjiwi\Loader,
     Jdjiwi\Header,
-    Jdjiwi\Buffer;
+    Jdjiwi\Buffer,
+    Jdjiwi\Pages;
 
 Loader::library('core:header/function');
 
@@ -79,7 +80,7 @@ class Seo {
     <meta name="keywords" content="' . $k . '"/>
     <meta name="description" content="' . $d . '"/>';
 
-                    if (cPages::getPageConfig(cPages::getMain())->noCache) {
+                    if (Pages::config(Pages::getMain())->noCache) {
                         $head .= '
     <meta http-equiv="pragma" content="no-cache"/>
     <meta http-equiv="cache-control" content="no-cache"/>';

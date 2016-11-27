@@ -26,7 +26,7 @@ class cUrl {
     static public function get() {
         try {
             $param = func_get_args();
-            $conf = \Jdjiwi\Pages::getPageConfig(array_shift($param));
+            $conf = \Jdjiwi\Pages::config(array_shift($param));
             if ($conf and $conf->isNoPage()) {
                 throw new Exception('нет такой страницы', func_get_args());
             }
@@ -40,7 +40,7 @@ class cUrl {
     //cUrl::param
     static public function param($param) {
         try {
-            $conf = \Jdjiwi\Pages::getPageConfig(array_shift($param));
+            $conf = \Jdjiwi\Pages::config(array_shift($param));
             if ($conf and $conf->isNoPage()) {
                 throw new Exception('нет такой страницы', func_get_args());
             }
@@ -56,7 +56,7 @@ class cUrl {
         try {
             $param = func_get_args();
             $lang = array_shift($param);
-            $conf = \Jdjiwi\Pages::getPageConfig(array_shift($param));
+            $conf = \Jdjiwi\Pages::config(array_shift($param));
             if ($conf and $conf->isNoPage()) {
                 throw new Exception('нет такой страницы', func_get_args());
             }
@@ -71,7 +71,7 @@ class cUrl {
     static public function uri() {
         try {
             $param = func_get_args();
-            $uri = \Jdjiwi\Pages::getPageConfig(array_shift($param), 'u');
+            $uri = \Jdjiwi\Pages::config(array_shift($param), 'u');
             if (empty($uri)) {
                 throw new Exception('нет такой страницы', func_get_args());
             }

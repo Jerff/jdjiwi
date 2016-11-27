@@ -10,7 +10,8 @@ spl_autoload_register(function($name) {
 class Autoload {
 
     static public function init($name) {
-        var_dump($name);
+        var_dump(__CLASS__, $name);
+        preTrace();
     }
 
 }

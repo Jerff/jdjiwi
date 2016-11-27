@@ -131,7 +131,7 @@ class Log {
         try {
             $message = PHP_EOL . date("Y-m-d H:i:s (T): ") . ' ' . $message;
             $dir = Config::get('path.data') . 'errorLog/' . date('Y-m') . '/';
-            FileSystem::mkdir($dir);
+            Utility::checkPath($dir);
             $file = $dir . date('Y-m-d (H)') . '.log';
             Utility::isWritable($file);
             if (!($f = fopen($file, 'a'))) {

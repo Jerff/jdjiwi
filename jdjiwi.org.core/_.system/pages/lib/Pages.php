@@ -1,128 +1,80 @@
 <?php
 
-namespace Jdjiwi;
+namespace Jdjiwi\Pages;
 
-use Jdjiwi\Input\Get;
+use Jdjiwi\Loader;
 
-Loader::library('pages:cPagesCore');
-Loader::library('pages:cUrl');
+//Loader::library('pages:cPagesBase');
+Loader::library('pages:Config');
+Loader::library('pages:Param');
+Loader::library('pages:Template');
+Loader::library('pages:Router');
 
-class Pages extends \cPagesCore {
-    /* Application */
+class Pages {
 
-    public static function routerApplication(&$mP, &$mN, &$mPr) {
-        self::setPage($mP);
-        if (cApplication !== 'application') {
-            return;
-        }
+    static private $main = null;
+    static private $item = null;
+    static private $arPages = null;
 
-        $url = parse_url('http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], strlen(Config::get('url.itemUri'))), PHP_URL_PATH);
-        $url = urldecode($url);
-
-        $page = '/404/';
-        $param = null;
-        if (isset($mN[cApplication][$url])) {
-            $page = $mN[cApplication][$url];
-        } else if (isset($mPr[cApplication])) {
-            unset($mN);
-            while (list($k, $v) = each($mPr[cApplication])) {
-                foreach ($v as $p) {
-                    if (preg_match($p, $url, $tmp)) {
-                        $page = $k;
-                        $param = $tmp;
-                        break;
-                    }
-                }
-                if (!is_null($param)) {
-                    break;
-                }
-            }
-        }
-        if ($page === '/404/') {
-            header("HTTP/1.0 404 Not Found");
-        }
-        if ($param) {
-            array_shift($param);
-        }
-        self::setMain($page);
-        self::param()->set($param);
+//    static public function urlParam() {
+//        return cModul::config('cPagesParam');
+//    }
+    // установка & возвращение имени главной страницы
+    static public function setMain($p) {
+        self::$main = $p;
+        self::$item = $p;
     }
 
-    /* Admin */
-
-    public static function roterAdmin(&$mP) {
-        if (cApplication !== 'admin') {
-            return;
-        }
-        self::setPage($mP);
-
-//        if (!cAdmin::user()->is()) {
-//            self::setMain('/admin/enter/');
-//            return;
-//        }
-
-        if (Get::is('url')) {
-            $url = Get::get('url');
-        } else if (!Ajax::is()) {
-            Pages::setMain('/admin/index/');
-            return;
-        } else {
-
-            $url = Ajax::getUrl();
-            preg_match('~' . preg_quote(cAdminUrl) . '([^#]*)\#?(\&?.*)~', $url, $tmp);
-            $url = empty($tmp[1]) ? '/' : $tmp[1];
-        }
-
-        if (!empty($_SERVER['HTTP_REFERER'])) {
-            if (parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) !== Config::get('host.url')) {
-                self::setMain('/admin/index/');
-                return;
-            }
-        }
-
-        if (!empty($tmp[2])) {
-            foreach (explode('&', $tmp[2]) as $v)
-                if ($v) {
-                    $v = explode('=', $v);
-                    if (isset($v[1])) {
-                        Get::set($v[0], $v[1]);
-                    } else {
-                        Get::set($v[0], 1);
-                    }
-                }
-        }
-
-        $page = false;
-        $param = null;
-        while (list($k, $v) = each($mP)) {
-            if (isset($v['b']))
-                continue;
-            if (isset($v['preg'])) {
-                foreach ($v['preg'] as $p) {
-                    if (preg_match($p, $url, $preg)) {
-                        $page = $k;
-                        $param = $preg;
-                        break;
-                    }
-                }
-                if (!is_null($param))
-                    break;
-            }
-            if (isset($v['u']) and $v['u'] === $url) {
-                $page = $k;
-                break;
-            }
-        }
-        if (!$page) {
-            Ajax::get()->alert('Ничего не найдено!');
-            exit;
-        }
-
-        if ($param) {
-            array_shift($param);
-        }
-        self::setMain($page);
-        self::param()->set($param);
+    static public function getMain() {
+        return self::$main;
     }
 
+    static public function isMain($p = null) {
+        return self::$main === ($p ? $p : self::$item);
+    }
+
+    // установка & возвращение имени текущей страницы
+    static public function setItem($p) {
+        self::$item = $p;
+    }
+
+    static public function getItem() {
+        return self::$item;
+    }
+
+    // установка & возвращение данных шаблона
+    static protected function set($arPages) {
+        self::$arPages = $arPages;
+    }
+
+    static public function config($n) {
+        if (empty(self::$arPages[$n]))
+            return false;
+        return new Pages\Config(self::$arPages[$n]);
+    }
+
+//    //cPages::getUrl()
+//    //cInput::url()->adress()
+//    static public function getUrl() {
+//        return 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+//    }
+//
+//    //cPages::getUrl2()
+//    //cInput::url()->host()
+//    static public function getUrl2() {
+//        return 'http://' . $_SERVER['HTTP_HOST'];
+//    }
+//
+//    //cPages::getUri()
+//    //cInput::url()->uri()
+//    static public function getUri() {
+//        return get($_SERVER, 'REQUEST_URI');
+//    }
+//
+//    // юзаются для кеша
+//    //cPages::getPath()
+//    //cInput::url()->path()
+//	static public function getPath() {
+//        return parse_url(self::getUrl(), PHP_URL_PATH);
+//    }
 }
