@@ -9,7 +9,7 @@ class Convert {
     //Str\Convert::toFloat(
     public static function toFloat($value) {
         if (is_array($value)) {
-            return array_map(array(__CLASS__,__FUNCTION__), $value);
+            return array_map(array(__CLASS__, __FUNCTION__), $value);
         } else {
 
             $value = preg_replace('#\s#mS', '', $value);
@@ -22,7 +22,7 @@ class Convert {
     //Str\Convert::toInt(
     public static function toInt($value) {
         if (is_array($value)) {
-            return array_map(array(__CLASS__,__FUNCTION__), $value);
+            return array_map(array(__CLASS__, __FUNCTION__), $value);
         } else {
             return (int) $value;
         }
@@ -32,7 +32,7 @@ class Convert {
     //Str\Convert::objectToArray(
     static public function objectToArray($value) {
         if (is_object($value)) {
-            $value = array_map(array(__CLASS__,__FUNCTION__), (array) $value);
+            $value = array_map(array(__CLASS__, __FUNCTION__), (array) $value);
         }
         return $value;
     }
@@ -132,16 +132,4 @@ class Convert {
     }
 
     /* === /translate === */
-
-
-
-    /* === file === */
-
-    //Str::toFileName(
-    //Convert::toFileName(
-    static public function toFileName($str) {
-        return preg_replace('([^a-z0-9\-\=\+\.])', '_', self::translate($str));
-    }
-
-    /* === /file === */
 }

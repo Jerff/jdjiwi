@@ -2,7 +2,8 @@
 
 namespace Jdjiwi\FileSystem\Image;
 
-use Jdjiwi\Shell;
+use Jdjiwi\Shell,
+    Jdjiwi\FileSystem;
 
 class ImageMagick {
 
@@ -36,7 +37,7 @@ class ImageMagick {
             $wLogo = ceil($wImage * .7);
             $hLogo = ceil($hImage * .7);
             $tmp = tempnam(cWWWPath . path_watermark, 'watermark');
-            copy($logo, $tmp);
+            FileSystem::copy($logo, $tmp);
             Image::resize($tmp, $wLogo, $hLogo);
             $logo = $tmp;
         }

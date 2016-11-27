@@ -74,9 +74,28 @@ class FileSystem {
         }
     }
 
-    static public function toFileName($str) {
-        $str = preg_replace('~([^a-z0-9\_\-\=\+\.])~S', '_', Convert::translate($str));
-        return preg_replace('~(_{2,})~S', '_', $str);
+    static function copy($file, $newFile) {
+        try {
+            $folder = dirname($newFile);
+            FileSystem::mkdir($folder);
+            Utility::isWritable($file);
+            $name = $newFile;
+            while (file_exists($name)) {
+                if (strpos($file, '.')) {
+                    $name = preg_replace('`(.*)\.([^.]*)$`', '$1.' . rand(0, 9999) . '.$2', $newFile);
+                } else {
+                    $name = $newFile . rand(0, 9999);
+                }
+            }
+            if (copy($file, $name)) {
+                throw new Exception('файл не скопирован', array($file, $name));
+            }
+            self::chmod($name);
+            return $name;
+        } catch (Exception $e) {
+            $e->addErrorLog('Невозможно скопировать файл');
+        }
+        return false;
     }
 
 }

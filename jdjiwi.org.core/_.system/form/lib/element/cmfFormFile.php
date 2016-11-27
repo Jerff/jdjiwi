@@ -2,7 +2,7 @@
 
 use Jdjiwi\FileSystem\Image,
     Jdjiwi\FileSystem\Image\Watermark,
-    Jdjiwi\FileSystem\File;
+    Jdjiwi\FileSystem;
 
 class cmfFormFile extends cFormElement {
 
@@ -167,11 +167,11 @@ class cmfFormFile extends cFormElement {
     }
 
     public function deleteFile(&$row) {
-        File::unlink($this->getFolder() . $this->getValue());
+        FileSystem::unlink($this->getFolder() . $this->getValue());
     }
 
     public function copyFile(&$row, $name) {
-        $row[$name] = File::copy($this->getFolder() . $this->getValue(), $this->getFolder() . $this->getValue());
+        $row[$name] = FileSystem::copy($this->getFolder() . $this->getValue(), $this->getFolder() . $this->getValue());
     }
 
 }

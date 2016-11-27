@@ -7,11 +7,11 @@ class Upload {
     // upload file
     static function load($folder, $upload) {
         try {
-            $name = $file = FileSystem::toFileName($upload['name']);
+            $name = $file = Utility::toFileName($upload['name']);
             $prefix = rand(0, 50) . '/' . rand(0, 50) . '/';
             $folder .= $prefix;
             FileSystem::mkdir($folder);
-            File::isWritable($file);
+            Utility::isWritable($file);
             while (file_exists($folder . $name)) {
                 if (strpos($file, '.')) {
                     $name = preg_replace('~(.*)\.([^.]*)$~S', '$1.' . rand(0, 9999) . '.$2', $file);

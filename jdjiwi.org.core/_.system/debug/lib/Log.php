@@ -2,7 +2,8 @@
 
 namespace Jdjiwi;
 
-use Jdjiwi\Pages;
+use Jdjiwi\Pages,
+    Jdjiwi\FileSystem\Utility;
 
 Loader::library('core:Time');
 Modul::load('fileSystem');
@@ -132,7 +133,7 @@ class Log {
             $dir = Config::get('path.data') . 'errorLog/' . date('Y-m') . '/';
             FileSystem::mkdir($dir);
             $file = $dir . date('Y-m-d (H)') . '.log';
-            \cFile::isWritable($file);
+            Utility::isWritable($file);
             if (!($f = fopen($file, 'a'))) {
                 throw new FileSystem\Exception('запись не произведена', $file);
             }

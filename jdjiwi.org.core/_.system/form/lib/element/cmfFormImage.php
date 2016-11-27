@@ -1,6 +1,6 @@
 <?php
 
-use Jdjiwi\FileSystem\File,
+use Jdjiwi\FileSystem,
     Jdjiwi\FileSystem\Image,
     Jdjiwi\FileSystem\Image\Watermark;
 
@@ -71,7 +71,7 @@ class cmfFormImage extends cmfFormFile {
             } else {
 
                 $newFile = $img . '/' . $file;
-                if (File::copy($path . $file, $path . $newFile)) {
+                if (FileSystem::copy($path . $file, $path . $newFile)) {
                     Image::resize($path . $newFile, $width, $height);
                     $send['image'][$name . '_' . $img] = $newFile;
                 }
@@ -97,7 +97,7 @@ class cmfFormImage extends cmfFormFile {
             foreach ($value['image'] as $key => $file) {
                 if (!$this->getSerialize())
                     $row[$key] = null;
-                File::unlink($this->getFolder() . $file);
+                FileSystem::unlink($this->getFolder() . $file);
             }
     }
 
@@ -106,7 +106,7 @@ class cmfFormImage extends cmfFormFile {
         $value = $this->getValues();
         if (isset($value['image']))
             foreach ($value['image'] as $key => $file)
-                $value['image'][$key] = File::copy($this->getPath() . $this->getValue(), $this->getPath() . $this->getValue());
+                $value['image'][$key] = FileSystem::copy($this->getPath() . $this->getValue(), $this->getPath() . $this->getValue());
 
         $row[$name] = serialize($value);
         if ($this->getSerialize())

@@ -2,7 +2,8 @@
 
 namespace Jdjiwi;
 
-use Jdjiwi\FileSystem\Utility;
+use Jdjiwi\FileSystem,
+    Jdjiwi\FileSystem\Utility;
 
 class Cron {
 
@@ -15,7 +16,7 @@ class Cron {
     }
 
     static public function stop() {
-        Utility::unlink(self::path());
+        FileSystem::unlink(self::path());
     }
 
     static public function is() {
