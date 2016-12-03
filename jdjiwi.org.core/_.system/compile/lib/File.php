@@ -7,7 +7,7 @@ use Jdjiwi\Loader,
     Jdjiwi\Compile,
     Jdjiwi\FileSystem\Utility;
 
-Loader::library('packer.php/class.JavaScriptPacker');
+//Loader::library('packer.php/class.JavaScriptPacker');
 
 class File {
 

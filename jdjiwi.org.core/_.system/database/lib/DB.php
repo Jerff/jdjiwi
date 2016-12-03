@@ -4,8 +4,8 @@ use Jdjiwi\Database\Exception,
     \Jdjiwi\Config,
     \Jdjiwi\Loader;
 
-Loader::library('database:driver/cMySql');
-Loader::library('database:Exception');
+//Loader::library('database:driver/cMySql');
+//Loader::library('database:Exception');
 
 class cDB {
 

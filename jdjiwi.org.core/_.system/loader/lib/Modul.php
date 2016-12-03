@@ -2,15 +2,15 @@
 
 namespace Jdjiwi;
 
-use Jdjiwi\Compile\Php;
+//use Jdjiwi\Compile\Php;
 
-Loader::library('loader:Exception');
+//Loader::library('loader:Exception');
 
 /*
  * загрузка модулей
  */
 
-class Modul extends Loader\Compile {
+class Modul {
 
     static private $isCompile = false;
     static private $item = null;
@@ -53,12 +53,12 @@ class Modul extends Loader\Compile {
         }
         self::setItem($modul);
         try {
-            if (self::isCompile()) {
-                self::setHistory($hash);
-                $res = Php::load('modul', $hash . '.php');
-            } else {
-                $res = self::file($hash);
-            };
+//            if (self::isCompile()) {
+//                self::setHistory($hash);
+//                $res = Php::load('modul', $hash . '.php');
+//            } else {
+            $res = require_once($hash . '.php');
+//            };
             if (empty($res)) {
                 $res = true;
             }

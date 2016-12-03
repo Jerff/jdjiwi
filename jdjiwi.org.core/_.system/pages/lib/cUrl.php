@@ -2,8 +2,8 @@
 
 use \Jdjiwi\Exception;
 
-\Jdjiwi\Loader::library('pages:cUrlAdmin');
-\Jdjiwi\Loader::library('core:traits/StaticRegistry');
+//\Jdjiwi\Loader::library('pages:cUrlAdmin');
+//\Jdjiwi\Loader::library('core:traits/StaticRegistry');
 
 class cUrl {
 

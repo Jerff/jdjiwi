@@ -7,7 +7,7 @@ use Jdjiwi\Loader,
     Jdjiwi\Header,
     Jdjiwi\JScript;
 
-Loader::library('wysiwyng:Driver');
+//Loader::library('wysiwyng:Driver');
 
 class KCKeditor extends Driver {
 

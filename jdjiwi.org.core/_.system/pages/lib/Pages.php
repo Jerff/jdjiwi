@@ -4,11 +4,11 @@ namespace Jdjiwi\Pages;
 
 use Jdjiwi\Loader;
 
-//Loader::library('pages:cPagesBase');
-Loader::library('pages:Config');
-Loader::library('pages:Param');
-Loader::library('pages:Template');
-Loader::library('pages:Router');
+////Loader::library('pages:cPagesBase');
+//Loader::library('pages:Config');
+//Loader::library('pages:Param');
+//Loader::library('pages:Template');
+//Loader::library('pages:Router');
 
 class Pages {
 

@@ -10,7 +10,7 @@ Loader::library('core:input/Ip');
 Loader::library('core:input/Header');
 Loader::library('core:input/Url');
 
-//Loader::library('core:input/Param');
+////Loader::library('core:input/Param');
 
 class Input {
 

@@ -4,7 +4,7 @@ namespace Jdjiwi;
 
 use Jdjiwi\Input\Post;
 
-Loader::library('ajax:Response');
+//Loader::library('ajax:Response');
 
 class Ajax {
 

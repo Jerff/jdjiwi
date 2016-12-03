@@ -7,8 +7,8 @@ use Jdjiwi\Settings,
     Jdjiwi\Loader;
 
 Config::load('image');
-Loader::library('fileSystem:image/ImageMagick');
-Loader::library('fileSystem:image/Watermark');
+//Loader::library('fileSystem:image/ImageMagick');
+//Loader::library('fileSystem:image/Watermark');
 
 class Image {
 

@@ -3,6 +3,7 @@
 namespace Jdjiwi\FileSystem;
 
 use Jdjiwi\Log,
+    Jdjiwi\FileSystem,
     Jdjiwi\FileSystem\Exception;
 
 class Utility {
@@ -19,12 +20,8 @@ class Utility {
 
     static public function checkPath($path) {
         try {
-            $path = dirname($path);
-            if (!is_dir($path)) {
-                if (is_file($path)) {
-                    throw new Exception('на месте папки только файл', $path);
-                }
-                FileSystem::mkdir($path);
+            if (self::isWritable($path)) {
+                FileSystem::mkdir(substr($path, -1) === '/' ? $path : dirname($path));
             }
             return true;
         } catch (Exception $e) {
@@ -39,13 +36,22 @@ class Utility {
     }
 
     // проверка на достпуность записи
+
+    static protected function isWritableDir($file) {
+        if (is_dir($file)) {
+            return is_writable($file);
+        } else {
+            return self::isWritableDir(dirname($file));
+        }
+    }
+
     static public function isWritable($file) {
-        if (file_exists($file)) {
+        if (is_file($file)) {
             if (!is_writable($file)) {
                 throw new Exception('Невозможна запись в файл', $file);
             }
         } else {
-            if (!is_writable(dirname($file))) {
+            if (!self::isWritableDir($file)) {
                 throw new Exception('Невозможно создать файл в папке', dirname($file));
             }
         }

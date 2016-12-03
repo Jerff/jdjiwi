@@ -1,5 +1,5 @@
 <?php
-\Jdjiwi\Loader::library('form:template/cFormTemplateHtml');
+//\Jdjiwi\Loader::library('form:template/cFormTemplateHtml');
 
 class cFormTextHtml extends cFormTemplateHtml {
 

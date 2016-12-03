@@ -2,11 +2,13 @@
 
 namespace Jdjiwi;
 
-use Jdjiwi\FileSystem\Exception,
+use Jdjiwi\FileSystem\Access,
+    Jdjiwi\FileSystem\Utility,
+    Jdjiwi\FileSystem\Exception,
     Jdjiwi\Str\Convert,
     Jdjiwi\Config;
 
-Loader::library('fileSystem:Access');
+//Loader::library('fileSystem:Access');
 
 class FileSystem {
 
@@ -77,9 +79,6 @@ class FileSystem {
 
     static function copy($file, $newFile) {
         try {
-            $folder = dirname($newFile);
-            FileSystem::mkdir($folder);
-            Utility::isWritable($file);
             $name = $newFile;
             while (file_exists($name)) {
                 if (strpos($file, '.')) {
@@ -88,6 +87,7 @@ class FileSystem {
                     $name = $newFile . rand(0, 9999);
                 }
             }
+            Utility::checkPath($name);
             if (copy($file, $name)) {
                 throw new Exception('файл не скопирован', array($file, $name));
             }

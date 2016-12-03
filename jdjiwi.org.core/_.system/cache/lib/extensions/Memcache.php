@@ -6,7 +6,7 @@ use Jdjiwi\Config,
     Jdjiwi\Loader,
     Jdjiwi\Settings;
 
-Loader::library('cache:extensions/driver/DriverTag');
+//Loader::library('cache:extensions/driver/DriverTag');
 
 class Memcache extends Driver\DriverTag {
 

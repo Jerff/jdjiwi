@@ -7,10 +7,10 @@ use Jdjiwi\Log,
 
 class Call {
 
-    static protected function start() {
+    static public function start() {
         Application::authorization();
         Log::memory();
-        $controler = new cmfApplicationTemplate();
+        $controler = new Template();
         echo $controler->main();
         Log::memory();
     }

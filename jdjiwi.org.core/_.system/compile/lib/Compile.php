@@ -2,10 +2,10 @@
 
 namespace Jdjiwi;
 
-Loader::library('compile:Config');
-Loader::library('compile:Php');
-Loader::library('compile:JsCss');
-Loader::library('compile:Update');
+//Loader::library('compile:Config');
+//Loader::library('compile:Php');
+//Loader::library('compile:JsCss');
+//Loader::library('compile:Update');
 
 class Compile {
 

@@ -5,7 +5,7 @@ namespace Jdjiwi\Mail\Phpmailer;
 use Jdjiwi\Loader,
     \Jdjiwi\Cache;
 
-Loader::library('vendor/phpmailer/phpmailer/class.phpmailer');
+//Loader::library('vendor/phpmailer/phpmailer/class.phpmailer');
 
 class Phpmailer {
 

@@ -2,7 +2,7 @@
 
 namespace Jdjiwi\Cache\Extensions;
 
-\Jdjiwi\Loader::library('cache:extensions/driver/DriverTag');
+//\Jdjiwi\Loader::library('cache:extensions/driver/DriverTag');
 
 class Memcache extends Driver\DriverTag {
 

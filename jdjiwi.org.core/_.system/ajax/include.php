@@ -1,3 +1,3 @@
 <?php
 
-\Jdjiwi\Loader::library('ajax:Ajax');
+//\Jdjiwi\Loader::library('ajax:Ajax');

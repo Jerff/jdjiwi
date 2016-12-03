@@ -4,7 +4,7 @@ namespace Jdjiwi;
 
 use Jdjiwi\Exception\Error;
 
-Loader::library('core:Input');
+//Loader::library('core:Input');
 Modul::load('ajax');
 Init::init();
 

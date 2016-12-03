@@ -4,10 +4,10 @@ namespace Jdjiwi;
 
 use Jdjiwi\Log;
 
-Loader::library('cache:Control');
-Loader::library('cache:extensions/Sql');
-Loader::library('cache:extensions/SQLite');
-Loader::library('cache:extensions/Memcache');
+//Loader::library('cache:Control');
+//Loader::library('cache:extensions/Sql');
+//Loader::library('cache:extensions/SQLite');
+//Loader::library('cache:extensions/Memcache');
 
 class Cache {
 

@@ -3,4 +3,4 @@
 /* конфигурация */
 
 /* заагрузка библиотек */
-\Jdjiwi\Loader::library('wysiwyng:Wysiwyng');
+//\Jdjiwi\Loader::library('wysiwyng:Wysiwyng');

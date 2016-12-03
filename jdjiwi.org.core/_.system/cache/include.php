@@ -4,4 +4,4 @@
 \Jdjiwi\Config::load('cache');
 
 /* заагрузка библиотек */
-\Jdjiwi\Loader::library('cache:Cache');
+//\Jdjiwi\Loader::library('cache:Cache');

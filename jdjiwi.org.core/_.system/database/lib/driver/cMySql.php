@@ -1,9 +1,9 @@
 <?php
 
-\Jdjiwi\Loader::library('database:bilder/cMysqlbilder');
-\Jdjiwi\Loader::library('database:placeholder/cDatabasePlaceholder');
-\Jdjiwi\Loader::library('database:driver/cDatabase');
-\Jdjiwi\Loader::library('database:pdo/cPDO');
+//\Jdjiwi\Loader::library('database:bilder/cMysqlbilder');
+//\Jdjiwi\Loader::library('database:placeholder/cDatabasePlaceholder');
+//\Jdjiwi\Loader::library('database:driver/cDatabase');
+//\Jdjiwi\Loader::library('database:pdo/cPDO');
 
 class cMySql extends cDatabase {
 

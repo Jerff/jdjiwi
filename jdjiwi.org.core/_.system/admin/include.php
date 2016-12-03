@@ -1,4 +1,4 @@
 <?php
 
 \Jdjiwi\Modul::load('application');
-\Jdjiwi\Loader::library('admin:Admin');
+//\Jdjiwi\Loader::library('admin:Admin');

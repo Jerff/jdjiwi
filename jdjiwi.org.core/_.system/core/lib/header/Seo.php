@@ -8,7 +8,7 @@ use Jdjiwi\Cache,
     Jdjiwi\Buffer,
     Jdjiwi\Pages;
 
-Loader::library('core:header/function');
+//Loader::library('core:header/function');
 
 class Seo {
 

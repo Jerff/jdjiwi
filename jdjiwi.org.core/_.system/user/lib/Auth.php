@@ -5,7 +5,7 @@ namespace Jdjiwi\User;
 use Jdjiwi\Loader,
     Jdjiwi\Input\Ip;
 
-Loader::library('user:auth/Session');
+//Loader::library('user:auth/Session');
 
 abstract class Auth {
 

@@ -1,4 +1,4 @@
 <?php
 
-\Jdjiwi\Loader::library('application:Call');
+//\Jdjiwi\Loader::library('admin:Call');
 \Jdjiwi\Admin\Call::start();

@@ -4,7 +4,7 @@ namespace Jdjiwi;
 
 use Jdjiwi\Mail\Phpmailer;
 
-Loader::library('mail:driver/Phpmailer');
+//Loader::library('mail:driver/Phpmailer');
 
 class Mail {
 

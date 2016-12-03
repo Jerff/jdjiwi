@@ -9,7 +9,7 @@ use Jdjiwi\Crypt,
     Jdjiwi\FileSystem,
     Jdjiwi\FileSystem\Utility;
 
-Loader::library('vendor/meenie/javascript-packer/class.JavaScriptPacker');
+//Loader::library('vendor/meenie/javascript-packer/class.JavaScriptPacker');
 
 class JsCss {
     /*

@@ -4,7 +4,7 @@ namespace Jdjiwi;
 
 use Jdjiwi\Compile\JsCss;
 
-Loader::library('core:header/Seo');
+//Loader::library('core:header/Seo');
 Modul::load('compile');
 
 class Header {

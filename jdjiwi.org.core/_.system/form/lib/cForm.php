@@ -3,36 +3,36 @@
 use Jdjiwi\Loader,
     Jdjiwi\Crypt;
 
-Loader::library('form:cmfFormConfig');
-//Loader::library('form:cmfFormError');
+//Loader::library('form:cmfFormConfig');
+////Loader::library('form:cmfFormError');
 //
-//Loader::library('form:library/cmfFormLibJs');
-//Loader::library('form:library/cmfFormLibString');
-//Loader::library('form:library/cmfFormLibFilter');
-//Loader::library('form:library/cmfFormLibReform');
-//Loader::library('form:library/cmfFormLibFile');
-//Loader::library('form:library/cmfFormLibImage');
+////Loader::library('form:library/cmfFormLibJs');
+////Loader::library('form:library/cmfFormLibString');
+////Loader::library('form:library/cmfFormLibFilter');
+////Loader::library('form:library/cmfFormLibReform');
+////Loader::library('form:library/cmfFormLibFile');
+////Loader::library('form:library/cmfFormLibImage');
 //
-//Loader::library('form:cmfFormElement');
-//Loader::library('form:element/cmfFormText');
-//Loader::library('form:element/cmfFormKcaptcha');
-//Loader::library('form:element/cmfFormPassword');
-//Loader::library('form:element/cmfFormTextarea');
-//Loader::library('form:element/cmfFormCheckbox');
-//Loader::library('form:element/cmfFormSelect');
-//Loader::library('form:element/cmfFormRadio');
-//Loader::library('form:element/cmfFormFile');
-//Loader::library('form:element/cmfFormImage');
+////Loader::library('form:cmfFormElement');
+////Loader::library('form:element/cmfFormText');
+////Loader::library('form:element/cmfFormKcaptcha');
+////Loader::library('form:element/cmfFormPassword');
+////Loader::library('form:element/cmfFormTextarea');
+////Loader::library('form:element/cmfFormCheckbox');
+////Loader::library('form:element/cmfFormSelect');
+////Loader::library('form:element/cmfFormRadio');
+////Loader::library('form:element/cmfFormFile');
+////Loader::library('form:element/cmfFormImage');
 
 
-Loader::library('form:core/cFormLoader');
-Loader::library('form:core/cFormCore');
-Loader::library('form:core/cFormUpdate');
-Loader::library('form:core/cFormError');
-Loader::library('form:core/cFormHtml');
-Loader::library('form:core/cFormSecurity');
-Loader::library('form:core/cFormProcessing');
-Loader::library('form:cFormElement');
+//Loader::library('form:core/cFormLoader');
+//Loader::library('form:core/cFormCore');
+//Loader::library('form:core/cFormUpdate');
+//Loader::library('form:core/cFormError');
+//Loader::library('form:core/cFormHtml');
+//Loader::library('form:core/cFormSecurity');
+//Loader::library('form:core/cFormProcessing');
+//Loader::library('form:cFormElement');
 
 class cForm extends cFormCore implements Iterator {
 

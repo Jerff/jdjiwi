@@ -7,7 +7,7 @@ use Jdjiwi\Application,
 
 class Call {
 
-    static protected function start() {
+    static public function start() {
         Application::authorization();
         Log::memory();
         $controler = new cmfApplicationTemplate();

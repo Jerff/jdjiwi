@@ -2,7 +2,7 @@
 
 namespace Jdjiwi;
 
-class Config extends Loader\Compile {
+class Config {
 
     const path = '_.config/';
 
@@ -60,8 +60,11 @@ class Config extends Loader\Compile {
             foreach (self::init($name, self::file($file)) as $key => $value) {
                 self::$mData[$name . '.' . $key] = $value;
             }
-            self::setHistory($file);
         }
+    }
+
+    static public function file($file) {
+        return require($file . '.php');
     }
 
     static public function set($name, $value) {

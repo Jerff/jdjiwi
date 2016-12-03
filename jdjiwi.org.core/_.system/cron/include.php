@@ -1,3 +1,3 @@
 <?php
 
-\Jdjiwi\Loader::library('cron:Cron');
+//\Jdjiwi\Loader::library('cron:Cron');

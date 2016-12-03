@@ -5,7 +5,7 @@ namespace Jdjiwi;
 use Jdjiwi\Pages,
     Jdjiwi\FileSystem\Utility;
 
-Loader::library('core:Time');
+//Loader::library('core:Time');
 Modul::load('fileSystem');
 
 class Log {
@@ -130,10 +130,8 @@ class Log {
         self::error($message);
         try {
             $message = PHP_EOL . date("Y-m-d H:i:s (T): ") . ' ' . $message;
-            $dir = Config::get('path.data') . 'errorLog/' . date('Y-m') . '/';
-            Utility::checkPath($dir);
-            $file = $dir . date('Y-m-d (H)') . '.log';
-            Utility::isWritable($file);
+            $file = Config::get('path.data') . 'errorLog/' . date('Y-m') . '/'. date('Y-m-d_H') . '.log';
+            Utility::checkPath($file);
             if (!($f = fopen($file, 'a'))) {
                 throw new FileSystem\Exception('запись не произведена', $file);
             }

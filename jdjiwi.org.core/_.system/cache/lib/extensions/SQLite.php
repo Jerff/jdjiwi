@@ -2,7 +2,7 @@
 
 namespace Jdjiwi\Cache\Extensions;
 
-\Jdjiwi\Loader::library('cache:extensions/driver/DriverSql');
+//\Jdjiwi\Loader::library('cache:extensions/driver/DriverSql');
 
 class SQLite extends Driver\DriverSql {
 

@@ -4,7 +4,7 @@ namespace Jdjiwi\Cache\Extensions\Driver;
 
 use Jdjiwi\Crypt;
 
-\Jdjiwi\Loader::library('cache:extensions/driver/Driver');
+//\Jdjiwi\Loader::library('cache:extensions/driver/Driver');
 
 class DriverSql extends Driver {
 

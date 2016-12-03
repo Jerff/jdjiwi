@@ -1,6 +1,6 @@
 <?php
 
-\Jdjiwi\Loader::library('database:bilder/cDatabaseBilder');
+//\Jdjiwi\Loader::library('database:bilder/cDatabaseBilder');
 
 class cMysqlBilder extends cDatabaseBilder {
 

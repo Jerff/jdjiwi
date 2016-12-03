@@ -4,7 +4,7 @@ namespace Jdjiwi;
 
 use Jdjiwi\Str;
 
-Loader::library('core:string/Convert');
+//Loader::library('core:string/Convert');
 
 class Str {
 

@@ -4,8 +4,8 @@ namespace Jdjiwi;
 
 use Jdjiwi\Exception;
 
-Loader::library('wysiwyng:tinymce/cWysiwyngTinymce');
-Loader::library('wysiwyng:ckeditor/cWysiwyngKCKeditor');
+//Loader::library('wysiwyng:tinymce/cWysiwyngTinymce');
+//Loader::library('wysiwyng:ckeditor/cWysiwyngKCKeditor');
 
 class cWysiwyng {
 

@@ -2,11 +2,7 @@
 
 namespace Jdjiwi;
 
-if (!class_exists('\Jdjiwi\Loader\Compile', false)) {
-    require(__DIR__ . '/lib/Compile.php');
-}
-
-class Loader extends Loader\Compile {
+class Loader {
 
     static private $path = array(
         cSoursePath,
@@ -29,7 +25,7 @@ class Loader extends Loader\Compile {
     }
 
     static public function library(string $file) {
-        self::file(str_replace(':', '/lib/', $file));
+        require_once(str_replace(':', '/lib/', $file) . '.php');
     }
 
     static public function isExtension(string $name) {
@@ -41,8 +37,8 @@ class Loader extends Loader\Compile {
 }
 
 Loader::init();
-Loader::setHistory('loader/Loader');
-Loader::setHistory('loader:Compile');
+//Loader::setHistory('loader/Loader');
+//Loader::setHistory('loader:Compile');
 Loader::library('loader:Config');
 Config::load('host');
 Loader::library('loader:Autoload');
