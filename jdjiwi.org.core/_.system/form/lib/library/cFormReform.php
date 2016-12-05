@@ -58,7 +58,7 @@ class cFormReform {
         if ($isView) {
             return $value;
         } else {
-            return \Jdjiwi\Str::specialchars($value);
+            return \Jdjiwi\Strings::specialchars($value);
         }
     }
 

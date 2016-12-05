@@ -4,7 +4,7 @@ namespace Jdjiwi\Compile;
 
 use Jdjiwi\Crypt,
     Jdjiwi\Loader,
-    Jdjiwi\Str,
+    Jdjiwi\Strings,
     Jdjiwi\Debug,
     Jdjiwi\FileSystem,
     Jdjiwi\FileSystem\Utility;
@@ -81,7 +81,7 @@ class JsCss {
         $content = '';
         foreach ($arList as $file) {
             if (is_file(cWWWPath . $file)) {
-                $sourse = Str::convertEncoding(file_get_contents(cWWWPath . $file));
+                $sourse = Strings::convertEncoding(file_get_contents(cWWWPath . $file));
                 self::set(dirname($file) . '/');
                 switch ($type) {
                     case 'js':
@@ -91,7 +91,7 @@ class JsCss {
                             }
                             return $m[0];
                         }, $sourse);
-                        if (Str::strrpos($file, 'min') === false and Str::strrpos($file, 'pack') === false) {
+                        if (Strings::strrpos($file, 'min') === false and Strings::strrpos($file, 'pack') === false) {
                             $sourse = new JavaScriptPacker($sourse, 'None', false, false);
                             $sourse = $sourse->pack();
                         }

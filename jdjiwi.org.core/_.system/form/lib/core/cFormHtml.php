@@ -1,6 +1,8 @@
 <?php
 
-class cFormHtml extends cFormRegister {
+namespace Jdjiwi\Form;
+
+class Html extends Register {
 
     public function start() {
         $this->parent()->security()->viewStart();

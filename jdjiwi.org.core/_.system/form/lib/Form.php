@@ -1,40 +1,10 @@
 <?php
 
 use Jdjiwi\Loader,
-    Jdjiwi\Crypt;
+    Jdjiwi\Crypt,
+    Jdjiwi\Form\Core;
 
-//Loader::library('form:cmfFormConfig');
-////Loader::library('form:cmfFormError');
-//
-////Loader::library('form:library/cmfFormLibJs');
-////Loader::library('form:library/cmfFormLibString');
-////Loader::library('form:library/cmfFormLibFilter');
-////Loader::library('form:library/cmfFormLibReform');
-////Loader::library('form:library/cmfFormLibFile');
-////Loader::library('form:library/cmfFormLibImage');
-//
-////Loader::library('form:cmfFormElement');
-////Loader::library('form:element/cmfFormText');
-////Loader::library('form:element/cmfFormKcaptcha');
-////Loader::library('form:element/cmfFormPassword');
-////Loader::library('form:element/cmfFormTextarea');
-////Loader::library('form:element/cmfFormCheckbox');
-////Loader::library('form:element/cmfFormSelect');
-////Loader::library('form:element/cmfFormRadio');
-////Loader::library('form:element/cmfFormFile');
-////Loader::library('form:element/cmfFormImage');
-
-
-//Loader::library('form:core/cFormLoader');
-//Loader::library('form:core/cFormCore');
-//Loader::library('form:core/cFormUpdate');
-//Loader::library('form:core/cFormError');
-//Loader::library('form:core/cFormHtml');
-//Loader::library('form:core/cFormSecurity');
-//Loader::library('form:core/cFormProcessing');
-//Loader::library('form:cFormElement');
-
-class cForm extends cFormCore implements Iterator {
+class cForm extends Core implements Iterator {
 
     function __construct($url = '', $name = 'itemForm', $o = null) {
         $this->setForm($this);
@@ -55,7 +25,7 @@ class cForm extends cFormCore implements Iterator {
 
     // html
     public function html() {
-        return $this->register('cFormHtml');
+        return $this->register('\Jdjiwi\Form\Html');
     }
 
     // обработка форм
@@ -86,7 +56,7 @@ class cForm extends cFormCore implements Iterator {
 
     public function add($name, $type) {
         if ($element = $this->config()->type()->$type) {
-            $this->mElement[$name] = $this->register($element, cFormRegister::initialization);
+            $this->mElement[$name] = $this->register($element, Register::initialization);
             return $this->mElement[$name]->settings()->id($name);
         } else {
             throw new cFormException('нет такого элемента', $type);

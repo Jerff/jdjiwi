@@ -1,6 +1,8 @@
 <?php
 
-class cFormProcessing extends cFormCore {
+use Jdjiwi\Form\Core;
+
+class cFormProcessing extends Core {
 
     public function handler($isChange = false) {
         return $this->processing($isChange, false);
@@ -26,4 +28,3 @@ class cFormProcessing extends cFormCore {
     }
 
 }
-

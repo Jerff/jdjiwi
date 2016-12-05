@@ -4,7 +4,8 @@ namespace Jdjiwi\FileSystem;
 
 use Jdjiwi\Log,
     Jdjiwi\FileSystem,
-    Jdjiwi\FileSystem\Exception;
+    Jdjiwi\FileSystem\Exception,
+    Jdjiwi\Strings\Convert;
 
 class Utility {
 

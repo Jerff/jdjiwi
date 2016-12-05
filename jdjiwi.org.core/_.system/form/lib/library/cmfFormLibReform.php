@@ -1,6 +1,6 @@
 <?php
 
-use Jdjiwi\Str\Convert;
+use Jdjiwi\Strings\Convert;
 
 function cmfReformFloatSelect(&$d, $t = true) {
     if (is_string($d)) {
@@ -39,7 +39,7 @@ function cmfReformFloat($d, $i, $u) {
 
 function cmfReformStrLen(&$s, $m) {
     if ($l = strlen($s)) {
-        $s = \Jdjiwi\Str::subContent($s, 0, $m - 1);
+        $s = \Jdjiwi\Strings::subContent($s, 0, $m - 1);
     }
     return $s;
 }

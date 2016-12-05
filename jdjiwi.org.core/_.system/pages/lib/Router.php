@@ -7,7 +7,7 @@ use Jdjiwi\Input\Get,
     Jdjiwi\Loader,
     Jdjiwi\Ajax,
     Jdjiwi\Exception,
-    Jdjiwi\Str,
+    Jdjiwi\Strings,
     Jdjiwi\Log;
 
 class Router {
@@ -33,7 +33,7 @@ class Router {
             $url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . Config::get('host.uri');
             foreach (self::$arSection as $key => $value) {
                 if (strpos($url, $value) !== false) {
-                    $mSearch[Str::strlen($value)] = $key;
+                    $mSearch[Strings::strlen($value)] = $key;
                 }
             }
             if (empty($mSearch)) {

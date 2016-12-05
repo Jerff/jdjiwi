@@ -1,8 +1,8 @@
 <?php
 
-use Jdjiwi\Str,
-    Jdjiwi\FileSystem\Folder,
-    Jdjiwi\FileSystem;
+use Jdjiwi\FileSystem\Folder,
+    Jdjiwi\FileSystem,
+    Jdjiwi\Strings;
 
 // ------------- работа с файлами -------------
 // копирование файлов на сервер

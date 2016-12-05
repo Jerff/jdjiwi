@@ -2,34 +2,12 @@
 
 use Jdjiwi\JScript,
     Jdjiwi\Loader,
-    Jdjiwi\Str,
+    Jdjiwi\Strings,
     Jdjiwi\Config,
-    Jdjiwi\FileSystem\Folder;
+    Jdjiwi\FileSystem\Folder,
+    Jdjiwi\Form\Core;
 
-//Loader::library('form:element/cFormText');
-//Loader::library('form:element/cFormEmail');
-//Loader::library('form:element/cFormPassword');
-//Loader::library('form:element/cFormNumber');
-//Loader::library('form:element/cFormInt');
-//Loader::library('form:element/cFormFloat');
-//Loader::library('form:element/cFormRange');
-
-////Loader::library('form:element/cmfFormText');
-////Loader::library('form:element/cmfFormKcaptcha');
-////Loader::library('form:element/cmfFormPassword');
-////Loader::library('form:element/cmfFormTextarea');
-////Loader::library('form:element/cmfFormCheckbox');
-////Loader::library('form:element/cmfFormSelect');
-////Loader::library('form:element/cmfFormRadio');
-////Loader::library('form:element/cmfFormFile');
-////Loader::library('form:element/cmfFormImage');
-
-//Loader::library('form:core/cFormElementReform');
-//Loader::library('form:core/cFormElementFilter');
-//Loader::library('form:library/cFormReform');
-//Loader::library('form:library/cFormFilter');
-
-abstract class cFormElement extends cFormCore {
+abstract class cFormElement extends Core {
 
     // настройки
     public function settings() {
@@ -139,7 +117,7 @@ abstract class cFormElement extends cFormCore {
         if ($mTemplate === false) {
             $mTemplate = array();
             foreach (Folder::getFileList(Config::get('path.app.form') . Config::get('form.templates')) as $file) {
-                $name = Str::substr(basename($file), -4);
+                $name = Strings::substr(basename($file), -4);
                 $mTemplate[$name] = str_replace(cSoursePath, '', $file);
             }
         }

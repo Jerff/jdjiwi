@@ -8,7 +8,7 @@ use Jdjiwi\Loader,
     Jdjiwi\Input\Get,
     Jdjiwi\Input\Post,
     Jdjiwi\FileSystem,
-    Jdjiwi\Str;
+    Jdjiwi\Strings;
 
 abstract class Driver {
 

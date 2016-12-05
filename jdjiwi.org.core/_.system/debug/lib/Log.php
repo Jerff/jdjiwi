@@ -79,7 +79,7 @@ class Log {
     // добавить в лог запросов к базе
     static public function sql($message = 'SELECT 1', $time = null) {
         if (Debug::isSql()) {
-            $message = ( ++self::$sqlCount) . ' ' . self::round($time) . " " . Str::specialchars($message);
+            $message = ( ++self::$sqlCount) . ' ' . self::round($time) . " " . Strings::specialchars($message);
             if (class_exists('cPages', false)) {
                 $page = Pages::getItem();
                 if (Pages::isMain($page)) {
@@ -97,7 +97,7 @@ class Log {
     // добавить в лог запросов к базе
     static public function explain($message) {
         if (Debug::isExplain()) {
-            self::push('log', Str::specialchars($message));
+            self::push('log', Strings::specialchars($message));
         }
     }
 

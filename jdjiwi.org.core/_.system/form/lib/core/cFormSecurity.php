@@ -1,9 +1,10 @@
 <?php
 
 use Jdjiwi\Session,
-    Jdjiwi\JScript;
+    Jdjiwi\JScript,
+    Jdjiwi\Form\Core;
 
-class cFormSecurity extends cFormCore {
+class cFormSecurity extends Core {
 
     // проверка
     protected function is() {

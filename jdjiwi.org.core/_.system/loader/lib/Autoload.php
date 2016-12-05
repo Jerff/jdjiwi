@@ -18,6 +18,7 @@ class Autoload {
                 unset($file[1]);
             }
             $path .= implode('/', $file) . '.php';
+//            var_dump($name, $path);
             include_once($path);
             return;
         }

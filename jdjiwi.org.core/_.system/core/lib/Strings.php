@@ -2,11 +2,7 @@
 
 namespace Jdjiwi;
 
-use Jdjiwi\Str;
-
-//Loader::library('core:string/Convert');
-
-class Str {
+class Strings {
 
     static public function convertEncoding($str) {
         $char = mb_detect_encoding($str);

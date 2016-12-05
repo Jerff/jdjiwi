@@ -1,8 +1,8 @@
 <?php
 
-//\Jdjiwi\Loader::library('core:traits/Config');
+namespace Jdjiwi\Form;
 
-class cFormConfig {
+class Config {
 
     use \Jdjiwi\Traits\Config;
 

@@ -1,15 +1,17 @@
 <?php
 
-class cFormElementFilter extends cFormCore {
+use Jdjiwi\Form\Core;
+
+class cFormElementFilter extends Core {
     /* === убрать === */
 
-    private $mFilter = array();
+    private $arFilter = array();
 
     public function &add() {
         $arg = func_get_args();
         $func = array_shift($arg);
-        if (!isset($this->mFilter[$func])) {
-            $this->mFilter[$func] = $arg;
+        if (!isset($this->arFilter[$func])) {
+            $this->arFilter[$func] = $arg;
         }
         return $this;
     }
@@ -27,7 +29,7 @@ class cFormElementFilter extends cFormCore {
     }
 
     private function &all() {
-        return $this->mFilter;
+        return $this->arFilter;
     }
 
     /* === /убрать === */
@@ -65,4 +67,3 @@ class cFormElementFilter extends cFormCore {
     }
 
 }
-

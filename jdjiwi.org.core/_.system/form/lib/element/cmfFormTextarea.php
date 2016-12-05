@@ -8,7 +8,7 @@ class cmfFormTextarea extends cFormText {
     }
 
     public function html($param, $style = '') {
-        return '<textarea name="' . ($name = $this->getId()) . '" id="' . $name . '" ' . $style . '>' . \Jdjiwi\Str::specialchars($this->getValue()) . '</textarea>';
+        return '<textarea name="' . ($name = $this->getId()) . '" id="' . $name . '" ' . $style . '>' . \Jdjiwi\Strings::specialchars($this->getValue()) . '</textarea>';
     }
 
 }

@@ -1,20 +1,22 @@
 <?php
 
-class cFormElementReform extends cFormCore {
+use Jdjiwi\Form\Core;
+
+class cFormElementReform extends Core {
     /* === убрать === */
 
-    private $mReform = array();
+    private $arReform = array();
 
     // добавить функцию
     public function &add($reform, $arg = null) {
-        $this->mReform[$this->config()
+        $this->arReform[$this->config()
                         ->reform()->$reform] = $arg;
         return $this;
     }
 
     // список
     private function &get() {
-        return $this->mReform;
+        return $this->arReform;
     }
 
     /* === /убрать === */
@@ -47,4 +49,3 @@ class cFormElementReform extends cFormCore {
     }
 
 }
-

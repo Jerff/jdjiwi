@@ -5,7 +5,7 @@ namespace Jdjiwi\Compile;
 use Jdjiwi\Crypt,
     Jdjiwi\Config,
     Jdjiwi\Loader,
-    Jdjiwi\Str,
+    Jdjiwi\Strings,
     Jdjiwi\FileSystem,
     Jdjiwi\FileSystem\Utility;
 
@@ -87,7 +87,7 @@ class Php {
 
     static private function file($file) {
         self::$itemFile = $file;
-        $content = Str::convertEncoding(php_strip_whitespace($file));
+        $content = Strings::convertEncoding(php_strip_whitespace($file));
         $content = trim(preg_replace_callback("#(\".*?\")|('.*?')|(\{.*?\})|((require|require_once|include|include_once)\('(.*?)'\);)#sS", array(&$this, 'includeFile'), $content));
         if (substr($content, -2) === '?>') {
             $content = substr($content, 0, -2);

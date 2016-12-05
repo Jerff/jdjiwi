@@ -1,6 +1,6 @@
 <?php
 
-namespace Jdjiwi\String;
+namespace Jdjiwi\Strings;
 
 class Convert {
     /* === match === */

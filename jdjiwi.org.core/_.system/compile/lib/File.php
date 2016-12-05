@@ -3,7 +3,7 @@
 //namespace Jdjiwi\FileSystem;
 
 use Jdjiwi\Loader,
-    Jdjiwi\Str,
+    Jdjiwi\Strings,
     Jdjiwi\Compile,
     Jdjiwi\FileSystem\Utility;
 
@@ -22,7 +22,7 @@ class File {
             return '';
         foreach ($list as $dir) {
             if (is_file($dir . $file)) {
-                $sourse = Str::convertEncoding(file_get_contents($dir . $file));
+                $sourse = Strings::convertEncoding(file_get_contents($dir . $file));
                 break;
             }
         }
@@ -39,7 +39,7 @@ class File {
         }
         self::$arInclude[$file] = 1;
 
-        if (Str::strrpos($file, 'min') === false and Str::strrpos($file, 'pack') === false and $js) {
+        if (Strings::strrpos($file, 'min') === false and Strings::strrpos($file, 'pack') === false and $js) {
             $sourse = new JavaScriptPacker($sourse, 'None', false, false);
             $sourse = $sourse->pack();
         }
@@ -54,7 +54,7 @@ class File {
         foreach ($list as $dir) {
             $prefix = preg_replace('~^.+(\..+)$~i', '$1', $name);
             foreach (Folder::getFileList($dir) as $file) {
-                if ($name != $file and Str::strrpos($file, $prefix) !== false) {
+                if ($name != $file and Strings::strrpos($file, $prefix) !== false) {
                     $sourse .= self::pack($list, $file, $js);
                     $sourse .= "\n{$sep}\n";
                 }

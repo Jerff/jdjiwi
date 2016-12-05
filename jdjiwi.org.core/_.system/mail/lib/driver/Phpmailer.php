@@ -104,7 +104,7 @@ class Phpmailer {
     }
 
     public function sendHTML($to, $subject, $message) {
-        if (!\Jdjiwi\Str::isEmail($to))
+        if (!\Jdjiwi\Strings::isEmail($to))
             return;
 
         $mail = $this->init();
